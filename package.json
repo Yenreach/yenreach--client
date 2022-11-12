@@ -13,10 +13,14 @@
     "lint:fix": "eslint --fix"
   },
   "dependencies": {
+    "@capacitor/android": "^4.4.0",
+    "@capacitor/core": "^4.4.0",
+    "@capacitor/ios": "^4.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@capacitor/cli": "^4.4.0",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
