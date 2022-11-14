@@ -1,6 +1,6 @@
 {
   "appId": "com.yenreach",
-  "appName": "yenreach--client",
+  "appName": "yenreach",
   "webDir": "dist",
   "bundledWebRuntime": false
 }
