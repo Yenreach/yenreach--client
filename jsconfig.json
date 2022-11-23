@@ -1,14 +1,52 @@
 {
     "compilerOptions": {
-      "baseUrl": "./src",
-      "paths": {
-        "@adapters/*": ["adapters/*"],
-        "@assets/*": ["assets/*"],
-        "@components/*": ["components/*"],
-        "@contexts/*": ["contexts/*"],
-        "@hooks/*": ["hooks/*"],
-        "@pages/*": ["pages/*"],
-        "@utils/*": ["utils/*"],
-      }
+        "baseUrl": "/src",
+        // "paths": {
+        //     "@adapters/*": ["adapters/*"],
+        //     "@assets/*": ["assets/*"],
+        //     "@components/*": ["components/*"],
+        //     "@contexts/*": ["contexts/*"],
+        //     "@hooks/*": ["hooks/*"],
+        //     "@pages/*": ["pages/*"],
+        //     "@utils/*": ["utils/*"],
+        // },
+        // "exclude": ["node_modules", "android", "dist", "icons"]
     }
   }
+
+//   {
+//     "compilerOptions": {
+//         "lib": [
+//             "dom",
+//             "es2015",
+//             "es2016",
+//             "es6",
+//             "es2017"
+//         ],
+//         "target": "es2017",
+//         "module": "es6",
+//         "allowSyntheticDefaultImports": true,
+//         "baseUrl": "src",
+//         "paths": {
+//             "@adapters/*": ["adapters/*"],
+//             "@assets/*": ["assets/*"],
+//             "@components/*": ["components/*"],
+//             "@contexts/*": ["contexts/*"],
+//             "@hooks/*": ["hooks/*"],
+//             "@pages/*": ["pages/*"],
+//             "@utils/*": ["utils/*"],
+//         }
+//     },
+//     "exclude": ["node_modules", "**/node_modules/*"]
+// }
+
+
+// {
+//     "compilerOptions": {
+//         "module": "commonjs",
+//         "target": "es6",
+//     },
+//     "include": ["src/**/*"],
+//     "exclude": ["node_modules", "android", "dist", "icons"]
+//   }
+    
