@@ -26,27 +26,93 @@ const index = () => {
         </div>
         <div className='w-full'>
             <h2 className='text-25 text-color1 font-medium'>Recommended for you</h2>
-            <div>
-                <div>
-                    <div>     
-                        <div>    
-                            <img src={Computer} alt="" />
-                            <h6 className='text-sm font-medium'>Blossom boutique flower tsfdsfddfsdtfd</h6>
-                        </div>
-                        <ul className='flex items-center flex-wrap text-xsm list-disc pl-4 gap-4'>
-                            <li>Unknown</li>
-                            <li>Unknown</li>
-                            <li>Unknown</li>
-                            <li>Unknown</li>
-                            <li>Unknown</li>
-                            <li>Unknown</li>
+            <div className='flex items-center gap-6 flex-wrap'>
+                <div className='card w-68 py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
+                    <div>       
+                        <img src={Computer} alt="" className='h-32 mb-2' />
+                        <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
+                        <ul className='flex items-center flex-wrap text-xsm list-disc pl-4 gap-4 h-9 overflow-hidden pb-12'>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
                         </ul>
                     </div>
-                    <button className='bg-color1 text-xs text-white rounded-xl flex items-center gap-0.5 py-2 px-10 font-semibold'>
+                    <button className='w-full bg-color1 text-xs text-white rounded-xl flex justify-center items-center gap-0.5 py-2 px-10 font-semibold'>
+                        view business
+                    </button>
+                </div>
+                <div className='card w-68 py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
+                    <div>       
+                        <img src={Computer} alt="" className='h-32 mb-2' />
+                        <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
+                        <ul className='flex items-center flex-wrap text-xsm list-disc pl-4 gap-4 h-9 overflow-hidden pb-12'>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                        </ul>
+                    </div>
+                    <button className='w-full bg-color1 text-xs text-white rounded-xl flex justify-center items-center gap-0.5 py-2 px-10 font-semibold'>
+                        view business
+                    </button>
+                </div>
+                <div className='card w-68 py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
+                    <div>       
+                        <img src={Computer} alt="" className='h-32 mb-2' />
+                        <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
+                        <ul className='flex items-center flex-wrap text-xsm list-disc pl-4 gap-4 h-9 overflow-hidden pb-12'>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                        </ul>
+                    </div>
+                    <button className='w-full bg-color1 text-xs text-white rounded-xl flex justify-center items-center gap-0.5 py-2 px-10 font-semibold'>
+                        view business
+                    </button>
+                </div>
+                <div className='card w-68 py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
+                    <div>       
+                        <img src={Computer} alt="" className='h-32 mb-2' />
+                        <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
+                        <ul className='flex items-center flex-wrap text-xsm list-disc pl-4 gap-4 h-9 overflow-hidden pb-12'>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                            <li><span className='relative -left-1.5'>Unknown</span></li>
+                        </ul>
+                    </div>
+                    <button className='w-full bg-color1 text-xs text-white rounded-xl flex justify-center items-center gap-0.5 py-2 px-10 font-semibold'>
                         view business
                     </button>
                 </div>
             </div>
+            <button className='w-full bg-[#F5F7FA] py-4 mt-2'>See More</button>
         </div>
     </section>
   )

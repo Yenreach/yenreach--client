@@ -22,10 +22,15 @@ module.exports = {
           letterSpacing: '-0.01em',
           fontWeight: '500',
         }],
+        '3xlm': ['1.7rem', {
+          lineHeight: '2rem',
+          letterSpacing: '-0.02em',
+          fontWeight: '500',
+        }],
         '40': ['2.5rem', {
           lineHeight: '2.5rem',
           letterSpacing: '-0.02em',
-          fontWeight: '700',
+          fontWeight: '500',
         }],
       },
       fontFamily: {
@@ -33,6 +38,10 @@ module.exports = {
       },
       backgroundImage: {
         'hero-pattern': "url('src/assets/hero.svg')",
+        'audience': "url('src/assets/audience.svg')",
+      },
+      width: {
+        '68': '17rem',
       }
     },
     
