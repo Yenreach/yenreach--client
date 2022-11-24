@@ -5,7 +5,7 @@ import Search from '../../assets/search.svg'
 
 const index = () => {
   return (
-    <div className='bg-hero-pattern h-screen bg-cover bg-center text-white flex flex-col justify-between items-center py-20'>
+    <div className='bg-hero-pattern h-screen bg-cover bg-center text-white flex flex-col justify-between items-center py-20 px-36'>
         <h1 className='text-40 text-center leading-tight'>The No.1 Business listing<br />website in Nigeria</h1>
         <form action="" method="post" className='flex'>
             <input className='px-4 py-3 rounded-tl-md rounded-bl-md bg-inherit border-2 border-white' type="text" name="business" id="business" placeholder='business'/>

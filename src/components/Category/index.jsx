@@ -6,7 +6,7 @@ import Computer from '../../assets/computer.svg'
 
 const index = () => {
   return (
-    <section className='py-8 px-14 flex flex-col items-center gap-36'>
+    <section className='py-8 px-36 flex flex-col items-center gap-36'>
         <div className='flex flex-col gap-3'>
             <h2 className='text-25 text-center text-color1 font-medium'>Browse by our recomended category</h2>
             <div className='bg-[#E9E9E9] px-6 rounded-full py-2.5 flex items-center gap-12 text-sm'>
@@ -25,7 +25,7 @@ const index = () => {
             </div>
         </div>
         <div className='w-full'>
-            <h2 className='text-25 text-color1 font-medium'>Recommended for you</h2>
+            <h2 className='text-25 text-color1 font-medium mb-2'>Recommended for you</h2>
             <div className='flex items-center gap-6 flex-wrap'>
                 <div className='card w-68 py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
                     <div>       
