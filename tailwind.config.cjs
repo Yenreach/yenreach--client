@@ -10,13 +10,15 @@ module.exports = {
         'color1': '#00C885',
         'color2': '#076AFF',
         'color3': '#FF9900',
-        'dark-light': '#343741;',
+        'dark-light': '#343741',
         'gray-dark': '#273444',
-        'gray': '#8492a6',
-        'gray-light': '#d3dce6',
+        'footer-gray': '#69707D',
+        'gray': '#D3DAE6',
+        'gray-light': '#E5E5E5',
       },
       fontSize: {
         xsm: ['0.625rem', '0.8rem'],
+        smm: ['0.8125rem', '1.15rem'],
         '25': ['1.3rem', {
           lineHeight: '2rem',
           letterSpacing: '-0.01em',
@@ -42,7 +44,11 @@ module.exports = {
       },
       width: {
         '68': '17rem',
-      }
+      },
+      height: {
+        '104': '26rem',
+        '128': '32rem',
+      },
     },
     
   },
