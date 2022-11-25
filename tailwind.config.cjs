@@ -14,6 +14,7 @@ module.exports = {
         'dark-light': '#343741',
         'gray-dark': '#273444',
         'footer-gray': '#69707D',
+        'footer-bg': '#FAFAFA',
         'gray': '#c2c2c2',
         'gray-light': '#E5E5E5',
       },

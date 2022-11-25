@@ -7,7 +7,7 @@ import Button from '../ui/Button'
 
 const index = () => {
   return (
-    <div className='bg-hero-pattern h-screen bg-cover bg-center text-white flex flex-col justify-between items-center py-32 pt-52 sm:py-20 sm:pt-40 px-4 md:px-10 lg:px-24'>
+    <div className='bg-hero-pattern h-[80vh] lg:h-screen bg-cover bg-center text-white flex flex-col justify-between items-center py-32 pt-52 sm:py-20 sm:pt-40 px-4 md:px-10 lg:px-24'>
         <h1 className='text-3xl font-medium sm:text-40 text-center leading-tight'>The No.1 Business listing<br />website in Nigeria</h1>
         <form action="" method="post" className='flex'>
             <Input type="text" name="business" id="business" placeholder='business' className='rounded-tl-md rounded-bl-md' />
