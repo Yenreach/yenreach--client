@@ -10,19 +10,19 @@ function Button({ to, variant, outlined, className, override, children }) {
     ['text-center text-xs'], 
     // Products/Marketplace
     variant === 'product'
-      ? !override && [ outlined && 'rounded-full flex items-center gap-0.5 py-2 md:px-10 font-bold text-color3',
-          !outlined && 'bg-color3 text-white'
+      ? !override && [ outlined && 'rounded-full flex items-center gap-0.5 py-2 md:px-10 font-bold text-orange',
+          !outlined && 'bg-orange text-white'
         ]
       
     // Jobs
       : variant === 'job'
-        ? !override && [ outlined && 'rounded-full flex items-center md:gap-0.5 p-0 py-2 md:px-10 font-semibold text-color2',
-            !outlined && 'bg-color2 text-white'
+        ? !override && [ outlined && 'rounded-full flex items-center md:gap-0.5 p-0 py-2 md:px-10 font-semibold text-blue',
+            !outlined && 'bg-blue text-white'
           ]
 
     // Businesses
-      : !override && [ outlined && 'rounded-full flex items-center gap-0.5 py-2 md:px-10 font-medium text-color1',
-          !outlined && 'bg-color1 text-white'
+      : !override && [ outlined && 'rounded-full flex items-center gap-0.5 py-2 md:px-10 font-medium text-green',
+          !outlined && 'bg-green text-white'
         ]
 
     

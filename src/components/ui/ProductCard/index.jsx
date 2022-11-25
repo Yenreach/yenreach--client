@@ -16,7 +16,7 @@ const index = () => {
         <span className='font-bold'>
           #100,000
         </span>
-        <Button>
+        <Button variant='product' className='py-2 px-8 rounded-md'>
           View More
         </Button>
       </div>
