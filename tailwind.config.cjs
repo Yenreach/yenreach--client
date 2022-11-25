@@ -10,6 +10,7 @@ module.exports = {
         'green': '#00C885',
         'blue': '#076AFF',
         'orange': '#FF9900',
+        'green2': '#083640',
         'orange-light': '#ffcc8954',
         'dark-light': '#343741',
         'gray-dark': '#273444',
@@ -53,14 +54,14 @@ module.exports = {
         '128': '32rem',
       },
       gridTemplateColumns: {
-        // Simple 1 column grid
+        // Business grids
         'bus1': 'repeat(1, minmax(17rem, 1fr))',
         'bus2': 'repeat(2, minmax(17rem, 1fr))',
         'bus3': 'repeat(3, minmax(17rem, 1fr))',
         'bus4': 'repeat(4, minmax(17rem, 1fr))',
 
         // Complex site-specific column configuration
-        'footer': '200px minmax(900px, 1fr) 100px',
+        'business-info': 'repeat(1, minmax(300px, 1fr))',
       },
     },
     
