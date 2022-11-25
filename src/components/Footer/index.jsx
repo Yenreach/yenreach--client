@@ -1,5 +1,7 @@
 import React from 'react'
 import Logo from "../../assets/logo.svg"
+import Button from '../ui/Button'
+import Input from '../ui/Input'
 
 const index = () => {
   return (
@@ -43,10 +45,10 @@ const index = () => {
             <h4 className='text-25 mb-2'>Stay Updated</h4>
             <span className='text-smm text-footer-gray'>Keep a close watch on your favourite businesses</span>
             <form action="" method="post" className='flex text-xs mt-7'>
-              <input className='px-2 py-1.5 border-r-0 border-2 rounded-tl-md rounded-bl-md border-gray w-full' type="email" name="email" id="email" placeholder='Enter your email' />
-              <button className='bg-color1 rounded-tr-md rounded-br-md text-white py-1.5 px-5 text-xs'>
+              <Input type="email" name="email" id="email" placeholder='Enter your email' className='px-2 py-1.5 border-r-0 border-2 rounded-tl-md rounded-bl-md border-gray w-full' />
+              <Button className='rounded-tr-md rounded-br-md py-1.5 px-5 text-xs'>
                 Submit
-              </button>
+              </Button>
             </form>
           </div>
         </div>
