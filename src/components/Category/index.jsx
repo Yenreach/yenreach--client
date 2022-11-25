@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../ui/Button'
 import Business from '../../assets/business.svg'
 import Job from '../../assets/job.svg'
 import Product from '../../assets/product.svg'
@@ -10,18 +11,18 @@ const index = () => {
         <div className='flex flex-col gap-3'>
             <h2 className='text-25 text-center text-color1 font-medium'>Browse by our recomended category</h2>
             <div className='bg-[#E9E9E9] px-6 rounded-full py-2.5 flex items-center gap-12 text-sm'>
-                <button className='bg-color1 text-white rounded-full flex items-center gap-0.5 py-2 px-10 font-semibold'>
+                <Button className='rounded-full flex items-center gap-0.5 py-2 px-10 pr-14 font-semibold'>
                     <img src={Business} alt="" />
-                    Businesses
-                </button>
-                <button className='text-color2 rounded-full flex items-center gap-0.5 py-2 px-10 font-semibold'>
+                    Business  
+                </Button>
+                <Button variant='job' outlined={true} className=''>
                     <img src={Job} alt="" />
                     Jobs & Careers
-                </button>
-                <button className='text-color3 rounded-full flex items-center gap-0.5 py-2 px-10 font-semibold'>
+                </Button>
+                <Button variant='product' outlined={true} className=''>
                     <img src={Product} alt="" />
                     Products Marketplace
-                </button>
+                </Button>
             </div>
         </div>
         <div className='w-full'>
@@ -44,9 +45,9 @@ const index = () => {
                             <li><span className='relative -left-1.5'>Unknown</span></li>
                         </ul>
                     </div>
-                    <button className='w-full bg-color1 text-xs text-white rounded-xl flex justify-center items-center gap-0.5 py-2 px-10 font-semibold'>
+                    <Button className='w-full text-xs rounded-xl py-2 px-4 font-semibold'>
                         view business
-                    </button>
+                    </Button>
                 </div>
                 <div className='card w-68 py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
                     <div>       
@@ -65,9 +66,9 @@ const index = () => {
                             <li><span className='relative -left-1.5'>Unknown</span></li>
                         </ul>
                     </div>
-                    <button className='w-full bg-color1 text-xs text-white rounded-xl flex justify-center items-center gap-0.5 py-2 px-10 font-semibold'>
+                    <Button className='w-full text-xs rounded-xl py-2 px-4 font-semibold'>
                         view business
-                    </button>
+                    </Button>
                 </div>
                 <div className='card w-68 py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
                     <div>       
@@ -86,9 +87,9 @@ const index = () => {
                             <li><span className='relative -left-1.5'>Unknown</span></li>
                         </ul>
                     </div>
-                    <button className='w-full bg-color1 text-xs text-white rounded-xl flex justify-center items-center gap-0.5 py-2 px-10 font-semibold'>
+                    <Button className='w-full text-xs rounded-xl py-2 px-4 font-semibold'>
                         view business
-                    </button>
+                    </Button>
                 </div>
                 <div className='card w-68 py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
                     <div>       
@@ -107,12 +108,14 @@ const index = () => {
                             <li><span className='relative -left-1.5'>Unknown</span></li>
                         </ul>
                     </div>
-                    <button className='w-full bg-color1 text-xs text-white rounded-xl flex justify-center items-center gap-0.5 py-2 px-10 font-semibold'>
+                    <Button className='w-full text-xs rounded-xl py-2 px-4 font-semibold'>
                         view business
-                    </button>
+                    </Button>
                 </div>
             </div>
-            <button className='w-full bg-[#F5F7FA] py-4 mt-2'>See More</button>
+            <Button className='w-full bg-[#F5F7FA] py-4 mt-2 text-black'>
+                See More
+            </Button>
         </div>
     </section>
   )
