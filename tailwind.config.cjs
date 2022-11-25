@@ -7,13 +7,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'color1': '#00C885',
-        'color2': '#076AFF',
-        'color3': '#FF9900',
+        'green': '#00C885',
+        'blue': '#076AFF',
+        'orange': '#FF9900',
+        'orange-light': '#ffcc8954',
         'dark-light': '#343741',
         'gray-dark': '#273444',
         'footer-gray': '#69707D',
-        'gray': '#D3DAE6',
+        'gray': '#c2c2c2',
         'gray-light': '#E5E5E5',
       },
       fontSize: {
@@ -41,6 +42,7 @@ module.exports = {
       backgroundImage: {
         'hero-pattern': "url('src/assets/hero.svg')",
         'audience': "url('src/assets/audience.svg')",
+        'new-job-listing': "url('src/assets/new-job-listing.svg')",
       },
       width: {
         '68': '17rem',
