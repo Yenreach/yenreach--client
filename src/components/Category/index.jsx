@@ -28,8 +28,8 @@ const index = () => {
         <div className='w-full'>
             <h2 className='text-25 text-green font-medium mb-2 text-center'>Recommended for you</h2>
             {/* flex items-center gap-6 flex-wrap  */}
-            <div className='grid grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 lg:grid-cols-bus3'>
-                <div className='card w-full py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
+            <div className='grid grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 xl:grid-cols-bus4 gap-6'>
+                <div className='card w-full py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-80 flex flex-col items-center justify-between'>
                     <div>       
                         <img src={Computer} alt="" className='h-32 mb-2 w-full object-cover rounded-xl' />
                         <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
@@ -50,7 +50,7 @@ const index = () => {
                         view business
                     </Button>
                 </div>
-                <div className='card w-full py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
+                <div className='card w-full py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-80 flex flex-col items-center justify-between'>
                     <div>       
                         <img src={Computer} alt="" className='h-32 mb-2 w-full object-cover rounded-xl' />
                         <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
@@ -71,7 +71,7 @@ const index = () => {
                         view business
                     </Button>
                 </div>
-                <div className='card w-full py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
+                <div className='card w-full py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-80 flex flex-col items-center justify-between'>
                     <div>       
                         <img src={Computer} alt="" className='h-32 mb-2 w-full object-cover rounded-xl' />
                         <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
@@ -92,7 +92,7 @@ const index = () => {
                         view business
                     </Button>
                 </div>
-                <div className='card w-full py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
+                <div className='card w-full py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-80 flex flex-col items-center justify-between'>
                     <div>       
                         <img src={Computer} alt="" className='h-32 mb-2 w-full object-cover rounded-xl' />
                         <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>

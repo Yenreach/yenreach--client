@@ -7,7 +7,7 @@ function Button({ to, variant, outlined, className, override, children }) {
   const styles = (variant, outlined, className, override) => clsx(
     className,
     
-    ['text-center text-xs'], 
+    ['text-center text-sm'], 
     // Products/Marketplace
     variant === 'product'
       ? !override && [ outlined && 'rounded-full flex items-center gap-0.5 py-2 md:px-10 font-bold text-orange',

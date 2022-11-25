@@ -66,7 +66,7 @@ const index = () => {
                 </div>
             </div>
         </section>
-        <section className='py-12 px-4 md:px-10 lg:px-2 mb-12'>
+        <section className='py-12 px-4 md:px-10 lg:px-24 mb-12'>
             <div className='mb-60'>
                 <h2 className='text-25 text-green font-medium mb-2 text-center'>Business of the week</h2>
                 <div className='flex flex-col items-center sm:flex-row gap-14'>
