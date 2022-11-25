@@ -3,35 +3,37 @@ import clsx from "clsx";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Button({ to, variant, outlined, className, children }) {
-  const styles = (variant, outlined, className) => clsx(
-    ['text-center'], 
+function Button({ to, variant, outlined, className, override, children }) {
+  const styles = (variant, outlined, className, override) => clsx(
+    className,
+    
+    ['text-center text-xs'], 
     // Products/Marketplace
     variant === 'product'
-      ? [ outlined && 'rounded-full flex items-center gap-0.5 py-2 px-10 font-bold text-color3',
+      ? !override && [ outlined && 'rounded-full flex items-center gap-0.5 py-2 md:px-10 font-bold text-color3',
           !outlined && 'bg-color3 text-white'
         ]
       
     // Jobs
       : variant === 'job'
-        ? [ outlined && 'rounded-full flex items-center gap-0.5 p-0 py-2 px-10 font-semibold text-color2',
+        ? !override && [ outlined && 'rounded-full flex items-center md:gap-0.5 p-0 py-2 md:px-10 font-semibold text-color2',
             !outlined && 'bg-color2 text-white'
           ]
 
     // Businesses
-      : [ outlined && 'rounded-full flex items-center gap-0.5 py-2 px-10 font-medium text-color1',
+      : !override && [ outlined && 'rounded-full flex items-center gap-0.5 py-2 md:px-10 font-medium text-color1',
           !outlined && 'bg-color1 text-white'
-        ],
+        ]
 
-    className
+    
   )
 
   return to.length > 0 ? (
-    <Link className={styles(variant, outlined, className)} to={`/${to}`}>
+    <Link className={styles(variant, outlined, className, override)} to={`/${to}`}>
       {children}
     </Link>
   ) : (
-    <button className={styles(variant, outlined, className)}>
+    <button className={styles(variant, outlined, className, override)}>
       {children}
     </button>
   );
@@ -42,15 +44,17 @@ Button.defaultProps = {
   to: '',
   variant: 'business',
   outlined: false,
-  className: ''
+  className: '',
+  override: false
 };
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   to: PropTypes.string,
   variant: PropTypes.string,
-  outlined: PropTypes.string,
+  outlined: PropTypes.bool,
   className: PropTypes.string,
+  override: PropTypes.bool,
 };
 
 export default Button;

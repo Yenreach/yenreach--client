@@ -16,7 +16,7 @@ const index = () => {
         <Header />
         <Hero />
         <Category />
-        <section className='py-12 px-36'>
+        <section className='py-12 px-4 md:px-10 lg:px-24'>
             <div className='bg-audience h-64 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-28'>     
                 <div className='flex flex-col items-center gap-2'>
                     <h2 className='text-40 font-semibold'>Get your business to the right audience</h2>
@@ -66,7 +66,7 @@ const index = () => {
                 </div>
             </div>
         </section>
-        <section className='py-12 px-36 mb-12'>
+        <section className='py-12 px-4 md:px-10 lg:px-2 mb-12'>
             <div className='mb-60'>
                 <h2 className='text-25 text-color1 font-medium mb-2'>Business of the week</h2>
                 <div className='flex items-center gap-14'>
@@ -105,11 +105,11 @@ const index = () => {
                 </div>
             </div>
         </section>
-        <section className='py-12 px-36 mb-11'>
+        <section className='py-12 px-4 md:px-10 lg:px-2 mb-11'>
             <h2 className='text-25 text-color1 font-medium text-center'>Frequently asked questions</h2>
             <Accordion />
         </section>
-        <Footer />
+        {/* <Footer /> */}
     </>
   )
 }
