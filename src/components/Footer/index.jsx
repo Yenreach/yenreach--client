@@ -6,12 +6,12 @@ import Input from '../ui/Input'
 const index = () => {
   return (
     <footer className='py-12 mb-11'>
-        <header className='flex items-center justify-between bg-white py-2 border-y-2 border-[#D3DAE6] px-36 mb-28'>
+        <div className='flex items-center justify-between gap-8 bg-white py-2 border-y-2 border-[#D3DAE6] px-8 md:px-10 lg:px-24 mb-28'>
           <div>
-            <h3>Yenreach.com 2022</h3>
+            <h3 className='text-center'>Yenreach.com 2022</h3>
           </div>
-          <nav className="flex items-center gap-x-14">
-            <ul className='flex items-center text-sm gap-x-7 opacity-80'>
+          <nav className="flex items-center gap-x-14 md:gap-4 lg:gap-7">
+            <ul className='flex items-center text-sm gap-3 md:gap-4 lg:gap-7 opacity-80'>
               <li><a href="home" className='text-color1 font-medium'>Home</a></li>
               <li><a href="explore" className=''>Explore</a></li>
               <li><a href="blog">Blog</a></li>
@@ -20,7 +20,7 @@ const index = () => {
               <li><a href="login" className='opacity-70'>Login</a></li>
             </ul>
           </nav>
-        </header>
+        </div>
         <div className='px-36 flex justify-between w-11/12'>
           <div className='flex gap-32'>
             <div>

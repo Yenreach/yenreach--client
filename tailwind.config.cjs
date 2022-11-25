@@ -51,6 +51,16 @@ module.exports = {
         '104': '26rem',
         '128': '32rem',
       },
+      gridTemplateColumns: {
+        // Simple 1 column grid
+        'bus1': 'repeat(1, minmax(17rem, 1fr))',
+        'bus2': 'repeat(2, minmax(17rem, 1fr))',
+        'bus3': 'repeat(3, minmax(17rem, 1fr))',
+        'bus4': 'repeat(4, minmax(17rem, 1fr))',
+
+        // Complex site-specific column configuration
+        'footer': '200px minmax(900px, 1fr) 100px',
+      },
     },
     
   },
