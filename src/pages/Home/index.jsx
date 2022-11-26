@@ -18,7 +18,7 @@ const index = () => {
         <Hero />
         <Category />
         <section className='py-12 px-4 md:px-10 lg:px-24'>
-            <div className='bg-audience h-64 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-28 px-4 sm:px-12 md:px-24'>     
+            <div className='bg-[url("assets/audience.svg")] h-64 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-28 px-4 sm:px-12 md:px-24'>     
                 <div className='flex flex-col items-center gap-2'>
                     <h2 className='text-2xl sm:text-3xl md:text-40 font-medium text-center'>Get your business to the right audience</h2>
                     <span className='text-xl '>It's Totally free</span>
