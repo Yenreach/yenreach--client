@@ -9,6 +9,7 @@ import AllHereJ from '../../assets/jobs/all-here.svg'
 import AllHereP from '../../assets/products/all-here.svg'
 import BusOfTheWeek from '../../assets/bus_of_the_week.svg'
 import Button from '../../components/ui/Button'
+import { Link } from 'react-router-dom'
 
 const index = () => {
   return (
