@@ -59,7 +59,7 @@ const index = () => {
             </div>
             <div className='py-20 sm:py-12 px-4 md:px-10 lg:px-20 bg-footer-bg'>
                 <h3 className='text-2xl text-center text-green font-medium mb-8'>On the stable of our consultancy are</h3>
-                <div className='flex gap-4 flex-wrap justify-center'>
+                <div className='flex gap-4 flex-wrap justify-center lg:w-5/6 mx-auto'>
                     <div className='flex items-center gap-6 px-3 py-5 w-64 bg-white hover:drop-shadow-2xl'>
                         <img src={ISMN} alt="" className='w-12' />
                         <p className='text-[#476788] font-arialsans'>Institute of strategic Management Nigeria (ISMN)</p>
