@@ -40,6 +40,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
+        arialsans: ['Arial', 'Helvetica', 'sans-serif'],
       },
       backgroundImage: {
         'hero-pattern': "url('src/assets/hero.svg')",
