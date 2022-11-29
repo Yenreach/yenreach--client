@@ -6,21 +6,7 @@ import RightArrow from '../../assets/right-arrow.svg'
 const index = () => {
   return (
     <>
-<<<<<<< HEAD
-      <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-      </div>
-      <div className="w-full bg-new-job-listing text-white rounded-2xl font-extrabold text-xl grid place-items-center bg-cover bg-center py-6">
-=======
       <div className="w-full bg-[url('assets/new-job-listing.svg')] text-white rounded-2xl font-extrabold text-xl grid place-items-center bg-cover bg-center py-6">
->>>>>>> 34aba418132a191f27ee6cd8bb76ab510aba0cbc
         New Job Listings available       
       </div>
       <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
