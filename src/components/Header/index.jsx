@@ -5,7 +5,7 @@ import Button from '../ui/Button'
 
 const index = () => {
   return (
-    <header className='bg-white flex items-center justify-between py-5 px-8 md:px-10 lg:px-24 fixed top-0 left-0 z-10 w-full'>
+    <header className='bg-white flex items-center justify-between py-2 px-4 md:py-5 md:px-10 lg:px-24 fixed top-0 left-0 z-10 w-full'>
       <div>
         <img src={Logo} alt="" className='h-16 md:h-12' />
       </div>

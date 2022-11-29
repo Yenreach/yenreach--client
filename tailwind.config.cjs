@@ -11,7 +11,6 @@ module.exports = {
         'blue': '#076AFF',
         'orange': '#FF9900',
         'orange-light': '#ffcc8954',
-        'dark-light': '#343741',
         'gray-dark': '#273444',
         'footer-gray': '#69707D',
         'gray': '#c2c2c2',
@@ -50,6 +49,9 @@ module.exports = {
       height: {
         '104': '26rem',
         '128': '32rem',
+      },
+      padding: {
+        '22': '5.5rem',
       },
       gridTemplateColumns: {
         // Simple 1 column grid
