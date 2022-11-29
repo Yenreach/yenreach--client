@@ -9,7 +9,7 @@ const index = () => {
   return (
     <section className='py-8 px-4 md:px-10 lg:px-24 flex flex-col gap-16 md:gap-36'>
         <div className='flex flex-col gap-4 items-center'>
-            <h2 className='text-25 text-center text-color1 font-medium'>Browse by our recomended category</h2>
+            <h2 className='text-25 text-center text-green font-medium'>Browse by our recomended category</h2>
             <div className='bg-[#E9E9E9] py-2.5 px-2 sm:px-6 rounded-full flex items-center justify-between gap-1 sm:gap-4 lg:gap-12 text-sm'>
                 <Button className='rounded-full flex items-center gap-0.5 py-2 px-2 pr-6 md:px-10 md:pr-14 font-semibold'>
                     <img src={Business} alt="" />
@@ -26,10 +26,10 @@ const index = () => {
             </div>
         </div>
         <div className='w-full'>
-            <h2 className='text-25 text-color1 font-medium mb-2 text-center'>Recommended for you</h2>
+            <h2 className='text-25 text-green font-medium mb-2 text-center'>Recommended for you</h2>
             {/* flex items-center gap-6 flex-wrap  */}
-            <div className='grid grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 lg:grid-cols-bus3'>
-                <div className='card w-full py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
+            <div className='grid grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 xl:grid-cols-bus4 gap-6'>
+                <div className='card w-full py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-80 flex flex-col items-center justify-between'>
                     <div>       
                         <img src={Computer} alt="" className='h-32 mb-2 w-full object-cover rounded-xl' />
                         <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
@@ -50,7 +50,7 @@ const index = () => {
                         view business
                     </Button>
                 </div>
-                <div className='card w-full py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
+                <div className='card w-full py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-80 flex flex-col items-center justify-between'>
                     <div>       
                         <img src={Computer} alt="" className='h-32 mb-2 w-full object-cover rounded-xl' />
                         <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
@@ -71,7 +71,7 @@ const index = () => {
                         view business
                     </Button>
                 </div>
-                <div className='card w-full py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
+                <div className='card w-full py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-80 flex flex-col items-center justify-between'>
                     <div>       
                         <img src={Computer} alt="" className='h-32 mb-2 w-full object-cover rounded-xl' />
                         <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
@@ -92,7 +92,7 @@ const index = () => {
                         view business
                     </Button>
                 </div>
-                <div className='card w-full py-2.5 px-2 h-80 flex flex-col items-center justify-between'>
+                <div className='card w-full py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-80 flex flex-col items-center justify-between'>
                     <div>       
                         <img src={Computer} alt="" className='h-32 mb-2 w-full object-cover rounded-xl' />
                         <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>

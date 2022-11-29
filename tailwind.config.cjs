@@ -10,9 +10,11 @@ module.exports = {
         'green': '#00C885',
         'blue': '#076AFF',
         'orange': '#FF9900',
+        'green2': '#083640',
         'orange-light': '#ffcc8954',
         'gray-dark': '#273444',
         'footer-gray': '#69707D',
+        'footer-bg': '#FAFAFA',
         'gray': '#c2c2c2',
         'gray-light': '#E5E5E5',
       },
@@ -37,6 +39,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
+        arialsans: ['Arial', 'Helvetica', 'sans-serif'],
       },
       backgroundImage: {
         'hero-pattern': "url('src/assets/hero.svg')",
@@ -54,14 +57,14 @@ module.exports = {
         '22': '5.5rem',
       },
       gridTemplateColumns: {
-        // Simple 1 column grid
+        // Business grids
         'bus1': 'repeat(1, minmax(17rem, 1fr))',
         'bus2': 'repeat(2, minmax(17rem, 1fr))',
         'bus3': 'repeat(3, minmax(17rem, 1fr))',
         'bus4': 'repeat(4, minmax(17rem, 1fr))',
 
         // Complex site-specific column configuration
-        'footer': '200px minmax(900px, 1fr) 100px',
+        'business-info': 'repeat(1, minmax(300px, 1fr))',
       },
     },
     
