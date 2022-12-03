@@ -7,6 +7,9 @@ import DP from '../../../assets/dashboard/img.svg'
 import ArrowDown from '../../../assets/arrow-down.svg'
 import BusinessIMG from '../../../assets/dashboard/business-img.svg'
 import Media from '../../../assets/dashboard/media.svg'
+import Good from '../../../assets/good.svg'
+import Edit from '../../../assets/edit.svg'
+import Star from '../../../assets/star.svg'
 
 
 const index = () => {
@@ -94,14 +97,136 @@ const index = () => {
               <img src={Media} alt="" className='sm:w-32 sm:h-40 object-cover object-center' />
             </div>
           </div>
-          <div className='mb-11'>
+          <div className='mb-24 font-arialsans'>
             <h2 className='text-green text-lg font-medium mb-3'>Business Features</h2>
-            <div className='flex flex-col sm:flex-row flex-wrap gap-2 text-sm text-[#476788]'>
-              <img src={Media} alt="" className='sm:w-32 sm:h-40 object-cover object-center' />
-              <img src={Media} alt="" className='sm:w-32 sm:h-40 object-cover object-center' />
-              <img src={Media} alt="" className='sm:w-32 sm:h-40 object-cover object-center' />
-              <img src={Media} alt="" className='sm:w-32 sm:h-40 object-cover object-center' />
-              <img src={Media} alt="" className='sm:w-32 sm:h-40 object-cover object-center' />
+            <div className='flex sm:flex-row flex-wrap gap-6 text-sm text-[#476788] p-12 bg-white rounded-2xl'>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+            </div>
+            <Button className='flex items-center justify-center gap-3 rounded-md py-2.5 w-full mt-11'>
+              <img src={Edit} alt="" />
+              Edit business profile
+            </Button>
+          </div>
+          <div className='mb-20'>
+            <h2 className='text-green text-lg font-medium mb-3'>Business Analytics</h2>
+            <div className='font-arialsans flex sm:flex-row flex-wrap gap-6 text-sm text-[#476788] p-12 bg-white rounded-2xl'>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+              <div className='flex items-center'>
+                <img src={Good} alt="" className='object-cover object-center mr-3' />
+                <span>24/7 availability</span>
+              </div>
+            </div>
+          </div>
+          <div className='mb-16'>
+            <h2 className='text-green text-lg font-medium mb-3'>Subscription</h2>
+            <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
+              <p className='mb-4'>You are currently on the Silver package subscription plan</p>
+              <a href="" className='underline text-green text-sm'>Click here to check out your subscription plan</a>
+            </div>
+          </div>
+          <div className='mb-16'>
+            <h2 className='text-green text-lg font-medium mb-3'>Reviews</h2>
+            <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
+              <div className='flex items-center gap-3.5 mb-2'>
+                <img src={Star} alt="" />
+                <img src={Star} alt="" />
+                <img src={Star} alt="" />
+                <img src={Star} alt="" />
+                <img src={Star} alt="" />
+              </div>
+              <p className='mb-9'>Your business is currently rated 4.7 from review from over 200 users</p>
+              <div className='flex flex-wrap overflow-hidden gap-6 w-full'>
+                <div className='p-3 px-5 bg-[#F0F0F0] sm:w-96'>
+                  <div className='flex items-center gap-2 mb-3'>
+                    <img src={Star} alt="" />
+                    <span className='text-sm'>David Ikperi</span>
+                  </div>
+                  <p className='text-xsm text-[#476788]'>
+                    Lorem ipsum dolor sit amet consectetur. Lacus feugiat gravida eget velit amet. Magna convallis aliquet vestibulum et massa. Ac maecenas ultricies cras eget convallis amet mauris. Quam quisque pellentesque diam lorem. Lorem sit duis ridiculus porta sagittis erat scelerisque orci vehicula. Eget ipsum magna risus viverra auctor mi. Hendrerit elementum quis aliquam accumsan tempus enim tincidunt. Id scelerisque eu mi morbi tincidunt. Tellus fermentum lectus ut ut donec nisl vel odio. Lectus tristique.
+                  </p>
+                </div>
+                <div className='p-3 px-5 bg-[#F0F0F0] sm:w-96'>
+                  <div className='flex items-center gap-2 mb-3'>
+                    <img src={Star} alt="" />
+                    <span className='text-sm'>David Ikperi</span>
+                  </div>
+                  <p className='text-xsm text-[#476788]'>
+                    Lorem ipsum dolor sit amet consectetur. Lacus feugiat gravida eget velit amet. Magna convallis aliquet vestibulum et massa. Ac maecenas ultricies cras eget convallis amet mauris. Quam quisque pellentesque diam lorem. Lorem sit duis ridiculus porta sagittis erat scelerisque orci vehicula. Eget ipsum magna risus viverra auctor mi. Hendrerit elementum quis aliquam accumsan tempus enim tincidunt. Id scelerisque eu mi morbi tincidunt. Tellus fermentum lectus ut ut donec nisl vel odio. Lectus tristique.
+                  </p>
+                </div>
+                <div className='p-3 px-5 bg-[#F0F0F0] sm:w-96'>
+                  <div className='flex items-center gap-2 mb-3'>
+                    <img src={Star} alt="" />
+                    <span className='text-sm'>David Ikperi</span>
+                  </div>
+                  <p className='text-xsm text-[#476788]'>
+                    Lorem ipsum dolor sit amet consectetur. Lacus feugiat gravida eget velit amet. Magna convallis aliquet vestibulum et massa. Ac maecenas ultricies cras eget convallis amet mauris. Quam quisque pellentesque diam lorem. Lorem sit duis ridiculus porta sagittis erat scelerisque orci vehicula. Eget ipsum magna risus viverra auctor mi. Hendrerit elementum quis aliquam accumsan tempus enim tincidunt. Id scelerisque eu mi morbi tincidunt. Tellus fermentum lectus ut ut donec nisl vel odio. Lectus tristique.
+                  </p>
+                </div>
+                <div className='p-3 px-5 bg-[#F0F0F0] sm:w-96'>
+                  <div className='flex items-center gap-2 mb-3'>
+                    <img src={Star} alt="" />
+                    <span className='text-sm'>David Ikperi</span>
+                  </div>
+                  <p className='text-xsm text-[#476788]'>
+                    Lorem ipsum dolor sit amet consectetur. Lacus feugiat gravida eget velit amet. Magna convallis aliquet vestibulum et massa. Ac maecenas ultricies cras eget convallis amet mauris. Quam quisque pellentesque diam lorem. Lorem sit duis ridiculus porta sagittis erat scelerisque orci vehicula. Eget ipsum magna risus viverra auctor mi. Hendrerit elementum quis aliquam accumsan tempus enim tincidunt. Id scelerisque eu mi morbi tincidunt. Tellus fermentum lectus ut ut donec nisl vel odio. Lectus tristique.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
