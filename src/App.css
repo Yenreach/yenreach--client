@@ -8,3 +8,11 @@ body {
   width: 100vw;
   overflow-x: hidden;
 }
+
+.grid-container--fill {
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+}
+
+.grid-container--fit {
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}

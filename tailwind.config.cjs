@@ -60,6 +60,7 @@ module.exports = {
         'bus2': 'repeat(2, minmax(17rem, 1fr))',
         'bus3': 'repeat(3, minmax(17rem, 1fr))',
         'bus4': 'repeat(4, minmax(17rem, 1fr))',
+        'auto': 'repeat(autofit, minmax(24rem, 1fr))',
 
         // Complex site-specific column configuration
         'business-info': 'repeat(1, minmax(300px, 1fr))',
