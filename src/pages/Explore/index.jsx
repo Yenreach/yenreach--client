@@ -40,7 +40,7 @@ const index = () => {
           {/* <Product /> */}
           <Jobs />
         </div>
-        {/* <Footer /> */}
+        <Footer />
     </div>
   )
 }   
