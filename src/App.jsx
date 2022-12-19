@@ -10,6 +10,10 @@ import Blog from './pages/Blog'
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import PasswordRecovery from './pages/PasswordRecovery';
+import Contact from './pages/Contact'
+import NotFound from './pages/404'
+import Dashboard from './pages/users/Dashboard'
+
 
 
 function App() {
@@ -26,8 +30,9 @@ function App() {
             <Route exact path="/about" element={<About />} />
             <Route exact path="/blog" element={<Blog />} />
             <Route exact path="/signup" element={<SignUp />} />
-            <Route exact path="/login" element={<Login />} />
             <Route exact path="/password-recovery" element={<PasswordRecovery />} />
+            <Route exact path="/contact" element={<Contact />} />
+            <Route exact path="*" element={<NotFound />} />
           </Routes>
         </ScrollToTop>
       </main>

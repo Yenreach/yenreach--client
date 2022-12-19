@@ -11,6 +11,7 @@ module.exports = {
         'blue': '#076AFF',
         'orange': '#FF9900',
         'green2': '#083640',
+        'graybg': '#e0e0e021',
         'orange-light': '#ffcc8954',
         'gray-dark': '#273444',
         'footer-gray': '#69707D',
@@ -62,6 +63,7 @@ module.exports = {
         'bus2': 'repeat(2, minmax(17rem, 1fr))',
         'bus3': 'repeat(3, minmax(17rem, 1fr))',
         'bus4': 'repeat(4, minmax(17rem, 1fr))',
+        'auto': 'repeat(autofit, minmax(24rem, 1fr))',
 
         // Complex site-specific column configuration
         'business-info': 'repeat(1, minmax(300px, 1fr))',
