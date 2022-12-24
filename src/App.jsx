@@ -13,10 +13,11 @@ import PasswordRecovery from './pages/PasswordRecovery';
 import Contact from './pages/Contact'
 import NotFound from './pages/404'
 import Dashboard from './pages/users/Dashboard'
+import Products from './pages/users/Products'
 
 
 
-function App() {
+function App() { 
   const [count, setCount] = useState(0)
 
   return (
@@ -32,6 +33,8 @@ function App() {
             <Route exact path="/signup" element={<SignUp />} />
             <Route exact path="/password-recovery" element={<PasswordRecovery />} />
             <Route exact path="/contact" element={<Contact />} />
+            <Route exact path="/users" element={<Dashboard />} />
+            <Route exact path="/users/products" element={<Products />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
         </ScrollToTop>
