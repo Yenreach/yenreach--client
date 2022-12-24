@@ -14,6 +14,9 @@ import Contact from './pages/Contact'
 import NotFound from './pages/404'
 import Dashboard from './pages/users/Dashboard'
 import Products from './pages/users/Products'
+import AddProduct from './pages/users/Products/AddProduct'
+import Success from './pages/users/Products/Success'
+import Profile from './pages/users/Profile'
 
 
 
@@ -35,6 +38,9 @@ function App() {
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/users" element={<Dashboard />} />
             <Route exact path="/users/products" element={<Products />} />
+            <Route exact path="/users/add-product" element={<AddProduct />} />
+            <Route exact path="/users/product-success" element={<Success />} />
+            <Route exact path="/users/profile" element={<Profile />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
         </ScrollToTop>
