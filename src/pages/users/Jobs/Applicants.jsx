@@ -13,7 +13,7 @@ const options = {
   selectableRows: "none",
 };
 
-const Products = () => {
+const Applicants = () => {
   const [data, setData] = React.useState([])
   const columns = [
     {
@@ -185,15 +185,15 @@ const Products = () => {
           <Head />
           <section className='p-8 px-4 sm:px-8'>
             <div className='flex items-center justify-between mb-3'>
-              <h2 className='text-xl text-orange font-medium'>Listed Products</h2>
-              <Button variant='product' className='px-4 py-2 text-xs flex items-center'>
+                <h2 className='text-xl text-blue font-medium'>Job Applicants</h2>
+                <Button variant='job' className='px-4 py-2 text-xs flex items-center'>
                     <AiOutlinePlus className='mr-2' />
-                Add new Product
-              </Button>
+                    Add new job
+                </Button>
             </div>
             <ThemeProvider theme={getMuiTheme()}>
                 <MUIDataTable
-                    title={"Products"}
+                    title={"Applicants (6)"}
                     data={data}
                     columns={columns}
                     options={options}
@@ -206,4 +206,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default Applicants
