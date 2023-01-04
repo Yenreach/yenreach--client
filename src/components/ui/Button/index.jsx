@@ -3,7 +3,7 @@ import clsx from "clsx";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Button({ to, variant, outlined, className, override, children }) {
+function Button({ to, variant, outlined, className, override, children, type }) {
   const styles = (variant, outlined, className, override) => clsx(
     className,
     
@@ -33,19 +33,20 @@ function Button({ to, variant, outlined, className, override, children }) {
       {children}
     </Link>
   ) : (
-    <button className={styles(variant, outlined, className, override)}>
+    <button type={type} className={styles(variant, outlined, className, override)}>
       {children}
     </button>
   );
 }
-
+               
 
 Button.defaultProps = {
   to: '',
   variant: 'business',
   outlined: false,
   className: '',
-  override: false
+  override: false,
+  type: 'button'
 };
 
 Button.propTypes = {
@@ -55,6 +56,7 @@ Button.propTypes = {
   outlined: PropTypes.bool,
   className: PropTypes.string,
   override: PropTypes.bool,
+  type: PropTypes.string
 };
 
 export default Button;

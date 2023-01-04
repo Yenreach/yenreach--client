@@ -7,15 +7,11 @@ import BusinessCreatedSuccess from '../../../components/users/BusinessCreatedSuc
 import EditBusiness from '../../../components/users/EditBusiness'
 
 
-const index = () => {
+const index = ({ children }) => {
   return (
     <div className='flex bg-footer-bg'>
       <SideNav />
-      {/* <Home /> */}
-      {/* <Business /> */}
-      {/* <CreateBusiness /> */}
-      {/* <BusinessCreatedSuccess /> */}
-      <EditBusiness />
+      {children}
     </div>
   )
 }
