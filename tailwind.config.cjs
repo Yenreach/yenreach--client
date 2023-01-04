@@ -13,6 +13,8 @@ module.exports = {
         'green2': '#083640',
         'graybg': '#e0e0e021',
         'orange-light': '#ffcc8954',
+        'blue-light': '#076aff1a',
+        'green-light': '#00c8851a',
         'gray-dark': '#273444',
         'footer-gray': '#69707D',
         'footer-bg': '#FAFAFA',
