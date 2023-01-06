@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react'
+import { useAuthContext } from './hooks/useAuthContext'
 import './App.css'
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home'
@@ -25,6 +26,7 @@ import AddJob from './pages/users/Jobs/AddJob'
 
 function App() { 
   const [count, setCount] = useState(0)
+  const { user } = useAuthContext()
 
   return (
     <Router>
