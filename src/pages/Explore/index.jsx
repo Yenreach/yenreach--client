@@ -54,7 +54,7 @@ const index = () => {
             }
         </div>
 
-        <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-20 md:px-20">
+        <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-5 md:px-5 lg:py-20 lg:px-20">
           { activeTab == 'business' ? <Business /> 
           : activeTab == 'jobs' ? <Jobs />
           : activeTab == 'marketplace' ? <Product /> 

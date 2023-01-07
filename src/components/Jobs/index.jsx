@@ -1,12 +1,16 @@
 import React from 'react'
-import JobCard from '../ui/JobCard'
-import LeftArrow from '../../assets/left-arrow.svg'
-import RightArrow from '../../assets/right-arrow.svg'
+
 import SearchBar from '../ui/SearchBar'
 import Location from '../../assets/location.svg'
-
+import JobData from '../../data/job-data.json'
+import AllJobs from './AllJobs'
+import JobDescription from './JobDescription'
+import JobSideBar from './JobSideBar'
+import { useState } from 'react'
 
 const index = () => {
+  const [tab, setTab] = useState(1)
+  const [selectedJobIndex, setSelectedJobIndex] = useState(1)
   return (
     <>
       <div className='flex items-center justify-center w-full gap-10'>
@@ -17,38 +21,13 @@ const index = () => {
         </div>
       </div>
       <SearchBar variant='job' />
-      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-      </div>
-      <div className="grid w-full py-6 text-xl font-extrabold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
-        New Job Listings available       
-      </div>
-      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-      </div>
-      <div className="flex gap-2 mt-10 border border-gray w-fit">
-        <img src={LeftArrow} alt="" />
-        <span className='grid p-2 font-medium place-items-center'>1</span>
-        <span className='grid p-2 font-medium place-items-center'>2</span>
-        <span className='grid p-2 font-medium place-items-center'>3</span>
-        <span className='grid p-2 font-medium place-items-center'>4</span>
-        <img src={RightArrow} alt="" />
-      </div>
-    </>
+      { tab === 1 ? <AllJobs jobs={JobData} setTab={setTab} setSelectedJobIndex={setSelectedJobIndex}/>
+      : <div className="flex justify-around items-start">
+          <JobSideBar jobs={JobData} setSelectedJobIndex={setSelectedJobIndex} />    
+          <JobDescription job={JobData[selectedJobIndex]} />
+        </div>
+      }   
+    </> 
   )
 }
 

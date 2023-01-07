@@ -16,7 +16,7 @@ const index = () => {
 				</div>
 			</div>
 			<SearchBar variant='business' />
-      <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <BusinessCard />
         <BusinessCard />
         <BusinessCard />
@@ -29,7 +29,7 @@ const index = () => {
       <div className="w-full bg-new-job-listing text-white rounded-2xl font-extrabold text-xl grid place-items-center bg-cover bg-center py-6">
         New Job Listings available       
       </div>
-      <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <BusinessCard />
         <BusinessCard />
         <BusinessCard />

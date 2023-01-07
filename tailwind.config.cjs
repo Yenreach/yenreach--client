@@ -70,6 +70,17 @@ module.exports = {
         // Complex site-specific column configuration
         'business-info': 'repeat(1, minmax(300px, 1fr))',
       },
+      keyframes: {
+        wiggle: {
+          '0%': { transform: 'scale(1.04)' },
+          '50%': { transform: 'scale(0.96))' },
+          '75%': { transform: 'scale(1.01)' },
+          '100%': { transform: 'scale(1)' },
+        }
+      },
+      animation: {
+        button_click: 'wiggle 200ms ease-in-out',
+      }
     },
     
   },
