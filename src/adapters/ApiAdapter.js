@@ -1,7 +1,7 @@
 import BaseService from "./BaseAdapter";
 
 const ApiAdapter = {
-    fetchData(param) {
+    fetchData(params) {
         return new Promise(async (resolve, reject) => {
             try {
                 const response = await BaseService(params)

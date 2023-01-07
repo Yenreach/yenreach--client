@@ -1,6 +1,7 @@
 import axios from "axios";
 import appConfig from "../configs/app.config";
 
+
 const BaseService = axios.create({
     baseURL: appConfig.apiPrefix,
     timeout: 2000,
