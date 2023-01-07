@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Hero from '../../components/Hero'
@@ -9,9 +10,18 @@ import AllHereJ from '../../assets/jobs/all-here.svg'
 import AllHereP from '../../assets/products/all-here.svg'
 import BusOfTheWeek from '../../assets/bus_of_the_week.svg'
 import Button from '../../components/ui/Button'
-import { Link } from 'react-router-dom'
+import { apiLogin } from '../../adapters/AuthAdapter'
 
 const index = () => {
+    useEffect(() => {
+        const fetchD = async () => {
+            const result = await apiLogin({name: "nICK"})
+            console.log("result", result)
+        }
+
+        fetchD()
+    }, [])
+
   return (
     <>
         <Header />
