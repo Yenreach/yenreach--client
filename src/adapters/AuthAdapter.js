@@ -17,4 +17,10 @@ export const apiLogin =  (data) => {
         data
     })
 }
+export const apiTest =  () => {
+    return ApiAdapter.fetchData({
+        url: "/fetch_approved_businesses_api.php",
+        method: "get",
+    })
+}
 

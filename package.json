@@ -1,5 +1,5 @@
 {
-  "proxy": "https://yenreach.cfcing.org/api",
+  "proxy": "https://yenreach.cfcing.org",
   "name": "yenreach--client",
   "private": true,
   "version": "0.0.0",

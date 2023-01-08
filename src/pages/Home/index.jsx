@@ -10,16 +10,25 @@ import AllHereJ from '../../assets/jobs/all-here.svg'
 import AllHereP from '../../assets/products/all-here.svg'
 import BusOfTheWeek from '../../assets/bus_of_the_week.svg'
 import Button from '../../components/ui/Button'
-import { apiLogin } from '../../adapters/AuthAdapter'
+import { apiLogin, apiTest } from '../../adapters/AuthAdapter'
 
 const index = () => {
     useEffect(() => {
-        const fetchD = async () => {
-            const result = await apiLogin({name: "nICK"})
-            console.log("result", result)
-        }
+        // const fetchD = async () => {
+        //     const result = await apiTest({name: "nICK"})
+        //     console.log("result", result)
+        // }
 
-        fetchD()
+        // fetchD()
+        fetch("/api/fetch_approved_businesses_api.php", {
+            method: 'get',
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+            // mode: 'cors',
+        })
+            .then(res => {
+                console.log(res)
+                return res.json()})
+            .then(data => console.log(data))
     }, [])
 
   return (
