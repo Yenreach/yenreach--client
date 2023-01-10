@@ -4,8 +4,13 @@ import appConfig from "../configs/app.config";
 
 const BaseService = axios.create({
     baseURL: appConfig.apiPrefix,
-    timeout: 2000,
-    headers: {'X-Custom-Header': 'Yenreach'}
+    timeout: 90000,
+    headers: {
+      'X-Custom-Header': 'Yenreach',
+      'Content-Type': 'application/json', 
+      'Access-Control-Allow-Origin': '*',
+    },
+    mode: 'no-cors',
 })
 
 
