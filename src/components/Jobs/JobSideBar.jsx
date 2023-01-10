@@ -5,14 +5,14 @@ import RightArrow from '../../assets/right-arrow.svg'
 import JobCardVariation from '../ui/JobCard/JobCardVariation'
 import { useState } from 'react'
 
-const JobSideBar = ({ jobs, setSelectedJobIndex }) => {
+const JobSideBar = ({ jobs, setSelectedJobIndex, selectedJobIndex }) => {
   
   return (
     <div className='flex flex-col h-full'>
 			<div className="flex justify-start flex-col gap-3">
 				{
 					jobs.slice(0, 4).map((job, index) => (
-						<JobCardVariation key={job.jobId} job={job} index={index} setSelectedIndex={setSelectedJobIndex} />
+						<JobCardVariation key={job.jobId} job={job} index={index} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} />
 					))
 				}
 			</div>
@@ -31,9 +31,13 @@ const JobSideBar = ({ jobs, setSelectedJobIndex }) => {
 export default JobSideBar
 
 JobSideBar.defaultProps = {
-	jobs: []
+	jobs: [],
+  setSelectedJobIndex: () => {},
+  selectedJobIndex: 0,
 };
 
 JobSideBar.propTypes = {
-	jobs: PropTypes.array
+	jobs: PropTypes.array,
+  setSelectedJobIndex: PropTypes.func,
+  selectedJobIndex: PropTypes.number,
 }

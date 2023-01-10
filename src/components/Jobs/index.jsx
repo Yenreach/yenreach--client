@@ -23,7 +23,7 @@ const index = () => {
       <SearchBar variant='job' />
       { tab === 1 ? <AllJobs jobs={JobData} setTab={setTab} setSelectedJobIndex={setSelectedJobIndex}/>
       : <div className="flex justify-around items-start">
-          <JobSideBar jobs={JobData} setSelectedJobIndex={setSelectedJobIndex} />    
+          <JobSideBar jobs={JobData} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} />    
           <JobDescription job={JobData[selectedJobIndex]} />
         </div>
       }   

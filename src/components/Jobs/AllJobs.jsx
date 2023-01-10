@@ -16,7 +16,7 @@ const AllJobs = ({ jobs, setSelectedJobIndex, setTab }) => {
         {/* <JobCard /> */}
       </div>
       <div className="grid w-full py-6 text-xl font-extrabold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
-        New Job Listings available       
+        New Job Listings available 
       </div>
       <div className="grid w-full grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
         {

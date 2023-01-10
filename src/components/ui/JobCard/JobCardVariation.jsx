@@ -7,15 +7,17 @@ import { useState } from 'react'
 import clsx from 'clsx'
 
 
-const JobCardVariation = ({ job, className, setSelectedIndex, index }) => {
+const JobCardVariation = ({ job, className, setSelectedJobIndex, index, selectedJobIndex }) => {
   const [selected, setSelected] = useState(true)
 
   const styles = (className) => clsx(
     className,
+    selectedJobIndex === index ? 'border-2 border-blue rounded-2xl' : '',
     ['relative h-36 flex items-center overflow-hidden cursor-pointer']
   )
   return (
-    <div className={styles(className)} onClick={ () => { setSelectedIndex(index) }}>
+    <div className={styles(className)} onClick={ () => { setSelectedJobIndex(index) }}>
+      {/* { selectedJobIndex === index && <div className='absolute top-0 left-0 w-full h-full bg-[#F5F7FA] opacity-50'></div>} */}
       <div className='w-1/3 h-full rounded-l-2xl overflow-hidden'>
         <img className='h-full object-cover' src={Image} alt="" />
       </div>
@@ -41,13 +43,15 @@ export default JobCardVariation
 JobCardVariation.defaultProps = {
   job: [],
   className: '',
-  setSelectedIndex: () => {},
+  setSelectedJobIndex: () => {},
+  selectedJobIndex: 0,
   index: 0,
 };
 
 JobCardVariation.propTypes = {
   job: PropTypes.array,
   className: PropTypes.string,
-  setSelectedIndex: PropTypes.func,
+  setSelectedJobIndex: PropTypes.func,
+  selectedJobIndex: PropTypes.number,
   index: PropTypes.number,
 };
