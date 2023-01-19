@@ -20,13 +20,13 @@ const index = () => {
         // }
 
         // fetchD()
-        fetch("/api/fetch_approved_businesses_api.php", {
+        fetch("https://yenreach.cfcing.org/api/fetch_approved_businesses_api.php", {
             method: 'get',
             headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
             // mode: 'cors',
         })
             .then(res => {
-                console.log(res)
+                console.log("res", res)
                 return res.json()})
             .then(data => console.log(data))
     }, [])
