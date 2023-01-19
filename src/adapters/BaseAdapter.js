@@ -6,11 +6,11 @@ const BaseService = axios.create({
     baseURL: appConfig.apiPrefix,
     timeout: 90000,
     headers: {
-      'X-Custom-Header': 'Yenreach',
+      // 'X-Custom-Header': 'Yenreach',
       'Content-Type': 'application/json', 
-      'Access-Control-Allow-Origin': '*',
+      // 'Access-Control-Allow-Origin': '*',
     },
-    mode: 'no-cors',
+    // mode: 'no-cors',
 })
 
 

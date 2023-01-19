@@ -14,21 +14,20 @@ import { apiLogin, apiTest } from '../../adapters/AuthAdapter'
 
 const index = () => {
     useEffect(() => {
-        // const fetchD = async () => {
-        //     const result = await apiTest({name: "nICK"})
-        //     console.log("result", result)
-        // }
+        const fetchD = async () => {
+            const result = await apiTest({name: "nICK"})
+            console.log("result", result)
+        }
 
-        // fetchD()
-        fetch("https://yenreach.cfcing.org/api/fetch_approved_businesses_api.php", {
-            method: 'get',
-            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-            // mode: 'cors',
-        })
-            .then(res => {
-                console.log("res", res)
-                return res.json()})
-            .then(data => console.log(data))
+        fetchD()
+        // fetch("https://yenreach.cfcing.org/api/fetch_approved_businesses_api.php", {
+        //     method: 'get',
+        //     headers: { 'Content-Type': 'application/json'},
+        // })
+        //     .then(res => {
+        //         console.log("res", res)
+        //         return res.json()})
+        //     .then(data => console.log(data))
     }, [])
 
   return (
