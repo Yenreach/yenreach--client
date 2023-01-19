@@ -13,6 +13,8 @@ module.exports = {
         'green2': '#083640',
         'graybg': '#e0e0e021',
         'orange-light': '#ffcc8954',
+        'blue-light': '#076aff1a',
+        'green-light': '#00c8851a',
         'gray-dark': '#273444',
         'footer-gray': '#69707D',
         'footer-bg': '#FAFAFA',
@@ -68,6 +70,17 @@ module.exports = {
         // Complex site-specific column configuration
         'business-info': 'repeat(1, minmax(300px, 1fr))',
       },
+      keyframes: {
+        wiggle: {
+          '0%': { transform: 'scale(1.04)' },
+          '50%': { transform: 'scale(0.96))' },
+          '75%': { transform: 'scale(1.01)' },
+          '100%': { transform: 'scale(1)' },
+        }
+      },
+      animation: {
+        button_click: 'wiggle 200ms ease-in-out',
+      }
     },
     
   },

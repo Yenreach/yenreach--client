@@ -1,0 +1,41 @@
+{
+	"business-image":"",
+	"business-name":"The 3rd Floor",
+	"tags":["Bar","Restaurant","Pub"],
+	"business-description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis amet ac proin massa arcu. Feugiat eget magna nibh pretium venenatis adipiscing gravida pretium id. Ac pellentesque ipsum ac iaculis. Magna faucibus est tempor, volutpat. Mattis risus ut dolor, dui placerat feugiat. Amet, risus ac sagittis elit mi elementum nisi, viverra quis. Molestie at tempor vitae consequat, pellentesque faucibus. Mauris, quisque adipiscing id at porta. Semper semper viverra rhoncus, feugiat scelerisque eget arcu odio. Pellentesque scelerisque volutpat dolor.",
+	"business-address":"1234 Main Street",
+	"business-city":"New York",
+	"business-state":"NY",
+	"business-zip":"10001",
+	"business-phone":"(212) 555-5555",
+	"business-website":"http://www.example.com",
+	"business-email":"nick@gmail.com",
+	"business-hours":"Monday - Friday: 11am - 11pm",
+	"business-review": [
+		{
+			"reviewer-name":"Nick",
+			"reviewer-rating":"5",
+			"reviewer-comment":"This place is awesome!"
+		},
+		{
+			"reviewer-name":"John",
+			"reviewer-rating":"4",
+			"reviewer-comment":"This place is pretty good."
+		},
+		{
+			"reviewer-name":"Jane",
+			"reviewer-rating":"3",
+			"reviewer-comment":"This place is ok."
+		},
+		{
+			"reviewer-name":"Bob",
+			"reviewer-rating":"2",
+			"reviewer-comment":"This place is not so good."
+		},
+		{
+			"reviewer-name":"Sally",
+			"reviewer-rating":"1",
+			"reviewer-comment":"This place is terrible."
+		}
+	]
+}

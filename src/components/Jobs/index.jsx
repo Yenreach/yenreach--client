@@ -1,43 +1,33 @@
 import React from 'react'
-import JobCard from '../ui/JobCard'
-import LeftArrow from '../../assets/left-arrow.svg'
-import RightArrow from '../../assets/right-arrow.svg'
+
+import SearchBar from '../ui/SearchBar'
+import Location from '../../assets/location.svg'
+import JobData from '../../data/job-data.json'
+import AllJobs from './AllJobs'
+import JobDescription from './JobDescription'
+import JobSideBar from './JobSideBar'
+import { useState } from 'react'
 
 const index = () => {
+  const [tab, setTab] = useState(1)
+  const [selectedJobIndex, setSelectedJobIndex] = useState(1)
   return (
     <>
-      <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
+      <div className='flex items-center justify-center w-full gap-10'>
+        <p className='font-medium text-smm'>Currently Exploring businesses in</p>
+        <div className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-light">
+          <img src={Location} alt="location" />
+          <span className='font-medium text-blue text-smm'>Bayelsa, Yenegoa</span>
+        </div>
       </div>
-      <div className="w-full bg-new-job-listing text-white rounded-2xl font-extrabold text-xl grid place-items-center bg-cover bg-center py-6">
-        New Job Listings available       
-      </div>
-      <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-      </div>
-      <div className="flex gap-2 border border-gray w-fit mt-10">
-        <img src={LeftArrow} alt="" />
-        <span className='font-medium p-2 grid place-items-center'>1</span>
-        <span className='font-medium p-2 grid place-items-center'>2</span>
-        <span className='font-medium p-2 grid place-items-center'>3</span>
-        <span className='font-medium p-2 grid place-items-center'>4</span>
-        <img src={RightArrow} alt="" />
-      </div>
-    </>
+      <SearchBar variant='job' />
+      { tab === 1 ? <AllJobs jobs={JobData} setTab={setTab} setSelectedJobIndex={setSelectedJobIndex}/>
+      : <div className="flex justify-around items-start">
+          <JobSideBar jobs={JobData} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} />    
+          <JobDescription job={JobData[selectedJobIndex]} />
+        </div>
+      }   
+    </> 
   )
 }
 
