@@ -39,6 +39,7 @@ function App() {
             <Route exact path="/about" element={<About />} />
             <Route exact path="/blog" element={<Blog />} />
             <Route exact path="/signup" element={<SignUp />} />
+            <Route exact path="/login" element={<Login />} />
             <Route exact path="/password-recovery" element={<PasswordRecovery />} />
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/users" element={<Dashboard />} />

@@ -1,4 +1,5 @@
 import React from 'react'
+import ProtectedRoutes from '../../../components/ProtectedRoutes'
 import SideNav from '../../../components/users/SideNav'
 import Home from '../../../components/users/Home'
 import Business from '../../../components/users/Business'
@@ -9,10 +10,12 @@ import EditBusiness from '../../../components/users/EditBusiness'
 
 const index = ({ children }) => {
   return (
-    <div className='flex bg-footer-bg'>
-      <SideNav />
-      {children}
-    </div>
+    <ProtectedRoutes>
+      <div className='flex bg-footer-bg'>
+        <SideNav />
+        {children}
+      </div>
+    </ProtectedRoutes>
   )
 }
 

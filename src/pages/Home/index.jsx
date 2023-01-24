@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Header from '../../components/Header'
+import Header from '/src/components/Header'
 import Footer from '../../components/Footer'
 import Hero from '../../components/Hero'
 import Category from '../../components/Category'
@@ -20,14 +20,6 @@ const index = () => {
         }
 
         fetchD()
-        // fetch("https://yenreach.cfcing.org/api/fetch_approved_businesses_api.php", {
-        //     method: 'get',
-        //     headers: { 'Content-Type': 'application/json'},
-        // })
-        //     .then(res => {
-        //         console.log("res", res)
-        //         return res.json()})
-        //     .then(data => console.log(data))
     }, [])
 
   return (
