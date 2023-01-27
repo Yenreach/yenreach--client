@@ -2,7 +2,7 @@ import React from 'react'
 import { MdDelete } from 'react-icons/md'
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from 'react-icons/hi'
 import Head from '../../../components/users/Head'
-import Dashboard from "../Dashboard"
+import Dashboard from "../../../components/layout/Dashboard"
 import Button from '../../../components/ui/Button'
 import BusinessCard from '../../../components/ui/BusinessCard'
 

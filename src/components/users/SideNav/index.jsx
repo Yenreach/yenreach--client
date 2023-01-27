@@ -13,11 +13,11 @@ const index = () => {
         <div>
             <img src={Logo} alt="" className='h-16 md:h-12 mb-12 mx-auto' />
             <div className='flex flex-col text-dark-light gap-3'>
-                <a className='py-2.5 pl-6 text-sm flex items-center gap-2 font-medium text-white bg-green' href="">
+                <a className='py-2.5 pl-6 text-sm flex items-center gap-2 font-medium text-white bg-green' href="/users">
                     <img src={Trend} alt="" className='z-100' /> 
                     Business
                 </a>
-                <a className='py-2.5 pl-6 text-sm flex items-center gap-2 opacity-50' href="">
+                <a className='py-2.5 pl-6 text-sm flex items-center gap-2 opacity-50' href="/users/profile">
                     <img src={Profile} alt="" className='z-100' />
                     Profile
                 </a>

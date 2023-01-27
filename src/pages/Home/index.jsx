@@ -20,14 +20,6 @@ const index = () => {
         queryFn: () => getData(apiTest, {name: "nICK"}),
       })
     console.log("data", data?.data)
-    useEffect(() => {
-        const fetchD = async () => {
-            const result = await apiTest({name: "nICK"})
-            console.log("result", result)
-        }
-
-        fetchD()
-    }, [])
 
   return (
     <>

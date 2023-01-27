@@ -13,7 +13,8 @@ import SignUp from './pages/SignUp';
 import PasswordRecovery from './pages/PasswordRecovery';
 import Contact from './pages/Contact'
 import NotFound from './pages/404'
-import Dashboard from './pages/users/Dashboard'
+import Dashboard from './components/layout/Dashboard'
+import BusinessDash from './pages/users/Business'
 import Products from './pages/users/Products'
 import AddProduct from './pages/users/Products/AddProduct'
 import Success from './pages/users/Products/Success'
@@ -42,7 +43,7 @@ function App() {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/password-recovery" element={<PasswordRecovery />} />
             <Route exact path="/contact" element={<Contact />} />
-            <Route exact path="/users" element={<Dashboard />} />
+            <Route exact path="/users" element={<BusinessDash />} />
             <Route exact path="/users/products" element={<Products />} />
             <Route exact path="/users/add-product" element={<AddProduct />} />
             <Route exact path="/users/product-success" element={<Success />} />

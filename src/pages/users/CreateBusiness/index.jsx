@@ -1,5 +1,5 @@
 import React from 'react'
-import Head from '../Head'
+import Head from '../../../components/users/Head'
 import BusinessDetails from '../BusinessDetails'
 import BusinessPhotos from '../BusinessPhotos'
 

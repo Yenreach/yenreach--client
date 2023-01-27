@@ -2,7 +2,7 @@ import React from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
 import Head from '../../../components/users/Head'
 import Button from '../../../components/ui/Button'
-import Dashboard from "../Dashboard"
+import Dashboard from "../../../components/layout/Dashboard"
 const Jobs = () => {
   return (
     <Dashboard>

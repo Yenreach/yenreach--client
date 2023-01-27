@@ -1,7 +1,7 @@
 import React from 'react'
 import { AiOutlineCheck } from 'react-icons/ai'
 import Head from '../../../components/users/Head'
-import Dashboard from "../Dashboard"
+import Dashboard from "../../../components/layout/Dashboard"
 
 
 const index = () => {
