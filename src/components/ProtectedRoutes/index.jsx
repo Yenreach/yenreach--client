@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 
 const ProtectedRoutes = ({ children }) => {
   const { user } = useAuthContext()
+  console.log("user", user)
   const location = useLocation()
 
   if (!user) {

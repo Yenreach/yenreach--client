@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Logo from "../../../assets/logo.svg"
 import Trend from "../../../assets/dashboard/trend.svg"
 import Billboard from "../../../assets/dashboard/billboard.svg"
@@ -13,28 +14,28 @@ const index = () => {
         <div>
             <img src={Logo} alt="" className='h-16 md:h-12 mb-12 mx-auto' />
             <div className='flex flex-col text-dark-light gap-3'>
-                <a className='py-2.5 pl-6 text-sm flex items-center gap-2 font-medium text-white bg-green' href="/users">
+                <Link className='py-2.5 pl-6 text-sm flex items-center gap-2 font-medium text-white bg-green' to="/users">
                     <img src={Trend} alt="" className='z-100' /> 
                     Business
-                </a>
-                <a className='py-2.5 pl-6 text-sm flex items-center gap-2 opacity-50' href="/users/profile">
+                </Link>
+                <Link className='py-2.5 pl-6 text-sm flex items-center gap-2 opacity-50' to={"/users/profile"}>
                     <img src={Profile} alt="" className='z-100' />
                     Profile
-                </a>
-                <a className='py-2.5 pl-6 text-sm flex items-center gap-2 opacity-50' href="">
+                </Link>
+                <Link className='py-2.5 pl-6 text-sm flex items-center gap-2 opacity-50' to="">
                     <img src={Subscription} alt="" className='z-100' />
                     Subscription
-                </a>
-                <a className='py-2.5 pl-6 text-sm flex items-center gap-2 opacity-50' href="">
+                </Link>
+                <Link className='py-2.5 pl-6 text-sm flex items-center gap-2 opacity-50' to="">
                     <img src={Billboard} alt="" className='z-100' />
                     Yenreach Billboard
-                </a>
+                </Link>
             </div>
         </div>
-        <a className='py-2.5 pl-6 flex items-center gap-2 text-[#EB4335] w-full' href="">
+        <Link className='py-2.5 pl-6 flex items-center gap-2 text-[#EB4335] w-full' to="">
             <img src={Logout} alt="" className='z-100' />
             Logout
-        </a>
+        </Link>
     </div>
   )
 }
