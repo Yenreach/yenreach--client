@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
+import getData from '../../utils/getData'
 import Header from '/src/components/Header'
 import Footer from '../../components/Footer'
 import Hero from '../../components/Hero'
@@ -13,6 +15,11 @@ import Button from '../../components/ui/Button'
 import { apiLogin, apiTest } from '../../adapters/AuthAdapter'
 
 const index = () => {
+    const { isLoading, error, data } = useQuery({
+        queryKey: ['repoData'],
+        queryFn: () => getData(apiTest, {name: "nICK"}),
+      })
+    console.log("data", data?.data)
     useEffect(() => {
         const fetchD = async () => {
             const result = await apiTest({name: "nICK"})

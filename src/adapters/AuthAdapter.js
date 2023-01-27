@@ -17,6 +17,14 @@ export const apiLogin =  (data) => {
         data
     })
 }
+
+export const apiForgotEmail =  (data) => {
+    return ApiAdapter.fetchData({
+        url: "/user_login_api.php",
+        method: "post",
+        data
+    })
+}
 export const apiTest =  () => {
     return ApiAdapter.fetchData({
         url: "/fetch_approved_businesses_api.php",
