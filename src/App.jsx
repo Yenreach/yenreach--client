@@ -17,6 +17,7 @@ import Dashboard from './components/layout/Dashboard'
 import BusinessDash from './pages/users/Home'
 import CreateBusiness from './pages/users/CreateBusiness'
 import Products from './pages/users/Products'
+import UserBusiness from './pages/users/Business'
 import AddProduct from './pages/users/Products/AddProduct'
 import Success from './pages/users/Products/Success'
 import Profile from './pages/users/Profile'
@@ -45,6 +46,7 @@ function App() {
             <Route exact path="/password-recovery" element={<PasswordRecovery />} />
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/users" element={<BusinessDash />} />
+            <Route exact path="/users/business" element={<UserBusiness />} />
             <Route exact path="/users/add-business" element={<CreateBusiness />} />
             <Route exact path="/users/products" element={<Products />} />
             <Route exact path="/users/add-product" element={<AddProduct />} />

@@ -22,39 +22,21 @@ const index = () => {
                         <>
                             <p className='text-[#476788] text-sm mb-7'>You have 3 businesses listed to your account.</p>
                             <div className='grid grid-container--fit gap-4 mb-16 justify-evenly'>
-                                <div className='bg-[#F1F1F1] rounded-xl overflow-hidden'>
-                                    <img src={Business} alt="" className="w-full object-cover h-40" />
-                                    <div className='p-4 px-6'>
-                                        <p className='font-semibold mb-1'>Pizzeria</p>
-                                        <div className='flex gap-2 items-center text-[#777777] text-xsm'>
-                                            <span>20-10-2022</span>
-                                            <img src={Elipse} alt=""  />
-                                            <span>234 visits</span>
+                                {[1,2,3].map(business => (
+                                    <Link to="/users/business" key={business} className='bg-[#F1F1F1] rounded-xl overflow-hidden'>
+                                        <div>
+                                            <img src={Business} alt="" className="w-full object-cover h-40" />
+                                            <div className='p-4 px-6'>
+                                                <p className='font-semibold mb-1'>Pizzeria</p>
+                                                <div className='flex gap-2 items-center text-[#777777] text-xsm'>
+                                                    <span>20-10-2022</span>
+                                                    <img src={Elipse} alt=""  />
+                                                    <span>234 visits</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className='bg-[#F1F1F1] rounded-xl overflow-hidden'>
-                                    <img src={Business} alt="" className="w-full object-cover h-40" />
-                                    <div className='p-4 px-6'>
-                                        <p className='font-semibold mb-1'>Pizzeria</p>
-                                        <div className='flex gap-2 items-center text-[#777777] text-xsm'>
-                                        <span>20-10-2022</span>
-                                        <img src={Elipse} alt=""  />
-                                        <span>234 visits</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='bg-[#F1F1F1] rounded-xl overflow-hidden'>
-                                    <img src={Business} alt="" className="w-full object-cover h-40" />
-                                    <div className='p-4 px-6'>
-                                        <p className='font-semibold mb-1'>Pizzeria</p>
-                                        <div className='flex gap-2 items-center text-[#777777] text-xsm'>
-                                            <span>20-10-2022</span>
-                                            <img src={Elipse} alt=""  />
-                                            <span>234 visits</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </Link>)
+                                )}
                             </div>
                         </>
                     }

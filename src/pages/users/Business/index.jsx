@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '../../../components/ui/Button'
 import DP from '../../../assets/dashboard/img.svg'
@@ -19,9 +20,9 @@ const index = () => {
                 Business {'>'} Hard rock cafe
             </div>
             <div className='flex items-center gap-4 text-sm'>
-              <button className='py-1.5 px-4 bg-green text-white font-medium'>Overview</button>
-              <button className='py-1.5 px-4 bg-[#F1F1F1]'>Marketplace</button>
-              <button className='py-1.5 px-4 bg-[#F1F1F1]'>Jobs</button>
+              <Link to="/users/business" className='py-1.5 px-4 bg-green text-white font-medium'>Overview</Link>
+              <Link to="/users/products" className='py-1.5 px-4 bg-[#F1F1F1]'>Marketplace</Link>
+              <Link to="/users/jobs" className='py-1.5 px-4 bg-[#F1F1F1]'>Jobs</Link>
             </div>
             <div className='flex items-center gap-1'>
               <img src={DP} alt="" />

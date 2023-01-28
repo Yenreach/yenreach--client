@@ -1,7 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import MUIDataTable from "mui-datatables";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AiOutlinePlus } from 'react-icons/ai'
+import DP from '../../../assets/dashboard/img.svg'
+import ArrowDown from '../../../assets/arrow-down.svg'
 import Head from '../../../components/users/Head'
 import Input from '../../../components/ui/Input'
 import Button from '../../../components/ui/Button'
@@ -182,14 +185,29 @@ const Products = () => {
   return (
     <Dashboard>
         <main className='flex-1'>
-          <Head />
+        <div className='p-3 px-3 lg:pr-20 xl:pr-36 bg-white flex items-center justify-between'>
+            <div className='text-[#69707D]'>
+                Business {'>'} Hard rock cafe
+            </div>
+            <div className='flex items-center gap-4 text-sm'>
+              <Link to="/users/business" className='py-1.5 px-4 font-medium bg-[#F1F1F1]'>Overview</Link>
+              <Link to="/users/products" className='py-1.5 px-4 bg-orange text-white'>Marketplace</Link>
+              <Link to="/users/jobs" className='py-1.5 px-4 bg-[#F1F1F1]'>Jobs</Link>
+            </div>
+            <div className='flex items-center gap-1'>
+              <img src={DP} alt="" />
+              <img src={ArrowDown} alt="" />
+            </div>
+          </div>
           <section className='p-8 px-4 sm:px-8'>
             <div className='flex items-center justify-between mb-3'>
               <h2 className='text-xl text-orange font-medium'>Listed Products</h2>
-              <Button variant='product' className='px-4 py-2 text-xs flex items-center'>
-                    <AiOutlinePlus className='mr-2' />
-                Add new Product
-              </Button>
+              <Link to="/users/add-product">
+                <Button variant='product' className='px-4 py-2 text-xs flex items-center'>
+                      <AiOutlinePlus className='mr-2' />
+                  Add new Product
+                </Button>
+              </Link>
             </div>
             <ThemeProvider theme={getMuiTheme()}>
                 <MUIDataTable
