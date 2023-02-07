@@ -16,7 +16,7 @@ const index = () => {
 				</div>
 			</div>
 			<SearchBar variant='business' />
-      <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <BusinessCard />
         <BusinessCard />
         <BusinessCard />
@@ -26,10 +26,10 @@ const index = () => {
         <BusinessCard />
         <BusinessCard />
       </div>
-      <div className="w-full bg-new-job-listing text-white rounded-2xl font-extrabold text-xl grid place-items-center bg-cover bg-center py-6">
+      <div className="grid w-full py-6 text-xl font-extrabold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
         New Job Listings available       
       </div>
-      <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <BusinessCard />
         <BusinessCard />
         <BusinessCard />
@@ -39,12 +39,12 @@ const index = () => {
         <BusinessCard />
         <BusinessCard />
       </div>
-      <div className="flex gap-2 border border-gray w-fit mt-10">
+      <div className="flex gap-2 mt-10 border border-gray w-fit">
         <img src={LeftArrow} alt="" />
-        <span className='font-medium p-2 grid place-items-center'>1</span>
-        <span className='font-medium p-2 grid place-items-center'>2</span>
-        <span className='font-medium p-2 grid place-items-center'>3</span>
-        <span className='font-medium p-2 grid place-items-center'>4</span>
+        <span className='grid p-2 font-medium place-items-center'>1</span>
+        <span className='grid p-2 font-medium place-items-center'>2</span>
+        <span className='grid p-2 font-medium place-items-center'>3</span>
+        <span className='grid p-2 font-medium place-items-center'>4</span>
         <img src={RightArrow} alt="" />
       </div>
     </>
