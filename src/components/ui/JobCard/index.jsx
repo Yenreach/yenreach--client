@@ -7,14 +7,14 @@ const index = ({ job, setSelectedIndex, index, setTab }) => {
     <div className="flex flex-col gap-4 p-4 border-2 border-[#D3DAE6]">
       <div className="flex justify-between items-center w-full">
         <h2 className="text-xsm font-semibold text-blue">Posted 3 days ago</h2>
-        <div className='bg-green-light rounded-full px-3 py-1 text-green text-xs'>{ job.jobStatus }</div>
+        <div className='bg-green-light rounded-full px-3 py-1 text-green text-xs'>{ job?.jobStatus }</div>
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex gap-2 justify-start items-center">
           <svg className='scale-[0.85]' width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 4V0H0V18H20V4H10ZM4 16H2V14H4V16ZM4 12H2V10H4V12ZM4 8H2V6H4V8ZM4 4H2V2H4V4ZM8 16H6V14H8V16ZM8 12H6V10H8V12ZM8 8H6V6H8V8ZM8 4H6V2H8V4ZM18 16H10V14H12V12H10V10H12V8H10V6H18V16ZM16 8H14V10H16V8ZM16 12H14V14H16V12Z" fill="#c2c2c2"/>
           </svg>
-          <p className='text-xs text-grey'>{ job.companyName }</p>
+          <p className='text-xs text-grey'>{ job?.companyName }</p>
         </div>
         <div className="flex gap-2 justify-start items-center">
           <svg className='scale-[0.85]' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,18 +24,18 @@ const index = ({ job, setSelectedIndex, index, setTab }) => {
             <path d="M21.65 11C19.34 12.68 16.7 13.68 14 14.02" stroke="#c2c2c2" strokeWidth="2.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M2.62012 11.2695C4.87012 12.8095 7.41012 13.7395 10.0001 14.0295" stroke="#c2c2c2" strokeWidth="2.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-          <p className='text-xs text-grey'>{ job.jobPosition }</p>
+          <p className='text-xs text-grey'>{ job?.jobPosition }</p>
         </div>
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex gap-2 flex-col md:flex-row">
           {
-            job.jobTags.map((tag, index) => (
+            job?.jobTags?.map((tag, index) => (
               <div key={index} className="grid px-2 text-sm md:text-base py-1 place-items-center bg-blue-light text-blue">{ tag }</div>
             ))
           }
         </div>
-        <div className="grid px-2 py-1 text-sm md:text-base place-items-center bg-blue-light text-blue w-fit">{ job.jobAmount }</div>
+        <div className="grid px-2 py-1 text-sm md:text-base place-items-center bg-blue-light text-blue w-fit">{ job?.jobAmount }</div>
       </div>
       <Button variant='job'  className='py-2' onClickFunc={ () => { setSelectedIndex(index); console.log('selected: ', index); setTab(2) }}>Apply</Button>
     </div>

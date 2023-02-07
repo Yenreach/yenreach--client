@@ -4,19 +4,19 @@ import appConfig from "../configs/app.config";
 
 const BaseService = axios.create({
     baseURL: appConfig.apiPrefix,
-    timeout: 90000,
+    timeout: 30000,
     headers: {
-      'X-Custom-Header': 'Yenreach',
+      // 'X-Custom-Header': 'Yenreach',
       'Content-Type': 'application/json', 
-      'Access-Control-Allow-Origin': '*',
+      // 'Access-Control-Allow-Origin': '*',
     },
-    mode: 'no-cors',
+    // mode: 'no-cors',
 })
 
 
 BaseService.interceptors.request.use(function (config) {
     // Do something before request is sent
-    console.log("config", config)
+    // console.log("config", config)
     return config;
   }, function (error) {
     // Do something with request error

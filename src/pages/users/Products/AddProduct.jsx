@@ -1,9 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import DP from '../../../assets/dashboard/img.svg'
+import ArrowDown from '../../../assets/arrow-down.svg'
 import { RiAddFill } from 'react-icons/ri'
 import Head from '../../../components/users/Head'
 import Input from '../../../components/ui/Input'
 import Button from '../../../components/ui/Button'
-import Dashboard from "../Dashboard"
+import Dashboard from "../../../components/layout/Dashboard"
 
 
 
@@ -11,7 +14,20 @@ const index = () => {
   return (
     <Dashboard> 
         <div className='flex-1 overflow-hidden'>
-          <Head />
+        <div className='p-3 px-3 lg:pr-20 xl:pr-36 bg-white flex items-center justify-between'>
+            <div className='text-[#69707D]'>
+                Business {'>'} Hard rock cafe
+            </div>
+            <div className='flex items-center gap-4 text-sm'>
+              <Link to="/users/business" className='py-1.5 px-4 font-medium bg-[#F1F1F1]'>Overview</Link>
+              <Link to="/users/products" className='py-1.5 px-4 bg-orange text-white'>Marketplace</Link>
+              <Link to="/users/jobs" className='py-1.5 px-4 bg-[#F1F1F1]'>Jobs</Link>
+            </div>
+            <div className='flex items-center gap-1'>
+              <img src={DP} alt="" />
+              <img src={ArrowDown} alt="" />
+            </div>
+          </div>
           <section className='p-8 px-4 sm:px-8'>
             <form className='p-8 px-4 sm:px-8 bg-white rounded-2xl'>
                 <div className='mb-8'>

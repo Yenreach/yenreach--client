@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Header from '../../components/Header'
+import { useQuery } from '@tanstack/react-query'
+import getData from '../../utils/getData'
+import Header from '/src/components/Header'
 import Footer from '../../components/Footer'
 import Hero from '../../components/Hero'
 import Category from '../../components/Category'
@@ -13,23 +15,11 @@ import Button from '../../components/ui/Button'
 import { apiLogin, apiTest } from '../../adapters/AuthAdapter'
 
 const index = () => {
-    useEffect(() => {
-        // const fetchD = async () => {
-        //     const result = await apiTest({name: "nICK"})
-        //     console.log("result", result)
-        // }
-
-        // fetchD()
-        fetch("/api/fetch_approved_businesses_api.php", {
-            method: 'get',
-            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-            // mode: 'cors',
-        })
-            .then(res => {
-                console.log(res)
-                return res.json()})
-            .then(data => console.log(data))
-    }, [])
+    const { isLoading, error, data } = useQuery({
+        queryKey: ['repoData'],
+        queryFn: () => getData(apiTest, {name: "nICK"}),
+      })
+    // console.log("data", data?.data)
 
   return (
     <>
@@ -54,9 +44,11 @@ const index = () => {
                         Lorem ipsum dolor sit amet consectetur. Ultricies consectetur nisi ornare tempor. Senectus tortor arcu est duis posuere ante. Cras est malesuada facilisi facilisi eget morbi. Cum justo quis dui laoreet fermentum fringilla. Non non dictum ipsum est tellus adipiscing. <br />
                         Netus a sodales a lorem eget sed. Scelerisque id urna massa convallis suspendisse ultrices dignissim sed. Facilisis vestibulum convallis varius tellus. Morbi neque egestas etiam feugiat amet. Accumsan fusce sed id id faucibus viverra nunc ut. Porttitor ac cursus rhoncus amet semper nunc quis vitae fermentum. Hendrerit ipsum quis nulla.
                     </p>
-                    <Button className='py-2 px-28'>
-                        CTA
-                    </Button>
+                    <Link to="/explore">
+                        <Button className='py-2 px-28'>
+                            CTA
+                        </Button>
+                    </Link>
                 </div>
             </div>
             <div className='flex flex-col-reverse items-center mb-32 sm:flex-row gap-9'>
@@ -66,9 +58,11 @@ const index = () => {
                         Lorem ipsum dolor sit amet consectetur. Ultricies consectetur nisi ornare tempor. Senectus tortor arcu est duis posuere ante. Cras est malesuada facilisi facilisi eget morbi. Cum justo quis dui laoreet fermentum fringilla. Non non dictum ipsum est tellus adipiscing. <br />
                         Netus a sodales a lorem eget sed. Scelerisque id urna massa convallis suspendisse ultrices dignissim sed. Facilisis vestibulum convallis varius tellus. Morbi neque egestas etiam feugiat amet. Accumsan fusce sed id id faucibus viverra nunc ut. Porttitor ac cursus rhoncus amet semper nunc quis vitae fermentum. Hendrerit ipsum quis nulla.
                     </p>
-                    <Button variant='job' className='py-2 px-28'>
-                        CTA
-                    </Button>
+                    <Link to="/explore" state={{ data: "jobs" }} >
+                        <Button variant='job' className='py-2 px-28'>
+                            CTA
+                        </Button>
+                    </Link>
                 </div>
                 <img src={AllHereJ} alt="" className="object-cover w-full sm:w-1/2" />
             </div>
@@ -80,9 +74,11 @@ const index = () => {
                         Lorem ipsum dolor sit amet consectetur. Ultricies consectetur nisi ornare tempor. Senectus tortor arcu est duis posuere ante. Cras est malesuada facilisi facilisi eget morbi. Cum justo quis dui laoreet fermentum fringilla. Non non dictum ipsum est tellus adipiscing. <br />
                         Netus a sodales a lorem eget sed. Scelerisque id urna massa convallis suspendisse ultrices dignissim sed. Facilisis vestibulum convallis varius tellus. Morbi neque egestas etiam feugiat amet. Accumsan fusce sed id id faucibus viverra nunc ut. Porttitor ac cursus rhoncus amet semper nunc quis vitae fermentum. Hendrerit ipsum quis nulla.
                     </p>
-                    <Button variant='product' className='py-2 px-28'>
-                        CTA
-                    </Button>
+                    <Link to="/explore" state={{ data: "marketplace" }} >         
+                        <Button variant='product' className='py-2 px-28'>
+                            CTA
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </section>
@@ -96,9 +92,11 @@ const index = () => {
                         <p className='text-smm'>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus faucibus lobortis blandit consectetur massa rutrum dignissim luctus. Non quis fringilla ac semper quam non egestas velit. Mauris, odio viverra amet viverra. Quisque cursus non libero, vestibulum rhoncus, pulvinar donec hendrerit netus. Nibh neque vitae nulla morbi vulputate amet ac. Viverra elementum ullamcorper duis diam iaculis condimentum integer ut. Neque rhoncus convallis dictum viverra.
                         </p>
-                        <Button className='text-sm rounded-md py-2.5 px-10 font-medium'>
-                            view business
-                        </Button>
+                        <Link to="/business"> 
+                            <Button className='text-sm rounded-md py-2.5 px-10 font-medium'>
+                                view business
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

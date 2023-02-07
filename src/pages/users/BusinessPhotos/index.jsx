@@ -1,9 +1,9 @@
 import React from 'react'
-import Button from '../../ui/Button'
-import Input from '../../ui/Input'
+import Button from '../../../components/ui/Button'
+import Input from '../../../components/ui/Input'
 import Add from '../../../assets/add.svg'
 
-const index = () => {
+const index = ({ setStep }) => {
   return (
     <form className='p-8 px-4 sm:px-8 bg-white rounded-2xl'>
         <div className='relative mb-2 p-6 border-[6px] border-green rounded-full rotate-45 inline-block'>
@@ -28,7 +28,7 @@ const index = () => {
                 <Input className='border-[#E5E5E5] rounded-lg hidden' type="file" name="cover_img" id="profile_img" />
             </div>
         </div>
-        <Button className='p-3 w-full flex justify-center'>
+        <Button className='p-3 w-full flex justify-center' onClickFunc={() => setStep(3)}>
             Create my business
         </Button>
     </form>

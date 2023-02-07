@@ -13,8 +13,11 @@ import SignUp from './pages/SignUp';
 import PasswordRecovery from './pages/PasswordRecovery';
 import Contact from './pages/Contact'
 import NotFound from './pages/404'
-import Dashboard from './pages/users/Dashboard'
+import Dashboard from './components/layout/Dashboard'
+import BusinessDash from './pages/users/Home'
+import CreateBusiness from './pages/users/CreateBusiness'
 import Products from './pages/users/Products'
+import UserBusiness from './pages/users/Business'
 import AddProduct from './pages/users/Products/AddProduct'
 import Success from './pages/users/Products/Success'
 import Profile from './pages/users/Profile'
@@ -39,9 +42,12 @@ function App() {
             <Route exact path="/about" element={<About />} />
             <Route exact path="/blog" element={<Blog />} />
             <Route exact path="/signup" element={<SignUp />} />
+            <Route exact path="/login" element={<Login />} />
             <Route exact path="/password-recovery" element={<PasswordRecovery />} />
             <Route exact path="/contact" element={<Contact />} />
-            <Route exact path="/users" element={<Dashboard />} />
+            <Route exact path="/users" element={<BusinessDash />} />
+            <Route exact path="/users/business" element={<UserBusiness />} />
+            <Route exact path="/users/add-business" element={<CreateBusiness />} />
             <Route exact path="/users/products" element={<Products />} />
             <Route exact path="/users/add-product" element={<AddProduct />} />
             <Route exact path="/users/product-success" element={<Success />} />

@@ -1,7 +1,7 @@
 import React from 'react'
-import Head from '../Head'
-import Input from '../../ui/Input'
-import Button from '../../ui/Button'
+import Head from '../../../components/users/Head'
+import Input from '../../../components/ui/Input'
+import Button from '../../../components/ui/Button'
 
 
 

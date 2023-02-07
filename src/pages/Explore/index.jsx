@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Product from '../../components/Product'
@@ -16,6 +17,18 @@ import { useState } from 'react'
 
 const index = () => {
   const [activeTab, setActiveTab] = useState('business');
+  const location = useLocation()
+  console.log(location.state?.data)
+
+  useEffect(() => {
+    if (location.state?.data === 'jobs') {
+      setActiveTab('jobs')
+    } else if (location.state?.data === 'marketplace') {
+      setActiveTab('marketplace')
+    } else {
+      setActiveTab('business')
+    }
+  }, [location])
 
   return (
     <div className='relative w-full pt-22'>

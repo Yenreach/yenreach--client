@@ -1,9 +1,9 @@
 import React from 'react'
-import Input from '../../ui/Input'
-import Button from '../../ui/Button'
+import Input from '../../../components/ui/Input'
+import Button from '../../../components/ui/Button'
 
 
-const index = () => {
+const index = ({ step, setStep}) => {
   return (
     <form className='p-8 px-4 sm:px-8 bg-white rounded-2xl'>
         <div className='relative mb-11 p-6 border-[6px] border-r-[#E8E8E8] border-t-[#E8E8E8] border-green rounded-full rotate-45 inline-block'>
@@ -59,7 +59,7 @@ const index = () => {
                 <Input className='border-gray rounded-lg' type="text" name="" id="" placeholder='Enter your business start Year' />
             </div>
         </div>
-        <Button className='p-3 w-full flex justify-center'>
+        <Button className='p-3 w-full flex justify-center' onClickFunc={() => setStep(2)}>
             Next
         </Button>
     </form>

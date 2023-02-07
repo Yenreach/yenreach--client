@@ -12,7 +12,15 @@ export const apiRegister =  (data) => {
 
 export const apiLogin =  (data) => {
     return ApiAdapter.fetchData({
-        url: servicePrefix + "/login",
+        url: "/user_login_api.php",
+        method: "post",
+        data
+    })
+}
+
+export const apiForgotEmail =  (data) => {
+    return ApiAdapter.fetchData({
+        url: "/user_login_api.php",
         method: "post",
         data
     })
