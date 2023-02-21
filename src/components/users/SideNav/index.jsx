@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Button from '/src/components/ui/Button';
+import { useAuthContext } from "/src/hooks/useAuthContext"
 import Logo from "../../../assets/logo.svg"
 import Trend from "../../../assets/dashboard/trend.svg"
 import Billboard from "../../../assets/dashboard/billboard.svg"
@@ -9,6 +11,8 @@ import Logout from "../../../assets/dashboard/logout.svg"
 
 
 const index = () => {
+    const { dispatch } = useAuthContext()
+
   return (
     <div className='hidden sm:flex flex-col justify-between bg-white h-screen w-52 border-r border-[#ABB4C4] pt-4'>
         <div>
@@ -32,10 +36,10 @@ const index = () => {
                 </Link>
             </div>
         </div>
-        <Link className='py-2.5 pl-6 flex items-center gap-2 text-[#EB4335] w-full' to="">
+        <div onClick={() => dispatch({type: "LOGOUT"})} className='py-2.5 pl-6 flex items-center gap-2 text-[#EB4335] w-full cursor-pointer'>
             <img src={Logout} alt="" className='z-100' />
             Logout
-        </Link>
+        </div>
     </div>
   )
 }

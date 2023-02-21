@@ -1,4 +1,4 @@
-import ApiAdapter from "./ApiAdapter"
+import ApiAdapter from "./ApiService"
 
 const servicePrefix = "/auth"
 

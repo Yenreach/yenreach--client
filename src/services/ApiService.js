@@ -1,4 +1,4 @@
-import BaseService from "./BaseAdapter";
+import BaseService from "./BaseService";
 
 const ApiAdapter = {
     fetchData(params) {
