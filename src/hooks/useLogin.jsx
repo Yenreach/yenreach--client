@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useAuthContext } from "./useAuthContext"
-import { apiLogin } from '../adapters/AuthAdapter'
+import { apiLogin } from '../services/AuthService'
 import { useNavigate } from "react-router-dom"
 
 
@@ -29,10 +29,10 @@ const useLogin = () => {
                 setError(data.error)
                 setIsLoading(false)
             } else {
-                console.log("success")
                 data = data.data
+                console.log("success", data)
                 dispatch({type: "LOGIN", payload: data})
-                localStorage.setItem("user", JSON.stringify(data))
+                // localStorage.setItem("user", JSON.stringify(data))
                 setError(null)
                 setIsLoading(false)
                 Navigate('/users')

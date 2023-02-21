@@ -12,7 +12,7 @@ import AllHereJ from '../../assets/jobs/all-here.svg'
 import AllHereP from '../../assets/products/all-here.svg'
 import BusOfTheWeek from '../../assets/bus_of_the_week.svg'
 import Button from '../../components/ui/Button'
-import { apiLogin, apiTest } from '../../adapters/AuthAdapter'
+import { apiLogin, apiTest } from '../../services/AuthService'
 
 const index = () => {
     const { isLoading, error, data } = useQuery({

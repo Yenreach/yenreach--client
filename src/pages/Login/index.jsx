@@ -1,16 +1,23 @@
 import React from 'react';
-import Header from '../../components/Header';
+import { Route, Navigate, useLocation } from 'react-router-dom'
+import { useAuthContext } from '/src/hooks/useAuthContext'
 import PasswordSvg from '../../assets/password.svg';
-import ArrowDownSvg from '../../assets/arrow-down.svg';
 import Button from '../../components/ui/Button';
-import { apiLogin } from '../../adapters/AuthAdapter';
 import useLogin from '../../hooks/useLogin';
 
 const index = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
+  const { user } = useAuthContext()
+  const location = useLocation()
+  
   const { login, error, isLoading, setError } = useLogin();
+
+  if (user) {
+    return <Navigate to={{ pathname: '/users', state: { from: location } }} />
+  }
+
 
   return (
     <>
