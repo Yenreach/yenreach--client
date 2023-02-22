@@ -46,13 +46,13 @@ function App() {
             <Route exact path="/password-recovery" element={<PasswordRecovery />} />
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/users" element={<BusinessDash />} />
-            <Route exact path="/users/business" element={<UserBusiness />} />
+            <Route exact path="/users/business/:id" element={<UserBusiness />} />
             <Route exact path="/users/add-business" element={<CreateBusiness />} />
-            <Route exact path="/users/products" element={<Products />} />
+            <Route exact path="/users/products/:id" element={<Products />} />
             <Route exact path="/users/add-product" element={<AddProduct />} />
             <Route exact path="/users/product-success" element={<Success />} />
             <Route exact path="/users/profile" element={<Profile />} />
-            <Route exact path="/users/jobs" element={<Jobs />} />
+            <Route exact path="/users/jobs/:id" element={<Jobs />} />
             <Route exact path="/users/jobs/Applicants" element={<Applicants />} />
             <Route exact path="/users/jobs/add-job" element={<AddJob />} />
             <Route exact path="*" element={<NotFound />} />

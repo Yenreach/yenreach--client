@@ -1,6 +1,9 @@
 import React from 'react'
 import { MdDelete } from 'react-icons/md'
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from 'react-icons/hi'
+import { useQuery } from '@tanstack/react-query'
+import getData from '/src/utils/getData'
+import { apiGetUser } from '/src/services/UserService'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '../../../components/ui/Button'
@@ -10,6 +13,12 @@ import BusinessCard from '../../../components/ui/BusinessCard'
 
 
 const Profile = () => {
+    const { isLoading, error, data: profile } = useQuery({
+        queryKey: ['profile'],
+        queryFn: () => getData(apiGetUser),
+      })
+      console.log("data", profile)
+    
   return (
     <Dashboard> 
     <div className='flex-1 overflow-hidden'>

@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import getData from '/src/utils/getData'
+import { apiGetAllBusinesses } from '/src/services/UserService'
 import Dashboard from "../../../components/layout/Dashboard"
 import Business from '../../../assets/bus_of_the_week.svg'
 import Elipse from '../../../assets/dashboard/elipse.svg'
@@ -7,7 +10,15 @@ import Add from '../../../assets/add.svg'
 import NoBusiness from '../../../assets/dashboard/no-business.svg'
 
 const index = () => {
-    const [business, setBusiness] = React.useState(false)
+    const [business, setBusinesses] = React.useState(false)
+
+    const { isLoading, error, data: businesses } = useQuery({
+        queryKey: ['userBusinesses'],
+        queryFn: () => getData(apiGetAllBusinesses),
+      })
+    console.log("data", businesses)
+
+
     return (
         <Dashboard>
             <div className='flex-1'>
@@ -18,12 +29,12 @@ const index = () => {
                 </div>
                 <div className='px-7 py-4'>
                     <h1 className='text-green font-medium text-xl mb-2'>Businesses</h1>
-                    {business && 
+                    {businesses && 
                         <>
                             <p className='text-[#476788] text-sm mb-7'>You have 3 businesses listed to your account.</p>
                             <div className='grid grid-container--fit gap-4 mb-16 justify-evenly'>
-                                {[1,2,3].map(business => (
-                                    <Link to="/users/business" key={business} className='bg-[#F1F1F1] rounded-xl overflow-hidden'>
+                                {businesses.data?.map(business => (
+                                    <Link to={`/users/business/${business.verify_string}`} key={business?.verify_string} className='bg-[#F1F1F1] rounded-xl overflow-hidden'>
                                         <div>
                                             <img src={Business} alt="" className="w-full object-cover h-40" />
                                             <div className='p-4 px-6'>
@@ -41,7 +52,7 @@ const index = () => {
                         </>
                     }
                 </div>
-                {business && 
+                {businesses && 
                     <Link to="/users/add-business" className='flex justify-center items-center mb-8'>
                         <div className='flex flex-col justify-center items-center p-14 bg-[#F1F1F1] rounded-lg'>
                         <span className='w-14 h-14 mb-4 rounded-full bg-[#CCCCCC] flex items-center justify-center'>
@@ -53,13 +64,13 @@ const index = () => {
                         </div>
                     </Link>
                 }
-                {!business  && 
+                {!businesses  && 
                     <div className='flex flex-col justify-center items-center rounded-lg font-arialsans h-[550px] sm:h-auto'>
                         <img src={NoBusiness} alt="" className='mb-7' />
                         <span className='text-center text-[#476788] mb-9'>
                         You do not have any business listed yet
                         </span>
-                        <span onClick={() => setBusiness(true)} href=""className='text-green underline underline-offset-2'>Click here to add a new business</span>
+                        <span onClick={() => setBusinesses(true)} href=""className='text-green underline underline-offset-2'>Click here to add a new business</span>
                     </div>
                 }
             </div>

@@ -1,5 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import getData from '/src/utils/getData'
+import { apiGetOneBusiness } from '/src/services/UserService'
+import Header from "/src/components/users/Header"
 import MUIDataTable from "mui-datatables";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AiOutlinePlus } from 'react-icons/ai'
@@ -18,6 +22,16 @@ const options = {
 
 const Products = () => {
   const [data, setData] = React.useState([])
+
+  const { id } = useParams()
+  
+  const { isLoading, error, data: businesses } = useQuery({
+    queryKey: ['userBusiness'],
+    queryFn: () => getData(apiGetOneBusiness, id),
+  })
+  console.log("business", businesses)
+
+
   const columns = [
     {
       name: "project",
@@ -185,20 +199,7 @@ const Products = () => {
   return (
     <Dashboard>
         <main className='flex-1'>
-        <div className='p-3 px-3 lg:pr-20 xl:pr-36 bg-white flex items-center justify-between'>
-            <div className='text-[#69707D]'>
-                Business {'>'} Hard rock cafe
-            </div>
-            <div className='flex items-center gap-4 text-sm'>
-              <Link to="/users/business" className='py-1.5 px-4 font-medium bg-[#F1F1F1]'>Overview</Link>
-              <Link to="/users/products" className='py-1.5 px-4 bg-orange text-white'>Marketplace</Link>
-              <Link to="/users/jobs" className='py-1.5 px-4 bg-[#F1F1F1]'>Jobs</Link>
-            </div>
-            <div className='flex items-center gap-1'>
-              <img src={DP} alt="" />
-              <img src={ArrowDown} alt="" />
-            </div>
-          </div>
+          <Header business_string={id} />
           <section className='p-8 px-4 sm:px-8'>
             <div className='flex items-center justify-between mb-3'>
               <h2 className='text-xl text-orange font-medium'>Listed Products</h2>

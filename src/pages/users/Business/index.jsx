@@ -1,8 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import getData from '/src/utils/getData'
+import { apiGetOneBusiness } from '/src/services/UserService'
+import Header from "/src/components/users/Header"
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '../../../components/ui/Button'
-import DP from '../../../assets/dashboard/img.svg'
 import ArrowDown from '../../../assets/arrow-down.svg'
 import BusinessIMG from '../../../assets/dashboard/business-img.svg'
 import Media from '../../../assets/dashboard/media.svg'
@@ -12,23 +15,19 @@ import Star from '../../../assets/star.svg'
 
 
 const index = () => {
+  const { id } = useParams()
+  
+  const { isLoading, error, data: businesses } = useQuery({
+    queryKey: ['userBusiness'],
+    queryFn: () => getData(apiGetOneBusiness, id),
+  })
+  console.log("business", businesses)
+
+
   return (
     <Dashboard>
       <div className='flex-1'>
-          <div className='p-3 px-3 lg:pr-20 xl:pr-36 bg-white flex items-center justify-between'>
-            <div className='text-[#69707D]'>
-                Business {'>'} Hard rock cafe
-            </div>
-            <div className='flex items-center gap-4 text-sm'>
-              <Link to="/users/business" className='py-1.5 px-4 bg-green text-white font-medium'>Overview</Link>
-              <Link to="/users/products" className='py-1.5 px-4 bg-[#F1F1F1]'>Marketplace</Link>
-              <Link to="/users/jobs" className='py-1.5 px-4 bg-[#F1F1F1]'>Jobs</Link>
-            </div>
-            <div className='flex items-center gap-1'>
-              <img src={DP} alt="" />
-              <img src={ArrowDown} alt="" />
-            </div>
-          </div>
+          <Header business_string={id} />
           <div className='h-36 -z-0 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center'>
             <Button className='p-1.5 px-3 text-xs font-arialsans absolute bottom-2 right-2 sm:right-4 lg:right-16'>
               Edit Cover Photo
