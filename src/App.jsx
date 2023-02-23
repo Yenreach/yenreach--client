@@ -21,6 +21,8 @@ import UserBusiness from './pages/users/Business'
 import AddProduct from './pages/users/Products/AddProduct'
 import Success from './pages/users/Products/Success'
 import Profile from './pages/users/Profile'
+import Subscription from './pages/users/Subscription'
+import Billboard from './pages/users/Billboard'
 import Jobs from './pages/users/Jobs'
 import Applicants from './pages/users/Jobs/Applicants'
 import AddJob from './pages/users/Jobs/AddJob'
@@ -52,6 +54,8 @@ function App() {
             <Route exact path="/users/add-product" element={<AddProduct />} />
             <Route exact path="/users/product-success" element={<Success />} />
             <Route exact path="/users/profile" element={<Profile />} />
+            <Route exact path="/users/subscription" element={<Subscription />} />
+            <Route exact path="/users/billboard" element={<Billboard />} />
             <Route exact path="/users/jobs/:id" element={<Jobs />} />
             <Route exact path="/users/jobs/Applicants" element={<Applicants />} />
             <Route exact path="/users/jobs/add-job" element={<AddJob />} />
