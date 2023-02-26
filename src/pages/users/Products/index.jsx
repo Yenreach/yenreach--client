@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import getData from '/src/utils/getData'
-import { apiGetOneBusiness } from '/src/services/UserService'
+import { apiGetAllProducts } from '/src/services/ProductService'
 import Header from "/src/components/users/Header"
 import MUIDataTable from "mui-datatables";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -21,15 +21,13 @@ const options = {
 };
 
 const Products = () => {
-  const [data, setData] = React.useState([])
-
   const { id } = useParams()
   
-  const { isLoading, error, data: businesses } = useQuery({
-    queryKey: ['userBusiness'],
-    queryFn: () => getData(apiGetOneBusiness, id),
+  const { isLoading, error, data: products } = useQuery({
+    queryKey: ['userProducts'],
+    queryFn: () => getData(apiGetAllProducts),
   })
-  console.log("business", businesses)
+  console.log("products", products)
 
 
   const columns = [
@@ -199,11 +197,11 @@ const Products = () => {
   return (
     <Dashboard>
         <main className='flex-1'>
-          <Header business_string={id} />
+          <Header business_string={id} type="product" />
           <section className='p-8 px-4 sm:px-8'>
             <div className='flex items-center justify-between mb-3'>
               <h2 className='text-xl text-orange font-medium'>Listed Products</h2>
-              <Link to="/users/add-product">
+              <Link to={`/users/products/${id}/add-product`}>
                 <Button variant='product' className='px-4 py-2 text-xs flex items-center'>
                       <AiOutlinePlus className='mr-2' />
                   Add new Product
@@ -213,7 +211,7 @@ const Products = () => {
             <ThemeProvider theme={getMuiTheme()}>
                 <MUIDataTable
                     title={"Products"}
-                    data={data}
+                    data={products ? products : []}
                     columns={columns}
                     options={options}
                 />

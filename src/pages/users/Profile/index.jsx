@@ -3,7 +3,7 @@ import { MdDelete } from 'react-icons/md'
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from 'react-icons/hi'
 import { useQuery } from '@tanstack/react-query'
 import getData from '/src/utils/getData'
-import { apiGetUser } from '/src/services/UserService'
+import { apiGetUser, apiGetSavedBusinesses } from '/src/services/UserService'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '../../../components/ui/Button'
@@ -16,12 +16,16 @@ const Profile = () => {
     const { isLoading, error, data: profile } = useQuery({
         queryKey: ['profile'],
         queryFn: () => getData(apiGetUser),
-      })
-      console.log("data", profile)
+    })
+    const { data: savedBusinesses } = useQuery({
+        queryKey: ['savedBusinesses'],
+        queryFn: () => getData(apiGetSavedBusinesses),
+    })
+    //   console.log("saved", savedBusinesses)
     
   return (
     <Dashboard> 
-    <div className='flex-1 overflow-hidden'>
+    <div className='flex-1 overflow-y-auto'>
         <Head />
         <section className='p-8 px-4 sm:px-8 text-sm'>
             <div className='md:max-w-xl bg-white px-8 py-5 mb-16 rounded-3xl'>
@@ -67,11 +71,9 @@ const Profile = () => {
                         </span>
                     </div>
                     <div className='flex flex-nowrap overflow-hidden gap-6 w-full'>
-                        <BusinessCard className='' />
-                        <BusinessCard className='' />
-                        <BusinessCard className='' />
-                        <BusinessCard className='' />
-                        <BusinessCard className='' />
+                        {savedBusinesses?.map((business) => (
+                            <BusinessCard key={business.id} data={{categories: business?.categories, name: business?.name, business_string: business?.verify_string}} className='w-56' />
+                        ))}
                     </div>
                 </div>
             </div>
