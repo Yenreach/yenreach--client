@@ -1,6 +1,6 @@
 import React from 'react'
-import { RiAddFill } from 'react-icons/ri'
-import Head from '../../../components/users/Head'
+import { useParams } from 'react-router-dom'
+import Header from "/src/components/users/Header"
 import Input from '../../../components/ui/Input'
 import Button from '../../../components/ui/Button'
 import Dashboard from "../../../components/layout/Dashboard"
@@ -8,10 +8,11 @@ import Dashboard from "../../../components/layout/Dashboard"
 
 
 const index = () => {
+    const { id } = useParams()
   return (
     <Dashboard> 
         <div className='flex-1 overflow-hidden'>
-          <Head />
+            <Header business_string={id} type="job" />
           <section className='p-8 px-4 sm:px-8'>
             <form className='p-8 px-4 sm:px-8 bg-white rounded-2xl'>
                 <div className='md:flex justify-between gap-6 md:mb-4'>
