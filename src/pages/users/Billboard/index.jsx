@@ -3,7 +3,7 @@ import { MdCheckBox } from 'react-icons/md'
 import { TfiCrown } from 'react-icons/tfi'
 import { useQuery } from '@tanstack/react-query'
 import getData from '/src/utils/getData'
-import { apiGetUser } from '/src/services/UserService'
+import { apiGetBillboardPaymentTypes } from '/src/services/UserService'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '/src/components/ui/Button'
@@ -13,11 +13,11 @@ import BusinessCard from '../../../components/ui/BusinessCard'
 
 
 const Billboard = () => {
-    const { isLoading, error, data: profile } = useQuery({
-        queryKey: ['profile'],
-        queryFn: () => getData(apiGetUser),
+    const { isLoading, error, data: billboards } = useQuery({
+        queryKey: ['billboards'],
+        queryFn: () => getData(apiGetBillboardPaymentTypes),
       })
-      console.log("data", profile)
+      console.log("billboards", billboards)
     
   return (
     <Dashboard> 
@@ -56,16 +56,16 @@ const Billboard = () => {
                         <li>Also note that the slots for Billboard are limited. So, there is a possibility that your advert application may not be approved immediately.</li>
                     </ul>
                 </div>
-                <div className='flex flex-wrap gap-4 md:gap-8'>
-                    {[1,2,3].map(el => 
-                        (<div className='p-5 py-7 rounded min-w-[250px] bg-white border border-[#00000011]'>
+                <div className='flex flex-wrap gap-4 md:gap-8 mb-20'>
+                    {billboards?.map(billboard => 
+                        (<div key={billboard?.id} className='p-5 py-7 rounded min-w-[250px] bg-white border border-[#00000011]'>
                             <div className='flex items-center gap-3 mb-12'>
                                 <TfiCrown size="1.4rem" color="00C885" />
-                                <h3 className='text-green font-medium text-lg'>Silver Package</h3>
+                                <h3 className='text-green font-medium text-lg'>{billboard?.title} Package</h3>
                             </div>
                             <div className='flex flex-col items-center justify-center gap-4 border-t border-[#00000010] pt-6'>
                                 <div>
-                                    <span className='font-medium text-lg text-green'>₦70,000</span><span className=''>/3 Month</span>
+                                    <span className='font-medium text-lg text-green'>₦{billboard?.amount}</span><span className=''>/{billboard?.duration} {billboard?.duration_type == "3"? "Month(s)" : "Week(s)"}</span>
                                 </div>
                                 <Button className='py-1.5 px-3 rounded-sm'>
                                     Subscribe

@@ -101,8 +101,7 @@ const index = () => {
               </div>
             </div>
             <div className='border-2 border-gray rounded-xl p-4 px-6 py-8 pb-14 relative mb-5'>
-              <textarea className='w-full text-xs opacity-80' name="review" id="review" cols="40" rows="8">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus at massa lobortis et consequat maecenas commodo. Pellentesque enim pulvinar magna interdum egestas sed quam nunc. In proin semper egestas consectetur fermentum, donec nibh. Interdum felis, sed tristique viverra est at blandit. Ultricies leo velit nisl commodo ultricies a et tortor eu. Nisl urna, convallis sit erat sed.Quisque vitae viverra amet fringilla justo dolor mauris nunc. Nunc, pharetra, fermentum quam sit elementum amet, sed tortor sodales. Accumsan odio aliquet imperdiet nunc vitae proin.
+              <textarea className='w-full text-xs opacity-80' name="review" id="review" cols="40" rows="8" defaultValue={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus at massa lobortis et consequat maecenas commodo. Pellentesque enim pulvinar magna interdum egestas sed quam nunc. In proin semper egestas consectetur fermentum, donec nibh. Interdum felis, sed tristique viverra est at blandit. Ultricies leo velit nisl commodo ultricies a et tortor eu. Nisl urna, convallis sit erat sed.Quisque vitae viverra amet fringilla justo dolor mauris nunc. Nunc, pharetra, fermentum quam sit elementum amet, sed tortor sodales. Accumsan odio aliquet imperdiet nunc vitae proin."}>
               </textarea>
               <div className='flex items-end gap-4 absolute bottom-2 right-6'>
                 <img src={Attach} alt="" />
