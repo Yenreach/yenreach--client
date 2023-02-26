@@ -5,8 +5,8 @@ import { useAuthContext } from '../../hooks/useAuthContext'
 
 const ProtectedRoutes = ({ children }) => {
   const { user } = useAuthContext()
-  // console.log("user", user)
   const location = useLocation()
+  // console.log("location", location)
 
   if (!user) {
     return <Navigate to={{ pathname: '/login', state: { from: location } }} />

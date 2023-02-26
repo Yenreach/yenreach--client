@@ -16,6 +16,7 @@ import NotFound from './pages/404'
 import Dashboard from './components/layout/Dashboard'
 import BusinessDash from './pages/users/Home'
 import CreateBusiness from './pages/users/CreateBusiness'
+import EditBusiness from './pages/users/EditBusiness'
 import Products from './pages/users/Products'
 import UserBusiness from './pages/users/Business'
 import AddProduct from './pages/users/Products/AddProduct'
@@ -47,18 +48,19 @@ function App() {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/password-recovery" element={<PasswordRecovery />} />
             <Route exact path="/contact" element={<Contact />} />
-            <Route exact path="/users" element={<BusinessDash />} />
             <Route exact path="/users/business/:id" element={<UserBusiness />} />
             <Route exact path="/users/add-business" element={<CreateBusiness />} />
+            <Route exact path="/users/edit-business" element={<CreateBusiness />} />
             <Route exact path="/users/products/:id" element={<Products />} />
-            <Route exact path="/users/add-product" element={<AddProduct />} />
+            <Route exact path="/users/products/:id/add-product" element={<AddProduct />} />
             <Route exact path="/users/product-success" element={<Success />} />
             <Route exact path="/users/profile" element={<Profile />} />
             <Route exact path="/users/subscription" element={<Subscription />} />
             <Route exact path="/users/billboard" element={<Billboard />} />
             <Route exact path="/users/jobs/:id" element={<Jobs />} />
-            <Route exact path="/users/jobs/Applicants" element={<Applicants />} />
-            <Route exact path="/users/jobs/add-job" element={<AddJob />} />
+            <Route exact path="/users/jobs/:id/Applicants" element={<Applicants />} />
+            <Route exact path="/users/jobs/:id/add-job" element={<AddJob />} />
+            <Route exact path="/users" element={<BusinessDash />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
         </ScrollToTop>

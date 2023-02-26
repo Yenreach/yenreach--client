@@ -11,7 +11,7 @@ import EditBusiness from '../../../pages/users/EditBusiness'
 const index = ({ children }) => {
   return (
     <ProtectedRoutes>
-      <div className='flex bg-footer-bg'>
+      <div className='flex bg-footer-bg overflow-hidden min-h-screen'>
         <SideNav />
         {children}
       </div>
