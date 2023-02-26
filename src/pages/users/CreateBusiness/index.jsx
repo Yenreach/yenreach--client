@@ -11,7 +11,7 @@ const index = () => {
   console.log(step)
   return (
     <Dashboard>
-      <main className='flex-1'>
+      <main className='flex-1 overflow-y-scroll'>
           <Head />
           <section className='p-8 px-4 sm:px-8'>
               <h1 className='text-2xl text-green font-medium mb-5'>Create your new Business</h1>

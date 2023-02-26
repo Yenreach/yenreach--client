@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { BsTelephone, BsGlobe, BsInstagram, BsWhatsapp } from 'react-icons/bs'
+import { MdOutlineMarkEmailUnread, MdOutlineLocationOn } from 'react-icons/md'
+import { TbBrandFacebook } from 'react-icons/tb'
 import { useQuery } from '@tanstack/react-query'
 import getData from '/src/utils/getData'
-import { apiGetOneBusiness } from '/src/services/UserService'
+import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessSubscription } from '/src/services/UserService'
 import Header from "/src/components/users/Header"
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '../../../components/ui/Button'
@@ -17,17 +20,28 @@ import Star from '../../../assets/star.svg'
 const index = () => {
   const { id } = useParams()
   
-  const { isLoading, error, data: businesses } = useQuery({
+  const { isLoading, error, data: business } = useQuery({
     queryKey: ['userBusiness'],
     queryFn: () => getData(apiGetOneBusiness, id),
   })
-  console.log("business", businesses)
+  
+  const { data: categories } = useQuery({
+    queryKey: ['categories'],
+    queryFn: () => getData(apiGetBusinessCategories, id),
+  })
+
+  const { error: subscriptionError, data: subscription } = useQuery({
+    queryKey: ['subscription'],
+    queryFn: () => getData(apiGetBusinessSubscription, id),
+  })
+  // console.log("business", subscription)
+  // console.log("subscriptionError", subscriptionError)
 
 
   return (
     <Dashboard>
-      <div className='flex-1'>
-          <Header business_string={id} />
+      <div className='flex-1 overflow-scroll'>
+          <Header business_string={id} type="business" />
           <div className='h-36 -z-0 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center'>
             <Button className='p-1.5 px-3 text-xs font-arialsans absolute bottom-2 right-2 sm:right-4 lg:right-16'>
               Edit Cover Photo
@@ -36,19 +50,12 @@ const index = () => {
           </div>
           <section className='px-7'>
             <div className='flex flex-col items-center w-10/12 mx-auto mb-12 pt-16'>
-              <h1 className='text-3xl font-semibold text-dark-light mb-2'>Hard Rock Cafe</h1>
+              <h1 className='text-3xl font-semibold text-dark-light mb-2'>{business?.name}</h1>
               <p className='text-sm text-[#476788] mb-3 text-center'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Porta pretium, neque aliquet purus massadsfghasd placerat mauris. Blandit amet, imperdiet adipiscing mattis lobortis sem mauris eget elit. Sapien ut eu felis integer sit. Ac eu dui nulla nam. Vel venenatis elementum orci in arcu ipsum tellus molestie. Gravida volutpat, donec eget tellus proin sit lacus, sapien. Et a dolor quam nec adipiscing sit quam. Tempor, sagittis, quis vulputate amet, quis et. Tortor senectus ullamcorper enim facilisis et praesent diam, dui. Ac sed feugiat orci sed. Metus turpis mauris auctor integer pellentesque iaculis. Gravida.
+                {business?.description}
               </p>
               <div className='flex items-center flex-wrap gap-3 text-xsm text-green md:w-7/8 mb-16'>
-                  <span className='bg-[#E0E5EE] px-4 py-2 font-medium'>Schooling</span>
-                  <span className='bg-[#E0E5EE] px-4 py-2 font-medium'>Institution</span>
-                  <span className='bg-[#E0E5EE] px-4 py-2 font-medium'>Business</span>
-                  <span className='bg-[#E0E5EE] px-4 py-2 font-medium'>Marketing</span>
-                  <span className='bg-[#E0E5EE] px-4 py-2 font-medium'>Accounting</span>
-                  <span className='bg-[#E0E5EE] px-4 py-2 font-medium'>Finance</span>
-                  <span className='bg-[#E0E5EE] px-4 py-2 font-medium whitespace-nowrap'>Web Design</span>
-                  <span className='bg-[#E0E5EE] px-4 py-2 font-medium whitespace-nowrap'>Web Design</span>
+                {categories?.map(category =><span key={category.id} className='bg-[#E0E5EE] px-4 py-2 font-medium whitespace-nowrap'>{category.category}</span>)}
                 </div>
             </div>
             <div className='mb-11'>
@@ -56,28 +63,35 @@ const index = () => {
               <div className='p-4 sm:py-12 sm:px-16 bg-white'>
                 <div className='sm:flex gap-4 xl:gap-32 justify-between text-sm text-[#476788]'>
                   <div className='flex flex-col gap-2 sm:gap-6 mb-4'>
-                    <div>
-                      <span>07083458427</span>
+                    <div className='flex items-center gap-2'>
+                      <BsTelephone size="1.3rem" />
+                      <span>{business?.phonenumber || "null"}</span>
                     </div>
-                    <div>
-                      <span>Kheengdavid@gmail.com</span>
+                    <div className='flex items-center gap-2'>
+                      <MdOutlineMarkEmailUnread size="1.3rem" />
+                      <span>{business?.email || "null"}</span>
                     </div>
-                    <div>
-                      <span>www.davidikperi.com</span>
+                    <div className='flex items-center gap-2'>
+                      <BsGlobe size="1.3rem" />
+                      <span>{business?.website || "null"}</span>
                     </div>
                   </div>
-                  <div className='mb-4'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec nisl faucibus tellus cursus etiam euismod magnis tincidunt. Molestie lectus sit sed quis vulputate eros. Bibendum lectus enim accumsan pharetra non. Placerat nibh nulla quisque bibendum in ac feugiat. Pulvinar in morbi arcu, erat sit dignissim.
-                  </div>
+                 <div className='flex items-center gap-2'>
+                      <MdOutlineLocationOn size="1.3rem" />
+                      <span>{business?.address || "null"}</span>
+                    </div>
                   <div className='flex flex-col gap-2 sm:gap-6'>
-                    <div>
-                      <span>07083458427</span>
+                  <div className='flex items-center gap-2'>
+                      <TbBrandFacebook size="1.3rem" />
+                      <span>{business?.facebook_link || "null"}</span>
                     </div>
-                    <div>
-                      <span>Kheengdavid@gmail.com</span>
+                    <div className='flex items-center gap-2'>
+                      <BsInstagram size="1.3rem" />
+                      <span>{business?.instagram_link || "null"}</span>
                     </div>
-                    <div>
-                      <span>www.davidikperi.com</span>
+                    <div className='flex items-center gap-2'>
+                      <BsWhatsapp size="1.3rem" />
+                      <span>{business?.whatsapp || "null"}</span>
                     </div>
                   </div>
                 </div>
@@ -170,8 +184,8 @@ const index = () => {
             <div className='mb-16'>
               <h2 className='text-green text-lg font-medium mb-3'>Subscription</h2>
               <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
-                <p className='mb-4'>You are currently on the Silver package subscription plan</p>
-                <a href="" className='underline text-green text-sm'>Click here to check out your subscription plan</a>
+                <p className='mb-4'>{subscription || "You do not have any active subscription"}</p>
+                <a href="" className='underline text-green text-sm'>{subscription && "Click here to check out your subscription plan"}</a>
               </div>
             </div>
             <div className='mb-16'>

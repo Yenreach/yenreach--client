@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import getData from '/src/utils/getData'
 import { apiGetAllBusinesses } from '/src/services/UserService'
+import Button from '/src/components/ui/Button'
+import { MdAdd, MdStar } from 'react-icons/md'
 import Dashboard from "../../../components/layout/Dashboard"
+import Head from "/src/components/users/Head"
 import Business from '../../../assets/bus_of_the_week.svg'
 import Elipse from '../../../assets/dashboard/elipse.svg'
 import Add from '../../../assets/add.svg'
@@ -16,43 +19,58 @@ const index = () => {
         queryKey: ['userBusinesses'],
         queryFn: () => getData(apiGetAllBusinesses),
       })
-    console.log("data", businesses)
+    // console.log("data", businesses)
+    
+    // useEffect(() => {
+    //     businesses?.map(business => console.log("time", Date.now(business.created) ,business.created))
+    // }, [businesses])
 
 
     return (
         <Dashboard>
-            <div className='flex-1'>
-                <div className='p-4 px-3 bg-white'>
-                    <h1 className='text-2xl text-[#69707D] font-medium'>
-                        Dashboard
-                    </h1>
-                </div>
+            <div className='flex-1 overflow-scroll'>
+                <Head />
                 <div className='px-7 py-4'>
-                    <h1 className='text-green font-medium text-xl mb-2'>Businesses</h1>
+                    {!businesses && <h1 className='text-green font-medium text-xl mb-2'>Businesses</h1>}
                     {businesses && 
                         <>
-                            <p className='text-[#476788] text-sm mb-7'>You have 3 businesses listed to your account.</p>
-                            <div className='grid grid-container--fit gap-4 mb-16 justify-evenly'>
-                                {businesses.data?.map(business => (
-                                    <Link to={`/users/business/${business.verify_string}`} key={business?.verify_string} className='bg-[#F1F1F1] rounded-xl overflow-hidden'>
-                                        <div>
-                                            <img src={Business} alt="" className="w-full object-cover h-40" />
-                                            <div className='p-4 px-6'>
-                                                <p className='font-semibold mb-1'>Pizzeria</p>
+                        <div className='flex flex-col md:flex-row gap-2 md:gap-4 justify-between md:items-center mb-6'>
+                            <div>
+                                <h1 className='text-green font-medium text-xl mb-2'>Businesses</h1>
+                                <p className='text-[#476788] text-sm mb-7'>You have {businesses?.length} {businesses.length > 1 ? "businesses" : "business"} listed to your account.</p>
+                            </div>
+                            <Link to="/users/add-business">
+                                <Button className='py-1.5 px-2 pr-3 rounded-sm flex items-center'>
+                                    <MdAdd size="1.3rem" color="#fff" className='mr-2' />
+                                    Add new Business
+                                </Button>
+                            </Link>
+                        </div>
+                            <div className='flex flex-wrap gap-4 mb-16'>
+                                {businesses?.map(business => (
+                                    <Link to={`/users/business/${business.verify_string}`} key={business?.verify_string} className='bg-white rounded overflow-hidden flex text-sm w-full md:w-fit'>
+                                            <div>
+                                                <img src={Business} alt="" className="w-20 object-cover h-20" />
+                                            </div>
+                                            <div className='p-4 px-6 relative'>
+                                                <p className='font-semibold mb-1'>{business.name}</p>
                                                 <div className='flex gap-2 items-center text-[#777777] text-xsm'>
                                                     <span>20-10-2022</span>
                                                     <img src={Elipse} alt=""  />
-                                                    <span>234 visits</span>
+                                                    <span className='text-green font-medium'>234 visits</span>
+                                                </div>
+                                                <div className='absolute bottom-0 right-0 px-1 py-0.5 pr-2.5 flex text-xsm bg-green text-white'>
+                                                    <MdStar color="orange" className='mr-1' />
+                                                    4.5
                                                 </div>
                                             </div>
-                                        </div>
                                     </Link>)
                                 )}
                             </div>
                         </>
                     }
                 </div>
-                {businesses && 
+                {/* {businesses && 
                     <Link to="/users/add-business" className='flex justify-center items-center mb-8'>
                         <div className='flex flex-col justify-center items-center p-14 bg-[#F1F1F1] rounded-lg'>
                         <span className='w-14 h-14 mb-4 rounded-full bg-[#CCCCCC] flex items-center justify-center'>
@@ -63,7 +81,7 @@ const index = () => {
                         </span>
                         </div>
                     </Link>
-                }
+                } */}
                 {!businesses  && 
                     <div className='flex flex-col justify-center items-center rounded-lg font-arialsans h-[550px] sm:h-auto'>
                         <img src={NoBusiness} alt="" className='mb-7' />
@@ -79,3 +97,19 @@ const index = () => {
 }
 
 export default index
+
+
+
+// old business card
+//     <Link to={`/users/business/${business.verify_string}`} key={business?.verify_string} className='bg-[#F1F1F1] rounded-xl overflow-hidden'>
+//         <div>
+//             <img src={Business} alt="" className="w-full object-cover h-40" />
+//             <div className='p-4 px-6'>
+//                 <p className='font-semibold mb-1'>{business.name}</p>
+//                 <div className='flex gap-2 items-center text-[#777777] text-xsm'>
+//                     <span>20-10-2022</span>
+//                     <img src={Elipse} alt=""  />
+//                     <span>234 visits</span>
+//                 </div>
+//             </div>
+//         </div>
