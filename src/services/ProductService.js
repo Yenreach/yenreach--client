@@ -9,7 +9,7 @@ const token = JSON.parse(localStorage.getItem("user"))?.verify_string
 /* Get user */
 export const apiGetUser = () => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}fetch_user_by_string_api${serviceSuffix}?string=${token}`,
+        url: `${servicePrefix}/fetch_user_by_string_api${serviceSuffix}?string=${token}`,
         method: "get"    
     })
 }
@@ -18,7 +18,7 @@ export const apiGetUser = () => {
 /* Add Product */
 export const apiAddProduct = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}add_product_api${serviceSuffix}`,
+        url: `${servicePrefix}/add_product_api${serviceSuffix}`,
         method: "post",
         data    
     })
@@ -27,7 +27,7 @@ export const apiAddProduct = (data) => {
 /* Add Product Category */
 export const apiAddProductCategory = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}add_product_category_api${serviceSuffix}`,
+        url: `${servicePrefix}/add_product_category_api${serviceSuffix}`,
         method: "post",
         data    
     })
@@ -36,7 +36,7 @@ export const apiAddProductCategory = (data) => {
 /* Add Product Category List */
 export const apiAddProductCategoryList = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}add_product_category_list_api${serviceSuffix}`,
+        url: `${servicePrefix}/add_product_category_list_api${serviceSuffix}`,
         method: "post",
         data    
     })
@@ -45,7 +45,7 @@ export const apiAddProductCategoryList = (data) => {
 /* Add Product Photo */
 export const apiAddProductPhoto = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}add_product_photo_api${serviceSuffix}`,
+        url: `${servicePrefix}/add_product_photo_api${serviceSuffix}`,
         method: "post",
         data    
     })
@@ -54,7 +54,7 @@ export const apiAddProductPhoto = (data) => {
 /* Delete Product */
 export const apiDeleteProduct = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}delete_product_api${serviceSuffix}`,
+        url: `${servicePrefix}/delete_product_api${serviceSuffix}`,
         method: "delete",
         data    
     })
@@ -63,7 +63,7 @@ export const apiDeleteProduct = (data) => {
 /* Delete Product Category */
 export const apiDeleteProductCategory = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}delete_product_category_api${serviceSuffix}`,
+        url: `${servicePrefix}/delete_product_category_api${serviceSuffix}`,
         method: "delete",
         data    
     })
@@ -72,7 +72,7 @@ export const apiDeleteProductCategory = (data) => {
 /* Delete Product Photo */
 export const apiDeleteProductPhoto = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}delete_product_photo_api${serviceSuffix}`,
+        url: `${servicePrefix}/delete_product_photo_api${serviceSuffix}`,
         method: "delete",
         data    
     })
@@ -81,7 +81,7 @@ export const apiDeleteProductPhoto = (data) => {
 /* Get Products */
 export const apiGetAllProducts = () => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}fetch_all_product_api${serviceSuffix}`,
+        url: `${servicePrefix}/fetch_all_product_api${serviceSuffix}`,
         method: "get",  
     })
 }
@@ -89,7 +89,7 @@ export const apiGetAllProducts = () => {
 /* Get One Product */
 export const apiGetProduct = () => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}fetch_one_product_api${serviceSuffix}`,
+        url: `${servicePrefix}/fetch_one_product_api${serviceSuffix}`,
         method: "get",  
     })
 }
@@ -97,7 +97,7 @@ export const apiGetProduct = () => {
 /* Get Product Category */
 export const apiGetProductCategory = () => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}fetch_product_category_api${serviceSuffix}`,
+        url: `${servicePrefix}/fetch_product_category_api${serviceSuffix}`,
         method: "get",  
     })
 }
@@ -105,7 +105,7 @@ export const apiGetProductCategory = () => {
 /* Update Product */
 export const apiUpdateProduct = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}update_product_api${serviceSuffix}`,
+        url: `${servicePrefix}/update_product_api${serviceSuffix}`,
         method: "patch",
         data
     })
