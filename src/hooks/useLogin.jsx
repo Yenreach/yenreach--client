@@ -46,29 +46,3 @@ const useLogin = () => {
 }
 
 export default useLogin
-
-// import { useState, useContext } from 'react';
-// import { AuthContext } from '/src/contexts/AuthContext';
-
-
-
-// export default function useLogin() {
-
-
-
-//     const [isAuth, setIsAuth] = useState(false);
-//     const [user, setUser] = useState(null);
-    
-//     const login = (user) => {
-//         setIsAuth(true);
-//         setUser(user);
-//     };
-    
-//     const logout = () => {
-//         setIsAuth(false);
-//         setUser(null);
-//     };
-    
-//     return { isAuth, user, login, logout };
-//     }
-

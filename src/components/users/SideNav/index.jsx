@@ -11,7 +11,7 @@ import Logout from "../../../assets/dashboard/logout.svg"
 const index = () => {
     const { dispatch } = useAuthContext()
     const { pathname, ...k } = useLocation()
-    console.log("path", pathname, k)
+    // console.log("path", pathname, k)
 
   return (
     <div className='hidden sm:flex flex-col justify-between bg-white h-screen w-52 border-r border-[#ABB4C4] pt-4 overflow-hidden'>

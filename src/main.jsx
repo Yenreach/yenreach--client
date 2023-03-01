@@ -4,6 +4,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import App from './App'
 import './index.css'
 import { AuthContextProvider } from './contexts/AuthContext';
+import firebaseConfig from './configs/firebase.config.js'
 
 const queryClient = new QueryClient()
 
