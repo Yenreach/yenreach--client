@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router-dom'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Product from '../../components/Product'
@@ -18,8 +18,11 @@ import { useState } from 'react'
 const index = () => {
   const [activeTab, setActiveTab] = useState('business');
   const location = useLocation()
-  console.log(location.state?.data)
+  const [searchParams, setSearchParams] = useSearchParams();
 
+  const page = searchParams.get('page') || 1
+
+  
   useEffect(() => {
     if (location.state?.data === 'jobs') {
       setActiveTab('jobs')
@@ -68,7 +71,7 @@ const index = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-5 md:px-5 lg:py-20 lg:px-20">
-          { activeTab == 'business' ? <Business /> 
+          { activeTab == 'business' ? <Business page={page}  /> 
           : activeTab == 'jobs' ? <Jobs />
           : activeTab == 'marketplace' ? <Product /> 
           : null}

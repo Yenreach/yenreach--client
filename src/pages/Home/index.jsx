@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
+import { apiBusinessOfTheWeek } from '../../services/CommonService'
 import getData from '../../utils/getData'
 import Header from '/src/components/Header'
 import Footer from '../../components/Footer'
@@ -12,14 +13,13 @@ import AllHereJ from '../../assets/jobs/all-here.svg'
 import AllHereP from '../../assets/products/all-here.svg'
 import BusOfTheWeek from '../../assets/bus_of_the_week.svg'
 import Button from '../../components/ui/Button'
-import { apiLogin, apiTest } from '../../services/AuthService'
 
 const index = () => {
-    const { isLoading, error, data } = useQuery({
-        queryKey: ['repoData'],
-        queryFn: () => getData(apiTest, {name: "nICK"}),
+    const { data: businessOfTheWeek, error: errorBusinessOfTheWeek } = useQuery({
+        queryKey: ['businessOfTheWeek'],
+        queryFn: () => getData(apiBusinessOfTheWeek),
       })
-    // console.log("data", data?.data)
+    // console.log("businessOfTheWeek", businessOfTheWeek, "error", errorBusinessOfTheWeek)
 
   return (
     <>
@@ -83,23 +83,25 @@ const index = () => {
             </div>
         </section>
         <section className='px-4 py-12 mb-12 md:px-10 lg:px-24'>
-            <div className='mb-60'>
-                <h2 className='mb-2 font-medium text-center text-25 text-green'>Business of the week</h2>
-                <div className='flex flex-col items-center sm:flex-row gap-14'>
-                    <img className='flex-1 object-cover w-full sm:w-2/5' src={BusOfTheWeek} alt="Business of The Week" />
-                    <div className='flex-1.5 flex flex-col gap-6 items-start'>
-                        <h3 className='text-3xlm'>Yenreach Business school</h3>
-                        <p className='text-smm'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus faucibus lobortis blandit consectetur massa rutrum dignissim luctus. Non quis fringilla ac semper quam non egestas velit. Mauris, odio viverra amet viverra. Quisque cursus non libero, vestibulum rhoncus, pulvinar donec hendrerit netus. Nibh neque vitae nulla morbi vulputate amet ac. Viverra elementum ullamcorper duis diam iaculis condimentum integer ut. Neque rhoncus convallis dictum viverra.
-                        </p>
-                        <Link to="/business"> 
-                            <Button className='text-sm rounded-md py-2.5 px-10 font-medium'>
-                                view business
-                            </Button>
-                        </Link>
+            {businessOfTheWeek &&
+                <div className='mb-60'>
+                    <h2 className='mb-2 font-medium text-center text-25 text-green'>Business of the week</h2>
+                    <div className='flex flex-col items-center sm:flex-row gap-14'>
+                        <img className='flex-1 object-cover w-full sm:w-2/5' src={BusOfTheWeek} alt="Business of The Week" />
+                        <div className='flex-1.5 flex flex-col gap-6 items-start'>
+                            <h3 className='text-3xlm'>Yenreach Business school</h3>
+                            <p className='text-smm'>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus faucibus lobortis blandit consectetur massa rutrum dignissim luctus. Non quis fringilla ac semper quam non egestas velit. Mauris, odio viverra amet viverra. Quisque cursus non libero, vestibulum rhoncus, pulvinar donec hendrerit netus. Nibh neque vitae nulla morbi vulputate amet ac. Viverra elementum ullamcorper duis diam iaculis condimentum integer ut. Neque rhoncus convallis dictum viverra.
+                            </p>
+                            <Link to="/business"> 
+                                <Button className='text-sm rounded-md py-2.5 px-10 font-medium'>
+                                    view business
+                                </Button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
             <div className=''>
                 <h2 className='mb-2 font-medium text-center text-25 text-green'>keep up with the business world</h2>
                 <div className='flex flex-col grid-cols-3 gap-6 text-white sm:grid'>
