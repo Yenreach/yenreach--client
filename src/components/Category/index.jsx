@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import { MdOutlineHome } from 'react-icons/md'
+import { Link } from 'react-router-dom'
+import { BiBriefcase, BiMouseAlt } from 'react-icons/bi'
 // import JobData from '../../data/job-data.json'
 import Button from '../ui/Button'
 import Business from '../../assets/business.svg'
@@ -10,23 +13,23 @@ import JobCard from '../ui/JobCard'
 
 const index = () => {
     const [activeTab, setActiveTab] = useState('business');
-    console.log(activeTab)
+    // console.log(activeTab)
 
   return (
     <section className='flex flex-col gap-8 px-4 py-8 md:px-10 lg:px-24 md:gap-20'>
         <div className='flex flex-col items-center gap-4'>
             <h2 className='font-medium text-center text-25 text-green'>Browse by our recomended category</h2>
             <div className='bg-[#E9E9E9] py-2.5 px-2 sm:px-6 rounded-full flex items-center justify-between gap-1 sm:gap-4 lg:gap-12 text-sm'>
-                <Button onClickFunc={() => setActiveTab("business")} className='rounded-full flex items-center gap-0.5 py-2 px-2 pr-6 md:px-10 md:pr-14 font-semibold'>
-                    <img src={Business} alt="" />
+                <Button onClickFunc={() => setActiveTab("business")} inverse={activeTab!=="business"}  className={`rounded-full flex items-center gap-0.5 py-2 px-2 pr-6 md:px-10 md:pr-14 font-semibold ${activeTab==="business" && ""}`}>
+                    <MdOutlineHome size="1.3rem" />
                     Business  
                 </Button>
-                <Button onClickFunc={() => setActiveTab("jobs")} variant='job' outlined={true} className=''>
-                    <img src={Job} alt="" />
+                <Button onClickFunc={() => setActiveTab("jobs")} variant='job' inverse={activeTab!=="jobs"} className={`rounded-full flex items-center gap-0.5 py-2 px-2 pr-6 md:px-10 md:pr-14 font-semibold ${activeTab==="jobs" && ""}`}>
+                    <BiBriefcase size="1.3rem" />
                     Jobs & Careers
                 </Button>
-                <Button onClickFunc={() => setActiveTab("marketplace")} variant='product' outlined={true} className=''>
-                    <img src={Product} alt="" />
+                <Button onClickFunc={() => setActiveTab("marketplace")} variant='product' inverse={activeTab!=="marketplace"} className={`rounded-full flex items-center gap-0.5 py-2 px-2 pr-6 md:px-10 md:pr-14 font-semibold ${activeTab==="marketplace" && ""}`}>
+                    <BiMouseAlt size="1.3rem" />
                     Products Marketplace
                 </Button>
             </div>
@@ -57,9 +60,11 @@ const index = () => {
                     <JobCard />
                 </>)}
             </div>
-            <Button override={true} className='w-full py-4 mt-6 text-black bg-gray-light'>
-                See More
-            </Button>
+            <Link to="/explore" state={activeTab === 'marketplace' ? { data: "marketplace" } : activeTab === 'jobs' ? { data: "jobs" } : {}} >
+                <Button override={true} className='w-full py-4 mt-6 text-black bg-gray-light'>
+                    See More
+                </Button>
+            </Link>
         </div>
     </section>
   )
