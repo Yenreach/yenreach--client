@@ -1,22 +1,25 @@
 import React from 'react'
+import { useLocation, Link } from 'react-router-dom'
 import Logo from "../../assets/logo.svg"
 import Circle from "../../assets/circle.svg"
 import Button from '../ui/Button'
 import Input from '../ui/Input'
 
 const index = () => {
+  const { pathname } = useLocation()
+
   return (
       <footer className='bg-footer-bg pb-14'>
         <div className='flex items-center justify-between gap-8 py-2 border-y-2 border-[#D3DAE6] px-8 md:px-10 lg:px-24 mb-12 sm:mb-28'>
           <h3 className='text-center'>Yenreach.com 2022</h3>
           <nav className="hidden sm:flex items-center gap-x-14 md:gap-4 lg:gap-7">
             <ul className='flex items-center text-sm gap-3 md:gap-4 lg:gap-7 opacity-80'>
-              <li><a href="home" className='text-green font-medium'>Home</a></li>
-              <li><a href="explore" className=''>Explore</a></li>
-              <li><a href="blog">Blog</a></li>
-              <li><a href="about">About</a></li>
-              <li><a href="contact">Contact</a></li>
-              <li><a href="login" className='opacity-70'>Login</a></li>
+              <li><Link to="/" className={`${pathname==="/" && "text-green font-medium"}`}>Home</Link></li>
+              <li><Link to="/explore" className={`${pathname==="/explore" && "text-green font-medium"}`}>Explore</Link></li>
+              <li><Link to="/blogs" className={`${pathname==="/blogs" && "text-green font-medium"}`}>Blog</Link></li>
+              <li><Link to="/about" className={`${pathname==="/about" && "text-green font-medium"}`}>About</Link></li>
+              <li><Link to="/contact" className={`${pathname==="/contact" && "text-green font-medium"}`}>Contact</Link></li>
+              <li><Link to="/login" className={`${pathname==="/login" && "text-green font-medium"}`}>Login</Link></li>
             </ul>
           </nav>
         </div>
