@@ -153,12 +153,22 @@ export const apiGetSavedBusinesses = () => {
     })
 }
 
-/* Post business page visits */
+/* Add business */
+export const apiAddBusiness = (data) => {
+    return ApiAdapter.fetchData({
+        url: `add_business_api${serviceSuffix}`,
+        method: "post",
+        data    
+    })
+}
+
+
+/* Add business page visits */
 export const apiAddPageVisits = (data) => {
     return ApiAdapter.fetchData({
         url: `create_page_visit_api${serviceSuffix}`,
         method: "post",
-        data    
+        data: {...data, user_string: token}   
     })
 }
 

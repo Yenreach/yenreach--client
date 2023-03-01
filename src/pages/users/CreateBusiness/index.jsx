@@ -14,16 +14,6 @@ const index = () => {
   console.log("businessData", businessData)
 
   const handleBusinessData = (event) => {
-    // if (event.target.name === 'category') {
-    //   let category = [...businessData.category]
-    //   if (event.target.checked) {
-    //     category.push(event.target.value)
-    //   } else {
-    //     category = category.filter(item => item !== event.target.value)
-    //   }
-    //   setBusinessData(prev => ({...prev, category}))
-    //   return
-    // }
     setBusinessData(prev => ({...prev, [event.target.name]: event.target.value }))
   }
 
@@ -37,7 +27,7 @@ const index = () => {
               {step === 1 ? 
                 <BusinessDetails handleBusinessData={handleBusinessData} step={step} setStep={setStep} />
                 : step === 2 ? 
-                <BusinessPhotos handleBusinessData={handleBusinessData} setStep={setStep} /> 
+                <BusinessPhotos setBusinessData={setBusinessData} businessData={businessData} handleBusinessData={handleBusinessData} setStep={setStep} /> 
                 : <BusinessCreatedSuccess />
             }
           </section>

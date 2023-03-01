@@ -49,6 +49,14 @@ export const apiGetApprovedBusinesses =  () => {
     })
 }
 
+/* Business */
+export const apiGetOneBusiness = (business_token) => {
+    return ApiAdapter.fetchData({
+        url: `fetch_business_by_string_api${serviceSuffix}?string=${business_token}`,
+        method: "get"    
+    })
+}
+
 /* Blogs */
 
 export const apiGetAllBlogs =  () => {
@@ -78,6 +86,7 @@ export const apiPostComment =  () => {
         method: "get"    
     })
 }
+
 
 /* User Activities */
 

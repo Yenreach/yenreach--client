@@ -3,14 +3,27 @@ import useUploadImage from '../../../hooks/useUploadImage'
 import Button from '../../../components/ui/Button'
 import Input from '../../../components/ui/Input'
 import Add from '../../../assets/add.svg'
-import { uploadImage, uploadBytesResumableP } from '../../../utils/firebaseFunctions'
-import { getStorage, ref, uploadBytes, getDownloadURL  } from "firebase/storage";
-import storage from '../../../configs/firebase.config'
+import { useMutation } from "@tanstack/react-query";
+import { apiAddBusiness } from '../../../services/UserService'
 
 
-const index = ({ setStep, handleBusinessData }) => {    
+const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) => {    
     const { url: profileImg, uploadImage: uploadProfileImg, error, progress } = useUploadImage()
     const { url: coverImg, uploadImage: uploadCoverImg, error: coverImgError, progress: coverImgProgress } = useUploadImage()
+
+    const addBusinessMutation = useMutation({
+        mutationFn: (data) => {
+          return apiAddBusiness(data)
+        },
+        onSuccess: (data, variables, context) => {
+            console.log("success adding business", data)
+            setStep(3)
+        },
+        onError: (error, variables, context) => {
+          console.log("error adding business", error)
+        },
+      })
+    
 
     console.log("url", profileImg, "error", error, "progress", progress)
     console.log("url", coverImg, "error", coverImgError, "progress", coverImgProgress)
@@ -19,7 +32,8 @@ const index = ({ setStep, handleBusinessData }) => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        setStep(3)
+        const data = { ...businessData, profile_img: profileImg, cover_img: coverImg }
+        addBusinessMutation.mutate(data)
     }
 
   return (
