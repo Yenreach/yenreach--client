@@ -4,6 +4,6 @@ export default async function getData(service, params="") {
         // console.log("failed", response.data)
         throw new Error(response?.data?.message)
     }
-    console.log("res", response)
+    // console.log("res", response)
     return response?.data?.data
 }

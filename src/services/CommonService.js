@@ -116,11 +116,10 @@ export const apiActivityLog =  () => {
     })
 }
 
-/* Dashboard */
-
-export const apiGetBusinessByUser =  () => {
+export const apiGetAllCategories =  () => {
     return ApiAdapter.fetchData({
-        url: servicePrefix + "fetch_business_by_user_string_api" + serviceSuffix,
+        url: servicePrefix + "fetch_all_categories_api" + serviceSuffix,
         method: "get"    
     })
 }
+
