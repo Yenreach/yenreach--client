@@ -49,6 +49,23 @@ export const apiGetApprovedBusinesses =  () => {
     })
 }
 
+/* Get states */
+export const apiGetStates = () => {
+    return ApiAdapter.fetchData({
+        url: `fetch_all_states_api${serviceSuffix}`,
+        method: "get",
+    })
+}
+
+/* Get lgas */
+export const apiGetLGAs = () => {
+    return ApiAdapter.fetchData({
+        url: `fetch_all_lgas_api${serviceSuffix}`,
+        method: "get",
+    })
+}
+
+
 /* Business */
 export const apiGetOneBusiness = (business_token) => {
     return ApiAdapter.fetchData({

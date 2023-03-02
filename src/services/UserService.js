@@ -158,7 +158,23 @@ export const apiAddBusiness = (data) => {
     return ApiAdapter.fetchData({
         url: `add_business_api${serviceSuffix}`,
         method: "post",
-        data    
+        data
+    })
+}
+
+/* Get states */
+export const apiGetStates = () => {
+    return ApiAdapter.fetchData({
+        url: `fetch_all_states_api${serviceSuffix}`,
+        method: "get",
+    })
+}
+
+/* Get lgas */
+export const apiGetLGAs = () => {
+    return ApiAdapter.fetchData({
+        url: `fetch_all_lgas_api${serviceSuffix}`,
+        method: "get",
     })
 }
 
