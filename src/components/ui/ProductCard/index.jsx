@@ -1,30 +1,33 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Image from '../../../assets/image.svg'
 import Button from '../Button'
 
-const index = () => {
+const index = ({ product }) => {
   return (
-    <div className='flex flex-col rounded-t-3xl overflow-hidden'>
-      <img src={Image} className='bg-cover bg-center ' alt="" />
-      <div className="flex flex-col rounded-b-3xl border-x border-b border-[#777777] justify-center items-start gap-3 py-4 px-3 ">
-        <div className="flex flex-col justify-center items-start gap-1">
-          <h2 className="font-bold text-xs">
-            2013 turbo engine (V5)
-          </h2>
-          <p className="text-xsm w-2/3">
-            Second hand Toyota camry engine still intact cash and carry
-          </p>
-        </div>
-        <div className="flex justify-between items-center w-full">
-          <span className='font-bold'>
-            #100,000
-          </span>
-          <Button variant='product' className='py-2 px-8 md:px-4 lg:px-8 rounded-md'>
-            View More
-          </Button>
+    <Link to={`/products/${product.product_string}`}>
+      <div className='flex flex-col rounded-t-3xl overflow-hidden py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-fit justify-between'>
+        <img src={Image} className='h-40 w-full object-cover object-center rounded-xl' alt="" />
+        <div className="flex flex-col border-[#777777]">
+          <div className="flex flex-col justify-between">
+            <h2 className="text-sm font-medium h-5 my-1.5 overflow-hidden">
+              {product?.product_name}
+            </h2>
+            <p className="text-xsm h-[26px] mb-4 overflow-hidden">
+              {product?.product_description}
+            </p>
+          </div>
+          <div>
+            <span className='text-sm font-medium'>
+              Price: ₦{product?.product_price}
+            </span>
+            <Button variant='product' className='mt-1.5 w-full text-xs rounded-lg py-2 px-4 font-semibold text-center'>
+              View More
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

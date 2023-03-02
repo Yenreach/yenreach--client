@@ -1,19 +1,15 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { apiGetApprovedBusinesses } from '../../services/CommonService'
 import getData from '../../utils/getData'
 import { paginate } from '../../utils/pagination'
 import BusinessCard from '../ui/BusinessCard'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
-import LeftArrow from '../../assets/left-arrow.svg'
-import RightArrow from '../../assets/right-arrow.svg'
 import SearchBar from '../ui/SearchBar'
 import Location from '../../assets/location.svg'
 
-const index = ({ page: initialPage }) => {
+const index = ({ page: initialPage, num_per_page }) => {
   const [page, setPage] = useState(initialPage || 1)
-  const businessCardsElement = useRef();
-  const num_per_page = 40
 
   // console.log("location", location, "searchParams", searchParams.get('page'))
   
@@ -31,14 +27,10 @@ const index = ({ page: initialPage }) => {
   });
   }
 
-  if (aprrovedBusinesses) {
-    console.log("pagination", paginate({page, num_per_page, data: aprrovedBusinesses}))
-    // setSearchParams({page: 5})
-  }
 
   return (
     <>
-			<div ref={businessCardsElement} className='flex items-center justify-center w-full gap-10'>
+			<div className='flex items-center justify-center w-full gap-10'>
 				<p className='font-medium text-smm'>Currently Exploring businesses in</p>
 				<div className="flex items-center justify-center gap-2 px-4 py-2 bg-green-light">
 					<img src={Location} alt="location" />
