@@ -6,7 +6,7 @@ import { apiGetOneBusiness } from '/src/services/UserService'
 import Header from "/src/components/users/Header"
 import { AiOutlinePlus } from 'react-icons/ai'
 import JobData from '/src/data/job-data.json'
-import JobCard from '/src/components/ui/JobCard'
+import JobCard from '/src/components/users/jobs/JobCard'
 import Button from '../../../components/ui/Button'
 import Dashboard from "../../../components/layout/Dashboard"
 
@@ -35,7 +35,7 @@ const Jobs = () => {
                   </Button>
                 </Link>
             </div>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
                 {JobData.slice(0, 4)?.map((job) => (
                   <JobCard key={job.jobId} job={job} />
                 ))}
