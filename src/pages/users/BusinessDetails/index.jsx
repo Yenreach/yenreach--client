@@ -1,17 +1,44 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import getData from '/src/utils/getData'
 import { apiGetAllCategories } from '/src/services/CommonService'
+import { apiGetStates, apiGetLGAs } from '/src/services/UserService'
 import Input from '../../../components/ui/Input'
 import Button from '../../../components/ui/Button'
 
 
 const index = ({ setStep, handleBusinessData}) => {
+    const [stateId, setStateId] = React.useState(null)
+    const [filteredLgas, setfilteredLgas] = React.useState([]) 
+
+    
     const { isLoading, error, data: categories } = useQuery({
         queryKey: ['categories'],
         queryFn: () => getData(apiGetAllCategories),
+    })
+
+    const { data: states } = useQuery({
+        queryKey: ['states'],
+        queryFn: () => getData(apiGetStates),
       })
-    console.log("categories", categories)
+      
+      const { data: lgas } = useQuery({
+        queryKey: ['lgas'],
+        queryFn: () => getData(apiGetLGAs),
+    })
+    
+    useEffect(() => {
+        if(stateId) {
+            handleBusinessData({target: {name: "state_id", value: stateId}})
+            if (lgas) {
+                const values = lgas.filter(lga => lga.state_id === stateId)
+                setfilteredLgas(values)
+            }
+        }
+    }, [stateId])
+
+    // console.log("categories", categories, "states", states, "lgas", lgas)
+    // console.log("stateId", stateId, "lga", lga)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -28,7 +55,7 @@ const index = ({ setStep, handleBusinessData}) => {
         </div>
         <div className='mb-8'>
             <label htmlFor="description" className='font-medium text-sm'>Business Description</label>
-            <textarea required={true} onChange={handleBusinessData} name="description" id="description" cols="30" rows="10" className='w-full border-2 outline-none cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' placeholder='Enter your business Discription' />
+            <textarea required={true} onChange={handleBusinessData} name="description" id="description" cols="30" rows="10" className='w-full border-2 outline-none focus:invalid:border-red-400 invalid:border-red-400 focus:border-sky-700 hover:border-sky-700 cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' placeholder='Enter your business Discription' />
         </div>
         <div className='mb-8'>
             <label htmlFor="category" className='font-medium text-sm'>Add tags</label>
@@ -47,11 +74,21 @@ const index = ({ setStep, handleBusinessData}) => {
         <div className='mb-8 md:flex justify-between gap-9'>
             <div className='w-full mb-8'>
                 <label htmlFor="state_id" className='font-medium text-sm'>State</label>
-                <Input required={true} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="state_id" id="state_id" placeholder='Enter state' />
+                <select onChange={(e) => setStateId(e.target.value)} required className='w-full border-2 outline-none focus:invalid:border-red-400 invalid:border-red-400 focus:border-sky-700 hover:border-sky-700 cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' name="state_id" id="state_id" placeholder='Enter state'>
+                    <option value="">Enter State</option>
+                    {states?.map((state) => (
+                        <option key={state.id} value={state.id}>{state.name}</option>
+                    ))}
+                </select>
             </div>
             <div className='w-full mb-8'>
                 <label htmlFor="lga" className='font-medium text-sm'>LGA</label>
-                <Input required={true} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="lga" id="lga" placeholder='Enter LGA' />
+                <select onChange={handleBusinessData} className='w-full border-2 outline-none focus:invalid:border-red-400 invalid:border-red-400 focus:border-sky-700 hover:border-sky-700 cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' name="lga" id="lga" placeholder='Enter LGA'>
+                    <option value="">Enter LGA</option>
+                    {filteredLgas?.map((lga) => (
+                        <option key={lga.id} value={lga.name}>{lga.name}</option>
+                    ))}
+                </select>
             </div>
             <div className='w-full '>
                 <label htmlFor="town" className='font-medium text-sm'>City/Town</label>

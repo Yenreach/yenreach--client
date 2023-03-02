@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { apiBusinessOfTheWeek } from '../../services/CommonService'
+import { apiBusinessOfTheWeek, apiGetApprovedBusinesses } from '../../services/CommonService'
 import getData from '../../utils/getData'
 import Header from '/src/components/Header'
 import Footer from '../../components/Footer'
@@ -19,6 +19,8 @@ const index = () => {
         queryKey: ['businessOfTheWeek'],
         queryFn: () => getData(apiBusinessOfTheWeek),
       })
+
+
     // console.log("businessOfTheWeek", businessOfTheWeek, "error", errorBusinessOfTheWeek)
 
   return (

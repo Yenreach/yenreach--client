@@ -33,6 +33,7 @@ const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) =
     const handleSubmit = (e) => {
         e.preventDefault()
         const data = { ...businessData, profile_img: profileImg, cover_img: coverImg }
+        console.log("data", data)
         addBusinessMutation.mutate(data)
     }
 
@@ -67,7 +68,7 @@ const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) =
                     {coverImg && <img src={coverImg} alt="" className='top-0 left-0 w-full h-full object-cover absolute z-10' />
                     }        
                 </label>
-                <Input  required={true} onChange={(e) => uploadCoverImg(e.target.files[0])} className='border-[#E5E5E5] rounded-lg hidden' type="file" name="cover_img" id="cover_img" />
+                <Input required={true} onChange={(e) => uploadCoverImg(e.target.files[0])} className='border-[#E5E5E5] rounded-lg hidden' type="file" name="cover_img" id="cover_img" />
             </div>
         </div>
         <Button type='submit' className='p-3 w-full flex justify-center'>

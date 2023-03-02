@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { MdOutlineHome } from 'react-icons/md'
 import { Link } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import { apiGetApprovedBusinesses } from '../../services/CommonService'
+import getData from '../../utils/getData'
 import { BiBriefcase, BiMouseAlt } from 'react-icons/bi'
 // import JobData from '../../data/job-data.json'
 import Button from '../ui/Button'
@@ -14,6 +17,12 @@ import JobCard from '../ui/JobCard'
 const index = () => {
     const [activeTab, setActiveTab] = useState('business');
     // console.log(activeTab)
+    const { data: aprrovedBusinesses, error: errorApprovedBusinesses } = useQuery({
+        queryKey: ['aprrovedBusinesses'],
+        queryFn: () => getData(apiGetApprovedBusinesses),
+        })
+          // console.log("aprrovedBusinesses", aprrovedBusinesses, "error", errorApprovedBusinesses)
+
 
   return (
     <section className='flex flex-col gap-8 px-4 py-8 md:px-10 lg:px-24 md:gap-20'>
@@ -38,13 +47,10 @@ const index = () => {
             <h2 className={`mb-2 font-medium text-center text-25 ${activeTab==="business"? "text-green" : activeTab==="jobs" ? "text-blue" : "text-orange"}`}>Recommended for you</h2>
             {/* flex items-center gap-6 flex-wrap  */}
             <div className='grid gap-6 grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 xl:grid-cols-bus4'>
-                {activeTab === 'business' && (
-                <>       
-                    <BusinessCard />
-                    <BusinessCard />
-                    <BusinessCard />
-                    <BusinessCard />
-                </>)}
+                {activeTab === 'business' && aprrovedBusinesses &&  (
+                    aprrovedBusinesses?.slice(0,4).map((business) => ( <BusinessCard key={business.id} business={business} />
+                    ))
+                )}
                 {activeTab === 'marketplace' && (
                 <>       
                     <ProductCard />
