@@ -55,7 +55,7 @@ function App() {
             <Route exact path="/users/edit-business" element={<CreateBusiness />} />
             <Route exact path="/users/products/:id" element={<Products />} />
             <Route exact path="/users/products/:id/add-product" element={<AddProduct />} />
-            <Route exact path="/users/product-success" element={<Success />} />
+            <Route exact path="/users/products/:id/product-success" element={<Success />} />
             <Route exact path="/users/profile" element={<Profile />} />
             <Route exact path="/users/subscription" element={<Subscription />} />
             <Route exact path="/users/billboard" element={<Billboard />} />

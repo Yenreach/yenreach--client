@@ -74,7 +74,7 @@ const Profile = () => {
                     </div>
                     <div className='flex flex-nowrap overflow-hidden gap-6 w-full'>
                         {savedBusinesses?.map((business) => (
-                            <BusinessCard key={business.id} data={{categories: business?.categories, name: business?.name, business_string: business?.verify_string}} className='w-56' />
+                            <BusinessCard key={business.id} business={business} className='w-56' />
                         ))}
                     </div>
                 </div>

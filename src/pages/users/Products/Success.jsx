@@ -1,10 +1,20 @@
 import React from 'react'
+import { useParams, Link } from 'react-router-dom'
 import { AiOutlineCheck } from 'react-icons/ai'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
+import { useQuery } from '@tanstack/react-query'
+import getData from '/src/utils/getData'
+import { apiGetOneBusiness } from '/src/services/UserService'
 
 
 const index = () => {
+    const { id } = useParams()
+    const { isLoading, error, data: business } = useQuery({
+        queryKey: ['userBusiness'],
+        queryFn: () => getData(apiGetOneBusiness, id),
+      })
+
   return (
     <Dashboard> 
         <div className='flex-1 overflow-hidden'>
@@ -16,9 +26,9 @@ const index = () => {
                         <AiOutlineCheck size='40px' color='orange'  />
                     </span>
                     <p className='text-center text-lg mb-6'>
-                    You have successfully added a new product to the marketplace under <span className='text-orange'>BUSINESS NAME</span> 
+                    You have successfully added a new product to the marketplace under <span className='text-orange'>{business?.name}</span> 
                     </p>
-                    <a href=""className=''>Check the <a href="" className='text-orange text-sm underline underline-offset-2'>business page</a> to view your businesses</a>
+                    <Link to={`/users/products/${id}`} className=''>Check the <span href="" className='text-orange text-sm underline underline-offset-2'>product page</span> to view your products</Link>
                     </div>
                 </div>
             </section>
