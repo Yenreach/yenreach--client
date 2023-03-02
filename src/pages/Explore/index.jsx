@@ -21,6 +21,7 @@ const index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const page = searchParams.get('page') || 1
+  const num_per_page = 40
 
   
   useEffect(() => {
@@ -71,9 +72,9 @@ const index = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-5 md:px-5 lg:py-20 lg:px-20">
-          { activeTab == 'business' ? <Business page={page}  /> 
-          : activeTab == 'jobs' ? <Jobs />
-          : activeTab == 'marketplace' ? <Product /> 
+          { activeTab == 'business' ? <Business page={page} num_per_page={num_per_page}  /> 
+          : activeTab == 'jobs' ? <Jobs page={page} num_per_page={num_per_page} />
+          : activeTab == 'marketplace' ? <Product page={page} num_per_page={num_per_page} /> 
           : null}
           {/* { activeTab == 'marketplace' && <Product /> }
           { activeTab == 'jobs' && <Jobs /> } */}
