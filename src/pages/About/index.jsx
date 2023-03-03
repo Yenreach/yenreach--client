@@ -6,6 +6,14 @@ import Input from '../../components/ui/Input'
 import Search from '../../assets/search.svg'
 import Team1 from '../../assets/Us/team-1.svg'
 import ISMN from '../../assets/Us/ISMN.svg'
+import CICRM from '../../assets/Us/CICRM.svg'
+import ICEN from '../../assets/Us/ICEN.svg'
+import CIA from '../../assets/Us/CIA.svg'
+import NIMN from '../../assets/Us/NIMN.svg'
+import BossImg from '../../assets/Us/dordor.png'
+import GloriaImg from '../../assets/Us/gloriasec.png'
+import MichaelImg from '../../assets/Us/michael.png'
+import ManagerImg from '../../assets/Us/manager.png'
 import SMS from '../../assets/sms.svg'
 import Linkedin from '../../assets/linkedin.svg'
 import AboutBlob from '../../assets/about-blob.svg'
@@ -60,25 +68,25 @@ const index = () => {
             <div className='py-20 sm:py-12 px-4 md:px-10 lg:px-20 bg-footer-bg'>
                 <h3 className='text-2xl text-center text-green font-medium mb-8'>On the stable of our consultancy are</h3>
                 <div className='flex gap-4 flex-wrap justify-center lg:w-5/6 mx-auto'>
-                    <div className='flex items-center gap-6 px-3 py-5 w-64 bg-white hover:drop-shadow-2xl'>
-                        <img src={ISMN} alt="" className='w-12' />
-                        <p className='text-[#476788] font-arialsans'>Institute of strategic Management Nigeria (ISMN)</p>
+                    <div className='shadow-md flex items-center gap-6 px-3 pr- py-3 w-64 bg-white hover:drop-shadow-2xl'>
+                        <img src={ISMN} alt="" className='w-12 h-12 object-cover object-center' />
+                        <p className='text-[#476788] font-arialsans'>Institute of strategic Management Nigeria <br />(ISMN)</p>
                     </div>
-                    <div className='flex items-center gap-6 px-3 py-5 w-64 bg-white hover:drop-shadow-2xl'>
-                        <img src={ISMN} alt="" className='w-12' />
-                        <p className='text-[#476788] font-arialsans'>Institute of strategic Management Nigeria (ISMN)</p>
+                    <div className='shadow-md flex items-center gap-6 px-3 pr- py-3 w-80 bg-white hover:drop-shadow-2xl'>
+                        <img src={CICRM} alt="" className='w-12 h-12 object-cover object-center' />
+                        <p className='text-[#476788] font-arialsans'>Chartered Institute of Customer Relationship Management <br />(CICRM)</p>
                     </div>
-                    <div className='flex items-center gap-6 px-3 py-5 w-64 bg-white hover:drop-shadow-2xl'>
-                        <img src={ISMN} alt="" className='w-12' />
-                        <p className='text-[#476788] font-arialsans'>Institute of strategic Management Nigeria (ISMN)</p>
+                    <div className='shadow-md flex items-center gap-6 px-3 pr- py-3 w-64 bg-white hover:drop-shadow-2xl'>
+                        <img src={ICEN} alt="" className='w-12 h-12 object-cover object-center' />
+                        <p className='text-[#476788] font-arialsans'>Institute of Chartered Economist of Nigeria<br />(ICEN)</p>
                     </div>
-                    <div className='flex items-center gap-6 px-3 py-5 w-64 bg-white hover:drop-shadow-2xl'>
-                        <img src={ISMN} alt="" className='w-12' />
-                        <p className='text-[#476788] font-arialsans'>Institute of strategic Management Nigeria (ISMN)</p>
+                    <div className='shadow-md flex items-center gap-6 px-3 pr- py-3 w-64 bg-white hover:drop-shadow-2xl'>
+                        <img src={CIA} alt="" className='w-12 h-12 object-cover object-center' />
+                        <p className='text-[#476788] font-arialsans'>Chartered Institute of Administration <br />(CIA)</p>
                     </div>
-                    <div className='flex items-center gap-6 px-3 py-5 w-64 bg-white hover:drop-shadow-2xl'>
-                        <img src={ISMN} alt="" className='w-12' />
-                        <p className='text-[#476788] font-arialsans'>Institute of strategic Management Nigeria (ISMN)</p>
+                    <div className='shadow-md flex items-center gap-6 px-3 pr- py-3 w-64 bg-white hover:drop-shadow-2xl'>
+                        <img src={NIMN} alt="" className='w-12 h-12 object-cover object-center' />
+                        <p className='text-[#476788] font-arialsans'>National Institute of Marketing of Nigeria <br />(NIMN)</p>
                     </div>
                 </div>
             </div>
@@ -87,7 +95,7 @@ const index = () => {
                 <p className='text-[#476788] mb-10 font-arialsans sm:w-2/3 lg:w-1/2'>
                     Yenreach is filled with lots of potentils that are making sure we keep offering the best to our users
                 </p>
-                <div className='grid sm:grid-cols-bus2 lg:grid-cols-bus3 gap-4 font-arialsans'>
+                <div className='grid sm:grid-cols-bus2 gap-4 font-arialsans'>
                     <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
                         <div className='flex flex-col gap-6 items-start'>
                             <div className=''>
@@ -103,9 +111,60 @@ const index = () => {
                                 </span>
                             </span>
                         </div>
-                        <img src={Team1} alt="" className='w-14' />
+                        <img src={BossImg} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
                     </div>
                     <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
+                        <div className='flex flex-col gap-6 items-start'>
+                            <div className=''>
+                                <h5 className='text-[#282F38] text-lg'>Ogbonna Chinedu</h5>
+                                <p className='text-[#838282]'>OPERATIONS MANAGER</p>
+                            </div>
+                            <span className='flex items-center gap-3'>
+                                <span>
+                                    <img src={Linkedin} alt="" />
+                                </span>
+                                <span>
+                                    <img src={SMS} alt="" />
+                                </span>
+                            </span>
+                        </div>
+                        <img src={ManagerImg} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
+                    </div>
+                    <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
+                        <div className='flex flex-col gap-6 items-start'>
+                            <div className=''>
+                                <h5 className='text-[#282F38] text-lg'>Michael Joseph</h5>
+                                <p className='text-[#838282]'>BUSINESS DEVELOPMENT EXECUTIVE</p>
+                            </div>
+                            <span className='flex items-center gap-3'>
+                                <span>
+                                    <img src={Linkedin} alt="" />
+                                </span>
+                                <span>
+                                    <img src={SMS} alt="" />
+                                </span>
+                            </span>
+                        </div>
+                        <img src={MichaelImg} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
+                    </div>
+                    <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
+                        <div className='flex flex-col gap-6 items-start'>
+                            <div className=''>
+                                <h5 className='text-[#282F38] text-lg'>George Gloria</h5>
+                                <p className='text-[#838282]'>ADMINISTRATIVE SECRETARY</p>
+                            </div>
+                            <span className='flex items-center gap-3'>
+                                <span>
+                                    <img src={Linkedin} alt="" />
+                                </span>
+                                <span>
+                                    <img src={SMS} alt="" />
+                                </span>
+                            </span>
+                        </div>
+                        <img src={GloriaImg} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
+                    </div>
+                    {/* <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
                         <div className='flex flex-col gap-6 items-start'>
                             <div className=''>
                                 <h5 className='text-[#282F38] text-lg'>Dordor Daniel</h5>
@@ -120,59 +179,8 @@ const index = () => {
                                 </span>
                             </span>
                         </div>
-                        <img src={Team1} alt="" className='w-14' />
-                    </div>
-                    <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
-                        <div className='flex flex-col gap-6 items-start'>
-                            <div className=''>
-                                <h5 className='text-[#282F38] text-lg'>Dordor Daniel</h5>
-                                <p className='text-[#838282]'>President, Dordorian Group</p>
-                            </div>
-                            <span className='flex items-center gap-3'>
-                                <span>
-                                    <img src={Linkedin} alt="" />
-                                </span>
-                                <span>
-                                    <img src={SMS} alt="" />
-                                </span>
-                            </span>
-                        </div>
-                        <img src={Team1} alt="" className='w-14' />
-                    </div>
-                    <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
-                        <div className='flex flex-col gap-6 items-start'>
-                            <div className=''>
-                                <h5 className='text-[#282F38] text-lg'>Dordor Daniel</h5>
-                                <p className='text-[#838282]'>President, Dordorian Group</p>
-                            </div>
-                            <span className='flex items-center gap-3'>
-                                <span>
-                                    <img src={Linkedin} alt="" />
-                                </span>
-                                <span>
-                                    <img src={SMS} alt="" />
-                                </span>
-                            </span>
-                        </div>
-                        <img src={Team1} alt="" className='w-14' />
-                    </div>
-                    <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
-                        <div className='flex flex-col gap-6 items-start'>
-                            <div className=''>
-                                <h5 className='text-[#282F38] text-lg'>Dordor Daniel</h5>
-                                <p className='text-[#838282]'>President, Dordorian Group</p>
-                            </div>
-                            <span className='flex items-center gap-3'>
-                                <span>
-                                    <img src={Linkedin} alt="" />
-                                </span>
-                                <span>
-                                    <img src={SMS} alt="" />
-                                </span>
-                            </span>
-                        </div>
-                        <img src={Team1} alt="" className='w-14' />
-                    </div>
+                        <img src={Team1} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
+                    </div> */}
                 </div>
             </div>
         </section>
