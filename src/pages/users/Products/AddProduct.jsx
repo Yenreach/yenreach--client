@@ -64,15 +64,15 @@ const index = () => {
     const addProductMutation = useMutation({
         mutationFn: (data) => {
             console.log("data", data)
-          return apiAddProduct(data)
+            return apiAddProduct(data)
         },
         onSuccess: (data, variables, context) => {
-            console.log("success adding business", data)
+            console.log("success adding product", data)
             setProduct(initialProductState)
             navigate(`/users/products/${id}/product-success`)
         },
         onError: (error, variables, context) => {
-          console.log("error adding business", error)
+          console.log("error adding product", error)
         },
       })
        

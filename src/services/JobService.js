@@ -18,7 +18,7 @@ export const apiGetUser = () => {
 /* Add Job */
 export const apiAddJob = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/add_product_api${serviceSuffix}`,
+        url: `${servicePrefix}/add_job_api${serviceSuffix}`,
         method: "post",
         data    
     })
@@ -27,7 +27,7 @@ export const apiAddJob = (data) => {
 /* Add Job Category */
 export const apiAddJobCategory = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/add_product_category_api${serviceSuffix}`,
+        url: `${servicePrefix}/add_job_category_api${serviceSuffix}`,
         method: "post",
         data    
     })
@@ -36,7 +36,7 @@ export const apiAddJobCategory = (data) => {
 /* Add Job Category List */
 export const apiAddJobCategoryList = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/add_product_category_list_api${serviceSuffix}`,
+        url: `${servicePrefix}/add_job_category_list_api${serviceSuffix}`,
         method: "post",
         data    
     })
@@ -45,7 +45,7 @@ export const apiAddJobCategoryList = (data) => {
 /* Add Job Photo */
 export const apiAddJobPhoto = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/add_product_photo_api${serviceSuffix}`,
+        url: `${servicePrefix}/add_job_photo_api${serviceSuffix}`,
         method: "post",
         data    
     })
@@ -54,7 +54,7 @@ export const apiAddJobPhoto = (data) => {
 /* Delete Job */
 export const apiDeleteJob = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/delete_product_api${serviceSuffix}`,
+        url: `${servicePrefix}/delete_job_api${serviceSuffix}`,
         method: "delete",
         data    
     })
@@ -63,7 +63,7 @@ export const apiDeleteJob = (data) => {
 /* Delete Job Category */
 export const apiDeleteJobCategory = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/delete_product_category_api${serviceSuffix}`,
+        url: `${servicePrefix}/delete_job_category_api${serviceSuffix}`,
         method: "delete",
         data    
     })
@@ -72,7 +72,7 @@ export const apiDeleteJobCategory = (data) => {
 /* Delete Job Photo */
 export const apiDeleteJobPhoto = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/delete_product_photo_api${serviceSuffix}`,
+        url: `${servicePrefix}/delete_job_photo_api${serviceSuffix}`,
         method: "delete",
         data    
     })
@@ -81,7 +81,7 @@ export const apiDeleteJobPhoto = (data) => {
 /* Get Jobs */
 export const apiGetAllJobs = () => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/fetch_all_product_api${serviceSuffix}`,
+        url: `${servicePrefix}/fetch_all_job_api${serviceSuffix}`,
         method: "get",  
     })
 }
@@ -89,7 +89,7 @@ export const apiGetAllJobs = () => {
 /* Get One Job */
 export const apiGetJob = () => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/fetch_one_product_api${serviceSuffix}`,
+        url: `${servicePrefix}/fetch_one_job_api${serviceSuffix}`,
         method: "get",  
     })
 }
@@ -97,7 +97,7 @@ export const apiGetJob = () => {
 /* Get Job Category */
 export const apiGetJobCategory = () => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/fetch_product_category_api${serviceSuffix}`,
+        url: `${servicePrefix}/fetch_job_category_api${serviceSuffix}`,
         method: "get",  
     })
 }
@@ -105,7 +105,7 @@ export const apiGetJobCategory = () => {
 /* Update Job */
 export const apiUpdateJob = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/update_product_api${serviceSuffix}`,
+        url: `${servicePrefix}/update_job_api${serviceSuffix}`,
         method: "patch",
         data
     })

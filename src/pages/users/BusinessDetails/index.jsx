@@ -57,7 +57,7 @@ const index = ({ setStep, handleBusinessData}) => {
             <label htmlFor="description" className='font-medium text-sm'>Business Description</label>
             <textarea required={true} onChange={handleBusinessData} name="description" id="description" cols="30" rows="10" className='w-full border-2 outline-none focus:invalid:border-red-400 invalid:border-red-400 focus:border-sky-700 hover:border-sky-700 cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' placeholder='Enter your business Discription' />
         </div>
-        <div className='mb-8'>
+        <div className='mb-8'> 
             <label htmlFor="category" className='font-medium text-sm'>Add tags</label>
             <Input required={true} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="category" id="category" placeholder='Add a tag to your business' />
         </div>

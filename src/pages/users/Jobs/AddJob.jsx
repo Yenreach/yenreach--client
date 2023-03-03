@@ -1,7 +1,7 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useMutation } from "@tanstack/react-query";
-import { apiAddProduct } from '../../../services/ProductService'
+import { apiAddJob } from '../../../services/JobService'
 import Header from "/src/components/users/Header"
 import Input from '../../../components/ui/Input'
 import Button from '../../../components/ui/Button'
@@ -19,34 +19,59 @@ const initialJobState = {
     job_tags: []
 }
 
+const job_tags = [
+    {id: 1, name: "Full Time"},
+    {id: 2, name: "Part Time"},
+    {id: 3, name: "Remote"},
+    {id: 4, name: "Internship"},
+    {id: 5, name: "Contract"},
+    {id: 6, name: "Freelance"},
+    {id: 7, name: "Temporary"},
+    {id: 8, name: "Volunteer"},
+    {id: 9, name: "Seasonal"},
+    {id: 10, name: "Others"},
+]
+
 const index = () => {
     const [job, setJob] = React.useState(initialJobState)
+    const { id } = useParams()
+    const navigate = useNavigate()
+
+    console.log('job', job)
+
 
     const handleJob = (event) => {
         setJob(prev => ({...prev, [event.target.name]: event.target.value }))
     }
 
+    const handleCategory = (event) => {
+        setJob(prev => ({...prev, [event.target.name]: [...job.job_tags, event.target.value] }))
+    }
+
     const addJobMutation = useMutation({
         mutationFn: (data) => {
-          return apiAddProduct(data)
+        console.log("data", data)
+          return apiAddJob(data)
         },
         onSuccess: (data, variables, context) => {
-            console.log("success adding business", data)
+            console.log("success adding job", data)
+            setJob(initialJobState)
+            navigate(`/users/jobs/${id}/job-success`)
             // setStep(3)
         },
         onError: (error, variables, context) => {
-          console.log("error adding business", error)
+          console.log("error adding job", error)
         },
       })
        
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log("data", job)
-        addJobMutation.mutate(job)
+        addJobMutation.mutate({ ...job, business_string: id })
     }
+   
 
 
-    const { id } = useParams()
   return (
     <Dashboard> 
         <div className='flex-1 overflow-hidden'>
@@ -56,49 +81,58 @@ const index = () => {
                 <div className='md:flex justify-between gap-6 md:mb-4'>
                     <div className='w-full mb-8 md:mb-0'>
                         <label htmlFor="company_name" className='font-medium text-sm'>Company Name</label>
-                        <Input onChange={handleJob} className='border-gray rounded-lg' type="text" name="company_name" id="company_name" />
+                        <Input required onChange={handleJob} className='border-gray rounded-lg' type="text" name="company_name" id="company_name" />
                     </div>
                     <div className='w-full mb-8 md:mb-0'>
                         <label htmlFor="job_title" className='font-medium text-sm'>Job Title</label>
-                        <Input onChange={handleJob} className='border-gray rounded-lg' type="text" name="job_title" id="job_title" />
+                        <Input required onChange={handleJob} className='border-gray rounded-lg' type="text" name="job_title" id="job_title" />
                     </div>
                     <div className='w-full '>
                         <label htmlFor="job_type" className='font-medium text-sm'>Job Type</label>
-                        <Input onChange={handleJob} className='border-gray rounded-lg' type="text" name="job_type" id="job_type" />
+                        <Input required onChange={handleJob} className='border-gray rounded-lg' type="text" name="job_type" id="job_type" />
                     </div>
                 </div>
                 <div className='mb-8 md:mb-4 md:flex justify-between gap-6'>
                     <div className='mb-8 md:mb-0 w-full'>
                         <label htmlFor="location" className='font-medium text-sm'>Location</label>
-                        <Input onChange={handleJob} className='border-gray rounded-lg mt-2' type="text" name="location" id="location" 
+                        <Input required onChange={handleJob} className='border-gray rounded-lg mt-2' type="text" name="location" id="location" 
                         />
                     </div>
                     <div className='w-full'>
                         <label htmlFor="salary" className='font-medium text-sm'>Salary</label>
-                        <Input onChange={handleJob} className='border-gray rounded-lg mt-2' type="number" name="salary" id="salary" 
+                        <Input required onChange={handleJob} className='border-gray rounded-lg mt-2' type="number" name="salary" id="salary" 
                         />
                     </div>
                 </div>
                 <div className='mb-8 md:mb-4'>
                     <label htmlFor="job_overview" className='font-medium text-sm'>Job Overview</label>
-                    <textarea name="job_overview" id="job_overview" cols="30" rows="6" className='w-full border-2 outline-none cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' placeholder='Enter job Description' ></textarea>
+                    <textarea required onChange={handleJob} name="job_overview" id="job_overview" cols="30" rows="6" className='w-full border-2 outline-none focus:invalid:border-red-400 invalid:border-red-400 focus:border-sky-700 hover:border-sky-700 cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' placeholder='Enter job Description' ></textarea>
                 </div>
                 <div className='mb-8 md:mb-4'>
                     <label htmlFor="job_benefit" className='font-medium text-sm'>Job Perks and Benefits</label>
-                    <textarea name="job_benefit" id="job_benefit" cols="30" rows="6" className='w-full border-2 outline-none cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' placeholder='Enter job Description' ></textarea>
+                    <textarea required onChange={handleJob} name="job_benefit" id="job_benefit" cols="30" rows="6" className='w-full border-2 outline-none focus:invalid:border-red-400 invalid:border-red-400 focus:border-sky-700 hover:border-sky-700 cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' placeholder='Enter job Description' ></textarea>
                 </div>
                 <div className='mb-8 md:mb-4 md:flex justify-between gap-6'>
                     <div className='mb-8 md:mb-0 w-full'>
                         <label htmlFor="job_tags" className='font-medium text-sm'>Tags</label>
-                        <Input onChange={handleJob} className='border-gray rounded-lg mt-2' type="text" name="job_tags" id="job_tags" 
-                        />
+                        <select onChange={handleCategory} required className='w-full border-2 outline-none focus:invalid:border-red-400 invalid:border-red-400 focus:border-sky-700 hover:border-sky-700 cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' name="job_tags" id="job_tags" placeholder='Enter Categoies'>
+                                <option value="">Select Product Categories</option>
+                                {job_tags?.map((tag) => (
+                                    <option key={tag.id} value={tag.name}>{tag.name}</option>
+                                ))}
+                            </select>
+                            <div>
+                                {job.job_tags?.map((tag) => (
+                                    <span key={tag} className='bg-gray-200 text-gray-600 text-xs py-1 rounded-full mr-2'>{tag}</span>
+                                ))}
+                            </div>
                     </div>
                 </div>
                 <div className='flex gap-2 mt-12'>
                     <Button type='submit' variant="job" className='p-2 px-12 md:px-20 rounded'>
                         Publish
                     </Button>
-                    <Button inverde={true} className='p-2 px-12 md:px-20 rounded text-gray border-2 font-medium'>
+                    <Button inverse={true} className='p-2 px-12 md:px-20 rounded text-gray border-2 font-medium'>
                         Cancel
                     </Button>
                 </div>
