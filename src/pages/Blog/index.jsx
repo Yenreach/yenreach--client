@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
+import { apiGetAllBlogs } from '../../services/CommonService'
+import getData from '../../utils/getData'
+import { changePage, paginate } from '/src/utils'
 import BlogCard from '../../components/ui/BlogCard'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import LeftArrow from '../../assets/left-arrow.svg'
-import RightArrow from '../../assets/right-arrow.svg'
 
 const index = () => {
+  const [page, setPage] = useState(1)
+  const num_per_page = 6
+
+  const { data: blogs, error: errorBlogs } = useQuery({
+    queryKey: ['blogs'],
+    queryFn: () => getData(apiGetAllBlogs),
+  })
+
+  console.log('blogs', blogs, 'error', errorBlogs)
+
   return (
     <>
       <Header />
@@ -41,20 +54,18 @@ const index = () => {
         <div className="flex flex-col gap-4">
           <h2 className="w-full text-center text-blue text-3xl font-semibold">Latest Articles</h2>
           <div className='flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-            <BlogCard />
-            <BlogCard />
-            <BlogCard />
-            <BlogCard />
-            <BlogCard />
+            {blogs?.map((blog) => (
+              <BlogCard key={blog.id} blog={blog} />
+            ))}
           </div>
         </div>
         <div className="flex justify-center items-center w-full mt-4">
-          <img src={LeftArrow} alt="" />
-          <span className='font-medium bg-green w-6 h-6 text-sm text-white grid place-items-center'>1</span>
-          <span className='font-medium w-6 h-6 text-sm grid place-items-center'>2</span>
-          <span className='font-medium w-6 h-6 text-sm grid place-items-center'>3</span>
-          <span className='font-medium w-6 h-6 text-sm grid place-items-center'>4</span>
-          <img src={RightArrow} alt="" />
+          <MdChevronLeft size={"1.5rem"} />
+          {blogs && [...Array(paginate({page, num_per_page, data: blogs})?.pages).keys()]?.map((page_num) => 
+            <span key={page_num+1} onClick={() => changePage(page_num+1, setPage)} className={`${page===page_num+1 && "bg-green text-white"} font-medium w-6 h-6 text-sm text-white grid place-items-center cursor-pointer`}>1</span>
+
+          )}
+          <MdChevronRight size={"1.5rem"} />
         </div>
       </div>
       <Footer />

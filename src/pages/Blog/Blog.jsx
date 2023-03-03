@@ -6,6 +6,7 @@ import BlogImage from '../../assets/blog/single-blog.svg'
 
 
 const index = () => {
+
   return (
     <>
       <Header />
