@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { MdDelete } from 'react-icons/md'
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from 'react-icons/hi'
 import { useQuery } from '@tanstack/react-query'
@@ -57,9 +58,11 @@ const Profile = () => {
                         <MdDelete size='20px' color='black' />
                     </div>
                 </div>
-                <Button className="px-5 py-3 rounded">
-                    Edit Profile
-                </Button>
+                <Link to='/users/profile/edit'>
+                    <Button className="px-5 py-3 rounded">
+                        Edit Profile
+                    </Button>
+                </Link>
             </div>
             <div>
                 <h6 className='mb-1 text-lg text-green'>Favourites</h6>
