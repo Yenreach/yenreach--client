@@ -1,4 +1,7 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
+import useFetch from '/src/hooks/useFetch'
+import { apiGetBlog, apiGetComments } from '../../services/CommonService'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { MdChevronRight } from 'react-icons/md'
@@ -6,6 +9,22 @@ import BlogImage from '../../assets/blog/single-blog.svg'
 
 
 const index = () => {
+    const { id } = useParams()
+
+    const { data: blog, error: errorBlog } = useFetch({
+        api: apiGetBlog,
+        param: id,
+        key: 'blog'
+    })
+
+    const { data: comments } = useFetch({
+        api: apiGetComments,
+        param: id,
+        key: 'comments'
+    })
+
+    // console.log("blog", blog, "error", errorBlog)
+    // console.log("comments", comments)
 
   return (
     <>
@@ -18,18 +37,18 @@ const index = () => {
                 Category    
             </span>
         </div>
-        <h1 className='text-3xl font-semibold mb-12'>Blog title heading will go here</h1>
+        <h1 className='text-3xl font-semibold mb-12'>{blog?.title}</h1>
         <div className='flex items-center justify-between text-xs'>
             <div className='flex items-center gap-3'>
                 <span className='w-10 h-10 rounded-full bg-gray'></span>
                 <div className='flex gap-1 flex-col'>
-                    <span className='font-semibold'>Full name</span>
+                    <span className='font-semibold'>{blog?.author}</span>
                     <p>12 minht . 5 min read</p>
                 </div>
             </div>
             <div className='flex items-center gap-2'>
-                <span>twit</span>
-                <span>twit</span>
+                {/* <span>twit</span>
+                <span>twit</span> */}
             </div>
         </div>
       </div>
@@ -39,6 +58,7 @@ const index = () => {
       <main>
           <section className='px-4 py-12 md:px-10 lg:px-24 max-w-[750px] mx-auto'>
             <h2 className='text-2xl font-semibold mb-5'>Introduction</h2>
+            <div dangerouslySetInnerHTML={{ __html: blog?.post }}></div>
             <p className='text-sm mb-4'>
                 Mi tincidunt elit, id quisque ligula ac diam, amet. Vel etiam suspendisse morbi eleifend faucibus eget vestibulum felis. Dictum quis montes, sit sit. Tellus aliquam enim urna, etiam. Mauris posuere vulputate arcu amet, vitae nisi, tellus tincidunt. At feugiat sapien varius id.
             </p>
@@ -85,8 +105,8 @@ const index = () => {
             <div className='flex items-center gap-3 text-xs'>
                 <span className='w-10 h-10 rounded-full bg-gray'></span>
                 <div className='flex flex-col'>
-                    <span className='font-semibold'>Full name</span>
-                    <p>Job Title, Company Name</p>
+                    <span className='font-semibold'>{blog?.author}</span>
+                    <p>Media Director, Yenreach</p>
                 </div>
             </div>
         </section>

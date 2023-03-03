@@ -3,9 +3,11 @@ import { Link, useParams } from 'react-router-dom'
 import { BsTelephone, BsGlobe, BsInstagram, BsWhatsapp } from 'react-icons/bs'
 import { MdOutlineMarkEmailUnread, MdOutlineLocationOn } from 'react-icons/md'
 import { TbBrandFacebook } from 'react-icons/tb'
+import useFetch from '/src/hooks/useFetch'
 import { useQuery } from '@tanstack/react-query'
 import getData from '/src/utils/getData'
 import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessSubscription } from '/src/services/UserService'
+import { apiGetBusinessFacilities, apiGetBusinessReviews, apiGetBusinessReviewsStats } from '/src/services/CommonService'
 import Header from "/src/components/users/Header"
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '../../../components/ui/Button'
@@ -34,7 +36,26 @@ const index = () => {
     queryKey: ['subscription'],
     queryFn: () => getData(apiGetBusinessSubscription, id),
   })
-  // console.log("business", subscription)
+
+  const { data: facilities, error: errorFacilities } = useFetch({
+    api: apiGetBusinessFacilities,
+    param: id,
+    key: 'facilities'
+  })
+
+  const { data: reviews, error: errorReviews } = useFetch({
+    api: apiGetBusinessReviews,
+    param: id,
+    key: 'reviews'
+  })
+
+  const { data: reviewStats, error: errorStats } = useFetch({
+    api: apiGetBusinessReviewsStats,
+    param: id,
+    key: 'reviewStats'
+  })
+
+  console.log("reviewStats", reviewStats)
   // console.log("subscriptionError", subscriptionError)
 
 
@@ -109,54 +130,12 @@ const index = () => {
             </div>
             <div className='mb-24 font-arialsans'>
               <h2 className='text-green text-lg font-medium mb-3'>Business Features</h2>
-              <div className='flex sm:flex-row flex-wrap gap-6 text-sm text-[#476788] p-12 bg-white rounded-2xl'>
-                <div className='flex items-center'>
-                  <img src={Good} alt="" className='object-cover object-center mr-3' />
-                  <span>24/7 availability</span>
-                </div>
-                <div className='flex items-center'>
-                  <img src={Good} alt="" className='object-cover object-center mr-3' />
-                  <span>24/7 availability</span>
-                </div>
-                <div className='flex items-center'>
-                  <img src={Good} alt="" className='object-cover object-center mr-3' />
-                  <span>24/7 availability</span>
-                </div>
-                <div className='flex items-center'>
-                  <img src={Good} alt="" className='object-cover object-center mr-3' />
-                  <span>24/7 availability</span>
-                </div>
-                <div className='flex items-center'>
-                  <img src={Good} alt="" className='object-cover object-center mr-3' />
-                  <span>24/7 availability</span>
-                </div>
-                <div className='flex items-center'>
-                  <img src={Good} alt="" className='object-cover object-center mr-3' />
-                  <span>24/7 availability</span>
-                </div>
-                <div className='flex items-center'>
-                  <img src={Good} alt="" className='object-cover object-center mr-3' />
-                  <span>24/7 availability</span>
-                </div>
-                <div className='flex items-center'>
-                  <img src={Good} alt="" className='object-cover object-center mr-3' />
-                  <span>24/7 availability</span>
-                </div>
-                <div className='flex items-center'>
-                  <img src={Good} alt="" className='object-cover object-center mr-3' />
-                  <span>24/7 availability</span>
-                </div>
-                <div className='flex items-center'>
-                  <img src={Good} alt="" className='object-cover object-center mr-3' />
-                  <span>24/7 availability</span>
-                </div>
-                <div className='flex items-center'>
-                  <img src={Good} alt="" className='object-cover object-center mr-3' />
-                  <span>24/7 availability</span>
-                </div>
-                <div className='flex items-center'>
-                  <img src={Good} alt="" className='object-cover object-center mr-3' />
-                  <span>24/7 availability</span>
+              <div className='bg-white text-[#476788] p-12 rounded-2xl'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-sm  lg:max-w-3xl'>
+                  {facilities?.map(facility => <div key={facility.id} className='flex items-center'>
+                    <img src={Good} alt="" className='object-cover object-center mr-3' />
+                    <span>{facility.facility}</span>
+                  </div>)}
                 </div>
               </div>
               <Button className='flex items-center justify-center gap-3 rounded-md py-2.5 w-full mt-11'>
@@ -192,50 +171,21 @@ const index = () => {
               <h2 className='text-green text-lg font-medium mb-3'>Reviews</h2>
               <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
                 <div className='flex items-center gap-3.5 mb-2'>
-                  <img src={Star} alt="" />
-                  <img src={Star} alt="" />
-                  <img src={Star} alt="" />
-                  <img src={Star} alt="" />
-                  <img src={Star} alt="" />
+                  {[...Array(reviewStats?.average).keys()].map((_, i) => <img key={i} src={Star} alt="" />)}
                 </div>
-                <p className='mb-9'>Your business is currently rated 4.7 from review from over 200 users</p>
+                <p className='mb-9'>Your business is currently rated {reviewStats?.average} stars from the reviews of {reviewStats?.total} users</p>
                 <div className='flex flex-wrap overflow-hidden gap-6 w-full'>
-                  <div className='p-3 px-5 bg-[#F0F0F0] sm:w-96'>
+                  {reviews?.map(review => 
+                  <div key={review.id} className='p-3 px-5 bg-[#F0F0F0] sm:w-96'>
                     <div className='flex items-center gap-2 mb-3'>
                       <img src={Star} alt="" />
-                      <span className='text-sm'>David Ikperi</span>
+                      <span className='text-sm'>{review.user}</span>
                     </div>
                     <p className='text-xsm text-[#476788]'>
-                      Lorem ipsum dolor sit amet consectetur. Lacus feugiat gravida eget velit amet. Magna convallis aliquet vestibulum et massa. Ac maecenas ultricies cras eget convallis amet mauris. Quam quisque pellentesque diam lorem. Lorem sit duis ridiculus porta sagittis erat scelerisque orci vehicula. Eget ipsum magna risus viverra auctor mi. Hendrerit elementum quis aliquam accumsan tempus enim tincidunt. Id scelerisque eu mi morbi tincidunt. Tellus fermentum lectus ut ut donec nisl vel odio. Lectus tristique.
+                      {review.review}
                     </p>
                   </div>
-                  <div className='p-3 px-5 bg-[#F0F0F0] sm:w-96'>
-                    <div className='flex items-center gap-2 mb-3'>
-                      <img src={Star} alt="" />
-                      <span className='text-sm'>David Ikperi</span>
-                    </div>
-                    <p className='text-xsm text-[#476788]'>
-                      Lorem ipsum dolor sit amet consectetur. Lacus feugiat gravida eget velit amet. Magna convallis aliquet vestibulum et massa. Ac maecenas ultricies cras eget convallis amet mauris. Quam quisque pellentesque diam lorem. Lorem sit duis ridiculus porta sagittis erat scelerisque orci vehicula. Eget ipsum magna risus viverra auctor mi. Hendrerit elementum quis aliquam accumsan tempus enim tincidunt. Id scelerisque eu mi morbi tincidunt. Tellus fermentum lectus ut ut donec nisl vel odio. Lectus tristique.
-                    </p>
-                  </div>
-                  <div className='p-3 px-5 bg-[#F0F0F0] sm:w-96'>
-                    <div className='flex items-center gap-2 mb-3'>
-                      <img src={Star} alt="" />
-                      <span className='text-sm'>David Ikperi</span>
-                    </div>
-                    <p className='text-xsm text-[#476788]'>
-                      Lorem ipsum dolor sit amet consectetur. Lacus feugiat gravida eget velit amet. Magna convallis aliquet vestibulum et massa. Ac maecenas ultricies cras eget convallis amet mauris. Quam quisque pellentesque diam lorem. Lorem sit duis ridiculus porta sagittis erat scelerisque orci vehicula. Eget ipsum magna risus viverra auctor mi. Hendrerit elementum quis aliquam accumsan tempus enim tincidunt. Id scelerisque eu mi morbi tincidunt. Tellus fermentum lectus ut ut donec nisl vel odio. Lectus tristique.
-                    </p>
-                  </div>
-                  <div className='p-3 px-5 bg-[#F0F0F0] sm:w-96'>
-                    <div className='flex items-center gap-2 mb-3'>
-                      <img src={Star} alt="" />
-                      <span className='text-sm'>David Ikperi</span>
-                    </div>
-                    <p className='text-xsm text-[#476788]'>
-                      Lorem ipsum dolor sit amet consectetur. Lacus feugiat gravida eget velit amet. Magna convallis aliquet vestibulum et massa. Ac maecenas ultricies cras eget convallis amet mauris. Quam quisque pellentesque diam lorem. Lorem sit duis ridiculus porta sagittis erat scelerisque orci vehicula. Eget ipsum magna risus viverra auctor mi. Hendrerit elementum quis aliquam accumsan tempus enim tincidunt. Id scelerisque eu mi morbi tincidunt. Tellus fermentum lectus ut ut donec nisl vel odio. Lectus tristique.
-                    </p>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>

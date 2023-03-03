@@ -6,7 +6,7 @@ import BlogBg from '../../../assets/blog/blog-bg.svg'
 
 const index = ({ blog }) => {
   return (
-    <Link to={`/blogs/${blog?.id}`}>
+    <Link to={`/blogs/${blog?.blog_string}`}>
       <div className='flex flex-col shadow hover:shadow-lg'>
         <img className='object-cover object-center h-32' src={BlogBg} alt="" />
         <div className="flex flex-col p-4">
