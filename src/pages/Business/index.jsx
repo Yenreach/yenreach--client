@@ -1,8 +1,8 @@
 import React from 'react'
+import useFetch from '/src/hooks/useFetch'
 import { useParams } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
-import getData from '../../utils/getData'
-import { apiGetOneBusiness } from '/src/services/CommonService'
+import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessWorkingHours, apiGetBusinessBranches, apiGetRelatedBusinesses, apiGetBusinessSubscription, apiGetBusinessSubscriptionByString } from '/src/services/CommonService'
+import BusinessCard from '/src/components/ui/BusinessCard'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Button from '../../components/ui/Button'
@@ -22,12 +22,47 @@ import Map from '../../assets/map.svg'
 
 const index = () => {
   const { id } = useParams()
-
-  const { data: business, error: errorBusiness } = useQuery({
-    queryKey: ['business'],
-    queryFn: () => getData(apiGetOneBusiness, id),
+  
+  const { data: business, error: errorBusiness } = useFetch({
+    api: apiGetOneBusiness,
+    param: id,
+    key: 'business'
   })
-  console.log("business", business, "error", errorBusiness)
+
+  const { data: categories, error: errorCategories } = useFetch({
+    api: apiGetBusinessCategories,
+    param: id,
+    key: 'categories'
+  })
+
+  const { data: workingHours, error: errorWorkingHours } = useFetch({
+    api: apiGetBusinessWorkingHours,
+    param: id,
+    key: 'workingHours'
+  })
+  const { data: branches, error: errorBranches } = useFetch({
+    api: apiGetBusinessBranches,
+    param: id,
+    key: 'branches'
+  })
+  const { data: relatedBusinesses, error: errorRelatedBusinesses } = useFetch({
+    api: apiGetRelatedBusinesses,
+    param: id,
+    key: 'relatedBusinesses'
+  })
+  const { data: businessSubscription, error: errorBusinessSubscription} = useFetch({
+    api: apiGetBusinessSubscription,
+    param: id,
+    key: 'businessSubscription'
+  })
+  
+  const { data: businessSubscriptionDetails, error: errorBusinessSubscriptionDetails,} = useFetch({
+    api: apiGetBusinessSubscriptionByString,
+    param: businessSubscription?.subscription_string,
+    key: 'businessSubscriptionDetails'
+  })
+
+  console.log("business", businessSubscriptionDetails, "error", errorBusinessSubscriptionDetails,)
 
   return (
       <>
@@ -56,8 +91,8 @@ const index = () => {
               </p>
               <h3 className='text-green2 font-medium mb-1'>Tags</h3>
               <div className='flex items-center flex-wrap gap-3 text-xs text-white md:w-7/8 mb-16'>
-                {business.category.split(", ").map((tag, index) => (
-                  <span key={index} className='bg-green2 rounded-full px-4 py-2'>{tag}</span>
+                {categories?.map((category, index) => (
+                  <span key={index} className='bg-green2 rounded-full px-4 py-2'>{category?.category}</span>
                 ))}
               </div>
               <div className='lg:absolute top-0 right-24 lg:max-w-[396px]'>
@@ -78,7 +113,7 @@ const index = () => {
                   <div className='px-5 p-3 border-2 border-gray flex flex-col gap-3 opacity-90'>   
                     <span className='flex items-start justify-between opacity-90'>
                       <span className='w-4/5'>
-                       {business.address}
+                       {business.address}, {business.lga} LGA, {business.state} State
                       </span>
                       <img src={Mail} alt="" />
                     </span>
@@ -125,90 +160,9 @@ const index = () => {
           <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 border-t-2 border-gray mb-32'>
             <h2 className='text-2xl text-green2 font-semibold mb-2'>People also viewed</h2>
             <div className='grid grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 xl:grid-cols-bus4 gap-6'>
-                  <div className='card w-full py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-80 flex flex-col items-center justify-between'>
-                      <div>       
-                          <img src={Computer} alt="" className='h-32 mb-2 w-full object-cover rounded-xl' />
-                          <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
-                          <ul className='flex items-center flex-wrap text-xsm list-disc pl-4 gap-4 h-9 overflow-hidden pb-12'>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                          </ul>
-                      </div>
-                      <Button className='w-full text-xs rounded-xl py-2 px-4 font-semibold'>
-                          view business
-                      </Button>
-                  </div>
-                  <div className='card w-full py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-80 flex flex-col items-center justify-between'>
-                      <div>       
-                          <img src={Computer} alt="" className='h-32 mb-2 w-full object-cover rounded-xl' />
-                          <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
-                          <ul className='flex items-center flex-wrap text-xsm list-disc pl-4 gap-4 h-9 overflow-hidden pb-12'>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                          </ul>
-                      </div>
-                      <Button className='w-full text-xs rounded-xl py-2 px-4 font-semibold'>
-                          view business
-                      </Button>
-                  </div>
-                  <div className='card w-full py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-80 flex flex-col items-center justify-between'>
-                      <div>       
-                          <img src={Computer} alt="" className='h-32 mb-2 w-full object-cover rounded-xl' />
-                          <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
-                          <ul className='flex items-center flex-wrap text-xsm list-disc pl-4 gap-4 h-9 overflow-hidden pb-12'>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                          </ul>
-                      </div>
-                      <Button className='w-full text-xs rounded-xl py-2 px-4 font-semibold'>
-                          view business
-                      </Button>
-                  </div>
-                  <div className='card w-full py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-80 flex flex-col items-center justify-between'>
-                      <div>       
-                          <img src={Computer} alt="" className='h-32 mb-2 w-full object-cover rounded-xl' />
-                          <h6 className='text-sm font-medium h-11 mb-2 overflow-hidden'>Blossom boutique flower tsfdsfddfsdtfdl</h6>
-                          <ul className='flex items-center flex-wrap text-xsm list-disc pl-4 gap-4 h-9 overflow-hidden pb-12'>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                              <li><span className='relative -left-1.5'>Unknown</span></li>
-                          </ul>
-                      </div>
-                      <Button className='w-full text-xs rounded-xl py-2 px-4 font-semibold'>
-                          view business
-                      </Button>
-                  </div>
+              {relatedBusinesses?.map((business, index) => (
+                <BusinessCard key={business.id} business={business} />
+              ))}
               </div>
           </section>
         </>}
