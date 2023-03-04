@@ -5,7 +5,7 @@ import Button from '../Button'
 
 const index = ({ product }) => {
   return (
-    <Link to={`/products/${product.product_string}`}>
+    <Link to={`/products/${product?.product_string}`}>
       <div className='flex flex-col rounded-t-3xl overflow-hidden py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-fit justify-between'>
         <img src={Image} className='h-40 w-full object-cover object-center rounded-xl' alt="" />
         <div className="flex flex-col border-[#777777]">

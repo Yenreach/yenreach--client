@@ -51,6 +51,32 @@ export const apiGetApprovedBusinesses =  () => {
     })
 }
 
+export const apiGetFilledCategories =  () => {
+    return ApiAdapter.fetchData({
+        url: servicePrefix + "fetch_filled_categories_api" + serviceSuffix,
+        method: "get"    
+    })
+}
+
+export const apiGetBusinessStates =  () => {
+    // business states
+    return ApiAdapter.fetchData({
+        url: servicePrefix + "fetch_business_states_api" + serviceSuffix,
+        method: "get"    
+    })
+}
+export const apiBusinessSearch =  ({ search, location }) => {
+    const url = location && search ? servicePrefix + "business_search_api" + serviceSuffix + "?search_string=" + encodeURI(search) + "&location=" + encodeURI(location) : 
+    search ? servicePrefix + "business_search_api" + serviceSuffix + "?search_string=" + encodeURI(search) :
+    servicePrefix + "fetch_public_approved_businesses_api" + serviceSuffix
+    // business search
+    return ApiAdapter.fetchData({
+        url: url,
+        method: "get"    
+    })
+}
+
+
 /* Get states */
 export const apiGetStates = () => {
     return ApiAdapter.fetchData({
