@@ -3,6 +3,7 @@ import { MdOutlineHome } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { apiGetApprovedBusinesses } from '../../services/CommonService'
+import { apiGetAllProducts } from '/src/services/ProductService'
 import getData from '../../utils/getData'
 import { BiBriefcase, BiMouseAlt } from 'react-icons/bi'
 // import JobData from '../../data/job-data.json'
@@ -21,6 +22,11 @@ const index = () => {
         queryKey: ['aprrovedBusinesses'],
         queryFn: () => getData(apiGetApprovedBusinesses),
         })
+
+        const { data: products, error: errorProducts } = useQuery({
+            queryKey: ['products'],
+            queryFn: () => getData(apiGetAllProducts),
+          })
           // console.log("aprrovedBusinesses", aprrovedBusinesses, "error", errorApprovedBusinesses)
 
 
@@ -51,13 +57,9 @@ const index = () => {
                     aprrovedBusinesses?.slice(0,4).map((business) => ( <BusinessCard key={business.id} business={business} />
                     ))
                 )}
-                {activeTab === 'marketplace' && (
-                <>       
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                </>)}
+                {activeTab === 'marketplace' && products &&  (
+                    products?.slice(0,4).map((product) => <ProductCard key={product.id} product={product} />)
+                )}
                 {activeTab === 'jobs' && (
                 <>       
                     <JobCard />
