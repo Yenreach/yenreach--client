@@ -20,8 +20,9 @@ import Company17 from '../../assets/companies/17.svg'
 
 const index = () => {
   return (
-    <div className='flex justify-center items-center gap-6 py-8 flex-col w-full px-14'>
-        <div className='flex justify-center items-center gap-x-20 flex-wrap'>            
+    <div className='py-4'>
+    <div className='flex items-center gap-6 py-8 w-full px-14 gap-x-20 overflow-hidden relative'>
+        <div className='flex items-center gap-x-20 carousel-slide left-full absolute'>            
             <img src={Company1} alt="trusted company 1" />
             <img src={Company2} alt="trusted company 2" />
             <img src={Company3} alt="trusted company 3" />
@@ -30,9 +31,11 @@ const index = () => {
             <img src={Company1} alt="trusted company 6" />
             <img src={Company7} alt="trusted company 7" />
             <img src={Company8} alt="trusted company 8" />
-            <img src={Company9} alt="trusted company 9" />
+            {/* <img src={Company9} alt="trusted company 9" /> */}
         </div>
-        <div className='flex justify-center items-center gap-x-20 flex-wrap'>
+    </div>
+    <div className='flex items-center gap-6 py-8 w-full px-14 gap-x-20 overflow-hidden relative'>
+        <div className='flex items-center gap-x-20 carousel-slide2 absolute -left-full'>
             <img src={Company10} alt="trusted company 10" />
             <img src={Company11} alt="trusted company 11" />
             <img src={Company12} alt="trusted company 12" />
@@ -42,6 +45,7 @@ const index = () => {
             <img src={Company16} alt="trusted company 16" />
             <img src={Company17} alt="trusted company 17" />
         </div>
+    </div>
     </div>
   )
 }

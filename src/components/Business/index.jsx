@@ -14,7 +14,7 @@ import Location from '../../assets/location.svg'
 
 const staleTime = 1000 * 60 * 60 * 24
 
-const index = ({ page: initialPage, num_per_page }) => {
+const index = ({ page: initialPage, num_per_page, searchString, searchLocation }) => {
   const [page, setPage] = useState(initialPage || 1)
   const [search, setSearch] = useState('')
   const [location, setLocation] = useState('')
@@ -29,7 +29,21 @@ const index = ({ page: initialPage, num_per_page }) => {
     } else {    
       refetch()
     }
+
+    // setSearch('')
+    // setLocation('')
   }
+
+  useEffect(() => {
+    if (searchString) {
+      setSearch(searchString)
+    }
+    if (searchLocation) {
+      setLocation(searchLocation)
+    }
+    handleSearch({preventDefault: () => {}})
+  }, [searchString, searchLocation])
+
 
   
   const { data: aprrovedBusinesses, error: errorApprovedBusinesses } = useQuery({
