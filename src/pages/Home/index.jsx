@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { apiBusinessOfTheWeek, apiGetApprovedBusinesses } from '../../services/CommonService'
@@ -7,6 +7,7 @@ import Header from '/src/components/Header'
 import Footer from '../../components/Footer'
 import Hero from '../../components/Hero'
 import Category from '../../components/Category'
+import Trustees from '../../components/Trustees'
 import Accordion from '../../components/Accordion'
 import AllHere from '../../assets/businesses/all-here.svg'
 import AllHereJ from '../../assets/jobs/all-here.svg'
@@ -15,11 +16,11 @@ import BusOfTheWeek from '../../assets/bus_of_the_week.svg'
 import Button from '../../components/ui/Button'
 
 const index = () => {
+
     const { data: businessOfTheWeek, error: errorBusinessOfTheWeek } = useQuery({
         queryKey: ['businessOfTheWeek'],
         queryFn: () => getData(apiBusinessOfTheWeek),
       })
-
 
     // console.log("businessOfTheWeek", businessOfTheWeek, "error", errorBusinessOfTheWeek)
 
@@ -27,6 +28,7 @@ const index = () => {
     <>
         <Header />
         <Hero />
+        <Trustees />
         <Category />
         <section className='px-4 py-12 md:px-10 lg:px-24'>
             <div className='bg-[url("assets/audience.svg")] h-64 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-28 px-4 sm:px-12 md:px-24'>     

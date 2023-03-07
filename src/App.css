@@ -18,3 +18,36 @@ body {
 .grid-container--fit {
   grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
 }
+
+.carousel-slide {
+  animation: slideOut 40s infinite forwards linear;
+}
+.carousel-slide2 {
+  animation: slideOut2 40s infinite forwards linear;
+}
+
+.active {
+  opacity: 1;
+}
+
+.carousel-item {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.carousel-item.active {
+  opacity: 1;
+}
+
+@keyframes slideOut {
+  100% {
+    left: -100%;
+    /* transform: translateX(-422%); */
+  }
+}
+@keyframes slideOut2 {
+  100% {
+    left: 100%;
+    /* transform: translateX(-422%); */
+  }
+}
