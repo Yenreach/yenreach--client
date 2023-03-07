@@ -32,7 +32,7 @@ const useLogin = () => {
                 data = data.data
                 console.log("success", data)
                 dispatch({type: "LOGIN", payload: data})
-                // localStorage.setItem("user", JSON.stringify(data))
+                // sessionStorage.setItem("user", JSON.stringify(data))
                 setError(null)
                 setIsLoading(false)
                 Navigate('/users')

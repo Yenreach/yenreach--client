@@ -3,7 +3,7 @@ import ApiAdapter from "./ApiService"
 const servicePrefix = "/products"
 const serviceSuffix = ".php"
 
-const token = JSON.parse(localStorage.getItem("user"))?.verify_string
+const token = JSON.parse(sessionStorage.getItem("user"))?.verify_string
 
 
 /* Get user */
