@@ -40,7 +40,7 @@ const index = () => {
           </div>
           
           <Button className='p-3 font-semibold' onClickFunc={() => login(email, password)}>
-            {isLoading ? "Loading..." : "Login to my account"}
+            {isLoading ? "Loading..." : "Login to my account" }
           </Button>
         </form>
         <p className='font-semibold text-sm'>Don't have an account? <a className='text-[#5441ff]' href='/signup'>Sign Up</a></p>
