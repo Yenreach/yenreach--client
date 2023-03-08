@@ -35,13 +35,14 @@ const index = ({ page: initialPage, num_per_page, searchString, searchLocation }
   }
 
   useEffect(() => {
-    if (searchString) {
-      setSearch(searchString)
-    }
     if (searchLocation) {
       setLocation(searchLocation)
     }
-    handleSearch({preventDefault: () => {}})
+    if (searchString) {
+      setSearch(searchString)
+      handleSearch({preventDefault: () => {}})
+    }
+
   }, [searchString, searchLocation])
 
 
@@ -72,7 +73,6 @@ const index = ({ page: initialPage, num_per_page, searchString, searchLocation }
     staleTime: staleTime,
   })
 
-  console.log("filteredBusiness", filteredBusiness, "error", errorFilteredBusinesses, "aprrovedBusinesses", aprrovedBusinesses)
   
   const handlePageChange = (page) => {
     setPage(page)

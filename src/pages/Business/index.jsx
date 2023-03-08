@@ -6,6 +6,7 @@ import BusinessCard from '/src/components/ui/BusinessCard'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Button from '../../components/ui/Button'
+import BusinessReviewModal from '../../components/ui/BusinessReviewModal'
 import Computer from '../../assets/computer.svg'
 import StarFilled from '../../assets/businesses/starfilled.svg'
 import Attach from '../../assets/attach.svg'
@@ -16,12 +17,15 @@ import Photo3 from '../../assets/businesses/photo-3.svg'
 import Product1 from '../../assets/businesses/product-1.svg'
 import Product2 from '../../assets/businesses/product-2.svg'
 import Product3 from '../../assets/businesses/product-3.svg'
+import Star from '/src/assets/star.svg'
 import Mail from '../../assets/mail.svg'
 import Map from '../../assets/map.svg'
 
 
 const index = () => {
+  const [modalOpen, setModalOpen] = React.useState(false)
   const { id } = useParams()
+  
   
   const { data: business, error: errorBusiness } = useFetch({
     api: apiGetOneBusiness,
@@ -62,8 +66,6 @@ const index = () => {
     key: 'businessSubscriptionDetails'
   })
 
-  console.log("business", businessSubscriptionDetails, "error", errorBusinessSubscriptionDetails,)
-
   return (
       <>
         <Header />
@@ -84,16 +86,16 @@ const index = () => {
             </div>
           </div>
           <section className='px-4 md:px-10 lg:px-20 mb-20 relative'>
-            <div className='sm:w-4/5 md:w-2/3 lg:w-3/5'>
+            <div className='sm:w-4/5 md:w-2/3 lg:w-3/5 max-w-md xl:max-w-xl'>
               <h2 className='text-2xl text-green2 font-semibold mb-1'>About Business</h2>
               <p className='text-[#476788] text-smm mb-4'>
                 {business.description}
               </p>
               <h3 className='text-green2 font-medium mb-1'>Tags</h3>
               <div className='flex items-center flex-wrap gap-3 text-xs text-white md:w-7/8 mb-16'>
-                {categories?.map((category, index) => (
+                {categories?.map((category, index) => 
                   <span key={index} className='bg-green2 rounded-full px-4 py-2'>{category?.category}</span>
-                ))}
+                )}
               </div>
               <div className='lg:absolute top-0 right-24 lg:max-w-[396px]'>
                 <h2 className='text-2xl text-green2 font-semibold mb-2'>Business Info</h2>
@@ -134,7 +136,7 @@ const index = () => {
                 <img src={Product3} alt="" className='h-20' />
               </div>
               <h2 className='text-2xl text-green2 font-semibold mb-3'>Reviews</h2>
-              <div className='flex items-center gap-3 mb-10'>
+              {/* <div className='flex items-center gap-3 mb-10'>
                 <span className='text-sm font-medium opacity-90'>Rate this business</span> 
                 <div className='flex items-center gap-0.5'>
                   <img src={StarFilled} alt="" className='w-6' />
@@ -143,26 +145,43 @@ const index = () => {
                   <img src={StarFilled} alt="" className='w-6' />
                   <img src={StarFilled} alt="" className='w-6' />
                 </div>
-              </div>
-              <div className='border-2 border-gray rounded-xl p-4 px-6 py-8 pb-14 relative mb-5'>
-                <textarea className='w-full text-xs opacity-80' name="review" id="review" cols="40" rows="8" defaultValue={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus at massa lobortis et consequat maecenas commodo. Pellentesque enim pulvinar magna interdum egestas sed quam nunc. In proin semper egestas consectetur fermentum, donec nibh. Interdum felis, sed tristique viverra est at blandit. Ultricies leo velit nisl commodo ultricies a et tortor eu. Nisl urna, convallis sit erat sed.Quisque vitae viverra amet fringilla justo dolor mauris nunc. Nunc, pharetra, fermentum quam sit elementum amet, sed tortor sodales. Accumsan odio aliquet imperdiet nunc vitae proin."}>
-                </textarea>
-                <div className='flex items-end gap-4 absolute bottom-2 right-6'>
-                  <img src={Attach} alt="" />
+              </div> */}
+              <div className='py-2 pb-14 relative mb-5 max-w-lg'>
+                <div className='p-4 bg-[#68888f21] rounded-xl'>
+                  <div className='flex overflow-hidden gap-2 w-full'>
+                    {[0,1,2].map((item, index) => 
+                      <div className='border-2 border-black/10 rounded-xl p-5 px-5 bg-green2 text-white min-w-[250px] max-w-[300px] overflow-hidden'>
+                        <div className='flex items-center gap-2 mb-3'>
+                          <img src={Star} alt="" />
+                          <span className='text-sm'>NiCK</span>
+                        </div>
+                        <p className='text-xsm text-white'>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque et quidem obcaecati? Ut, et eligendi quos veniam modi obcaecati facere sapiente libero iure non amet quisquam voluptas. Asperiores, magnam.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className='flex items-end gap-4 absolute bottom-2 right-0'>
+                  <Button override={true} className='rounded px-5 py-1.5'>
+                    Previous
+                  </Button>
                   <Button className='rounded px-5 py-1.5'>
-                    Submit
+                    Next
                   </Button>
                 </div>
               </div>
-              <p className='text-smm text-green opacity-70 underline'>Check out some reviews</p>
+              {/* Review modal*/}
+              {modalOpen &&  <BusinessReviewModal setModalOpen={setModalOpen} modalOpen={modalOpen} />} 
+              <p onClick={() => setModalOpen(true)} className='text-smm text-green opacity-70 underline cursor-pointer'>Write a review</p>
             </div>
           </section>
           <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 border-t-2 border-gray mb-32'>
             <h2 className='text-2xl text-green2 font-semibold mb-2'>People also viewed</h2>
             <div className='grid grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 xl:grid-cols-bus4 gap-6'>
-              {relatedBusinesses?.map((business, index) => (
+              {relatedBusinesses?.map((business, index) => 
                 <BusinessCard key={business.id} business={business} />
-              ))}
+              )}
               </div>
           </section>
         </>}

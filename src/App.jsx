@@ -66,7 +66,7 @@ function App() {
             <Route exact path="/users/jobs/:id/Applicants" element={<Applicants />} />
             <Route exact path="/users/jobs/:id/add-job" element={<AddJob />} />
             <Route exact path="/users/jobs/:id/job-success" element={<JobSuccess />} />
-            <Route exact path="/users" element={<BusinessDash />} />
+            <Route exact path="/users/" element={<BusinessDash />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
         </ScrollToTop>

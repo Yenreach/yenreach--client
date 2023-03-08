@@ -1,6 +1,5 @@
 import React from 'react'
-import NoBusiness from '../../../assets/dashboard/no-business.svg'
-import Check from '../../../assets/check.svg'
+import Check from '/src/assets/check.svg'
 
 
 const index = () => {

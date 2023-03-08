@@ -13,8 +13,6 @@ import Add from '../../../assets/add.svg'
 import NoBusiness from '../../../assets/dashboard/no-business.svg'
 
 const index = () => {
-    const [business, setBusinesses] = React.useState(false)
-
     const { isLoading, error, data: businesses } = useQuery({
         queryKey: ['userBusinesses'],
         queryFn: () => getData(apiGetAllBusinesses),
@@ -28,7 +26,7 @@ const index = () => {
 
     return (
         <Dashboard>
-            <div className='flex-1 overflow-scroll'>
+            <div className='flex-1 overflow-hidden'>
                 <Head />
                 <div className='px-7 py-4'>
                     {!businesses && <h1 className='text-green font-medium text-xl mb-2'>Businesses</h1>}
@@ -85,10 +83,12 @@ const index = () => {
                 {!businesses  && 
                     <div className='flex flex-col justify-center items-center rounded-lg font-arialsans h-[550px] sm:h-auto'>
                         <img src={NoBusiness} alt="" className='mb-7' />
-                        <span className='text-center text-[#476788] mb-9'>
-                        You do not have any business listed yet
-                        </span>
-                        <span onClick={() => setBusinesses(true)} href=""className='text-green underline underline-offset-2'>Click here to add a new business</span>
+                            <span className='text-center text-[#476788] mb-9'>
+                            You do not have any business listed yet
+                            </span>
+                        <Link to="/users/add-business">   
+                            <span href=""className='text-green underline underline-offset-2'>Click here to add a new business</span>
+                        </Link>
                     </div>
                 }
             </div>

@@ -76,10 +76,19 @@ module.exports = {
           '50%': { transform: 'scale(0.96))' },
           '75%': { transform: 'scale(1.01)' },
           '100%': { transform: 'scale(1)' },
-        }
+        },
+        slideIn: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(350%)' },
+        },
+        around: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
       },
       animation: {
         button_click: 'wiggle 200ms ease-in-out',
+        slideIn: 'slideIn 0.3s linear infinite',
       }
     },
     

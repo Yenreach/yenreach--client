@@ -27,8 +27,8 @@ const index = () => {
     queryFn: () => getData(apiGetOneBusiness, id),
   })
   
-  const { data: categories } = useQuery({
-    queryKey: ['categories'],
+  const { data: userCategories } = useQuery({
+    queryKey: ['userCategories'],
     queryFn: () => getData(apiGetBusinessCategories, id),
   })
 
@@ -76,7 +76,7 @@ const index = () => {
                 {business?.description}
               </p>
               <div className='flex items-center flex-wrap gap-3 text-xsm text-green md:w-7/8 mb-16'>
-                {categories?.map(category =><span key={category.id} className='bg-[#E0E5EE] px-4 py-2 font-medium whitespace-nowrap'>{category.category}</span>)}
+                {userCategories?.map(category =><span key={category.id} className='bg-[#E0E5EE] px-4 py-2 font-medium whitespace-nowrap'>{category.category}</span>)}
                 </div>
             </div>
             <div className='mb-11'>

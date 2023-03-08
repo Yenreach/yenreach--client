@@ -1,10 +1,10 @@
 import React from 'react'
-import useUploadImage from '../../../hooks/useUploadImage'
-import Button from '../../../components/ui/Button'
-import Input from '../../../components/ui/Input'
-import Add from '../../../assets/add.svg'
+import useUploadImage from '../../../../hooks/useUploadImage'
+import Button from '../../../../components/ui/Button'
+import Input from '../../../../components/ui/Input'
+import Add from '/src/assets/add.svg'
 import { useMutation } from "@tanstack/react-query";
-import { apiAddBusiness } from '../../../services/UserService'
+import { apiAddBusiness } from '../../../../services/UserService'
 
 
 const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) => {    
