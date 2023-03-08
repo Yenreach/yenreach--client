@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { apiBusinessOfTheWeek, apiGetApprovedBusinesses } from '../../services/CommonService'
+import { apiBusinessOfTheWeek } from '../../services/CommonService'
 import getData from '../../utils/getData'
 import Header from '/src/components/Header'
 import Footer from '../../components/Footer'

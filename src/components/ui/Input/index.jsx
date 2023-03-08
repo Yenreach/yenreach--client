@@ -43,7 +43,7 @@ Input.defaultProps = {
     required: false,
     variant: 'business',
     override: false,
-    textareat: false,
+    textarea: false,
   };
   
   Input.propTypes = {

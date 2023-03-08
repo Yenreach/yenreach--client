@@ -11,7 +11,7 @@ const BusinessCard = ({ className, business }) => {
     className,
     ['py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-fit flex flex-col justify-between']
   )
-  console.log(className)
+  // console.log(className)
   return (
     <Link to={`/business/${business.verify_string}`}>
       <div className={styles(className)}>

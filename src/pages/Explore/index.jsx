@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -11,8 +11,6 @@ import ProductIcon from '../../assets/products/product.svg'
 import BusinessActive from '../../assets/businesses/business-active.svg'
 import JobActive from '../../assets/jobs/job-active.svg'
 import ProductActive from '../../assets/products/product-active.svg'
-import Location from '../../assets/location.svg'
-import { useState } from 'react'
 
 
 const index = () => {

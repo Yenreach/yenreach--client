@@ -15,12 +15,15 @@ import BusinessCard from '../ui/BusinessCard'
 import ProductCard from '../ui/ProductCard'
 import JobCard from '../ui/JobCard'
 
+const staleTime = 1000 * 60 * 60 * 24
+
 const index = () => {
     const [activeTab, setActiveTab] = useState('business');
     // console.log(activeTab)
     const { data: aprrovedBusinesses, error: errorApprovedBusinesses } = useQuery({
         queryKey: ['aprrovedBusinesses'],
         queryFn: () => getData(apiGetApprovedBusinesses),
+        staleTime: staleTime
         })
 
         const { data: products, error: errorProducts } = useQuery({

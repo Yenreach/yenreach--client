@@ -4,12 +4,12 @@ import { apiGetApprovedBusinesses, apiGetFilledCategories, apiGetBusinessStates,
 import useFetch from '/src/hooks/useFetch'
 import getData from '../../utils/getData'
 import { paginate } from '../../utils/pagination'
+import Loader from '../Loader'
 import Input from '/src/components/ui/Input'
 import Button from '/src/components/ui/Button'
 import Search from '/src/assets/search.svg'
 import BusinessCard from '../ui/BusinessCard'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
-import SearchBar from '../ui/SearchBar'
 import Location from '../../assets/location.svg'
 
 const staleTime = 1000 * 60 * 60 * 24
@@ -20,18 +20,18 @@ const index = ({ page: initialPage, num_per_page, searchString, searchLocation }
   const [location, setLocation] = useState('')
   const [enabled, setEnabled] = useState(false)
 
+
   const handleSearch = (e) => {
     e.preventDefault()
-    console.log("search", search, "location", location)
     
     if (!enabled) {
+      console.log("enabled")
       setEnabled(true)
+      refetch()
     } else {    
+      console.log("refetching")
       refetch()
     }
-
-    // setSearch('')
-    // setLocation('')
   }
 
   useEffect(() => {
@@ -42,20 +42,19 @@ const index = ({ page: initialPage, num_per_page, searchString, searchLocation }
       setSearch(searchString)
       handleSearch({preventDefault: () => {}})
     }
-
   }, [searchString, searchLocation])
 
 
   
-  const { data: aprrovedBusinesses, error: errorApprovedBusinesses } = useQuery({
+  const { data: aprrovedBusinesses, error: errorApprovedBusinesses, isLoading: aprrovedBusinessesLoading  } = useQuery({
     queryKey: ['aprrovedBusinesses'],
     queryFn: () => getData(apiGetApprovedBusinesses),
     staleTime: staleTime,
   })
 
-  const { data: filteredBusiness, error: errorFilteredBusinesses, refetch } = useQuery({
+  const { data: filteredBusiness, error: errorFilteredBusinesses, refetch, isLoading: filteredBusinessesLoading, isFetching: filteredBusinessesFetching, } = useQuery({
     queryKey: ['filteredBusiness'],
-    queryFn: () => getData(apiBusinessSearch, {search, location}),
+    queryFn: () => getData(apiBusinessSearch, { search: search || searchString, location: location || searchLocation }),
     staleTime: staleTime,
     enabled
   })
@@ -82,9 +81,10 @@ const index = ({ page: initialPage, num_per_page, searchString, searchLocation }
   });
   }
 
-console.log("search", encodeURI(search),  encodeURIComponent(search), "location", location, "enabled", enabled)
   return (
     <>
+        {!filteredBusinessesFetching && aprrovedBusinessesLoading && <Loader loader={4} />}
+        {enabled && filteredBusinessesFetching && <Loader loader={1} />}
 			<div className='flex items-center justify-center w-full gap-10'>
 				<p className='font-medium text-smm'>Currently Exploring businesses in</p>
 				<div className="flex items-center justify-center gap-2 px-4 py-2 bg-green-light">
@@ -111,7 +111,7 @@ console.log("search", encodeURI(search),  encodeURIComponent(search), "location"
 		</form>
 			{/* <SearchBar variant='business' /> */}
       <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {aprrovedBusinesses && paginate({page, num_per_page, data: filteredBusiness ||aprrovedBusinesses})?.data?.slice(0,20).map((business) => (
+        {aprrovedBusinesses && paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.data?.slice(0,20).map((business) => (
           <BusinessCard key={business.id} business={business} />
         ))}
       </div>
@@ -119,13 +119,13 @@ console.log("search", encodeURI(search),  encodeURIComponent(search), "location"
         New Job Listings available       
       </div>
       <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {aprrovedBusinesses && paginate({page, num_per_page, data: filteredBusiness || aprrovedBusinesses})?.data?.slice(20,40).map((business) => (
+        {aprrovedBusinesses && paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.data?.slice(20,40).map((business) => (
           <BusinessCard key={business.id} business={business} />
         ))}
       </div>
       <div className="flex items-center flex-wrap mt-10 w-fit">
         <MdChevronLeft size={"1.5rem"} />
-        {aprrovedBusinesses && [...Array(paginate({page, num_per_page, data: filteredBusiness || aprrovedBusinesses})?.pages).keys()]?.map((page_num) => 
+        {aprrovedBusinesses && [...Array(paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.pages).keys()]?.map((page_num) => 
           <span key={page_num+1} onClick={() => handlePageChange(page_num+1)} className={`${page===page_num+1 && "border-b"} mx-2 font-medium cursor-pointer`}>{page_num + 1}</span>
         )}
         <MdChevronRight size={"1.5rem"} />

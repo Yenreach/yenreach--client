@@ -2,7 +2,9 @@ import { createContext, useEffect, useReducer } from "react";
 
 export const AuthContext = createContext({})
 
-const initialState = JSON.parse(sessionStorage.getItem("user")) || {
+const user = sessionStorage.getItem("user") 
+
+const initialState = user ? JSON.parse(user) : {
     user: null
 };
 
