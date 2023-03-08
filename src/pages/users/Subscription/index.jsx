@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 import { TfiCrown } from 'react-icons/tfi'
 import { useQuery } from '@tanstack/react-query'
 import getData from '/src/utils/getData'
 import { apiGetAllSubscriptions,apiGetAllSubscriptionPlans } from '/src/services/UserService'
+import SubscriptionModal from './SubscriptionModal'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '/src/components/ui/Button'
@@ -13,6 +14,8 @@ import { MdArrowDropDown } from 'react-icons/md'
 
 
 const Subscription = () => {
+    const [modalOpen, setModalOpen] = useState(false)
+
     const { isLoading, error, data: subscriptions } = useQuery({
         queryKey: ['subscriptions'],
         queryFn: () => getData(apiGetAllSubscriptions),
@@ -29,7 +32,7 @@ const Subscription = () => {
     
   return (
     <Dashboard> 
-    <div className='flex-1 overflow-y-auto overflow-hidden'>
+    <div className='flex-1 overflow-y-auto overflow-hidden relative'>
         <Head />
         <section className='p-8 px-4 sm:px-8 text-sm md:pt-16 py-16'>
             <div className='flex flex-wrap gap-4'>
@@ -71,7 +74,7 @@ const Subscription = () => {
                             <div>
                                 <span className='font-medium text-lg'>₦1000</span><span>/month</span>
                             </div>
-                            <Button className='py-1.5 px-3 rounded-sm'>
+                            <Button onClickFunc={() => setModalOpen(true)} className='py-1.5 px-3 rounded-sm'>
                                 Subscribe
                             </Button>
                         </div>
@@ -79,6 +82,7 @@ const Subscription = () => {
                 )}
             </div>
         </section>
+        {modalOpen && <SubscriptionModal modalOpen={modalOpen} setModalOpen={setModalOpen} />}
     </div>
 </Dashboard>
   )
