@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '/src/components/ui/Button'
 
-const BusinessReview = ({ setModalOpen, modalOpen }) => {
+const SubscriptionModal = ({ setModalOpen, modalOpen }) => {
 
     React.useEffect(() => {
         if (modalOpen) {
@@ -43,4 +43,4 @@ const BusinessReview = ({ setModalOpen, modalOpen }) => {
   )
 }
 
-export default BusinessReview
+export default SubscriptionModal
