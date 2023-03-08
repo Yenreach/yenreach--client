@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../../components/Header';
-import PasswordSvg from '../../assets/password.svg';
-import ArrowDownSvg from '../../assets/arrow-down.svg';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import Button from '../../components/ui/Button';
 
 const index = () => {

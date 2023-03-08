@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header';
-import PasswordSvg from '../../assets/password.svg';
 import ArrowDownSvg from '../../assets/arrow-down.svg';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import Button from '../../components/ui/Button';
 
 const index = () => {
@@ -28,7 +28,7 @@ const index = () => {
             <label className='text-sm font-semibold' htmlFor="password">Password</label>
             <div className="relative w-full">
               <input className='border-2 p-2 w-full border-[#BABFC5] bg-[#f5f5f791] rounded-md' type="password" name='password' id='name' />
-              <img className='absolute top-0 bottom-0 m-auto right-3 scale-75' src={PasswordSvg} alt="" />
+              <BsEye className='absolute top-0 bottom-0 m-auto right-3 scale-110' />
             </div>
           </div>
           <div className="flex flex-col gap-1">
