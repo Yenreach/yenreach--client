@@ -81,41 +81,42 @@ const index = () => {
                 <div className='md:flex justify-between gap-6 md:mb-4'>
                     <div className='w-full mb-8 md:mb-0'>
                         <label htmlFor="company_name" className='font-medium text-sm'>Company Name</label>
-                        <Input required onChange={handleJob} className='border-gray rounded-lg' type="text" name="company_name" id="company_name" />
+                        <Input required onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="company_name" id="company_name" />
                     </div>
                     <div className='w-full mb-8 md:mb-0'>
                         <label htmlFor="job_title" className='font-medium text-sm'>Job Title</label>
-                        <Input required onChange={handleJob} className='border-gray rounded-lg' type="text" name="job_title" id="job_title" />
+                        <Input required onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="job_title" id="job_title" />
                     </div>
                     <div className='w-full '>
                         <label htmlFor="job_type" className='font-medium text-sm'>Job Type</label>
-                        <Input required onChange={handleJob} className='border-gray rounded-lg' type="text" name="job_type" id="job_type" />
+                        <Input required onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="job_type" id="job_type" />
                     </div>
                 </div>
                 <div className='mb-8 md:mb-4 md:flex justify-between gap-6'>
                     <div className='mb-8 md:mb-0 w-full'>
                         <label htmlFor="location" className='font-medium text-sm'>Location</label>
-                        <Input required onChange={handleJob} className='border-gray rounded-lg mt-2' type="text" name="location" id="location" 
+                        <Input required onChange={handleJob} variant={"job"} className='border-gray rounded-lg mt-2' type="text" name="location" id="location" 
                         />
                     </div>
                     <div className='w-full'>
                         <label htmlFor="salary" className='font-medium text-sm'>Salary</label>
-                        <Input required onChange={handleJob} className='border-gray rounded-lg mt-2' type="number" name="salary" id="salary" 
+                        <Input required onChange={handleJob} variant={"job"} className='border-gray rounded-lg mt-2' type="number" name="salary" id="salary" 
                         />
                     </div>
                 </div>
                 <div className='mb-8 md:mb-4'>
                     <label htmlFor="job_overview" className='font-medium text-sm'>Job Overview</label>
-                    <textarea required onChange={handleJob} name="job_overview" id="job_overview" cols="30" rows="6" className='w-full border-2 outline-none focus:invalid:border-red-400 invalid:border-red-400 focus:border-sky-700 hover:border-sky-700 cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' placeholder='Enter job Description' ></textarea>
+                    <Input required={true} onChange={handleJob} variant={"job"} textarea name="job_overview" id="job_overview" cols="30" rows="6" className='border-gray rounded-lg' placeholder='Enter job Description' />
                 </div>
                 <div className='mb-8 md:mb-4'>
                     <label htmlFor="job_benefit" className='font-medium text-sm'>Job Perks and Benefits</label>
-                    <textarea required onChange={handleJob} name="job_benefit" id="job_benefit" cols="30" rows="6" className='w-full border-2 outline-none focus:invalid:border-red-400 invalid:border-red-400 focus:border-sky-700 hover:border-sky-700 cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' placeholder='Enter job Description' ></textarea>
+                    <Input required={true} onChange={handleJob} variant={"job"} textarea name="job_benefit" id="job_benefit" cols="30" rows="6" className='border-gray rounded-lg' placeholder='Enter job Perks and Benefits' />
+
                 </div>
                 <div className='mb-8 md:mb-4 md:flex justify-between gap-6'>
                     <div className='mb-8 md:mb-0 w-full'>
                         <label htmlFor="job_tags" className='font-medium text-sm'>Tags</label>
-                        <select onChange={handleCategory} required className='w-full border-2 outline-none focus:invalid:border-red-400 invalid:border-red-400 focus:border-sky-700 hover:border-sky-700 cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' name="job_tags" id="job_tags" placeholder='Enter Categoies'>
+                        <select onChange={handleCategory} required className='w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-blue cursor-pointer rounded-lg' name="job_tags" id="job_tags" placeholder='Enter Categoies'>
                                 <option value="">Select Product Categories</option>
                                 {job_tags?.map((tag) => (
                                     <option key={tag.id} value={tag.name}>{tag.name}</option>

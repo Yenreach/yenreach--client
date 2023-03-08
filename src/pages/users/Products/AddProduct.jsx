@@ -90,16 +90,16 @@ const index = () => {
                 <form className='p-8 px-4 sm:px-8 bg-white rounded-2xl' onSubmit={handleSubmit}>
                     <div className='mb-8'>
                         <label htmlFor="name" className='font-medium text-sm'>Product Name</label>
-                        <Input required onChange={handleProduct} className='border-gray rounded-lg mt-2' type="text" name="name" id="name" placeholder='Enter product name' />
+                        <Input required onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="text" name="name" id="name" placeholder='Enter product name' />
                     </div>
                     <div className='mb-8'>
                         <label htmlFor="description" className='font-medium text-sm'>Description</label>
-                        <textarea required onChange={handleProduct} name="description" id="description" cols="30" rows="10" className='w-full border-2 outline-none focus:invalid:border-red-400 invalid:border-red-400 focus:border-sky-700 hover:border-sky-700 cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' placeholder='Enter product Description' ></textarea>
+                        <Input required={true} onChange={handleProduct} variant={"product"} textarea name="description" id="description" cols="30" rows="10" className='border-gray rounded-lg' placeholder='Enter your business Discription' />
                     </div>
                     <div className='mb-8 md:flex justify-between gap-9'>
                         <div className='mb-8 w-full'>
                             <label htmlFor="categories" className='font-medium text-sm'>Categories</label>
-                            <select onChange={handleCategory} required className='w-full border-2 outline-none focus:invalid:border-red-400 invalid:border-red-400 focus:border-sky-700 hover:border-sky-700 cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' name="categories" id="categories" placeholder='Enter Categoies'>
+                            <select onChange={handleCategory} required className='w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-orange cursor-pointer rounded-lg' name="categories" id="categories" placeholder='Enter Categoies'>
                                 <option value="">Select Product Categories</option>
                                 {categories?.map((category) => (
                                     <option key={category.id} value={category.name}>{category.name}</option>
@@ -113,26 +113,26 @@ const index = () => {
                         </div>
                         {/* <div className='w-full'>
                             <label htmlFor="name" className='font-medium text-sm'>Add Tags</label>
-                            <Input required onChange={handleProduct} className='border-gray rounded-lg mt-2' type="text" name="" id="" placeholder='Enter your business Email Address' />
+                            <Input required onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="text" name="" id="" placeholder='Enter your business Email Address' />
                         </div> */}
                     </div>
                     <div className='mb-8 md:flex justify-between gap-9'>
                         <div className='mb-8 w-full'>
                             <label htmlFor="price" className='font-medium text-sm'>Price</label>
-                            <Input required onChange={handleProduct} className='border-gray rounded-lg mt-2' type="number" name="price" id="price" placeholder='Enter Price' />
+                            <Input required onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="price" id="price" placeholder='Enter Price' />
                         </div>
                         <div className='mb-8 w-full'>
                             <label htmlFor="quantity" className='font-medium text-sm'>Quantity</label>
-                            <Input required onChange={handleProduct} className='border-gray rounded-lg mt-2' type="number" name="quantity" id="quantity" placeholder='Enter Available Quantity' />
+                            <Input required onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="quantity" id="quantity" placeholder='Enter Available Quantity' />
                         </div>
                         <div className='mb-8 w-full'>
                             <label htmlFor="color" className='font-medium text-sm'>Color</label>
-                            <Input required onChange={handleProduct} className='border-gray rounded-lg mt-2' type="text" name="color" id="color" placeholder='Enter Color' />
+                            <Input required onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="text" name="color" id="color" placeholder='Enter Color' />
                         </div>
                     </div>
                     <div className='mb-8'>
                         <label htmlFor="safety_tip" className='font-medium text-sm'>Safety Tip</label>
-                        <textarea required onChange={handleProduct} name="safety_tip" id="safety_tip" cols="30" rows="4" className='w-full border-2 outline-none focus:invalid:border-red-400 invalid:border-red-400 focus:border-sky-700 hover:border-sky-700 cursor-pointer px-4 py-3 bg-inherit border-gray rounded-lg' placeholder='Enter safety measures for product use if any' ></textarea>
+                        <Input required={true} onChange={handleProduct} variant={"product"} textarea name="safety_tip" id="safety_tip" cols="30" rows="4" className='border-gray rounded-lg' placeholder='Enter safety measures for product use if any' />
                     </div>
                     <div className='mb-8'>
                         <h6 className='font-medium text-sm'>Product Images</h6>
