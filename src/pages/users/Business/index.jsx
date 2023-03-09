@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { BsTelephone, BsGlobe, BsInstagram, BsWhatsapp } from 'react-icons/bs'
 import { MdOutlineMarkEmailUnread, MdOutlineLocationOn } from 'react-icons/md'
@@ -12,6 +12,7 @@ import Header from "/src/components/users/Header"
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '../../../components/ui/Button'
 import ArrowDown from '../../../assets/arrow-down.svg'
+import { MdChevronRight, MdChevronLeft } from 'react-icons/md'
 import BusinessIMG from '../../../assets/dashboard/business-img.svg'
 import Media from '../../../assets/dashboard/media.svg'
 import Good from '../../../assets/good.svg'
@@ -21,6 +22,7 @@ import Star from '../../../assets/star.svg'
 
 const index = () => {
   const { id } = useParams()
+  const reviewsContainerRef = useRef(null)
   
   const { isLoading, error, data: business } = useQuery({
     queryKey: ['userBusiness'],
@@ -46,18 +48,29 @@ const index = () => {
   const { data: reviews, error: errorReviews } = useFetch({
     api: apiGetBusinessReviews,
     param: id,
-    key: 'reviews'
+    key: 'userReviews'
   })
 
   const { data: reviewStats, error: errorStats } = useFetch({
     api: apiGetBusinessReviewsStats,
     param: id,
-    key: 'reviewStats'
+    key: 'userReviewStats'
   })
 
-  console.log("reviewStats", reviewStats)
-  // console.log("subscriptionError", subscriptionError)
+  // console.log("reviewStats", reviewStats)
 
+  console.log("reviewref", reviewsContainerRef.current)
+
+  const changeReview = (val) => {
+    if(reviewsContainerRef.current?.children?.length > 0){
+      if (val === -1) {
+        reviewsContainerRef.current.scrollLeft -= reviewsContainerRef.current?.children[0]?.clientWidth
+      } else {
+
+        reviewsContainerRef.current.scrollLeft += reviewsContainerRef.current?.children[0]?.clientWidth
+      }
+    }
+  }
 
   return (
     <Dashboard>
@@ -174,7 +187,7 @@ const index = () => {
                   {[...Array(reviewStats?.average).keys()].map((_, i) => <img key={i} src={Star} alt="" />)}
                 </div>
                 <p className='mb-9'>Your business is currently rated {reviewStats?.average} stars from the reviews of {reviewStats?.total} users</p>
-                <div className='flex flex-wrap overflow-hidden gap-6 w-full'>
+                <div ref={reviewsContainerRef} className='flex flex-wrap overflow-hidden gap-6 w-full'>
                   {reviews?.map(review => 
                   <div key={review.id} className='p-3 px-5 bg-[#F0F0F0] sm:w-96'>
                     <div className='flex items-center gap-2 mb-3'>
@@ -186,6 +199,14 @@ const index = () => {
                     </p>
                   </div>
                   )}
+                </div>
+                <div className='hidden lg:flex gap-4 items-center justify-end'>
+                  <span  onClick={changeReview} className="bg-green cursor-pointer p-0.5 rounded-l-full">
+                    <MdChevronLeft size="1.5rem" color='white' />
+                  </span>
+                  <span onClick={changeReview} className="bg-green cursor-pointer p-0.5 rounded-r-full">
+                    <MdChevronRight size="1.5rem" color='white' />
+                  </span>
                 </div>
               </div>
             </div>

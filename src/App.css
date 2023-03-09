@@ -5,10 +5,16 @@
 }
 html {
   max-width: 100vw;
+  /* scroll-behavior: smooth; */
 }
 body {
   width: 100%;
   overflow-x: hidden;
+}
+
+.move {
+  transform: translateX(-246px);
+  transition: transform 0.5s ease-in-out;
 }
 
 .grid-container--fill {
