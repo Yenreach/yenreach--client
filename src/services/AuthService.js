@@ -4,7 +4,7 @@ const servicePrefix = "/auth"
 
 export const apiRegister =  (data) => {
     return ApiAdapter.fetchData({
-        url: servicePrefix + "/register",
+        url:  "/add_user_api.php",
         method: "post",
         data
     })

@@ -20,6 +20,7 @@ const index = () => {
     return <Navigate to={{ pathname: '/users', state: { from: location } }} />
   }
 
+  
 
   return (
     <>
