@@ -24,59 +24,7 @@ export const apiAddJob = (data) => {
     })
 }
 
-/* Add Job Category */
-export const apiAddJobCategory = (data) => {
-    return ApiAdapter.fetchData({
-        url: `${servicePrefix}/add_job_category_api${serviceSuffix}`,
-        method: "post",
-        data    
-    })
-}
 
-/* Add Job Category List */
-export const apiAddJobCategoryList = (data) => {
-    return ApiAdapter.fetchData({
-        url: `${servicePrefix}/add_job_category_list_api${serviceSuffix}`,
-        method: "post",
-        data    
-    })
-}
-
-/* Add Job Photo */
-export const apiAddJobPhoto = (data) => {
-    return ApiAdapter.fetchData({
-        url: `${servicePrefix}/add_job_photo_api${serviceSuffix}`,
-        method: "post",
-        data    
-    })
-}
-
-/* Delete Job */
-export const apiDeleteJob = (data) => {
-    return ApiAdapter.fetchData({
-        url: `${servicePrefix}/delete_job_api${serviceSuffix}`,
-        method: "delete",
-        data    
-    })
-}
-
-/* Delete Job Category */
-export const apiDeleteJobCategory = (data) => {
-    return ApiAdapter.fetchData({
-        url: `${servicePrefix}/delete_job_category_api${serviceSuffix}`,
-        method: "delete",
-        data    
-    })
-}
-
-/* Delete Job Photo */
-export const apiDeleteJobPhoto = (data) => {
-    return ApiAdapter.fetchData({
-        url: `${servicePrefix}/delete_job_photo_api${serviceSuffix}`,
-        method: "delete",
-        data    
-    })
-}
 
 /* Get Jobs */
 export const apiGetAllJobs = () => {
@@ -86,27 +34,87 @@ export const apiGetAllJobs = () => {
     })
 }
 
+/* Get Jobs by business */
+export const apiGetAllBusinessJobs = (business_string) => {
+    return ApiAdapter.fetchData({
+        url: `${servicePrefix}/fetch_job_by_business_api${serviceSuffix}?string=${business_string}`,
+        method: "get",  
+    })
+}
+
 /* Get One Job */
-export const apiGetJob = () => {
+export const apiGetJob = (job_string) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/fetch_one_job_api${serviceSuffix}`,
+        url: `${servicePrefix}/fetch_one_job_api${serviceSuffix}?string=${job_string}`,
         method: "get",  
     })
 }
 
-/* Get Job Category */
-export const apiGetJobCategory = () => {
+/* Get One Application */
+export const apiGetApplication = (application_string) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/fetch_job_category_api${serviceSuffix}`,
+        url: `${servicePrefix}/fetch_one_application_api${serviceSuffix}?string=${application_string}`,
         method: "get",  
     })
 }
 
+/* Get All Applications by Job string */
+export const apiGetApplicationsByJob = (job_string) => {
+    return ApiAdapter.fetchData({
+        url: `${servicePrefix}/fetch_application_by_job_api${serviceSuffix}?string=${job_string}`,
+        method: "get",  
+    })
+}
+
+/* Get All Applications by User string */
+export const apiGetApplicationsByUser = (user_string) => {
+    return ApiAdapter.fetchData({
+        url: `${servicePrefix}/fetch_application_by_user_api${serviceSuffix}?string=${user_string}`,
+        method: "get",  
+    })
+}
+
+/* Delete Application */
+export const apiDeleteApplication = ({application_string, job_string }) => {
+    return ApiAdapter.fetchData({
+        url: `${servicePrefix}/delete_application_api${serviceSuffix}?application_string=${application_string}&job_string=${job_string}`,
+        method: "delete",
+        data    
+    })
+}
+
+/* Delete Job */
+export const apiDeleteJob = ({business_string, job_string }) => {
+    return ApiAdapter.fetchData({
+        url: `${servicePrefix}/delete_job_api${serviceSuffix}?job_string=${job_string}&business_string=${business_string}`,
+        method: "get",
+    })
+}
+
+
+
+/* Submit Job Application */
+export const apiSubmitApplication = (data) => {
+    return ApiAdapter.fetchData({
+        url: `${servicePrefix}/submit_job_application_api${serviceSuffix}`,
+        method: "post",
+        data
+    })
+}
 /* Update Job */
 export const apiUpdateJob = (data) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}/update_job_api${serviceSuffix}`,
         method: "patch",
+        data
+    })
+}
+
+/* Update Job status */
+export const apiUpdateJobStatus = (data) => {
+    return ApiAdapter.fetchData({
+        url: `${servicePrefix}/update_job_status_api${serviceSuffix}`,
+        method: "post",
         data
     })
 }

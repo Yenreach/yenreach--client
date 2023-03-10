@@ -3,7 +3,7 @@ import { createContext, useEffect, useReducer } from "react";
 export const AuthContext = createContext({})
 
 const user = sessionStorage.getItem("user") 
-// console.log("user", user, typeof user)
+console.log("user", user, typeof user)
 
 const initialState = user ? JSON.parse(user) : {
     user: null
@@ -17,6 +17,7 @@ export const authReducer = (state, action) => {
                 user: action.payload
             }
         case "LOGOUT":
+            sessionStorage.setItem("user", null)
             return {
                 user: null
             }

@@ -44,13 +44,13 @@ const index = () => {
         setJob(prev => ({...prev, [event.target.name]: event.target.value }))
     }
 
-    const handleCategory = (event) => {
-        setJob(prev => ({...prev, [event.target.name]: [...job.job_tags, event.target.value] }))
+    const handleTags = (event) => {
+        setJob(prev => ({...prev, [event.target.name]: [...job.job_tags, { tag: event.target.value }] }))
     }
 
     const addJobMutation = useMutation({
         mutationFn: (data) => {
-        console.log("data", data)
+          console.log("data", data)
           return apiAddJob(data)
         },
         onSuccess: (data, variables, context) => {
@@ -116,15 +116,15 @@ const index = () => {
                 <div className='mb-8 md:mb-4 md:flex justify-between gap-6'>
                     <div className='mb-8 md:mb-0 w-full'>
                         <label htmlFor="job_tags" className='font-medium text-sm'>Tags</label>
-                        <select onChange={handleCategory} required className='w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-blue cursor-pointer rounded-lg' name="job_tags" id="job_tags" placeholder='Enter Categoies'>
+                        <select onChange={handleTags} required className='w-full border-2 outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-blue cursor-pointer rounded-lg' name="job_tags" id="job_tags" placeholder='Enter Categoies'>
                                 <option value="">Select Product Categories</option>
                                 {job_tags?.map((tag) => (
                                     <option key={tag.id} value={tag.name}>{tag.name}</option>
                                 ))}
                             </select>
                             <div>
-                                {job.job_tags?.map((tag) => (
-                                    <span key={tag} className='bg-gray-200 text-gray-600 text-xs py-1 rounded-full mr-2'>{tag}</span>
+                                {job.job_tags?.map((tag, index) => (
+                                    <span key={index} className='bg-gray-200 text-gray-600 text-xs py-1 rounded-full mr-2'>{tag.tag}</span>
                                 ))}
                             </div>
                     </div>

@@ -3,22 +3,22 @@ import { useQuery } from '@tanstack/react-query'
 import getData from '/src/utils/getData'
 
 
-const useFetch = ({ api, param, key, clear=false, ...rest }) => {
+const useFetch = ({ api, param, key, ...rest }) => {
 
-    const { data, error, isLoading, isFetching, remove } = useQuery({
-        queryKey: [key],
+    const { data, error, isLoading, isFetching, remove, refetch } = useQuery({
+        queryKey: [...key],
         queryFn: () => getData(api, param),
         ...rest
     })
 
-    useEffect(() => {
-        return () => {
-          if (clear) remove()
-        }
-    }, [clear])
+    // useEffect(() => {
+    //     return () => {
+    //       if (clear) remove()
+    //     }
+    // }, [clear])
 
 
-    return { data, error, isLoading, isFetching }
+    return { data, error, isLoading, isFetching, remove, refetch }
 }
 
 export default useFetch

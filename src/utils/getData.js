@@ -1,7 +1,7 @@
 export default async function getData(service, params="") {
     const response = await service(params)
     if (response?.data?.status === "failed") {
-        // console.log("failed", response.data)
+        // console.log("failed_getdata: ", response.data.message)
         throw new Error(response?.data?.message)
     }
     // console.log("res", response)
