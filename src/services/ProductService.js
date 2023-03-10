@@ -86,6 +86,14 @@ export const apiGetAllProducts = () => {
     })
 }
 
+/* Get Products by Business string */
+export const apiGetAllBusinessProducts = (business_string) => {
+    return ApiAdapter.fetchData({
+        url: `${servicePrefix}/fetch_product_by_business_api${serviceSuffix}?string=${business_string}`,
+        method: "get",  
+    })
+}
+
 /* Get One Product */
 export const apiGetProduct = () => {
     return ApiAdapter.fetchData({
@@ -106,6 +114,15 @@ export const apiGetProductCategory = () => {
 export const apiUpdateProduct = (data) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}/update_product_api${serviceSuffix}`,
+        method: "patch",
+        data
+    })
+}
+
+/* Update Product Status */
+export const apiUpdateProductStatus = (data) => {
+    return ApiAdapter.fetchData({
+        url: `${servicePrefix}/update_product_status_api${serviceSuffix}`,
         method: "patch",
         data
     })

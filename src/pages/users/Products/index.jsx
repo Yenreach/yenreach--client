@@ -1,16 +1,11 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
-import getData from '/src/utils/getData'
-import { apiGetAllProducts } from '/src/services/ProductService'
+import useFetch from '/src/hooks/useFetch'
+import { apiGetAllBusinessProducts } from '/src/services/ProductService'
 import Header from "/src/components/users/Header"
 import MUIDataTable from "mui-datatables";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AiOutlinePlus } from 'react-icons/ai'
-import DP from '../../../assets/dashboard/img.svg'
-import ArrowDown from '../../../assets/arrow-down.svg'
-import Head from '../../../components/users/Head'
-import Input from '../../../components/ui/Input'
 import Button from '../../../components/ui/Button'
 import Dashboard from "../../../components/layout/Dashboard"
 
@@ -23,11 +18,14 @@ const options = {
 const Products = () => {
   const { id } = useParams()
   
-  const { isLoading, error, data: products } = useQuery({
-    queryKey: ['userProducts'],
-    queryFn: () => getData(apiGetAllProducts),
+  const { isLoading, error: errorProducts, data: products } = useFetch({
+    key: ['userProducts', id],
+    api: apiGetAllBusinessProducts,
+    param: id,
   })
-  console.log("products", products)
+
+  
+  console.log("products", products, errorProducts)
 
 
   const columns = [
@@ -211,7 +209,7 @@ const Products = () => {
             <ThemeProvider theme={getMuiTheme()}>
                 <MUIDataTable
                     title={"Products"}
-                    data={products ? products : []}
+                    data={[]}
                     columns={columns}
                     options={options}
                 />

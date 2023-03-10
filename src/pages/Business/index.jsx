@@ -28,65 +28,64 @@ const index = () => {
   const { data: business, error: errorBusiness, isFetching: businessFetching } = useFetch({
     api: apiGetOneBusiness,
     param: id,
-    key: 'business',
-    refetchOnMount: "always"
+    key: ['business', id],
+    // refetchOnMount: "always"
   })
   
   const { data: categories, error: errorCategories } = useFetch({
     api: apiGetBusinessCategories,
     param: id,
-    key: 'categories',
-    refetchOnMount: "always"
+    key: ['categories', id],
+    // refetchOnMount: "always"
   })
 
   
   const { data: reviews, error: errorReviews } = useFetch({
     api: apiGetBusinessReviews,
     param: id,
-    key: 'reviews',
-    refetchOnMount: "always",
-    staleTime: 1000,
-    clear: true
+    key: ['reviews', id],
+    // refetchOnMount: "always",
   })
   
   const { data: reviewsStats, error: errorReviewsStats } = useFetch({
     api: apiGetBusinessReviewsStats,
     param: id,
-    key: 'reviewsStats',
-    refetchOnMount: "always"
+    key:['reviewsStats', id],
+    // refetchOnMount: "always"
   })
 
 
   const { data: workingHours, error: errorWorkingHours } = useFetch({
     api: apiGetBusinessWorkingHours,
     param: id,
-    key: 'workingHours',
-    refetchOnMount: "always"
+    key: ['workingHours', id],
+    // refetchOnMount: "always"
   })
   const { data: branches, error: errorBranches } = useFetch({
     api: apiGetBusinessBranches,
     param: id,
-    key: 'branches',
-    refetchOnMount: "always"
+    key: ['branches', id],
+    // refetchOnMount: "always"
   })
   const { data: relatedBusinesses, error: errorRelatedBusinesses } = useFetch({
     api: apiGetRelatedBusinesses,
     param: id,
-    key: 'relatedBusinesses',
-    refetchOnMount: "always"
+    key: ['relatedBusinesses', id],
+    // refetchOnMount: "always"
   })
   const { data: businessSubscription, error: errorBusinessSubscription} = useFetch({
     api: apiGetBusinessSubscription,
     param: id,
-    key: 'businessSubscription',
-    refetchOnMount: "always"
+    key: ['businessSubscription', id],
+    // refetchOnMount: "always"
   })
   
   const { data: businessSubscriptionDetails, error: errorBusinessSubscriptionDetails,} = useFetch({
     api: apiGetBusinessSubscriptionByString,
     param: businessSubscription?.subscription_string,
-    key: 'businessSubscriptionDetails',
-    refetchOnMount: "always"
+    key: ['businessSubscriptionDetails', businessSubscription?.subscription_string],
+    enabled: !!businessSubscription?.subscription_string,
+    // refetchOnMount: "always"
   })
 
   console.log("reviewsContainerRef", reviews)
@@ -105,7 +104,7 @@ const index = () => {
   return (
       <>
         <Header />
-        {businessFetching && <Loader loader={2} />}
+        {businessFetching && <Loader loader={4} />}
         {business && 
         <>
           <div className='mt-24 mb-10 py-20 sm:py-12 px-4 md:px-10 lg:px-20 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center text-white flex items-center gap-5'>

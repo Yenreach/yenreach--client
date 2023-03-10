@@ -1,17 +1,14 @@
 import React, { useRef } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { BsTelephone, BsGlobe, BsInstagram, BsWhatsapp } from 'react-icons/bs'
 import { MdOutlineMarkEmailUnread, MdOutlineLocationOn } from 'react-icons/md'
 import { TbBrandFacebook } from 'react-icons/tb'
 import useFetch from '/src/hooks/useFetch'
-import { useQuery } from '@tanstack/react-query'
-import getData from '/src/utils/getData'
 import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessSubscription } from '/src/services/UserService'
 import { apiGetBusinessFacilities, apiGetBusinessReviews, apiGetBusinessReviewsStats } from '/src/services/CommonService'
 import Header from "/src/components/users/Header"
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '../../../components/ui/Button'
-import ArrowDown from '../../../assets/arrow-down.svg'
 import { MdChevronRight, MdChevronLeft } from 'react-icons/md'
 import BusinessIMG from '../../../assets/dashboard/business-img.svg'
 import Media from '../../../assets/dashboard/media.svg'
@@ -23,43 +20,46 @@ import Star from '../../../assets/star.svg'
 const index = () => {
   const { id } = useParams()
   const reviewsContainerRef = useRef(null)
-  
-  const { isLoading, error, data: business } = useQuery({
-    queryKey: ['userBusiness'],
-    queryFn: () => getData(apiGetOneBusiness, id),
-  })
-  
-  const { data: userCategories } = useQuery({
-    queryKey: ['userCategories'],
-    queryFn: () => getData(apiGetBusinessCategories, id),
-  })
 
-  const { error: subscriptionError, data: subscription } = useQuery({
-    queryKey: ['subscription'],
-    queryFn: () => getData(apiGetBusinessSubscription, id),
+  const { isLoading, error, data: business  } = useFetch({
+    api: apiGetOneBusiness,
+    param: id,
+    key: ['userBusiness', id],
+  })
+  
+  const { data: userCategories } = useFetch({
+    api: apiGetBusinessCategories,
+    param: id,
+    key: ['userCategories', id],
+  })
+  
+  const { error: subscriptionError, data: subscription } = useFetch({
+    api: apiGetBusinessSubscription,
+    param: id,
+    key: ['subscription', id],
   })
 
   const { data: facilities, error: errorFacilities } = useFetch({
     api: apiGetBusinessFacilities,
     param: id,
-    key: 'facilities'
+    key: ['facilities', id]
   })
 
   const { data: reviews, error: errorReviews } = useFetch({
     api: apiGetBusinessReviews,
     param: id,
-    key: 'userReviews'
+    key: ['userReviews', id]
   })
 
   const { data: reviewStats, error: errorStats } = useFetch({
     api: apiGetBusinessReviewsStats,
     param: id,
-    key: 'userReviewStats'
+    key: ['userReviewStats', id]
   })
 
   // console.log("reviewStats", reviewStats)
 
-  console.log("reviewref", reviewsContainerRef.current)
+  // console.log("reviewref", reviewsContainerRef.current)
 
   const changeReview = (val) => {
     if(reviewsContainerRef.current?.children?.length > 0){

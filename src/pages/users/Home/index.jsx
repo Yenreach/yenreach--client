@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
-import getData from '/src/utils/getData'
+import useFetch from '/src/hooks/useFetch'
 import { apiGetAllBusinesses } from '/src/services/UserService'
 import Button from '/src/components/ui/Button'
 import { MdAdd, MdStar } from 'react-icons/md'
@@ -13,16 +12,11 @@ import Add from '../../../assets/add.svg'
 import NoBusiness from '../../../assets/dashboard/no-business.svg'
 
 const index = () => {
-    const { isLoading, error, data: businesses } = useQuery({
-        queryKey: ['userBusinesses'],
-        queryFn: () => getData(apiGetAllBusinesses),
+    const { isLoading, error, data: businesses } = useFetch({
+        api: apiGetAllBusinesses,
+        key: ['userBusinesses'],
       })
     // console.log("data", businesses)
-    
-    // useEffect(() => {
-    //     businesses?.map(business => console.log("time", Date.now(business.created) ,business.created))
-    // }, [businesses])
-
 
     return (
         <Dashboard>
