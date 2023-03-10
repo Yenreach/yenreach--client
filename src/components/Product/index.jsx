@@ -3,6 +3,7 @@ import ProductCard from '../ui/ProductCard'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import SearchBar from '../ui/SearchBar'
 import Location from '../../assets/location.svg'
+
 import { useQuery } from '@tanstack/react-query'
 import { apiGetAllProducts } from '../../services/ProductService'
 import getData from '../../utils/getData'
@@ -24,10 +25,6 @@ const index = ({ page: initialPage, num_per_page }) => {
       top: 0,
       behavior: "smooth",
   });
-  }
-
-  if (products) {
-    console.log("pagination", paginate({page, num_per_page, data: products}))
   }
 
   return (

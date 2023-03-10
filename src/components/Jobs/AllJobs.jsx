@@ -10,7 +10,7 @@ const AllJobs = ({ jobs, setSelectedJobIndex, setTab }) => {
 			<div className="grid w-full grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
         {
           jobs.slice(0, 10).map((job, index) => (
-            <JobCard index={index} setSelectedIndex={setSelectedJobIndex} setTab={setTab} key={job.jobId} job={job} />
+            <JobCard index={index} setSelectedIndex={setSelectedJobIndex} setTab={setTab} key={job?.id} job={job} />
           ))
         }
         {/* <JobCard /> */}
@@ -20,8 +20,8 @@ const AllJobs = ({ jobs, setSelectedJobIndex, setTab }) => {
       </div>
       <div className="grid w-full grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
         {
-          jobs.slice(10, 21).map((job) => (
-            <JobCard key={job.jobId} job={job} />
+          jobs.slice(10, 21).map((job, index) => (
+            <JobCard index={index} setSelectedIndex={setSelectedJobIndex} setTab={setTab} key={job?.id} job={job} />
           ))
         }
       </div>

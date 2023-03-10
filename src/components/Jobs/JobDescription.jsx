@@ -3,10 +3,11 @@ import Button from '../ui/Button'
 import PropTypes from 'prop-types'
 
 const JobDescription = ({ job }) => {
+	console.log(job)
   return (
     <div className='flex flex-col w-[55%]'>
-		<div className="relative flex gap-3 justify-center overflow-hidden items-center w-full bg-blue px-4 py-6">
-			<svg className='absolute -top-4 -right-[20%]' width="488" height="383" viewBox="0 0 488 383" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<div className="relative flex gap-3 justify-center overflow-hidden items-center w-full -z-50 bg-blue px-4 py-6">
+			<svg className='absolute -top-4 -right-[20%] -z-10' width="488" height="383" viewBox="0 0 488 383" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<g opacity="0.45">
 				<path d="M359.724 5.62459C336.186 3.38521 315.122 10.799 294.154 18.6548C293.142 19.034 292.13 19.4143 291.117 19.7945C271.121 27.308 251.104 34.8292 228.789 34.667C207.485 34.512 187.558 25.8183 168.035 17.3007C165.644 16.2578 163.26 15.2175 160.88 14.1959C139.144 4.86637 117.748 -2.91045 95.7345 3.73556C85.2682 6.89533 78.7949 11.9787 74.7612 18.2983C70.7431 24.5934 69.1959 32.0395 68.4295 39.8306C68.0628 43.5581 67.8734 47.3861 67.6837 51.2171C67.6751 51.3923 67.6664 51.5675 67.6577 51.7427C67.4586 55.7562 67.2504 59.7706 66.8313 63.7155C65.9929 71.6074 64.316 79.1516 60.2385 85.7127C56.4615 91.7903 51.1719 97.4567 45.2726 102.965C41.4536 106.531 37.4076 110.006 33.3641 113.478C31.1509 115.379 28.9385 117.279 26.7644 119.193C20.6403 124.584 14.85 130.063 10.3759 135.863C5.8994 141.667 2.70964 147.832 1.83746 154.6C-1.92243 183.776 12.4967 213.861 41.0673 236.759C70.1989 260.106 112.88 282.857 160.201 281.755C184.041 281.2 202.01 271.842 219.261 261.044C222.375 259.095 225.464 257.1 228.559 255.102C242.636 246.013 256.835 236.845 274.118 231.48C287.574 227.303 303.657 226.777 319.574 226.256C322.464 226.162 325.348 226.067 328.21 225.951C337.493 225.575 346.533 224.969 354.691 223.367C362.849 221.765 370.178 219.159 376.013 214.747C381.902 210.295 384.406 205.102 385.045 199.508C385.679 193.967 384.477 188.064 383.059 182.185C382.838 181.268 382.612 180.351 382.385 179.435C381.151 174.438 379.927 169.481 379.606 164.657C379.229 158.982 380.114 153.576 383.698 148.645C389.788 140.266 399.687 132.892 411.104 125.948C418.746 121.301 427.014 116.878 435.225 112.485C439.283 110.313 443.328 108.149 447.277 105.969C459.177 99.399 470.193 92.6884 477.848 85.2601C485.514 77.8217 489.916 69.556 488.323 59.916C486.928 51.4789 481.329 44.1936 473.043 37.9517C464.753 31.7077 453.703 26.4518 441.246 22.0816C416.33 13.3399 385.632 8.08938 359.724 5.62459Z" stroke="white" strokeWidth="1.5"/>
 				<path d="M347.24 19.7124C326.243 17.7218 307.456 24.3126 288.771 31.2887C287.87 31.625 286.969 31.9622 286.069 32.2994C268.246 38.9729 250.42 45.6474 230.549 45.5034C211.581 45.3659 193.839 37.6525 176.438 30.0876C174.308 29.1616 172.183 28.2377 170.062 27.3303C150.694 19.0458 131.601 12.1266 111.953 18.0378C102.611 20.8485 96.8244 25.3731 93.2173 31.0048C89.6257 36.6123 88.2452 43.241 87.5617 50.1645C87.2347 53.4768 87.0658 56.8781 86.8969 60.2795C86.8891 60.4355 86.8814 60.5914 86.8736 60.7474C86.6962 64.3118 86.5108 67.8745 86.1376 71.375C85.3909 78.3782 83.8985 85.0629 80.2747 90.8737C76.9146 96.2617 72.207 101.288 66.9517 106.178C63.5494 109.344 59.9463 112.427 56.3439 115.51C54.3713 117.198 52.3989 118.886 50.4598 120.587C45.0016 125.376 39.8365 130.246 35.8442 135.404C31.8496 140.565 28.998 146.054 28.2181 152.084C24.8625 178.032 37.7323 204.776 63.2089 225.123C89.1779 245.864 127.232 266.08 169.427 265.101C190.695 264.607 206.722 256.287 222.1 246.695C224.877 244.963 227.631 243.191 230.389 241.416C242.934 233.345 255.577 225.21 270.967 220.45C282.947 216.744 297.267 216.277 311.452 215.814C314.028 215.73 316.599 215.646 319.151 215.543C327.425 215.209 335.485 214.67 342.762 213.247C350.038 211.823 356.583 209.505 361.796 205.577C367.062 201.609 369.306 196.977 369.878 191.986C370.445 187.048 369.37 181.792 368.107 176.572C367.909 175.756 367.707 174.941 367.505 174.127C366.406 169.69 365.317 165.296 365.032 161.021C364.697 155.995 365.483 151.215 368.662 146.857C374.079 139.43 382.888 132.888 393.061 126.723C399.869 122.597 407.233 118.671 414.55 114.77C418.167 112.841 421.773 110.919 425.294 108.982C435.899 103.147 445.724 97.1834 452.555 90.5782C459.396 83.9632 463.34 76.5963 461.914 67.9959C460.666 60.4731 455.658 53.9864 448.265 48.4366C440.868 42.8846 431.012 38.2137 419.907 34.3313C397.694 26.5652 370.331 21.9016 347.24 19.7124Z" stroke="white" strokeWidth="1.5"/>
@@ -22,13 +23,15 @@ const JobDescription = ({ job }) => {
 			</svg>
 			<div className="flex h-24 w-24 bg-white rounded-full"></div>
 			<div className="flex flex-col flex-1 gap-1 text-white">
-				<h2 className='font-light'>{ job.companyName }</h2>
-				<h2 className='text-xl font-medium'>{ job.jobPosition }</h2>
-				{
-					job.jobTags.map((tag, index) => (
-						<div className="grid px-1 font-normal text-xsm py-1 place-items-center bg-blue-light text-white w-fit">{ tag }</div>
-					))
-				}
+				<h2 className='font-light'>{ job.company_name }</h2>
+				<h2 className='text-xl font-medium'>{ job.job_title }</h2>
+				<div className='flex gap-2'>
+					{
+						job.job_tags?.map((tag, index) => (
+							<span key={tag.id} className="font-normal text-xsm p-1 bg-black/40 text-white w-fit">{ tag.tag }</span>
+						))
+					}
+				</div>
 			</div>
 			<Button className="p-2 text-sm mb-10 z-10" variant='job-inverted'>Apply Now</Button>
 		</div>
@@ -36,34 +39,17 @@ const JobDescription = ({ job }) => {
 			<h2 className='font-semibold text-xl mb-4'>Job Description</h2>
 			<div className="flex flex-col gap-2">
 				<h3 className='text-base font-medium'>Job Overview</h3>
-				<p className='font-light text-xs '>{ job.jobOverview }</p>
+				<p className='font-light text-xs'>{ job.job_overview }</p>
 			</div>
 			<div className="flex flex-col gap-2">
 				<h3 className='text-base font-medium'>Job Responsibilities</h3>
-				<p className='font-light text-xs'>{ job.jonResponsibilities }</p>
+				<p className='font-light text-xs'>{ job.job_responsibilities }</p>
 			</div>
 			<div className="flex flex-col gap-2">
-				<h3 className='text-base font-medium'>Job Benefits</h3>
-				<p className='font-light text-xs'>{ job.jobBenefits }</p>
+				<h3 className='text-base font-medium'>Job Perks and Benefits</h3>
+				<p className='font-light text-xs'>{ job.job_benefit }</p>
 			</div>
-			<div className="flex flex-col gap-2">
-				<h3 className='text-base font-medium'>Job Overview</h3>
-				<p className='font-light text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum, molestie massa mauris augue netus purus ipsum. Iaculis vitae gravida neque tristique nibh non habitasse velit fermentum. Cursus quis scelerisque mattis viverra diam at. Nam at sit auctor ac purus cras tempor scelerisque sed. Tincidunt elit ut ultrices risus cras proin ullamcorper. Congue non faucibus pretium diam non mattis in velit. Amet dignissim nisl viverra ultrices. Massa imperdiet tristique euismod at.</p>
-			</div>
-			<div className="flex flex-col gap-2">
-				<h3 className='text-base font-medium'>Job Overview</h3>
-				<p className='font-light text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum, molestie massa mauris augue netus purus ipsum. Iaculis vitae gravida neque tristique nibh non habitasse velit fermentum. Cursus quis scelerisque mattis viverra diam at. Nam at sit auctor ac purus cras tempor scelerisque sed. Tincidunt elit ut ultrices risus cras proin ullamcorper. Congue non faucibus pretium diam non mattis in velit. Amet dignissim nisl viverra ultrices. Massa imperdiet tristique euismod at.</p>
-			</div>
-			<div className="flex flex-col gap-2">
-				<h3 className='text-base font-medium'>Job Overview</h3>
-				<p className='font-light text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum, molestie massa mauris augue netus purus ipsum. Iaculis vitae gravida neque tristique nibh non habitasse velit fermentum. Cursus quis scelerisque mattis viverra diam at. Nam at sit auctor ac purus cras tempor scelerisque sed. Tincidunt elit ut ultrices risus cras proin ullamcorper. Congue non faucibus pretium diam non mattis in velit. Amet dignissim nisl viverra ultrices. Massa imperdiet tristique euismod at.</p>
-			</div>
-			<div className="flex flex-col gap-2">
-				<h3 className='text-base font-medium'>Job Overview</h3>
-				<p className='font-light text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum, molestie massa mauris augue netus purus ipsum. Iaculis vitae gravida neque tristique nibh non habitasse velit fermentum. Cursus quis scelerisque mattis viverra diam at. Nam at sit auctor ac purus cras tempor scelerisque sed. Tincidunt elit ut ultrices risus cras proin ullamcorper. Congue non faucibus pretium diam non mattis in velit. Amet dignissim nisl viverra ultrices. Massa imperdiet tristique euismod at.</p>
-			</div>
-
-			<Button className='mt-2 w-fit py-1 px-4 text-smm font-medium' variant='job'>Apply For this Job</Button>
+			<Button className='my-2 w-fit py-1 px-4 text-smm font-medium mt-auto' variant='job'>Apply For this Job</Button>
 		</div>
     </div>
   )

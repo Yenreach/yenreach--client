@@ -22,15 +22,15 @@ const JobCardVariation = ({ job, className, setSelectedJobIndex, index, selected
         <img className='h-full object-cover' src={Image} alt="" />
       </div>
       <div className="flex w-[80%] h-full flex-col gap-2 bg-[#F5F7FA] rounded-r-2xl border-y border-r border-gray px-3 pt-5 pb-2">
-        <h3 className="text-smm">{ job.companyName }</h3>
-        <h2 className='font-bold'>{ job.jobPosition }</h2>
+        <h3 className="text-smm">{ job.company_name }</h3>
+        <h2 className='font-bold'>{ job.job_title }</h2>
         <div className="flex gap-2">
           {
-            job.jobTags.map((tag, index) => (
-              <span className="p-1 text-xsm bg-[#E0E5EE] text-[#69707D]">{ tag }</span>
+            job.job_tags?.map((tag, index) => (
+              <span key={tag.id} className="p-1 text-xsm bg-[#E0E5EE] text-[#69707D]">{ tag.tag }</span>
             ))
           }
-          <span className="p-1 text-xsm bg-[#E0E5EE] text-[#69707D]">{ job.jobAmount }</span>
+          <span className="p-1 text-xsm bg-[#E0E5EE] text-[#69707D]">NGN { job.salary }</span>
         </div>
         <div className=" w-full flex font-bold justify-end pr-5 text-xs text-[#69707D] text-end">14h</div>
       </div>

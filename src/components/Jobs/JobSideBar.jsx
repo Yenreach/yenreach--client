@@ -12,7 +12,7 @@ const JobSideBar = ({ jobs, setSelectedJobIndex, selectedJobIndex }) => {
 			<div className="flex justify-start flex-col gap-3">
 				{
 					jobs.slice(0, 4).map((job, index) => (
-						<JobCardVariation key={job.jobId} job={job} index={index} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} />
+						<JobCardVariation key={job.id} job={job} index={index} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} />
 					))
 				}
 			</div>
