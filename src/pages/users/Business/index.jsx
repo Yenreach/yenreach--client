@@ -15,6 +15,7 @@ import Media from '../../../assets/dashboard/media.svg'
 import Good from '../../../assets/good.svg'
 import Edit from '../../../assets/edit.svg'
 import Star from '../../../assets/star.svg'
+import Loader from '../../../components/Loader'
 
 
 const index = () => {
@@ -75,6 +76,7 @@ const index = () => {
   return (
     <Dashboard>
       <div className='flex-1 overflow-scroll'>
+        {isLoading && <Loader loader={4} />}
           <Header business_string={id} type="business" />
           <div className='h-36 -z-0 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center'>
             <Button className='p-1.5 px-3 text-xs font-arialsans absolute bottom-2 right-2 sm:right-4 lg:right-16'>

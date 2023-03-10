@@ -49,7 +49,7 @@ const Jobs = () => {
                 <div className='flex flex-col justify-center items-center rounded-lg font-arialsans h-[550px] sm:h-auto md:mt-14'>
                     <img src={NoBusiness} alt="" className='mb-7' />
                     <span className='text-center text-[#476788] mb-9'>
-                      You have added any job under this business
+                      You have not added any job under this business
                     </span>                        
                     <Link to={`/users/jobs/${id}/add-job`}> 
                     <span href=""className='text-blue underline underline-offset-2'>Click here to add a new job</span>

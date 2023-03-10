@@ -6,7 +6,7 @@ const Loader = ({ setModalOpen, modalOpen, loader=4 }) => {
         if (modalOpen && loader >= 3) {
           document.body.style.overflow = 'hidden'
         } else {
-          document.body.style.overflow = 'unset'
+          document.body.style.overflow = 'auto'
         }
       }, [modalOpen])
 
@@ -18,7 +18,7 @@ const Loader = ({ setModalOpen, modalOpen, loader=4 }) => {
 
     const closeModal = () => {
         setModalOpen(false)
-        document.body.style.overflow = 'unset'
+        document.body.style.overflow = 'auto'
     }
     
     

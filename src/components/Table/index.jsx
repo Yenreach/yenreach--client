@@ -1,15 +1,32 @@
 import React from "react";
-import MUIDataTable, {
-  MUIDataTableColumnDef,
-} from "mui-datatables";
+import MUIDataTable from "mui-datatables";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { MdOutlineDelete } from "react-icons/md";
 
-
-export default function Table({ data }) {
+const options = {
+    filter: false,
+    selectableRows: "none",
+    responsive: 'scrollMaxHeight',
+  };
+  
+export default function Table({ data, columns }) {
 
     const overrideColumns= Object.keys(data[0])?.map((column) => {
-        if (data[0][column]?.custom) {
+        if (column === "photos" || column === "categories") {
+            return {
+                name: "phot",
+                label: "Phot",
+                options: {
+                    filter: true,
+                    sort: true,
+                    customBodyRender: (value) => {
+                        // console.log("value", value)
+                        return <span className="inline-block">No</span>;
+                    },
+                },
+            };
+        } 
+        else if (data[0][column]?.custom) {
             return {
                 name: column,
                 label: column,
@@ -70,6 +87,7 @@ export default function Table({ data }) {
                 filter: true,
                 sort: true,
                 customBodyRender: (value) => {
+                    // console.log("value", value)
                     return <span className="inline-block">{value}</span>;
                 },
             },
@@ -77,201 +95,183 @@ export default function Table({ data }) {
     });
 
     const defaultColumns = [
-      {
-        name: "name",
-        label: "Name",
-        options: {
-          filter: true,
-          sort: true,
-          customBodyRender: (value) => {
-            return <span className="inline-block">{value}</span>;
-          },
-        },
-      },
-      {
-        name: "email",
-        label: "Email",
-        options: {
-          filter: true,
-          sort: true,
-          customBodyRender: (value) => {
-            return <span className="inline-block">{value}</span>;
-          },
-        },
-      },
-      {
-        name: "location",
-        label: "Location",
-        options: {
-          filter: true,
-          sort: true,
-          customBodyRender: (value) => {
-             return <span className="inline-block">{value}</span>;
-          },
-        },
-      },
-      {
-        name: "category",
-        label: "Category",
-        options: {
-          filter: true,
-          sort: true,
-          customBodyRender: (value) => {
-            return <span className="inline-block">{value}</span>;
-          },
-        },
-      },
-      {
-        name: "status",
-        label: "Status",
-        options: {
-            filter: true,
-            sort: true,
-            customBodyRender: (value) => {
-                return (
-                <span
-                    className={`inline-block rounded-full p-1.5 px-4 ${
-                    value === "Active" ? "bg-green-200 text-primary" : value === "Pending"?  "bg-[#B200A133] text-[#B200A1]" : "bg-red-200 text-red-600"
-                    }`}
-                >
-                    {value}
-                </span>
-                );
-            },
-        },
-      },
-      {
-        name: "actions",
-        label: "Actions",
-        options: {
-          filter: true,
-          sort: true,
-          customBodyRender: (value, tableMeta) => {
-            // console.log("tableMeta", tableMeta)
+        {
+          name: "project",
+          label: "PROJECT",
+          options: {
+           filter: true,
+           sort: true,
+           customBodyRender: (value) => {
             return (
-              <div className="flex items-center gap-4">
-                <button className="btn-outline btn whitespace-nowrap border-green-400 text-green-400">
-                  View Profile
-                </button>
-                <span className="inline-block rounded-md border-2">
-                  <MdOutlineDelete size="1.2rem" color="" />
-                </span>
-              </div>
+                <span className="inline-block">{value}</span>  
             );
           },
+          },
         },
-      },
-    ];
+        {
+          name: "endpoint",
+          label: "ENDPOINT",
+          options: {
+           filter: true,
+           sort: true,
+           customBodyRender: (value) => {
+            return (
+                <span className="inline-block">{value}</span>  
+            );
+          },
+          },
+        },
+        {
+          name: "source",
+          label: "SOURCE",
+          options: {
+           filter: true,
+           sort: true,
+           customBodyRender: (value, index) => {
+            return (
+              <span className="inline-block">{value}</span>
+            );
+          },
+          },
+        },
+        {
+          name: "timestamp",
+          label: "DATE & TIME",
+          options: {
+           filter: true,
+           sort: true,
+            customBodyRender: (value) => {
+              return (
+                <span className="inline-block">{value}</span>   
+              );
+            },
+          },
+        },
+        {
+          name: "reference",
+          label: "REFERENCE",
+          options: {
+           filter: true,
+           sort: true,
+           customBodyRender: (value) => {
+            return (
+                <span className="inline-block">{value}</span>  
+            );
+          },
+          },
+        },
+        {
+          name: "status",
+          label: "STATUS",
+          options: {
+           filter: true,
+           sort: true,
+           customBodyRender: (value) => {
+            return (
+              <span className="inline-block">{value}</span>  
+            );
+          },
+          },
+        },
+        {
+          name: "action",
+          label: "ACTION",
+          options: {
+           filter: true,
+           sort: true,
+           customBodyRender: (value) => {
+            return (
+              <span className="inline-block">{value}</span>  
+          ); 
+          },
+          },
+        },
+       ];
   
-    const getMuiTheme = () =>
-      createTheme({
-        components: {
+   
+  const getMuiTheme = () => 
+  createTheme({
+      components: {
+        // MUIDataTable: {
+        //     responsiveStacked: {
+        //       maxHeight: 'none',
+        //       overflowX:'auto'
+        //     },
+        //   },
           MuiPaper: {
-            styleOverrides: {
-              root: {
-                // padding: '20px',
-                color: "black",
-                boxShadow: "none",
-                backgroundColor: "#F5F5F5",
-                // color: '#444444',
-                // boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.05)',
-              },
-            },
-          },
-          MuiTable: {
-            styleOverrides: {
-              root: {
-                borderCollapse: "separate",
-                borderSpacing: "0 8px",
-              },
-            },
-          },
-          MuiTableCell: {
-            styleOverrides: {
-              root: {
-                borderBottom: "none",
-              },
-            },
+              styleOverrides:{
+                root: {
+                  borderRadius: '14px',
+                  padding: '20px',
+                  boxShadow: 'none',
+                  // boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.05)',
+              }}
           },
           MuiToolbar: {
-            styleOverrides: {
-              regular: {
-                minHeight: "8px",
-              },
-            },
-          },
-          MUIDataTableHeadCell: {
-            styleOverrides: {
-              root: {
-                color: "#000",
-                fontWeight: "700",
-                backgroundColor: "#F5F5F5",
-                textTransform: "lowercase",
-                padding: "0px 20px",
-              },
-            },
-          },
-          MUIDataTableBodyRow: {
-            styleOverrides: {
-              root: {
-                backgroundColor: "#fff",
-              },
-            },
+              styleOverrides:{regular: {
+                  minHeight: '8px',
+              }}
           },
           MUIDataTableBodyCell: {
-            styleOverrides: {
-              root: {
-                backgroundColor: "#fff",
-                color: "#444444d0",
-                fontWeight: "600",
-                wordBreak: "normal",
-              },
-              stackedHeader: {
-                display: "none",
-              },
+              styleOverrides:{
+                root: {
+                    backgroundColor: "#fff",
+                    color: "black",
+                    fontWeight: "500",
+                    wordBreak: "normal",
+                },
+                stackedHeader: {
+                    display: "none"
+                }
+              }
             },
+          MUIDataTableHeadCell: {
+              styleOverrides:{
+                  root: {
+                      backgroundColor: "#f9fafb",
+                      textTransform: "uppercase",
+                  }
+                }
           },
           MUIDataTableHeadRow: {
-            styleOverrides: {
-              root: {
-                zIndex: 1,
-                position: "relative",
-              },
-            },
-          },
+            styleOverrides:{
+                root: {
+                  zIndex: 1,
+                  position: "relative",
+                }
+              }
+        },
           MuiButton: {
-            styleOverrides: {
-              root: {
-                padding: 0,
-                color: "#000",
-                fontWeight: "500",
-                backgroundColor: "",
-                display: "block",
-              },
-            },
+              styleOverrides:{
+                  root: {
+                      padding: 0,
+                      color: "#232f3e",
+                      backgroundColor: "",
+                      display: "block",
+                  }
+                }
           },
           MUIDataTableToolbar: {
-            styleOverrides: {
-              root: {
-                padding: 0,
-              },
-              titleText: {
-                fontSize: "18px",
-                paddingBottom: "10px",
-                fontWeight: "600",
-              },
-            },
-          },
+            styleOverrides:{
+                root: {
+                    padding: 0,
+                },
+                titleText: {
+                  fontSize: "18px",
+                  paddingBottom: "10px",
+                  fontWeight: "600",
+              }
+              }
         },
-      });
-  
+      }
+  });
+
  
     return (
-        <section>
-            <h1 className="text-3xl">Table Component</h1>
+        <section className="overflow-auto">
             <ThemeProvider theme={getMuiTheme()}>
                 <MUIDataTable
-                title={""}
+                title={"Products"}
                 data={data}
                 columns={overrideColumns.length > 0 ? overrideColumns : defaultColumns}
                 options={options}

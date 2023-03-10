@@ -3,11 +3,14 @@ import { Link, useParams } from 'react-router-dom'
 import useFetch from '/src/hooks/useFetch'
 import { apiGetAllBusinessProducts } from '/src/services/ProductService'
 import Header from "/src/components/users/Header"
-import MUIDataTable from "mui-datatables";
+// import MUIDataTable from "mui-datatables";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AiOutlinePlus } from 'react-icons/ai'
 import Button from '../../../components/ui/Button'
 import Dashboard from "../../../components/layout/Dashboard"
+import Table from '/src/components/Table'
+import Loader from '../../../components/Loader'
+import NoBusiness from '../../../assets/dashboard/no-business.svg'
 
 
 const options = {
@@ -195,8 +198,10 @@ const Products = () => {
   return (
     <Dashboard>
         <main className='flex-1'>
+          {isLoading && <Loader loader={4} />}
           <Header business_string={id} type="product" />
           <section className='p-8 px-4 sm:px-8'>
+           {products &&
             <div className='flex items-center justify-between mb-3'>
               <h2 className='text-xl text-orange font-medium'>Listed Products</h2>
               <Link to={`/users/products/${id}/add-product`}>
@@ -205,16 +210,21 @@ const Products = () => {
                   Add new Product
                 </Button>
               </Link>
-            </div>
-            <ThemeProvider theme={getMuiTheme()}>
-                <MUIDataTable
-                    title={"Products"}
-                    data={[]}
-                    columns={columns}
-                    options={options}
-                />
-            </ThemeProvider>
+            </div>}
+            {products && <Table data={products} />}
           </section>
+          {!isLoading &&
+              !products && 
+                <div className='flex flex-col justify-center items-center rounded-lg font-arialsans h-[550px] sm:h-auto md:mt-14'>
+                    <img src={NoBusiness} alt="" className='mb-7' />
+                    <span className='text-center text-orange mb-9'>
+                      You have not added any products to your marketplace
+                    </span>                        
+                    <Link to={`/users/products/${id}/add-product`}> 
+                    <span href=""className='text-orange underline underline-offset-2'>Click here to add a new product</span>
+                    </Link>
+                </div>
+            }
 
         </main>
     </Dashboard>
@@ -222,3 +232,16 @@ const Products = () => {
 }
 
 export default Products
+ 
+
+
+
+
+{/* <ThemeProvider theme={getMuiTheme()}>
+                <MUIDataTable
+                    title={"Products"}
+                    data={[]}
+                    columns={columns}
+                    options={options}
+                />
+            </ThemeProvider> */}

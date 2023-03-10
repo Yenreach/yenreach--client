@@ -12,8 +12,14 @@ const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) =
     const { url: coverImg, uploadImage: uploadCoverImg, error: coverImgError, progress: coverImgProgress } = useUploadImage()
 
     const addBusinessMutation = useMutation({
-        mutationFn: (data) => {
-          return apiAddBusiness(data)
+        mutationFn: async (data) => {
+          const response =  await apiAddBusiness(data)
+        //   console.log("response", response)
+          if (response?.data?.status === "success") {
+            return response?.data?.data
+          } else {
+            throw new Error(response?.data?.message)
+            }
         },
         onSuccess: (data, variables, context) => {
             console.log("success adding business", data)

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Check from '/src/assets/check.svg'
 
 
@@ -12,7 +13,7 @@ const index = () => {
           <p className='text-center text-lg mb-6'>
             Congratulations you've just created a new business 
           </p>
-          <a href=""className='text-green underline underline-offset-2'>Check the <a href="" className='underline text-green text-sm'>business page</a> to view your businesses</a>
+          <Link to={"/users"} className='text-green underline underline-offset-2'>Check the <span href="" className='underline text-green text-sm'>business page</span> to view your businesses</Link>
         </div>
       </div>
   )

@@ -6,6 +6,7 @@ import Button from '/src/components/ui/Button'
 import { MdAdd, MdStar } from 'react-icons/md'
 import Dashboard from "../../../components/layout/Dashboard"
 import Head from "/src/components/users/Head"
+import Loader from '../../../components/Loader'
 import Business from '../../../assets/bus_of_the_week.svg'
 import Elipse from '../../../assets/dashboard/elipse.svg'
 import Add from '../../../assets/add.svg'
@@ -21,6 +22,7 @@ const index = () => {
     return (
         <Dashboard>
             <div className='flex-1 overflow-hidden'>
+                {isLoading && <Loader loader={4} />}
                 <Head />
                 <div className='px-7 py-4'>
                     {!businesses && <h1 className='text-green font-medium text-xl mb-2'>Businesses</h1>}
@@ -74,7 +76,7 @@ const index = () => {
                         </div>
                     </Link>
                 } */}
-                {!businesses  && 
+                {!isLoading && !businesses  && 
                     <div className='flex flex-col justify-center items-center rounded-lg font-arialsans h-[550px] sm:h-auto'>
                         <img src={NoBusiness} alt="" className='mb-7' />
                             <span className='text-center text-[#476788] mb-9'>
