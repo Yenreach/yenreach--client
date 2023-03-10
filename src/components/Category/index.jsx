@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { MdOutlineHome } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
+import useFetch from '/src/hooks/useFetch'
 import { apiGetApprovedBusinesses } from '../../services/CommonService'
 import { apiGetAllProducts } from '/src/services/ProductService'
+import { apiGetAllJobs } from '/src/services/JobService'
 import getData from '../../utils/getData'
 import { BiBriefcase, BiMouseAlt } from 'react-icons/bi'
 // import JobData from '../../data/job-data.json'
@@ -19,17 +21,26 @@ const staleTime = 1000 * 60 * 60 * 24
 
 const index = () => {
     const [activeTab, setActiveTab] = useState('business');
-    // console.log(activeTab)
-    const { data: aprrovedBusinesses, error: errorApprovedBusinesses } = useQuery({
-        queryKey: ['aprrovedBusinesses'],
-        queryFn: () => getData(apiGetApprovedBusinesses),
-        staleTime: staleTime
-        })
+    
+    const { data: aprrovedBusinesses, error: errorApprovedBusinesses } = useFetch({
+        key:  ['aprrovedBusinesses'],
+        api: apiGetApprovedBusinesses,
+        staleTime: staleTime,
+    })
 
-        const { data: products, error: errorProducts } = useQuery({
-            queryKey: ['products'],
-            queryFn: () => getData(apiGetAllProducts),
-          })
+    const { data: products, error: errorProducts } = useFetch({
+        key: ['products'],
+        api: apiGetAllProducts,
+        staleTime: staleTime,
+    })
+
+        
+    const { data: jobs, error: errorJobs, isLoading } = useFetch({
+        api: apiGetAllJobs,
+        key: ['jobs'],
+        staleTime: staleTime,
+    })
+  
           // console.log("aprrovedBusinesses", aprrovedBusinesses, "error", errorApprovedBusinesses)
 
 
@@ -64,12 +75,8 @@ const index = () => {
                     products?.slice(0,4).map((product) => <ProductCard key={product.id} product={product} />)
                 )}
                 {activeTab === 'jobs' && (
-                <>       
-                    <JobCard />
-                    <JobCard />
-                    <JobCard />
-                    <JobCard />
-                </>)}
+                     jobs?.slice(0,4).map((job) =>  <JobCard key={job.id} job={job} /> )
+                )}
             </div>
             <Link to="/explore" state={activeTab === 'marketplace' ? { data: "marketplace" } : activeTab === 'jobs' ? { data: "jobs" } : {}} >
                 <Button override={true} className='w-full py-4 mt-6 text-black bg-gray-light'>

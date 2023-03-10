@@ -16,10 +16,10 @@ const useLogin = () => {
     const login = async (email, password) => {
         setIsLoading(true)
         setError(null)
-        console.log(email, password)
+        // console.log(email, password)
         try {
             const response = await apiLogin({ username: email, password })
-            console.log("res", response)
+            // console.log("res", response)
     
             let data = await response.data
             // console.log("data", data)
@@ -30,7 +30,7 @@ const useLogin = () => {
                 setIsLoading(false)
             } else {
                 data = data.data
-                console.log("success", data)
+                // console.log("success", data)
                 dispatch({type: "LOGIN", payload: data})
                 // sessionStorage.setItem("user", JSON.stringify(data))
                 setError(null)

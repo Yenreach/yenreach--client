@@ -11,8 +11,7 @@ import { paginate } from '../../utils/pagination'
 
 const staleTime = 1000 * 60 * 60 * 24
 
-const index = ({ page: initialPage, num_per_page }) => {
-  const [page, setPage] = useState(initialPage || 1)
+const index = ({ page, num_per_page }) => {
   const [tab, setTab] = useState(1)
   const [selectedJobIndex, setSelectedJobIndex] = useState(1)
 
@@ -23,15 +22,7 @@ const index = ({ page: initialPage, num_per_page }) => {
     staleTime: staleTime,
   })
   
-  const handlePageChange = (page) => {
-    setPage(page)
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-  });
-  }
-
-  console.log("jobs", jobs)
+  // console.log("jobs", jobs)
   return (
     <>
       <div className='flex items-center justify-center w-full gap-10'>
@@ -43,7 +34,7 @@ const index = ({ page: initialPage, num_per_page }) => {
       </div>
       <SearchBar variant='job' />
       { tab === 1 
-          ?  <AllJobs jobs={jobs} setTab={setTab} setSelectedJobIndex={setSelectedJobIndex}/>
+          ?  <AllJobs jobs={jobs} setTab={setTab} setSelectedJobIndex={setSelectedJobIndex} page={page} num_per_page={num_per_page} />
           : <div className="flex justify-around items-start gap-8">
               <JobSideBar jobs={jobs} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} />    
               <JobDescription job={jobs[selectedJobIndex]} />

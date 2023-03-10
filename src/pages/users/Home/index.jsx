@@ -9,15 +9,18 @@ import Head from "/src/components/users/Head"
 import Loader from '../../../components/Loader'
 import Business from '../../../assets/bus_of_the_week.svg'
 import Elipse from '../../../assets/dashboard/elipse.svg'
-import Add from '../../../assets/add.svg'
 import NoBusiness from '../../../assets/dashboard/no-business.svg'
+import { useAuthContext } from '/src/hooks/useAuthContext'
+
 
 const index = () => {
+  const { user } = useAuthContext()
+  
     const { isLoading, error, data: businesses } = useFetch({
         api: apiGetAllBusinesses,
-        key: ['userBusinesses'],
+        key: ['userBusinesses', user?.verify_string],
+        param: user?.verify_string,
       })
-    // console.log("data", businesses)
 
     return (
         <Dashboard>

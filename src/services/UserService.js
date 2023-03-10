@@ -33,10 +33,10 @@ export const apiAddActivityLog = (data) => {
 }
 
 /* Get user businesses */
-export const apiGetAllBusinesses = () => {
+export const apiGetAllBusinesses = (id) => {
     // console.log("token", token)
     return ApiAdapter.fetchData({
-        url: `fetch_business_by_user_string_api${serviceSuffix}?string=${token}`,
+        url: `fetch_business_by_user_string_api${serviceSuffix}?string=${id || token}`,
         method: "get"    
     })
 }
