@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-function Button({ to, variant, inverse, className, override, children, type, onClickFunc }) {
+function Button({ to, variant, inverse, className, override, children, type, onClickFunc, ...rest }) {
   const [effect, setEffect] = useState(false);
   const styles = (variant, inverse, className, override, effect) => clsx(
     className,
@@ -39,11 +39,11 @@ function Button({ to, variant, inverse, className, override, children, type, onC
   )
 
   return to.length > 0 ? (
-    <Link onClick={() => { setEffect(true) }} onAnimationEnd={() => { setEffect(false) }} className={styles(variant, inverse, className, override, effect)} to={`/${to}`}>
+    <Link {...rest} onClick={() => { setEffect(true) }} onAnimationEnd={() => { setEffect(false) }} className={styles(variant, inverse, className, override, effect)} to={`/${to}`}>
       {children}
     </Link>
   ) : (
-    <button onClick={() => { setEffect(true); onClickFunc() }} onAnimationEnd={() => { setEffect(false) }} type={type} className={styles(variant, inverse, className, override, effect)}>
+    <button {...rest} onClick={() => { setEffect(true); onClickFunc() }} onAnimationEnd={() => { setEffect(false) }} type={type} className={styles(variant, inverse, className, override, effect)}>
       {children}
     </button>
   );

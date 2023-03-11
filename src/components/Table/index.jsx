@@ -104,6 +104,28 @@ const testColumns = [
   },
 ];
 
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const formatDate = (date) => {
+  const newDate = new Date(date * 1000); // convert to milliseconds
+  const day = newDate.getDate();
+  const month = newDate.getMonth() + 1;
+  const year = newDate.getFullYear();
+  return `${day} ${months[month+1]} ${year}`;
+};
 
 
 const Table = ({ data, columns }) => {
@@ -129,6 +151,8 @@ const Table = ({ data, columns }) => {
                         {column?.custom(item[column?.name], item)}
                       </td>
                     )
+                  } else if (column?.name === "updated_at" || column?.name === "created_at") {
+                    return <td key={index} className="whitespace-nowrap px-5 py-5">{formatDate(item[column?.name])}</td>
                   }
                   return <td key={index} className="whitespace-nowrap px-5 py-5">{item[column?.name]}</td>
                 }

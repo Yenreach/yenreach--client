@@ -8,6 +8,8 @@ import JobCard from '/src/components/users/jobs/JobCard'
 import Button from '../../../components/ui/Button'
 import Dashboard from "../../../components/layout/Dashboard"
 import NoBusiness from '../../../assets/dashboard/no-business.svg'
+import Loader from '../../../components/Loader'
+
 
 
 const Jobs = () => {
@@ -19,32 +21,33 @@ const Jobs = () => {
     param: id,
   })
   
-  // console.log("jobs", jobs)
-
+  console.log("jobs", jobs)
 
   return (
     <Dashboard>
         <div className='flex-1'>
         <Header business_string={id} type="job" />
           <main className='p-8 px-4 sm:px-8'>
+            {isLoading && <Loader loader={4} />}
            { jobs &&
-           <>
-           <div className='flex items-center justify-between mb-3'>
-                <h2 className='text-base font-medium'>Jobs Listed</h2>
-                <Link to={`/users/jobs/${id}/add-job`}>
-                  <Button variant='job' className='px-4 py-2 text-xs flex items-center'>
-                        <AiOutlinePlus className='mr-2' />
-                        Add new job
-                  </Button>
-                </Link>
-            </div>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
-                {jobs?.map((job) => (
-                  <JobCard key={job.id} job={job} refetchJobs={refetchJobs} removeJobsCache={removeJobsCache} />
-                ))}
-            </div>
-            </>}
-            {
+            <>
+              <div className='flex items-center justify-between mb-3'>
+                    <h2 className='text-base font-medium'>Jobs Listed</h2>
+                    <Link to={`/users/jobs/${id}/add-job`}>
+                      <Button variant='job' className='px-4 py-2 text-xs flex items-center'>
+                            <AiOutlinePlus className='mr-2' />
+                            Add new job
+                      </Button>
+                    </Link>
+                </div>
+                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                    {jobs?.map((job) => (
+                      <JobCard key={job.id} job={job} refetchJobs={refetchJobs} removeJobsCache={removeJobsCache} />
+                    ))}
+                </div>
+              </>
+            }
+            {!isLoading &
               !jobs && 
                 <div className='flex flex-col justify-center items-center rounded-lg font-arialsans h-[550px] sm:h-auto md:mt-14'>
                     <img src={NoBusiness} alt="" className='mb-7' />
