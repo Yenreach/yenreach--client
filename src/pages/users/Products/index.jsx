@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import useFetch from '/src/hooks/useFetch'
+import { useMutation } from "@tanstack/react-query";
+import { apiUpdateProductStatus } from '../../../services/ProductService'
 import { BiEdit } from "react-icons/bi";
 import { MdOutlineDelete } from "react-icons/md";
 import { apiGetAllBusinessProducts } from '/src/services/ProductService'
@@ -15,15 +17,14 @@ import NoBusiness from '../../../assets/dashboard/no-business.svg'
 const Products = () => {
   const { id } = useParams()
   
-  const { isLoading, error: errorProducts, data: products } = useFetch({
+  const { isLoading, error: errorProducts, data: products, refetch: refetchProducts } = useFetch({
     key: ['userProducts', id],
     api: apiGetAllBusinessProducts,
     param: id,
+    // refetchOnMount: true,
   })
 
-  
   // console.log("products", products, errorProducts)
-
 
   const columns = [
     {
@@ -83,9 +84,13 @@ const Products = () => {
       custom: (value, meta) => {
         // console.log("meta", meta)
         return  (
-          <label htmlFor={`status${meta?.id}`} className="flex cursor-pointer select-none items-center">
+          <label htmlFor={`status${meta?.id}`} className="flex justify-center cursor-pointer select-none items-center">
             <div className="relative">
-              <input id={`status${meta?.id}`} type="checkbox" className="sr-only peer" onChange={() => null} checked={meta?.status==="1"} />
+              <input id={`status${meta?.id}`} type="checkbox" className="sr-only peer" onChange={() => updateProductStatus({
+                  "product_string": meta?.product_string,
+                  "business_string": meta?.business_string,
+                  "status": value==="1" ? false : true
+                })} checked={value==="1"} />
               <div
                 className="dot shadow-switch-1 absolute left-0.5 top-1/2 -translate-y-1/2 h-4 w-4 rounded-full shadow-lg bg-white transition peer-checked:translate-x-4"
               ></div>
@@ -101,6 +106,26 @@ const Products = () => {
     },
   ];
 
+  
+  const updateProductStatusMutation = useMutation({
+    mutationFn: (data) => {
+        // console.log("mutating state", data)
+        return apiUpdateProductStatus(data)
+    },
+    onSuccess: (data, variables, context) => {
+        // console.log("success updating product state", data)
+        refetchProducts()
+    },
+    onError: (error, variables, context) => {
+      console.log("error updating product state", error)
+    },
+  })
+   
+  const updateProductStatus = (data) => {
+      // console.log("data is here", data)
+      updateProductStatusMutation.mutate(data)
+  }
+  
   return (
     <Dashboard>
         <main className='flex-1 overflow-hidden'>

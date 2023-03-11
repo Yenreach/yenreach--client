@@ -9,8 +9,6 @@ import firebaseConfig from './configs/firebase.config.js'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 5,
-      cacheTime : 1000 * 60 * 60,
       retry: 1,
       // refetchOnMount: true,
     },

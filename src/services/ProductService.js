@@ -114,7 +114,7 @@ export const apiGetProductCategory = () => {
 export const apiUpdateProduct = (data) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}/update_product_api${serviceSuffix}`,
-        method: "patch",
+        method: "post",
         data
     })
 }
@@ -123,7 +123,7 @@ export const apiUpdateProduct = (data) => {
 export const apiUpdateProductStatus = (data) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}/update_product_status_api${serviceSuffix}`,
-        method: "patch",
+        method: "post",
         data
     })
 }

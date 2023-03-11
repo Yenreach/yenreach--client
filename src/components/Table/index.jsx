@@ -107,32 +107,30 @@ const testColumns = [
 
 
 const Table = ({ data, columns }) => {
-  console.log("data", data)
+  // console.log("data", data)
   return (
-      <div class="overflow-x-auto bg-white p-6 px-7 pb-10 rounded-xl">
-        <table class="min-w-full text-center text-sm font-light">
-          <thead class="font-normal bg-[#FAFAFA] text-[#5F6868]">
+      <div className="overflow-x-auto bg-white p-6 px-7 pb-10 rounded-xl">
+        <table className="min-w-full text-center text-sm font-light">
+          <thead className="font-normal bg-[#FAFAFA] text-[#5F6868]">
             <tr>
               {columns?.map((item, index) => (
-              <th key={index} scope="col" class="px-5 py-5 font-medium whitespace-nowrap">{item?.label}</th>
+              <th key={index} scope="col" className="px-5 py-5 font-medium whitespace-nowrap">{item?.label}</th>
               ))}
             </tr>
           </thead>
           <tbody className="text-[#737B7B] text-xs">
             {data?.map((item, index) => (
-              <tr key={index} class="border-b border-[#F2F2F2]">
+              <tr key={index} className="border-b border-[#F2F2F2]">
                 {columns?.map((column, index) => {
                   // console.log("column", column)
                   if (column?.extra) {
                     return ( 
-                      <td key={index} class="whitespace-nowrap px-5 py-5">
-                        <div className="flex items-center gap-4 justify-center">
-                          {column?.custom(item[column?.name], item)}
-                        </div>
+                      <td key={index} className="whitespace-nowrap px-5 py-5">
+                        {column?.custom(item[column?.name], item)}
                       </td>
                     )
                   }
-                  return <td key={index} class="whitespace-nowrap px-5 py-5">{item[column?.name]}</td>
+                  return <td key={index} className="whitespace-nowrap px-5 py-5">{item[column?.name]}</td>
                 }
                 )}
               </tr>
