@@ -1,22 +1,16 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import useFetch from '/src/hooks/useFetch'
+import { BiEdit } from "react-icons/bi";
+import { MdOutlineDelete } from "react-icons/md";
 import { apiGetAllBusinessProducts } from '/src/services/ProductService'
 import Header from "/src/components/users/Header"
-// import MUIDataTable from "mui-datatables";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AiOutlinePlus } from 'react-icons/ai'
 import Button from '../../../components/ui/Button'
 import Dashboard from "../../../components/layout/Dashboard"
 import Table from '/src/components/Table'
 import Loader from '../../../components/Loader'
 import NoBusiness from '../../../assets/dashboard/no-business.svg'
-
-
-const options = {
-  filter: false,
-  selectableRows: "none",
-};
 
 const Products = () => {
   const { id } = useParams()
@@ -28,173 +22,85 @@ const Products = () => {
   })
 
   
-  console.log("products", products, errorProducts)
+  // console.log("products", products, errorProducts)
 
 
   const columns = [
     {
-      name: "project",
-      label: "PROJECT",
+      name: "product_name",
+      label: "Product Name",
       options: {
-       filter: true,
-       sort: true,
-       customBodyRender: (value) => {
-        return (
-            <span className="inline-block">{value}</span>  
-        );
-      },
+        filter: true,
+        sort: true,
       },
     },
     {
-      name: "endpoint",
-      label: "ENDPOINT",
+      name: "product_price",
+      label: "Product Price",
       options: {
-       filter: true,
-       sort: true,
-       customBodyRender: (value) => {
-        return (
-            <span className="inline-block">{value}</span>  
-        );
-      },
+        filter: true,
+        sort: false,
       },
     },
     {
-      name: "source",
-      label: "SOURCE",
+      name: "updated_at",
+      label: "Modified date",
       options: {
-       filter: true,
-       sort: true,
-       customBodyRender: (value, index) => {
-        return (
-          <span className="inline-block">{value}</span>
-        );
-      },
+        filter: true,
+        sort: false,
       },
     },
     {
-      name: "timestamp",
-      label: "DATE & TIME",
+      name: "created_at",
+      label: "Created at",
       options: {
-       filter: true,
-       sort: true,
-        customBodyRender: (value) => {
-          return (
-            <span className="inline-block">{value}</span>   
-          );
-        },
+        filter: true,
+        sort: false,
       },
     },
     {
-      name: "reference",
-      label: "REFERENCE",
-      options: {
-       filter: true,
-       sort: true,
-       customBodyRender: (value) => {
-        return (
-            <span className="inline-block">{value}</span>  
-        );
+      name: "product_color",
+      label: "Action",
+      extra: true,
+      custom: (value, meta) => {
+        // console.log("meta", meta)
+        return  (
+          <div className="flex items-center gap-4 justify-center">
+            <BiEdit size="1.2rem" className="text-orange" />
+            <MdOutlineDelete size="1.2rem" className="text-red-400" />
+          </div>
+        )
       },
+      options: {
+        filter: true,
+        sort: false,
       },
     },
     {
-      name: "status",
-      label: "STATUS",
-      options: {
-       filter: true,
-       sort: true,
-       customBodyRender: (value) => {
-        return (
-          <span className="inline-block">{value}</span>  
-        );
+      name: "product_status",
+      label: "In - Stock",
+      extra: true,
+      custom: (value, meta) => {
+        // console.log("meta", meta)
+        return  (
+          <label htmlFor={`status${meta?.id}`} className="flex cursor-pointer select-none items-center">
+            <div className="relative">
+              <input id={`status${meta?.id}`} type="checkbox" className="sr-only peer" onChange={() => null} checked={meta?.status==="1"} />
+              <div
+                className="dot shadow-switch-1 absolute left-0.5 top-1/2 -translate-y-1/2 h-4 w-4 rounded-full shadow-lg bg-white transition peer-checked:translate-x-4"
+              ></div>
+              <div className="h-5 w-9 rounded-full bg-orange shadow-inner"></div>
+            </div>
+          </label>
+        )
       },
+      options: {
+        filter: true,
+        sort: false,
       },
     },
-    {
-      name: "action",
-      label: "ACTION",
-      options: {
-       filter: true,
-       sort: true,
-       customBodyRender: (value) => {
-        return (
-          <span className="inline-block">{value}</span>  
-      ); 
-      },
-      },
-    },
-   ];
+  ];
 
-  const getMuiTheme = () => 
-  createTheme({
-      components: {
-          MuiPaper: {
-              styleOverrides:{
-                root: {
-                  borderRadius: '14px',
-                  padding: '20px',
-                  boxShadow: 'none',
-                  // boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.05)',
-              }}
-          },
-          MuiToolbar: {
-              styleOverrides:{regular: {
-                  minHeight: '8px',
-              }}
-          },
-          MUIDataTableBodyCell: {
-              styleOverrides:{
-                root: {
-                    backgroundColor: "#fff",
-                    color: "black",
-                    fontWeight: "500",
-                    wordBreak: "normal",
-                },
-                stackedHeader: {
-                    display: "none"
-                }
-              }
-            },
-          MUIDataTableHeadCell: {
-              styleOverrides:{
-                  root: {
-                      backgroundColor: "#f9fafb",
-                      textTransform: "uppercase",
-                  }
-                }
-          },
-          MUIDataTableHeadRow: {
-            styleOverrides:{
-                root: {
-                  zIndex: 1,
-                  position: "relative",
-                }
-              }
-        },
-          MuiButton: {
-              styleOverrides:{
-                  root: {
-                      padding: 0,
-                      color: "#232f3e",
-                      backgroundColor: "",
-                      display: "block",
-                  }
-                }
-          },
-          MUIDataTableToolbar: {
-            styleOverrides:{
-                root: {
-                    padding: 0,
-                },
-                titleText: {
-                  fontSize: "18px",
-                  paddingBottom: "10px",
-                  fontWeight: "600",
-              }
-              }
-        },
-      }
-  });
   return (
     <Dashboard>
         <main className='flex-1 overflow-hidden'>
@@ -211,7 +117,7 @@ const Products = () => {
                 </Button>
               </Link>
             </div>}
-            {products && <Table data={products} />}
+            {products && <Table data={products} columns={columns} />}
           </section>
           {!isLoading &&
               !products && 
@@ -232,16 +138,3 @@ const Products = () => {
 }
 
 export default Products
- 
-
-
-
-
-{/* <ThemeProvider theme={getMuiTheme()}>
-                <MUIDataTable
-                    title={"Products"}
-                    data={[]}
-                    columns={columns}
-                    options={options}
-                />
-            </ThemeProvider> */}

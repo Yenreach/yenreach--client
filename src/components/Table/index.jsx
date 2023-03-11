@@ -3,81 +3,100 @@ import React from "react";
 
 const testData = [
   {
-    name: "Frozen yoghurt",
-    calories: 159,
-    fat: 6.0,
-    carbs: 24,
-    protein: 4.0,
-    sodium: 87,
-    calcium: "14%",
-    iron: "1%",
+    "product_name": "Turbo Engine",
+    "product_price": "N 1, 150, 000",
+    "updated_at": "28 May 2021",
+    "created_at": "28 May 2021",
+    "product_color": "Cell",
+    "product_status": "Cell",
   },
   {
-    name: "Ice cream sandwich",
-    calories: 237,
-    fat: 9.0,
-    carbs: 37,
-    protein: 4.3,
-    sodium: 129,
-    calcium: "8%",
-    iron: "1%",
+    "product_name": "Turbo Engine",
+    "product_price": "N 1, 150, 000",
+    "updated_at": "28 May 2021",
+    "created_at": "28 May 2021",
+    "product_color": "Cell",
+    "product_status": "Cell",
   },
   {
-    name: "Eclair",
-    calories: 262,
-    fat: 16.0,
-    carbs: 24,
-    protein: 6.0,
-    sodium: 337,
-    calcium: "6%",
-    iron: "7%",
+    "product_name": "Turbo Engine",
+    "product_price": "N 1, 150, 000",
+    "updated_at": "28 May 2021",
+    "created_at": "28 May 2021",
+    "product_color": "Cell",
+    "product_status": "Cell",
   },
 ];
 
 const testColumns = [
   {
-    name: "Product Name",
-    label: "Dessert (100g serving)",
+    name: "product_name",
+    label: "Product Name",
     options: {
       filter: true,
       sort: true,
     },
   },
   {
-    name: "Price",
-    label: "Calories",
+    name: "product_price",
+    label: "Product Price",
     options: {
       filter: true,
       sort: false,
     },
   },
   {
-    name: "Modified date",
-    label: "Fat (g)",
+    name: "updated_at",
+    label: "Modified date",
     options: {
       filter: true,
       sort: false,
     },
   },
   {
-    name: "Created Date",
-    label: "Carbs (g)",
+    name: "created_at",
+    label: "Created at",
     options: {
       filter: true,
       sort: false,
     },
   },
   {
-    name: "Action",
-    label: "Protein (g)",
+    name: "product_color",
+    label: "Action",
+    extra: true,
+    custom: (value, meta) => {
+      // console.log("meta", meta)
+      return  (
+        <div className="flex items-center gap-4 justify-center">
+          <BiEdit size="1.2rem" className="text-orange" />
+          <MdOutlineDelete size="1.2rem" className="text-red-400" />
+        </div>
+      )
+    },
     options: {
       filter: true,
       sort: false,
     },
   },
   {
-    name: "In - Stock",
-    label: "Protein (g)",
+    name: "product_status",
+    label: "In - Stock",
+    extra: true,
+    custom: (value, meta) => {
+      console.log("meta", meta)
+      return  (
+        <label htmlFor={`status${meta?.id}`} className="flex cursor-pointer select-none items-center">
+          <div className="relative">
+            <input id={`status${meta?.id}`} type="checkbox" className="sr-only peer" onChange={() => null} checked={meta?.status==="1"} />
+            <div
+              className="dot shadow-switch-1 absolute left-0.5 top-1/2 -translate-y-1/2 h-4 w-4 rounded-full shadow-lg bg-white transition peer-checked:translate-x-4"
+            ></div>
+            <div className="h-5 w-9 rounded-full bg-orange shadow-inner"></div>
+          </div>
+        </label>
+      )
+    },
     options: {
       filter: true,
       sort: false,
@@ -88,32 +107,40 @@ const testColumns = [
 
 
 const Table = ({ data, columns }) => {
+  console.log("data", data)
   return (
-        <div class="overflow-x-auto bg-white p-6 px-7 pb-10 rounded-xl">
-          <table class="min-w-full text-center text-sm font-light">
-            <thead class="font-normal bg-[#FAFAFA] text-[#5F6868]">
-              <tr>
-                {testColumns?.map((item, index) => (
-                <th key={index} scope="col" class="px-5 py-5 font-medium whitespace-nowrap">Product Name</th>
-                ))}
+      <div class="overflow-x-auto bg-white p-6 px-7 pb-10 rounded-xl">
+        <table class="min-w-full text-center text-sm font-light">
+          <thead class="font-normal bg-[#FAFAFA] text-[#5F6868]">
+            <tr>
+              {columns?.map((item, index) => (
+              <th key={index} scope="col" class="px-5 py-5 font-medium whitespace-nowrap">{item?.label}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="text-[#737B7B] text-xs">
+            {data?.map((item, index) => (
+              <tr key={index} class="border-b border-[#F2F2F2]">
+                {columns?.map((column, index) => {
+                  // console.log("column", column)
+                  if (column?.extra) {
+                    return ( 
+                      <td key={index} class="whitespace-nowrap px-5 py-5">
+                        <div className="flex items-center gap-4 justify-center">
+                          {column?.custom(item[column?.name], item)}
+                        </div>
+                      </td>
+                    )
+                  }
+                  return <td key={index} class="whitespace-nowrap px-5 py-5">{item[column?.name]}</td>
+                }
+                )}
               </tr>
-            </thead>
-            <tbody className="text-[#737B7B] text-xs">
-              {testData?.map((item, index) => (
-                <tr key={index} class="border-b border-[#F2F2F2]">
-                  <td class="whitespace-nowrap px-5 py-5">Turbo Engine</td>
-                  <td class="whitespace-nowrap px-5 py-5">N 1, 150, 000</td>
-                  <td class="whitespace-nowrap px-5 py-5">28 May 2021</td>
-                  <td class="whitespace-nowrap px-5 py-5">28 May 2021</td>
-                  <td class="whitespace-nowrap px-5 py-5">Cell</td>
-                  <td class="whitespace-nowrap px-5 py-5">Cell</td>
-                </tr>
-              )
-              )}
-            </tbody>
-          </table>
-        </div>
-
+            )
+            )}
+          </tbody>
+        </table>
+      </div>
   )
 };
 
