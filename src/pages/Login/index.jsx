@@ -3,18 +3,19 @@ import { Navigate, useLocation } from 'react-router-dom'
 import { useAuthContext } from '/src/hooks/useAuthContext'
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import Button from '../../components/ui/Button';
-import useLogin from '../../hooks/useLogin';
+import useAuth from '../../hooks/useAuth';
 
 const index = () => {
-  const [email, setEmail] = React.useState('');
+  const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [showPassword, setShowPassword] = React.useState(false);
 
   const { user } = useAuthContext()
   const location = useLocation()
   
-  const { login, error, isLoading, setError } = useLogin();
+  const { auth, error, isLoading, setError, messageState } = useAuth();
 
+  // console.log("user", error, isLoading)
 
   if (user) {
     return <Navigate to={{ pathname: '/users', state: { from: location } }} />
@@ -28,23 +29,29 @@ const index = () => {
         <h1 className="text-green font-bold text-3xl">
           Login
         </h1>
-        <form className='flex flex-col w-full md:w-[30%] px-6 md:px-0 gap-10' action="">
+        <form className='flex flex-col w-full md:w-[30%] px-6 md:px-0 gap-10 relative' action="" onSubmit={(e) =>{ 
+            e.preventDefault()
+            auth({username, password})
+          }}>
           <div className="flex flex-col gap-1">
             <label className='text-sm font-semibold' htmlFor="name">Full Name / Email Address</label>
-            <input onChange={(event) => setEmail(event.target.value)} className='border-2 p-2 border-[#BABFC5] bg-[#f5f5f791] rounded-md' type="text" name='name' id='name' />
+            <input required onChange={(event) => setUsername(event.target.value)} className='border-2 p-2 border-[#BABFC5] bg-[#f5f5f791] rounded-md' type="text" name='name' id='name' />
           </div>
           <div className="flex flex-col gap-1">
             <label className='text-sm font-semibold' htmlFor="name">Password</label>
             <div className="relative w-full">
-              <input onChange={(event) => setPassword(event.target.value)} className='border-2 p-2 w-full border-[#BABFC5] bg-[#f5f5f791] rounded-md' type={showPassword ? "text" : "password"} name='password' id='password' />
+              <input required onChange={(event) => setPassword(event.target.value)} className='border-2 p-2 w-full border-[#BABFC5] bg-[#f5f5f791] rounded-md' type={showPassword ? "text" : "password"} name='password' id='password' />
               {!showPassword? <BsEye onClick={() => setShowPassword(true)} className='absolute top-0 bottom-0 m-auto right-3 z-20 scale-110 cursor-pointer' /> : <BsEyeSlash onClick={() => setShowPassword(false)} className='absolute top-0 bottom-0 m-auto right-3 z-20 scale-110 cursor-pointer' />}
             </div>
             <p className="w-full text-xs text-[#FF6B93] text-right">Forgot Password?</p>
           </div>
           
-          <Button className='p-3 font-semibold' onClickFunc={() => login(email, password)}>
+          <Button className='p-3 font-semibold disabled:bg-green/90' type='submit' disabled={isLoading}>
             {isLoading ? "Loading..." : "Login to my account" }
           </Button>
+          <div className='flex justify-center absolute -bottom-8 left-0 w-full'>
+            {messageState && <p className='text-[#FF6B93] text-sm'>{messageState}</p>}
+          </div>
         </form>
         <p className='font-semibold text-sm'>Don't have an account? <a className='text-[#5441ff]' href='/signup'>Sign Up</a></p>
       </div>
