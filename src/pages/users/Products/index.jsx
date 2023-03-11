@@ -197,7 +197,7 @@ const Products = () => {
   });
   return (
     <Dashboard>
-        <main className='flex-1'>
+        <main className='flex-1 overflow-hidden'>
           {isLoading && <Loader loader={4} />}
           <Header business_string={id} type="product" />
           <section className='p-8 px-4 sm:px-8'>

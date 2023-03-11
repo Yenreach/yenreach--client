@@ -6,7 +6,7 @@ import DP from '/src/assets/dashboard/img.svg'
 
 const index = ({ business_string, type }) => {
   return (
-    <div className='p-3 px-3 lg:pr-20 xl:pr-36 bg-white flex items-center justify-between'>
+    <div className='p-3 px-3 lg:pr-20 xl:pr-36 bg-white flex items-center justify-between w-full'>
         <div className='text-[#69707D]'>
             Business {'>'} Hard rock cafe
         </div>

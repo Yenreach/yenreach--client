@@ -5,7 +5,7 @@ import SideNav from '../../users/SideNav'
 const index = ({ children }) => {
   return (
     <ProtectedRoutes>
-      <div className='flex bg-footer-bg overflow-hidden min-h-screen'>
+      <div className='flex bg-footer-bg overflow-hidden min-h-screen w-full'>
         <SideNav />
         {children}
       </div>

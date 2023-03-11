@@ -43,14 +43,14 @@ const Loader = ({ setModalOpen, modalOpen, loader=4 }) => {
             </div> 
         : loader===3 ?
             <div onClick={handleOutsideClick} className='backdrop-blur-[1px] bg-black/10 fixed top-0 left-0 w-full max-h-screen min-h-screen z-50 grid place-items-center overflow-hidden'>
-                <div className='flex gap-12 w-fit h-8 w-8 rounded-full border-green relative animate-[around_1s_linear_infinite] overflow-hidden'>
+                <div className='flex gap-12 h-8 w-8 rounded-full border-green relative animate-[around_1s_linear_infinite] overflow-hidden'>
                     <span className='w-24 h-2 rounded-full absolute top-0 left-0 bg-green animate-pulse'></span>
                     <span className='w-24 h-2 rounded-full absolute bottom-0 left-0 bg-green animate-[pulse_2s_infinite]'></span>
                 </div>
             </div> 
         : loader===4 ?
             <div onClick={handleOutsideClick} className='backdrop-blur-[1px] bg-black/10 fixed top-0 left-0 w-full max-h-screen min-h-screen z-50 grid place-items-center overflow-hidden'>
-                <div className='flex gap-12 w-fit h-8 w-8 rounded-full border-green border-b-2 relative animate-[around_1s_linear_infinite] overflow-hidden'>
+                <div className='flex gap-12 h-8 w-8 rounded-full border-green border-b-2 relative animate-[around_1s_linear_infinite] overflow-hidden'>
                 </div>
             </div> 
         :   null
