@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import useFetch from '/src/hooks/useFetch'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import { apiGetAllBlogs } from '../../services/CommonService'
 import getData from '../../utils/getData'
@@ -7,21 +8,24 @@ import { changePage, paginate } from '/src/utils'
 import BlogCard from '../../components/ui/BlogCard'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import Loader from '/src/components/Loader'
+
 
 const index = () => {
   const [page, setPage] = useState(1)
   const num_per_page = 6
 
-  const { data: blogs, error: errorBlogs } = useQuery({
-    queryKey: ['blogs'],
-    queryFn: () => getData(apiGetAllBlogs),
+  const { data: blogs, error: errorBlogs, isLoading } = useFetch({
+    key: ['blogs'],
+    api: apiGetAllBlogs,
   })
 
-  console.log('blogs', blogs, 'error', errorBlogs)
+  // console.log('blogs', blogs, 'error', errorBlogs)
 
   return (
     <>
       <Header />
+      {isLoading && <Loader loader={4} />}
       <div className="flex flex-col justify-center items-center gap-4 py-10 px-4 md:py-24 bg-[url(assets/blog-hero-bg.svg)] mt-[79px] md:mt-[88px]">
         <h1 className="text-3xl md:text-5xl text-[#89F1B4] font-semibold text-center">
           Keep up with the business world

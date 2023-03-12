@@ -13,6 +13,7 @@ import JobActive from '../../assets/jobs/job-active.svg'
 import ProductActive from '../../assets/products/product-active.svg'
 
 
+
 const index = () => {
   const [activeTab, setActiveTab] = useState('business');
   const location = useLocation()

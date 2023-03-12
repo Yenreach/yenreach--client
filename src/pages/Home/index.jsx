@@ -14,14 +14,17 @@ import AllHereJ from '../../assets/jobs/all-here.svg'
 import AllHereP from '../../assets/products/all-here.svg'
 import BusOfTheWeek from '../../assets/bus_of_the_week.svg'
 import Button from '../../components/ui/Button'
+import Loader from '/src/components/Loader'
+import useFetch from '/src/hooks/useFetch'
+
 
 const index = () => {
-
-    const { data: businessOfTheWeek, error: errorBusinessOfTheWeek } = useQuery({
-        queryKey: ['businessOfTheWeek'],
-        queryFn: () => getData(apiBusinessOfTheWeek),
+    const { data: businessOfTheWeek, error: errorBusinessOfTheWeek } = useFetch({
+        api: apiBusinessOfTheWeek,
+        key: ['businessOfTheWeek'],
+        staleTime: 1000 * 60 * 5,
+        cacheTime : 1000 * 60 * 60,
       })
-
     // console.log("businessOfTheWeek", businessOfTheWeek, "error", errorBusinessOfTheWeek)
 
   return (

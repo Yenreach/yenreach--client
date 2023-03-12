@@ -6,12 +6,14 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { MdChevronRight } from 'react-icons/md'
 import BlogImage from '../../assets/blog/single-blog.svg'
+import Loader from '/src/components/Loader'
+
 
 
 const index = () => {
     const { id } = useParams()
 
-    const { data: blog, error: errorBlog } = useFetch({
+    const { isLoading, data: blog, error: errorBlog } = useFetch({
         api: apiGetBlog,
         param: id,
         key: 'blog'
@@ -29,6 +31,7 @@ const index = () => {
   return (
     <>
       <Header />
+      {isLoading && <Loader loader={4} />}
       <div className='py-10 px-4 md:py-24 mt-[79px] md:mt-[88px] max-w-[750px] mx-auto'>
         <div className='flex items-center gap-1 mb-5 text-xs'>
             Blog

@@ -25,18 +25,16 @@ const index = () => {
   const { id } = useParams()
   const reviewsContainerRef = useRef(null)
   
-  const { data: business, error: errorBusiness, isFetching: businessFetching } = useFetch({
+  const { data: business, error: errorBusiness, isLoading } = useFetch({
     api: apiGetOneBusiness,
     param: id,
     key: ['business', id],
-    // refetchOnMount: "always"
   })
   
   const { data: categories, error: errorCategories } = useFetch({
     api: apiGetBusinessCategories,
     param: id,
     key: ['categories', id],
-    // refetchOnMount: "always"
   })
 
   
@@ -44,14 +42,12 @@ const index = () => {
     api: apiGetBusinessReviews,
     param: id,
     key: ['reviews', id],
-    // refetchOnMount: "always",
   })
   
   const { data: reviewsStats, error: errorReviewsStats } = useFetch({
     api: apiGetBusinessReviewsStats,
     param: id,
     key:['reviewsStats', id],
-    // refetchOnMount: "always"
   })
 
 
@@ -59,25 +55,21 @@ const index = () => {
     api: apiGetBusinessWorkingHours,
     param: id,
     key: ['workingHours', id],
-    // refetchOnMount: "always"
   })
   const { data: branches, error: errorBranches } = useFetch({
     api: apiGetBusinessBranches,
     param: id,
     key: ['branches', id],
-    // refetchOnMount: "always"
   })
   const { data: relatedBusinesses, error: errorRelatedBusinesses } = useFetch({
     api: apiGetRelatedBusinesses,
     param: id,
     key: ['relatedBusinesses', id],
-    // refetchOnMount: "always"
   })
   const { data: businessSubscription, error: errorBusinessSubscription} = useFetch({
     api: apiGetBusinessSubscription,
     param: id,
     key: ['businessSubscription', id],
-    // refetchOnMount: "always"
   })
   
   const { data: businessSubscriptionDetails, error: errorBusinessSubscriptionDetails,} = useFetch({
@@ -85,10 +77,9 @@ const index = () => {
     param: businessSubscription?.subscription_string,
     key: ['businessSubscriptionDetails', businessSubscription?.subscription_string],
     enabled: !!businessSubscription?.subscription_string,
-    // refetchOnMount: "always"
   })
 
-  console.log("reviewsContainerRef", reviews)
+  // console.log("reviewsContainerRef", reviews)
 
   const nextReview = () => {
     if(reviewsContainerRef.current?.children?.length > 0){
@@ -104,7 +95,7 @@ const index = () => {
   return (
       <>
         <Header />
-        {businessFetching && <Loader loader={4} />}
+        {isLoading && <Loader loader={4} />}
         {business && 
         <>
           <div className='mt-24 mb-10 py-20 sm:py-12 px-4 md:px-10 lg:px-20 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center text-white flex items-center gap-5'>

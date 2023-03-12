@@ -16,7 +16,7 @@ const Billboard = () => {
         cacheTime : 1000 * 60 * 60,
       })
 
-      console.log("billboards", billboards)
+    //   console.log("billboards", billboards)
     
   return (
     <Dashboard> 

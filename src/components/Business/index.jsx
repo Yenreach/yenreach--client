@@ -32,6 +32,8 @@ const index = ({ page: initialPage, num_per_page, searchString, searchLocation }
       console.log("refetching")
       refetch()
     }
+    setSearch('')
+    setLocation('')
   }
 
   useEffect(() => {
@@ -55,7 +57,7 @@ const index = ({ page: initialPage, num_per_page, searchString, searchLocation }
   const { data: filteredBusiness, error: errorFilteredBusinesses, refetch, isLoading: filteredBusinessesLoading, isFetching: filteredBusinessesFetching, } = useQuery({
     queryKey: ['filteredBusiness'],
     queryFn: () => getData(apiBusinessSearch, { search: search || searchString, location: location || searchLocation }),
-    staleTime: staleTime,
+    // staleTime: staleTime,
     enabled
   })
 

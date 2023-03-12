@@ -4,13 +4,11 @@ import { apiGetFilledCategories, apiGetBusinessStates } from '../../services/Com
 import Button from '/src/components/ui/Button'
 import Input from '/src/components/ui/Input'
 import useFetch from '/src/hooks/useFetch'
-import getData from '../../utils/getData'
 import Search from '/src/assets/search.svg'
 import Hero0 from '../../assets/hero.svg'
 import Hero1 from '../../assets/hero-one.jpg'
 import Hero2 from '../../assets/hero-two.jpg'
 import Hero3 from '../../assets/Banner-two.jpeg'
-import SearchBar from '../ui/SearchBar'
 
   
 const carouselData = [
