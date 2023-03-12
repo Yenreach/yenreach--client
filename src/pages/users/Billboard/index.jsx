@@ -1,28 +1,28 @@
 import React from 'react'
-import { MdCheckBox } from 'react-icons/md'
 import { TfiCrown } from 'react-icons/tfi'
-import { useQuery } from '@tanstack/react-query'
-import getData from '/src/utils/getData'
+import useFetch from '/src/hooks/useFetch'
 import { apiGetBillboardPaymentTypes } from '/src/services/UserService'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '/src/components/ui/Button'
-import BusinessCard from '../../../components/ui/BusinessCard'
-
-
-
+import Loader from '/src/components/Loader'
 
 const Billboard = () => {
-    const { isLoading, error, data: billboards } = useQuery({
-        queryKey: ['billboards'],
-        queryFn: () => getData(apiGetBillboardPaymentTypes),
+      
+    const { isLoading, error, data: billboards} = useFetch({
+        api: apiGetBillboardPaymentTypes,
+        key:  ['billboards'],
+        staleTime: 1000 * 60 * 5,
+        cacheTime : 1000 * 60 * 60,
       })
+
       console.log("billboards", billboards)
     
   return (
     <Dashboard> 
     <div className='flex-1 overflow-y-auto overflow-hidden'>
         <Head />
+        {isLoading && <Loader loader={4} />}
         <section className='p-8 px-4 sm:px-8 text-sm'>
             <div className='p-5 py-7 bg-white'>
                 <div className='mb-20 md:w-4/5'>

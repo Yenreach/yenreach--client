@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 import { TfiCrown } from 'react-icons/tfi'
-import { useQuery } from '@tanstack/react-query'
-import getData from '/src/utils/getData'
+import useFetch from '/src/hooks/useFetch'
 import { apiGetAllSubscriptions,apiGetAllSubscriptionPlans } from '/src/services/UserService'
 import SubscriptionModal from './SubscriptionModal'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '/src/components/ui/Button'
 import { MdArrowDropDown } from 'react-icons/md'
+import Loader from '/src/components/Loader'
+
 
 
 
@@ -16,9 +17,11 @@ import { MdArrowDropDown } from 'react-icons/md'
 const Subscription = () => {
     const [modalOpen, setModalOpen] = useState(false)
 
-    const { isLoading, error, data: subscriptions } = useQuery({
-        queryKey: ['subscriptions'],
-        queryFn: () => getData(apiGetAllSubscriptions),
+    const { isLoading, error, data: subscriptions } = useFetch({
+        api: apiGetAllSubscriptions,
+        key: ['subscriptions'],
+        staleTime: 1000 * 60 * 5,
+        cacheTime : 1000 * 60 * 60,
       })
     // console.log("subscriptions", subscriptions)
 
@@ -34,6 +37,7 @@ const Subscription = () => {
     <Dashboard> 
     <div className='flex-1 overflow-y-auto overflow-hidden relative'>
         <Head />
+        {isLoading && <Loader loader={4} />}
         <section className='p-8 px-4 sm:px-8 text-sm md:pt-16 py-16'>
             <div className='flex flex-wrap gap-4'>
                 {subscriptions?.map(subscription => 

@@ -2,8 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { MdDelete } from 'react-icons/md'
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from 'react-icons/hi'
-import { useQuery } from '@tanstack/react-query'
-import getData from '/src/utils/getData'
+import useFetch from '/src/hooks/useFetch'
 import { apiGetUser, apiGetSavedBusinesses } from '/src/services/UserService'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
@@ -11,18 +10,17 @@ import Button from '../../../components/ui/Button'
 import BusinessCard from '../../../components/ui/BusinessCard'
 
 
-
-
 const Profile = () => {
-    const { isLoading, error, data: profile } = useQuery({
-        queryKey: ['profile'],
-        queryFn: () => getData(apiGetUser),
-    })
-    const { data: savedBusinesses } = useQuery({
-        queryKey: ['savedBusinesses'],
-        queryFn: () => getData(apiGetSavedBusinesses),
-    })
-    //   console.log("saved", savedBusinesses)
+    const { isLoading, error, data: profile} = useFetch({
+        api: apiGetUser,
+        key: ['profile'],
+      })
+    const { data: savedBusinesses, error: errorProfile } = useFetch({
+        api: apiGetSavedBusinesses,
+        key: ['savedBusinesses'],
+      })
+
+      console.log(profile, "saved", savedBusinesses, "profile", errorProfile)
     
   return (
     <Dashboard> 
@@ -38,11 +36,11 @@ const Profile = () => {
                 <div className='flex gap-12 text-sm mb-12'>
                     <div className='flex flex-col gap-1'>
                         <span className='text-gray-dark'>Name</span>
-                        <span className='font-medium'>Nicholas Duadei</span>
+                        <span className='font-medium'>{profile?.name}</span>
                     </div>
                     <div className='flex flex-col gap-1'>
                         <span className='text-gray-dark'>Email Address</span>
-                        <span className='font-medium'>Nicholasduadei14@gmail.com</span>
+                        <span className='font-medium'>{profile?.email}</span>
                     </div>
                 </div>
                 <div>

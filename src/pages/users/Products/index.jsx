@@ -21,7 +21,6 @@ const Products = () => {
     key: ['userProducts', id],
     api: apiGetAllBusinessProducts,
     param: id,
-    // refetchOnMount: true,
   })
 
   // console.log("products", products, errorProducts)

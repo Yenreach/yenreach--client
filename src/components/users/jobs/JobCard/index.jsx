@@ -9,7 +9,7 @@ import { MdBusiness, MdOutlinePeopleOutline } from 'react-icons/md'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 
 
-const index = ({ job, refetchJobs, removeJobsCache }) => {
+const index = ({ job, refetchJobs, removeJobsCache, business_id }) => {
   const statusRef = useRef(null)
 
   const updateJobStatus = useMutation({
@@ -93,7 +93,7 @@ const index = ({ job, refetchJobs, removeJobsCache }) => {
         </div>
       </div>
       <span className='w-fit bg-green-light rounded-full px-3 py-1 text-green text-xs'>{ job?.status === "1" ? "Active" : "Inactive" }</span>
-      <Link to={`/users/jobs/${job?.job_string}/applicants`} className="w-full">
+      <Link to={`/users/jobs/${business_id}/applicants/${job?.job_string}`} className="w-full">
         <Button variant='job'  className='w-full py-1 text-xs' onClickFunc={ () => ""}>View Applicants</Button>
       </Link>
     </div>

@@ -5,9 +5,10 @@ import { apiGetApplicationsByJob } from '/src/services/JobService'
 import MUIDataTable from "mui-datatables";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AiOutlinePlus } from 'react-icons/ai'
-import Head from '../../../components/users/Head'
-import Input from '../../../components/ui/Input'
+import Header from "/src/components/users/Header"
+
 import Button from '../../../components/ui/Button'
+import Loader from '../../../components/Loader'
 import Dashboard from "../../../components/layout/Dashboard"
 
 
@@ -18,15 +19,15 @@ const options = {
 
 const Applicants = () => {
   const [data, setData] = React.useState([])
-  const { id } = useParams()
+  const { id, job_id } = useParams()
   
   const { isLoading, error, data: applicants } = useFetch({
-    key: ['userJobApplicants', id],
+    key: ['userJobApplicants', job_id],
     api: apiGetApplicationsByJob,
-    param: id,
+    param: job_id,
   })
 
-  console.log("applicants", applicants)
+  // console.log("applicants", applicants)
   
 
 
@@ -197,7 +198,8 @@ const Applicants = () => {
   return (
     <Dashboard>
         <main className='flex-1'>
-          <Head />
+          <Header business_string={id} type="job" />
+          {isLoading && <Loader loader={4} />}
           <section className='p-8 px-4 sm:px-8'>
             <div className='flex items-center justify-between mb-3'>
                 <h2 className='text-xl text-blue font-medium'>Job Applicants</h2>

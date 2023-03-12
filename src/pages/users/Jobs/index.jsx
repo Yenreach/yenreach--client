@@ -21,7 +21,7 @@ const Jobs = () => {
     param: id,
   })
   
-  console.log("jobs", jobs)
+  // console.log("jobs", jobs)
 
   return (
     <Dashboard>
@@ -42,12 +42,12 @@ const Jobs = () => {
                 </div>
                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
                     {jobs?.map((job) => (
-                      <JobCard key={job.id} job={job} refetchJobs={refetchJobs} removeJobsCache={removeJobsCache} />
+                      <JobCard business_id={id} key={job.id} job={job} refetchJobs={refetchJobs} removeJobsCache={removeJobsCache} />
                     ))}
                 </div>
               </>
             }
-            {!isLoading &
+            {!isLoading &&
               !jobs && 
                 <div className='flex flex-col justify-center items-center rounded-lg font-arialsans h-[550px] sm:h-auto md:mt-14'>
                     <img src={NoBusiness} alt="" className='mb-7' />
