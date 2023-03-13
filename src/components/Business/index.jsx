@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { apiGetApprovedBusinesses, apiGetFilledCategories, apiGetBusinessStates, apiBusinessSearch } from '../../services/CommonService'
 import useFetch from '/src/hooks/useFetch'
@@ -14,22 +15,23 @@ import Location from '../../assets/location.svg'
 
 const staleTime = 1000 * 60 * 60 * 24
 
-const index = ({ page: initialPage, num_per_page, searchString, searchLocation }) => {
+const index = ({ page: initialPage, num_per_page }) => {
   const [page, setPage] = useState(initialPage || 1)
   const [search, setSearch] = useState('')
   const [location, setLocation] = useState('')
+  const [searchQuery, setSearchQuery] = useState({ search: '', location: '' })
   const [enabled, setEnabled] = useState(false)
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchString = searchParams.get('search')
+  const searchLocation = searchParams.get('location')
 
   const handleSearch = (e) => {
     e.preventDefault()
-    
+    setSearchQuery({ search, location })
     if (!enabled) {
-      console.log("enabled")
       setEnabled(true)
       refetch()
     } else {    
-      console.log("refetching")
       refetch()
     }
     setSearch('')
@@ -37,14 +39,11 @@ const index = ({ page: initialPage, num_per_page, searchString, searchLocation }
   }
 
   useEffect(() => {
-    if (searchLocation) {
-      setLocation(searchLocation)
-    }
     if (searchString) {
-      setSearch(searchString)
-      handleSearch({preventDefault: () => {}})
+      setSearchQuery({ search: searchString, location: searchLocation })
+      setEnabled(true)
     }
-  }, [searchString, searchLocation])
+  }, [])
 
 
   
@@ -54,9 +53,9 @@ const index = ({ page: initialPage, num_per_page, searchString, searchLocation }
     staleTime: staleTime,
   })
 
-  const { data: filteredBusiness, error: errorFilteredBusinesses, refetch, isLoading: filteredBusinessesLoading, isFetching: filteredBusinessesFetching, } = useQuery({
-    queryKey: ['filteredBusiness'],
-    queryFn: () => getData(apiBusinessSearch, { search: search || searchString, location: location || searchLocation }),
+  const { data: filteredBusiness, error: errorFilteredBusinesses, refetch, isLoading: filteredBusinessesLoading } = useQuery({
+    queryKey: ['filteredBusiness', searchQuery],
+    queryFn: () => getData(apiBusinessSearch, searchQuery),
     // staleTime: staleTime,
     enabled
   })
@@ -85,8 +84,8 @@ const index = ({ page: initialPage, num_per_page, searchString, searchLocation }
 
   return (
     <>
-        {!filteredBusinessesFetching && aprrovedBusinessesLoading && <Loader loader={4} />}
-        {enabled && filteredBusinessesFetching && <Loader loader={1} />}
+        {!filteredBusinessesLoading && aprrovedBusinessesLoading && <Loader loader={4} />}
+        {enabled && filteredBusinessesLoading && <Loader loader={4} />}
 			<div className='flex items-center justify-center w-full gap-10'>
 				<p className='font-medium text-smm'>Currently Exploring businesses in</p>
 				<div className="flex items-center justify-center gap-2 px-4 py-2 bg-green-light">
@@ -113,7 +112,7 @@ const index = ({ page: initialPage, num_per_page, searchString, searchLocation }
 		</form>
 			{/* <SearchBar variant='business' /> */}
       <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {aprrovedBusinesses && paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.data?.slice(0,20).map((business) => (
+        {(aprrovedBusinesses || filteredBusiness) && paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.data?.slice(0,20).map((business) => (
           <BusinessCard key={business.id} business={business} />
         ))}
       </div>
@@ -121,13 +120,13 @@ const index = ({ page: initialPage, num_per_page, searchString, searchLocation }
         New Job Listings available       
       </div>
       <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {aprrovedBusinesses && paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.data?.slice(20,40).map((business) => (
+        {(aprrovedBusinesses || filteredBusiness) && paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.data?.slice(20,40).map((business) => (
           <BusinessCard key={business.id} business={business} />
         ))}
       </div>
       <div className="flex items-center flex-wrap mt-10 w-fit">
         <MdChevronLeft size={"1.5rem"} />
-        {aprrovedBusinesses && [...Array(paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.pages).keys()]?.map((page_num) => 
+        {(aprrovedBusinesses || filteredBusiness) && [...Array(paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.pages).keys()]?.map((page_num) => 
           <span key={page_num+1} onClick={() => handlePageChange(page_num+1)} className={`${page===page_num+1 && "border-b"} mx-2 font-medium cursor-pointer`}>{page_num + 1}</span>
         )}
         <MdChevronRight size={"1.5rem"} />

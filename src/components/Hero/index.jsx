@@ -84,17 +84,11 @@ const index = () => {
 
   const handleSearch = (e) => {
     e.preventDefault()
-    console.log("search", search, "location", location)
+    // console.log("search", search, "location", location)
 
     if (search) {
       navigate(`/explore?search=${search}&location=${location}`)
     }
-    
-    // if (!enabled) {
-    //   setEnabled(true)
-    // } else {    
-    //   refetch()
-    // }
   }
 
   return (

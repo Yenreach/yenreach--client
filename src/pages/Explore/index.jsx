@@ -20,8 +20,6 @@ const index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const page = searchParams.get('page') || 1
-  const searchString = searchParams.get('search')
-  const searchLocation = searchParams.get('location')
   const num_per_page = 40
 
   
@@ -73,7 +71,7 @@ const index = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-5 md:px-5 lg:py-20 lg:px-20">
-          { activeTab == 'business' ? <Business page={page} num_per_page={num_per_page} searchString={searchString} searchLocation={searchLocation}  /> 
+          { activeTab == 'business' ? <Business page={page} num_per_page={num_per_page} /> 
           : activeTab == 'jobs' ? <Jobs page={page} num_per_page={num_per_page} />
           : activeTab == 'marketplace' ? <Product page={page} num_per_page={num_per_page} /> 
           : null}
