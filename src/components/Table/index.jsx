@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 
 const testData = [
@@ -129,9 +129,36 @@ const formatDate = (date) => {
 
 
 const Table = ({ data, columns }) => {
-  // console.log("data", data)
+  const [filtererdData, setFilteredData] = React.useState(null);
+
+  const handleFilter = (e) => {
+    const { value } = e.target
+    // console.log("function ran")
+    const filtered = data?.filter((item) => {
+      return Object.keys(item).some((key) => {
+        return item[key]?.toString().toLowerCase().includes(value?.toLowerCase());
+      });
+    });
+    setFilteredData(filtered);
+  };
+  const debounce =  (func, wait) => {
+    let timeout;
+    return function executedFunction(...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        clearTimeout(timeout);
+        func(...args);
+      }, wait);
+    };
+  };
+  
+  const search = debounce(handleFilter, 1000)
+
   return (
       <div className="overflow-x-auto bg-white p-6 px-7 pb-10 rounded-xl">
+        <div className="flex items-center gap-8">
+         <input onChange={search} type="text" placeholder="search" className="my-2 border-orange p-2 rounded-lg border-2 outline-none" />
+        </div>
         <table className="min-w-full text-center text-sm font-light">
           <thead className="font-normal bg-[#FAFAFA] text-[#5F6868]">
             <tr>
@@ -141,7 +168,7 @@ const Table = ({ data, columns }) => {
             </tr>
           </thead>
           <tbody className="text-[#737B7B] text-xs">
-            {data?.map((item, index) => (
+            {(filtererdData || data)?.map((item, index) => (
               <tr key={index} className="border-b border-[#F2F2F2]">
                 {columns?.map((column, index) => {
                   // console.log("column", column)
