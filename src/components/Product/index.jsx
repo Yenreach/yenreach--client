@@ -17,7 +17,7 @@ const index = ({ page: initialPage, num_per_page }) => {
     queryFn: () => getData(apiGetAllProducts),
   })
 
-  // console.log("products", products, "error", errorProducts) 
+  console.log("products", products, "error", errorProducts) 
 
   const handlePageChange = (page) => {
     setPage(page)

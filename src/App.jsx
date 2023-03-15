@@ -6,6 +6,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home'
 import Explore from './pages/Explore'
 import Business from './pages/Business'
+import Products from './pages/Products'
 import About from './pages/About'
 import Blogs from './pages/Blog'
 import Blog from './pages/Blog/Blog'
@@ -18,7 +19,7 @@ import Dashboard from './components/layout/Dashboard'
 import BusinessDash from './pages/users/Home'
 import CreateBusiness from './pages/users/CreateBusiness'
 import EditBusiness from './pages/users/EditBusiness'
-import Products from './pages/users/Products'
+import UserProducts from './pages/users/Products'
 import UserBusiness from './pages/users/Business'
 import AddProduct from './pages/users/Products/AddProduct'
 import ProductSuccess from './pages/users/Products/Success'
@@ -45,6 +46,7 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route exact path="/explore" element={<Explore />} />
             <Route exact path="/business/:id" element={<Business />} />
+            <Route exact path="/products/:id" element={<Products />} />
             <Route exact path="/about" element={<About />} />
             <Route exact path="/blogs" element={<Blogs />} />
             <Route exact path="/blogs/:id" element={<Blog />} />
@@ -55,7 +57,7 @@ function App() {
             <Route exact path="/users/business/:id" element={<UserBusiness />} />
             <Route exact path="/users/add-business" element={<CreateBusiness />} />
             <Route exact path="/users/edit-business" element={<CreateBusiness />} />
-            <Route exact path="/users/products/:id" element={<Products />} />
+            <Route exact path="/users/products/:id" element={<UserProducts />} />
             <Route exact path="/users/products/:id/add-product" element={<AddProduct />} />
             <Route exact path="/users/products/:id/product-success" element={<ProductSuccess />} />
             <Route exact path="/users/profile" element={<Profile />} />

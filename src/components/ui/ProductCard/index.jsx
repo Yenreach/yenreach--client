@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Image from '../../../assets/image.svg'
 import Button from '../Button'
 
-const index = ({ product }) => {
+const ProductCard = ({ product }) => {
   return (
     <Link to={`/products/${product?.product_string}`}>
       <div className='flex flex-col rounded-t-3xl overflow-hidden py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-fit justify-between'>
@@ -31,4 +31,4 @@ const index = ({ product }) => {
   )
 }
 
-export default index
+export default ProductCard
