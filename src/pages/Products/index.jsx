@@ -23,7 +23,7 @@ const Product = () => {
   return (
       <>
         <Header />
-        {isLoading && <Loader loader={4} />}
+        {/* {isLoading && <Loader loader={4} />} */}
 
         <div className='mt-24 mb-10'>
             <section className='py-4 md:pt-8 sm:py-6 px-4 md:px-10 lg:px-20 mb-8'>
