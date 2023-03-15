@@ -8,7 +8,7 @@ import { useState } from 'react'
 const JobSideBar = ({ jobs, setSelectedJobIndex, selectedJobIndex }) => {
   
   return (
-    <div className='flex flex-col h-full'>
+    <div className='hidden md:flex flex-col h-full flex-1 max-w-sm'>
 			<div className="flex justify-start flex-col gap-3">
 				{
 					jobs.slice(0, 4).map((job, index) => (

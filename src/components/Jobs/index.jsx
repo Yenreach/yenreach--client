@@ -35,7 +35,7 @@ const index = ({ page, num_per_page }) => {
       <SearchBar variant='job' />
       { tab === 1 
           ?  <AllJobs jobs={jobs} setTab={setTab} setSelectedJobIndex={setSelectedJobIndex} page={page} num_per_page={num_per_page} />
-          : <div className="flex justify-around items-start gap-8">
+          : <div className="flex justify-around items-start gap-8 w-full sm:px-8">
               <JobSideBar jobs={jobs} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} />    
               <JobDescription job={jobs[selectedJobIndex]} />
             </div>

@@ -9,7 +9,7 @@ import { apiGetAllProducts } from '../../services/ProductService'
 import getData from '../../utils/getData'
 import { paginate } from '../../utils/pagination'
 
-const index = ({ page: initialPage, num_per_page }) => {
+const Products = ({ page: initialPage, num_per_page }) => {
   const [page, setPage] = useState(initialPage || 1)
 
   const { data: products, error: errorProducts } = useQuery({
@@ -17,7 +17,7 @@ const index = ({ page: initialPage, num_per_page }) => {
     queryFn: () => getData(apiGetAllProducts),
   })
 
-  console.log("products", products, "error", errorProducts) 
+  // console.log("products", products, "error", errorProducts) 
 
   const handlePageChange = (page) => {
     setPage(page)
@@ -56,4 +56,4 @@ const index = ({ page: initialPage, num_per_page }) => {
   )
 }
 
-export default index
+export default Products
