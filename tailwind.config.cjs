@@ -1,10 +1,17 @@
 /** @type {import('tailwindcss').Config} */
+
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'xs': '450px',
+      ...defaultTheme.screens,
+    },
     extend: {
       colors: {
         'green': '#00C885',
@@ -22,24 +29,24 @@ module.exports = {
         'gray-light': '#E5E5E5',
       },
       fontSize: {
+        xs: ["clamp(0.65rem, calc(0.5rem + 0.3vw), 0.75rem)", "1.4"],
+        sm: ["clamp(0.78rem, calc(0.77rem + 0.5vw), 0.85rem)", "1.4"],
+        base: ["clamp(0.9rem, calc(0.92rem + 0.13vw), 1.00rem)", "1.4"],
+        // lg: ["clamp(1.05rem, calc(1.08rem + 0.22vw), 1.20rem)", "1.4"],
+        "lg": ["clamp(1.13rem, calc(0.98rem + 0.25vw), 1.2rem)", "1.5"],
+        "xl": ["clamp(1.35rem, calc(1.28rem + 0.37vw), 1.5rem)", "1.4"],
+        "2xl": ["clamp(1.62rem, calc(1.50rem + 0.58vw), 1.875rem)", "1.4"],
+        "3xl": ["clamp(1.94rem, calc(1.77rem + 0.87vw), 2.3rem)", "1.2"],
+        "4xl": ["clamp(2.33rem, calc(2.08rem + 1.25vw), 3.05rem)", "1.1"],
+        "5xl": ["clamp(2.80rem, calc(2.45rem + 1.77vw), 3.82rem)", "1"],
         xsm: ['0.625rem', '0.8rem'],
         smm: ['0.8125rem', '1.15rem'],
-        '25': ['1.3rem', {
-          lineHeight: '2rem',
-          letterSpacing: '-0.01em',
-          fontWeight: '500',
-        }],
-        '3xlm': ['1.7rem', {
-          lineHeight: '2rem',
-          letterSpacing: '-0.02em',
-          fontWeight: '500',
-        }],
-        '40': ['2.5rem', {
-          lineHeight: '2.5rem',
-          letterSpacing: '-0.02em',
-          fontWeight: '500',
-        }],
+        '25': ["clamp(1.00rem, calc(0.92rem + 0.39vw), 1.20rem)", "1.4"],
+        '3xlm': ["clamp(1.27rem, calc(1.03rem + 1.19vw), 1.8rem)", "1.4"],
+        '40': ["clamp(1.60rem, calc(1.45rem + 0.45vw), 1.7rem)", "1.2"],
       },
+      // fontSize: {
+      // },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
         arialsans: ['Arial', 'Helvetica', 'sans-serif'],
