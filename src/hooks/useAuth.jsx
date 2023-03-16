@@ -11,7 +11,7 @@ const useAuth = () => {
     const [isLoading, setIsLoading] = useState(null)
     const { messageState, setMessageState } = useTimeOutMessage()
 
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
     // dispatch function to update auth context
     const { dispatch } = useAuthContext()
 
@@ -36,7 +36,7 @@ const useAuth = () => {
                 dispatch({type: "LOGIN", payload: data})
                 setError(null)
                 setIsLoading(false)
-                Navigate('/users')
+                navigate('/users')
             }
         } catch (error) {
             setError(null)

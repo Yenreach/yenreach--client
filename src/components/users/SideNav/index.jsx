@@ -8,7 +8,7 @@ import Logo from "../../../assets/logo.svg"
 import Logout from "../../../assets/dashboard/logout.svg"
 
 
-const index = () => {
+const SideNav = ({ id }) => {
     const { dispatch } = useAuthContext()
     const { pathname, ...k } = useLocation()
     // console.log("path", pathname, k)
@@ -31,7 +31,7 @@ const index = () => {
                     </span> 
                     Profile
                 </Link>
-                <Link className={`${pathname==="/users/subscription" ? "font-medium text-white bg-green" : "opacity-50"} py-2.5 pl-6 text-sm flex items-center gap-2`} to={"/users/subscription"}>
+                <Link className={`${pathname==="/users/subscription" ? "font-medium text-white bg-green" : "opacity-50"} py-2.5 pl-6 text-sm flex items-center gap-2`} to={`/users/subscription/${id}`}>
                     <RiBillLine color={`${pathname==="/users/subscription" ? "#ffffff" : ""}`} size={"1.3rem"} />
                     Subscription
                 </Link>
@@ -49,4 +49,4 @@ const index = () => {
   )
 }
 
-export default index
+export default SideNav

@@ -62,7 +62,7 @@ function App() {
             <Route exact path="/users/products/:id/product-success" element={<ProductSuccess />} />
             <Route exact path="/users/profile" element={<Profile />} />
             <Route exact path="/users/profile/edit" element={<Edit />} />
-            <Route exact path="/users/subscription" element={<Subscription />} />
+            <Route exact path="/users/subscription/:id" element={<Subscription />} />
             <Route exact path="/users/billboard" element={<Billboard />} />
             <Route exact path="/users/jobs/:id" element={<Jobs />} />
             <Route exact path="/users/jobs/:id/applicants/:job_id" element={<Applicants />} />
