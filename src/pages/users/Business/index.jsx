@@ -190,7 +190,7 @@ const index = () => {
               </div>
               <div className='mb-20'>
                 <h2 className='text-green text-lg font-medium mb-3'>Business Analytics</h2>
-                <div className='font-arialsans flex sm:flex-row flex-wrap gap-6 text-sm text-[#476788] p-12 bg-white rounded-2xl'>
+                <div className='font-arialsans flex sm:flex-row flex-wrap gap-6 text-sm text-[#476788] p-12 bg-white rounded-2xl overflow-hidden'>
                   <Analytics analytics={analytics} />
                 </div>
               </div>

@@ -34,20 +34,20 @@ const index = () => {
         <Trustees />
         <Category />
         <section className='px-4 py-12 md:px-10 lg:px-24'>
-            <div className='bg-[url("assets/audience.svg")] h-64 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-28 px-4 sm:px-12 md:px-24'>     
-                <div className='flex flex-col items-center gap-2'>
-                    <h2 className='text-2xl font-medium text-center sm:text-3xl md:text-40'>Get your business to the right audience</h2>
-                    <span className='text-xl '>It's Totally free</span>
+            <div className='bg-[url("assets/audience.svg")] h-64 md:h-60 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-28 px-4 sm:px-12 md:px-24'>     
+                <div className='flex flex-col items-center gap-5'>
+                    <h2 className='text-lg md:text-xl font-medium text-center'>Get your business to the right audience</h2>
+                    <span className='text-sm'>It's Totally free</span>
                 </div>
                 <Button className='px-12 py-3 rounded'>
                     Add my business
                 </Button>
             </div>
-            <div className='flex flex-col items-center mb-32 sm:flex-row gap-9'>
-                <img src={AllHere} alt="" className="object-cover w-full sm:w-1/2" />
-                <div className='flex flex-col items-start gap-12'>
-                    <h3 className='font-medium text-3xlm text-green'>They are all Here</h3>
-                    <p className='text-xs text-[#476788]'>
+            <div className='flex flex-col sm:items-center mb-20 md:mb-32 sm:flex-row gap-9'>
+                <img src={AllHere} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px]" />
+                <div className='flex flex-col items-start gap-12 max-w-[450px]'>
+                    <h3 className='font-medium text-xl text-green'>They are all Here</h3>
+                    <p className='text-xs text-[#476788] -mt-4'>
                         Lorem ipsum dolor sit amet consectetur. Ultricies consectetur nisi ornare tempor. Senectus tortor arcu est duis posuere ante. Cras est malesuada facilisi facilisi eget morbi. Cum justo quis dui laoreet fermentum fringilla. Non non dictum ipsum est tellus adipiscing. <br />
                         Netus a sodales a lorem eget sed. Scelerisque id urna massa convallis suspendisse ultrices dignissim sed. Facilisis vestibulum convallis varius tellus. Morbi neque egestas etiam feugiat amet. Accumsan fusce sed id id faucibus viverra nunc ut. Porttitor ac cursus rhoncus amet semper nunc quis vitae fermentum. Hendrerit ipsum quis nulla.
                     </p>
@@ -58,10 +58,10 @@ const index = () => {
                     </Link>
                 </div>
             </div>
-            <div className='flex flex-col-reverse items-center mb-32 sm:flex-row gap-9'>
-                <div className='flex flex-col items-start gap-12'>
-                    <h3 className='font-medium text-3xlm text-blue'>They are all Here</h3>
-                    <p className='text-xs text-[#476788]'>
+            <div className='flex flex-col-reverse sm:items-center mb-20 md:mb-32 sm:flex-row gap-9'>
+                <div className='flex flex-col sm:items-end gap-12 max-w-[450px]'>
+                    <h3 className='font-medium text-xl text-blue'>They are all Here</h3>
+                    <p className='text-xs text-[#476788] -mt-4'>
                         Lorem ipsum dolor sit amet consectetur. Ultricies consectetur nisi ornare tempor. Senectus tortor arcu est duis posuere ante. Cras est malesuada facilisi facilisi eget morbi. Cum justo quis dui laoreet fermentum fringilla. Non non dictum ipsum est tellus adipiscing. <br />
                         Netus a sodales a lorem eget sed. Scelerisque id urna massa convallis suspendisse ultrices dignissim sed. Facilisis vestibulum convallis varius tellus. Morbi neque egestas etiam feugiat amet. Accumsan fusce sed id id faucibus viverra nunc ut. Porttitor ac cursus rhoncus amet semper nunc quis vitae fermentum. Hendrerit ipsum quis nulla.
                     </p>
@@ -71,13 +71,13 @@ const index = () => {
                         </Button>
                     </Link>
                 </div>
-                <img src={AllHereJ} alt="" className="object-cover w-full sm:w-1/2" />
+                <img src={AllHereJ} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px]" />
             </div>
-            <div className='flex flex-col items-center mb-32 sm:flex-row gap-9'>
-                <img src={AllHereP} alt="" className="object-cover w-full sm:w-1/2" />
-                <div className='flex flex-col items-start gap-12'>
-                    <h3 className='font-medium text-3xlm text-orange'>They are all Here</h3>
-                    <p className='text-xs text-[#476788]'>
+            <div className='flex flex-col sm:items-center mb-20 md:mb-32 sm:flex-row gap-9'>
+                <img src={AllHereP} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px]" />
+                <div className='flex flex-col items-start gap-12 max-w-[450px]'>
+                    <h3 className='font-medium text-xl text-orange'>They are all Here</h3>
+                    <p className='text-xs text-[#476788] -mt-4'>
                         Lorem ipsum dolor sit amet consectetur. Ultricies consectetur nisi ornare tempor. Senectus tortor arcu est duis posuere ante. Cras est malesuada facilisi facilisi eget morbi. Cum justo quis dui laoreet fermentum fringilla. Non non dictum ipsum est tellus adipiscing. <br />
                         Netus a sodales a lorem eget sed. Scelerisque id urna massa convallis suspendisse ultrices dignissim sed. Facilisis vestibulum convallis varius tellus. Morbi neque egestas etiam feugiat amet. Accumsan fusce sed id id faucibus viverra nunc ut. Porttitor ac cursus rhoncus amet semper nunc quis vitae fermentum. Hendrerit ipsum quis nulla.
                     </p>
@@ -89,15 +89,15 @@ const index = () => {
                 </div>
             </div>
         </section>
-        <section className='px-4 py-12 mb-12 md:px-10 lg:px-24'>
-            {businessOfTheWeek &&
-                <div className='mb-60'>
-                    <h2 className='mb-2 font-medium text-center text-25 text-green'>Business of the week</h2>
+        <section className='px-4 mb-12 md:px-10 lg:px-24'>
+            {/* {businessOfTheWeek &&
+                <div className='mb-36 py-12'>
+                    <h2 className='mb-2 font-medium text-center text-xl text-green'>Business of the week</h2>
                     <div className='flex flex-col items-center sm:flex-row gap-14'>
                         <img className='flex-1 object-cover w-full sm:w-2/5' src={BusOfTheWeek} alt="Business of The Week" />
                         <div className='flex-1.5 flex flex-col gap-6 items-start'>
-                            <h3 className='text-3xlm'>Yenreach Business school</h3>
-                            <p className='text-smm'>
+                            <h3 className='text-lg'>Yenreach Business school</h3>
+                            <p className='text-sm'>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus faucibus lobortis blandit consectetur massa rutrum dignissim luctus. Non quis fringilla ac semper quam non egestas velit. Mauris, odio viverra amet viverra. Quisque cursus non libero, vestibulum rhoncus, pulvinar donec hendrerit netus. Nibh neque vitae nulla morbi vulputate amet ac. Viverra elementum ullamcorper duis diam iaculis condimentum integer ut. Neque rhoncus convallis dictum viverra.
                             </p>
                             <Link to="/business"> 
@@ -108,32 +108,32 @@ const index = () => {
                         </div>
                     </div>
                 </div>
-            }
+            } */}
             <div className=''>
-                <h2 className='mb-2 font-medium text-center text-25 text-green'>keep up with the business world</h2>
+                <h2 className='mb-3 font-medium text-center text-lg text-green'>keep up with the business world</h2>
                 <div className='flex flex-col grid-cols-3 gap-6 text-white sm:grid'>
                     <div className="relative bg-[url('assets/businesses/coperate.svg')] bg-cover bg-center h-52 sm:h-104 p-4 min-w\">
-                        <span className='absolute w-2/3 bottom-12 sm:bottom-24 text-3xlm'>The struggle in the  Corperate world</span>
+                        <span className='absolute w-2/3 bottom-12 sm:bottom-24 text-xl'>The struggle in the  Corperate world</span>
                     </div>
                     <div className='flex flex-col grid-cols-2 col-span-2 gap-2 sm:grid'>
                         <div className="relative bg-[url('assets/businesses/sme.svg')] p-5 h-52 bg-cover bg-center">
-                            <span className='absolute w-3/4 text-2xl font-semibold bottom-12'>SME gains $30Mil on Seed A</span>
+                            <span className='absolute w-3/4 text-lg font-semibold bottom-12'>SME gains $30Mil on Seed A</span>
                         </div>
                         <div className="relative bg-[url('assets/businesses/tech.svg')] p-5 h-52 bg-cover bg-center">
-                            <span className='absolute w-3/4 text-2xl font-semibold bottom-12'>Technology conntributes more  then Oil in Nigeria</span>
+                            <span className='absolute w-3/4 text-lg font-semibold bottom-12'>Technology conntributes more  then Oil in Nigeria</span>
                         </div>
                         <div className="relative bg-[url('assets/businesses/insure.svg')] p-5 h-52 bg-cover bg-center">
-                            <span className='absolute w-3/4 text-2xl font-semibold bottom-11'>The future of Innsurance Companies </span>
+                            <span className='absolute w-3/4 text-lg font-semibold bottom-11'>The future of Innsurance Companies </span>
                         </div>
                         <div className="relative bg-[url('assets/businesses/google.svg')] p-5 h-52 bg-cover bg-center">
-                            <span className='absolute w-3/4 text-2xl font-semibold bottom-11'>How Google Harms us</span>
+                            <span className='absolute w-3/4 text-lg font-semibold bottom-11'>How Google Harms us</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <section className='px-4 py-12 sm:px-20 md:px-32 lg:px-64 mb-11'>
-            <h2 className='font-medium text-center text-25 text-green'>Frequently asked questions</h2>
+            <h2 className='font-medium text-center text-lg text-green'>Frequently asked questions</h2>
             <Accordion />
         </section>
         <Footer />

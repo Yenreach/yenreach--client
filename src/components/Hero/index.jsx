@@ -92,7 +92,7 @@ const index = () => {
   }
 
   return (
-    <div className='carousel h-[80vh] bg-[url("assets/heo.svg")] lg:h-screen bg-cover bg-center text-white relative'>
+    <div className='carousel bg-[url("assets/heo.svg")] lg:h-screen bg-cover bg-center text-white relative'>
       <div ref={carouselRef} className="carousel absolute left-0 top-0 w-full h-full -z-10">
         {carouselData.map((item, index) => (
           <div ref={(el) => (carouselInnerRef.current[index] = el)} key={item.id} className="carousel-item absolute w-full h-full active">
@@ -100,9 +100,9 @@ const index = () => {
           </div>
         ))}
       </div>
-      <div className="backdrop-blur-[1.5px] bg-black/60 h-full w-full flex flex-col justify-between items-center py-32 pt-52 sm:py-20 sm:pt-40 px-4 md:px-10 lg:px-24 relative">
-        <h1 className='text-3xl font-medium leading-tight text-center sm:text-40'>The No.1 Business listing<br />website in Nigeria</h1>
-        <form action="" method="post" className='flex' onSubmit={handleSearch}>
+      <div className="backdrop-blur-[1.5px] bg-black/60 h-full w-full flex flex-col gap-14 justify-center items-center py-32 sm:py-20 sm:pt-40 px-4 md:px-10 lg:px-24 relative text-xl md:text-3xl">
+        <h1 className='font-medium leading-tight text-center'>The No.1 Business listing<br />website in Nigeria</h1>
+        <form action="" method="post" onSubmit={handleSearch} className="text-base flex">
           <Input onChange={(e) => setSearch(e.target.value)} value={search} list="categories" name="category" id="category" placeholder='business' className='rounded-tl-md rounded-bl-md' />
           <datalist className='' name="categories" id="categories" placeholder='Enter state'>
               {filledCategories?.map((category) => (
@@ -120,18 +120,18 @@ const index = () => {
           </Button>
         </form>
         {/* <SearchBar /> */}
-        <div className='flex items-center justify-between w-full px-2 sm:w-4/5'>
+        <div className='flex items-center gap-2 justify-between w-full px-2 sm:w-4/5'>
           <div className='flex flex-col items-center'>
-            <span className='text-3xl font-semibold sm:text-40'>2000+</span>
-            <span className='2xl'>Businesses</span>
+            <span className='font-semibold'>2000+</span>
+            <span className='text-sm md:text-lg'>Businesses</span>
           </div>
           <div className='flex flex-col items-center'>
-            <span className='text-3xl font-semibold sm:text-40'>172+</span>
-            <span className='2xl'>Locations</span>
+            <span className='font-semibold'>172+</span>
+            <span className='text-sm md:text-lg'>Locations</span>
           </div>
           <div className='flex flex-col items-center'>
-            <span className='text-3xl font-semibold sm:text-40'>50000+</span>
-            <span className='2xl'>Audience</span>
+            <span className='font-semibold'>50000+</span>
+            <span className='text-sm md:text-lg'>Audience</span>
           </div>
         </div>
       </div>
