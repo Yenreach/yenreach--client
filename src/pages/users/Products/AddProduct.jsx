@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useMutation } from "@tanstack/react-query";
-import useUploadImage from '/src/hooks/useUploadImage'
+import useImage from '/src/hooks/useImage'
 import { apiAddProduct } from '../../../services/ProductService'
 import Header from "/src/components/users/Header"
 import { RiAddFill } from 'react-icons/ri'
@@ -42,7 +42,7 @@ const index = () => {
     const { id } = useParams()
     const navigate = useNavigate()
 
-    const { url, uploadImage, error, progress } = useUploadImage()
+    const { url, uploadImage, error, progress } = useImage()
 
    useEffect(() => {
          if(url) {

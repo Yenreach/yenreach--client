@@ -5,8 +5,9 @@ import storage from '../configs/firebase.config';
 import { v4 as uuidv4 } from 'uuid';
 
 
-const useUploadImage = () => {
+const useImage = () => {
     const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(false)
     const [progress, setProgress] = useState(null)
     const [url, setUrl] = useState(null)
     const uui = uuidv4()
@@ -55,39 +56,48 @@ const useUploadImage = () => {
     }
 
     const downloadImage = (name) => {
+        // setLoading(true)
         const storageRef = ref(storage, `images/${name}`);
         getDownloadURL(storageRef)
             .then((url) => {
                 // Insert url into an <img> tag to "download"
-                console.log('Downloaded image from storage', url);
+                setUrl(url)
+                // console.log('Downloaded image from storage', url);
             })
             .catch((error) => {
                 // A full list of error codes is available at
                 // https://firebase.google.com/docs/storage/web/handle-errors
-                console.log('Error downloading image from storage', error);
+                // console.log('Error downloading image from storage', error);
                 switch (error.code) {
                     case 'storage/object-not-found':
                         // File doesn't exist
+                        // setError("file doesn't exist")
                         break;
                     case 'storage/unauthorized':
                         // User doesn't have permission to access the object
+                        // setError("User doesn't have permission to access the object")
                         break;
                     case 'storage/canceled':
-                        // User canceled the upload
+                        // User canceled the download
+                        // setError("User canceled the download")
                         break;
     
                     // ...
     
                     case 'storage/unknown':
                         // Unknown error occurred, inspect the server response
+                        // setError("Unknown error occurred, inspect the server response")
                         break;
+                    default:
+                        // setError("Unknown error occurred, inspect the server response")
                 }
             }
         );
+        // setLoading(false)
     }
 
     
-    return { url, uploadImage, downloadImage, error, progress, setError }
+    return { url, uploadImage, downloadImage, error, progress, setError, loading }
 }
 
-export default useUploadImage
+export default useImage

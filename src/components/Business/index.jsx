@@ -82,6 +82,8 @@ const index = ({ page: initialPage, num_per_page }) => {
   });
   }
 
+  console.log("aprrovedBusinesses", aprrovedBusinesses)
+
   return (
     <>
         {!filteredBusinessesLoading && aprrovedBusinessesLoading && <Loader loader={4} />}

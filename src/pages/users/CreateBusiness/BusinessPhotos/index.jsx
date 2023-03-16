@@ -1,15 +1,15 @@
 import React from 'react'
-import useUploadImage from '../../../../hooks/useUploadImage'
-import Button from '../../../../components/ui/Button'
-import Input from '../../../../components/ui/Input'
+import useImage from '/src/hooks/useImage'
+import Button from '/src/components/ui/Button'
+import Input from '/src/components/ui/Input'
 import Add from '/src/assets/add.svg'
 import { useMutation } from "@tanstack/react-query";
-import { apiAddBusiness } from '../../../../services/UserService'
+import { apiAddBusiness } from '/src/services/UserService'
 
 
 const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) => {    
-    const { url: profileImg, uploadImage: uploadProfileImg, error, progress } = useUploadImage()
-    const { url: coverImg, uploadImage: uploadCoverImg, error: coverImgError, progress: coverImgProgress } = useUploadImage()
+    const { url: profileImg, uploadImage: uploadProfileImg, error, progress } = useImage()
+    const { url: coverImg, uploadImage: uploadCoverImg, error: coverImgError, progress: coverImgProgress } = useImage()
 
     const addBusinessMutation = useMutation({
         mutationFn: async (data) => {
