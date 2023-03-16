@@ -1,10 +1,11 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect, useState, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
+import Analytics from './Analytics';
 import { BsTelephone, BsGlobe, BsInstagram, BsWhatsapp } from 'react-icons/bs'
 import { MdOutlineMarkEmailUnread, MdOutlineLocationOn } from 'react-icons/md'
 import { TbBrandFacebook } from 'react-icons/tb'
 import useFetch from '/src/hooks/useFetch'
-import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessSubscription } from '/src/services/UserService'
+import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessSubscription, apiGetBusinessPageVisits } from '/src/services/UserService'
 import { apiGetBusinessFacilities, apiGetBusinessReviews, apiGetBusinessReviewsStats } from '/src/services/CommonService'
 import Header from "/src/components/users/Header"
 import Dashboard from "../../../components/layout/Dashboard"
@@ -17,7 +18,6 @@ import Edit from '../../../assets/edit.svg'
 import Star from '../../../assets/star.svg'
 import Loader from '../../../components/Loader'
 
-
 const index = () => {
   const { id } = useParams()
   const reviewsContainerRef = useRef(null)
@@ -26,6 +26,11 @@ const index = () => {
     api: apiGetOneBusiness,
     param: id,
     key: ['userBusiness', id],
+  })
+  const { data: pageVisits } = useFetch({
+    api: apiGetBusinessPageVisits,
+    param: id,
+    key: ['pageVisits', id],
   })
   
   const { data: userCategories } = useFetch({
@@ -58,9 +63,33 @@ const index = () => {
     key: ['userReviewStats', id]
   })
 
-  // console.log("reviewStats", reviewStats)
+  const analytics = useMemo(() => {
+    if (pageVisits?.pagevisits) {
+        const newState = {
+          "01": { count: 0 },
+          "02": { count: 0 },
+          "03": { count: 0 },
+          "04": { count: 0 },
+          "05": { count: 0 },
+          "06": { count: 0 },
+          "07": { count: 0 },
+          "08": { count: 0 },
+          "09": { count: 0 },
+          "10": { count: 0 },
+          "11": { count: 0 },
+          "12": { count: 0 },
+        }
+        pageVisits?.pagevisits.map((visit) => {
+          newState[visit?.month].count += 1
+        })
+        // setAnalytics(initialState)
+        const data = Object.keys(newState)?.map((item, index) => newState[item].count)
+        return data
+      }
+      
+  }, [pageVisits?.pagevisits])
 
-  // console.log("reviewref", reviewsContainerRef.current)
+
 
   const changeReview = (val) => {
     if(reviewsContainerRef.current?.children?.length > 0){
@@ -72,7 +101,6 @@ const index = () => {
       }
     }
   }
-
   return (
     <Dashboard>
       <div className='flex-1'>
@@ -163,18 +191,7 @@ const index = () => {
               <div className='mb-20'>
                 <h2 className='text-green text-lg font-medium mb-3'>Business Analytics</h2>
                 <div className='font-arialsans flex sm:flex-row flex-wrap gap-6 text-sm text-[#476788] p-12 bg-white rounded-2xl'>
-                  <div className='flex items-center'>
-                    <img src={Good} alt="" className='object-cover object-center mr-3' />
-                    <span>24/7 availability</span>
-                  </div>
-                  <div className='flex items-center'>
-                    <img src={Good} alt="" className='object-cover object-center mr-3' />
-                    <span>24/7 availability</span>
-                  </div>
-                  <div className='flex items-center'>
-                    <img src={Good} alt="" className='object-cover object-center mr-3' />
-                    <span>24/7 availability</span>
-                  </div>
+                  <Analytics analytics={analytics} />
                 </div>
               </div>
               <div className='mb-16'>

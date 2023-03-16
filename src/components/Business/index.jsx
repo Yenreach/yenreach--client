@@ -57,7 +57,7 @@ const index = ({ page: initialPage, num_per_page }) => {
     queryKey: ['filteredBusiness', searchQuery],
     queryFn: () => getData(apiBusinessSearch, searchQuery),
     // staleTime: staleTime,
-    enabled
+    enabled: enabled,
   })
 
   
@@ -82,11 +82,11 @@ const index = ({ page: initialPage, num_per_page }) => {
   });
   }
 
-  console.log("aprrovedBusinesses", aprrovedBusinesses)
+  // console.log("filteredBusinessesLoading", filteredBusinessesLoading, aprrovedBusinessesLoading, enabled)
 
   return (
     <>
-        {!filteredBusinessesLoading && aprrovedBusinessesLoading && <Loader loader={4} />}
+        {!enabled && aprrovedBusinessesLoading && <Loader loader={4} />}
         {enabled && filteredBusinessesLoading && <Loader loader={4} />}
 			<div className='flex items-center justify-center w-full gap-10'>
 				<p className='font-medium text-smm'>Currently Exploring businesses in</p>

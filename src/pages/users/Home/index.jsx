@@ -22,6 +22,8 @@ const index = () => {
         param: user?.verify_string,
       })
 
+    //   console.log("businesses", businesses)
+
     return (
         <Dashboard>
             <div className='flex-1 overflow-hidden'>

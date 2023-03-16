@@ -16,7 +16,9 @@ const SideNav = ({ id }) => {
   return (
     <div className='hidden sm:flex flex-col justify-between bg-white h-screen min-w-[200px] w-52 border-r border-[#ABB4C4] pt-4 overflow-hidden'>
         <div>
-            <img src={Logo} alt="" className='h-16 md:h-12 mb-12 mx-auto' />
+             <Link to={"/"}>
+                <img src={Logo} alt="" className='h-16 md:h-12 mb-12 mx-auto' />
+            </Link>
             <div className='flex flex-col text-dark-light gap-3'>
                 <Link className={`${pathname!=="/users/profile" && pathname!=="/users/subscription" && pathname!=="/users/billboard" ? "font-medium text-white bg-green" : "opacity-50"} py-2.5 pl-6 text-sm flex items-center gap-2`} to="/users">
                     {/* <img src={Trend} alt="" className='z-100' />  */}

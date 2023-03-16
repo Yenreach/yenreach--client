@@ -50,6 +50,14 @@ export const apiGetOneBusiness = (business_token) => {
     })
 }
 
+/* Get user business */
+export const apiGetBusinessPageVisits = (business_token) => {
+    return ApiAdapter.fetchData({
+        url: `fetch_pagevisits_by_business_api${serviceSuffix}?string=${business_token}`,
+        method: "get"    
+    })
+}
+
 /* Get business categories */
 export const apiGetBusinessCategories = (business_token) => {
     return ApiAdapter.fetchData({
