@@ -9,7 +9,7 @@ function Button({ to, variant, inverse, className, override, children, type, onC
   const styles = (variant, inverse, className, override, effect) => clsx(
     className,
     
-    ['text-center text-sm'], 
+    ['text-center text-xs'], 
     // Products/Marketplace
     variant === 'product'
       ? !override && [ inverse && 'rounded-full flex items-center gap-0.5 py-2 md:px-10 font-bold text-orange',

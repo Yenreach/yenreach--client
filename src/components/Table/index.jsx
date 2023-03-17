@@ -128,7 +128,7 @@ const formatDate = (date) => {
 };
 
 
-const Table = ({ data, columns }) => {
+const Table = ({ data=[], columns }) => {
   const [filtererdData, setFilteredData] = React.useState(null);
 
   const handleFilter = (e) => {
@@ -155,40 +155,49 @@ const Table = ({ data, columns }) => {
   const search = debounce(handleFilter, 1000)
 
   return (
-      <div className="overflow-x-auto bg-white p-6 px-7 pb-10 rounded-xl">
-        <div className="flex items-center gap-8">
+      <div className="overflow-hidden bg-white p-4 px-4 md:px-7 md:p-6 pb-10 rounded-xl">
+        {/* <div className="flex items-center gap-8">
          <input onChange={search} type="text" placeholder="search" className="my-2 border-orange p-2 rounded-lg border-2 outline-none" />
-        </div>
-        <table className="min-w-full text-center text-sm font-light">
-          <thead className="font-normal bg-[#FAFAFA] text-[#5F6868]">
-            <tr>
-              {columns?.map((item, index) => (
-              <th key={index} scope="col" className="px-5 py-5 font-medium whitespace-nowrap">{item?.label}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="text-[#737B7B] text-xs">
-            {(filtererdData || data)?.map((item, index) => (
-              <tr key={index} className="border-b border-[#F2F2F2]">
-                {columns?.map((column, index) => {
-                  // console.log("column", column)
-                  if (column?.extra) {
-                    return ( 
-                      <td key={index} className="whitespace-nowrap px-5 py-5">
-                        {column?.custom(item[column?.name], item)}
-                      </td>
-                    )
-                  } else if (column?.name === "updated_at" || column?.name === "created_at") {
-                    return <td key={index} className="whitespace-nowrap px-5 py-5">{formatDate(item[column?.name])}</td>
-                  }
-                  return <td key={index} className="whitespace-nowrap px-5 py-5">{item[column?.name]}</td>
-                }
-                )}
+        </div> */}
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-center text-sm font-light">
+            <thead className="font-normal bg-[#FAFAFA] text-[#5F6868]">
+              <tr>
+                {columns?.map((item, index) => (
+                <th key={index} scope="col" className="px-5 py-5 font-medium whitespace-nowrap">{item?.label}</th>
+                ))}
               </tr>
-            )
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="text-[#737B7B] text-xs md:text-sm">
+              {(filtererdData || data)?.map((item, index) => (
+                <tr key={index} className="border-b border-[#F2F2F2]">
+                  {columns?.map((column, index) => {
+                    // console.log("column", column)
+                    if (column?.extra) {
+                      return ( 
+                        <td key={index} className="whitespace-nowrap px-5 py-5">
+                          {column?.custom(item[column?.name], item)}
+                        </td>
+                      )
+                    } else if (column?.name === "updated_at" || column?.name === "created_at") {
+                      return <td key={index} className="whitespace-nowrap px-5 py-5">{formatDate(item[column?.name])}</td>
+                    }
+                    return <td key={index} className="whitespace-nowrap px-5 py-5">{item[column?.name]}</td>
+                  }
+                  )}
+                </tr>
+              )
+              )}
+              {!data?.length > 0  && (
+                <tr>
+                  <td colSpan={columns?.length} className="text-center py-10">
+                    <p className="text-[#737B7B] text-sm">No data found</p>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
   )
 };

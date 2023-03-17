@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
 import ProductCard from '../ui/ProductCard'
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
+import Loader from '../Loader'
+import useFetch from '/src/hooks/useFetch'
 import SearchBar from '../ui/SearchBar'
 import Location from '../../assets/location.svg'
 import Pagination from '../Pagination'
-import { useQuery } from '@tanstack/react-query'
 import { apiGetAllProducts } from '../../services/ProductService'
-import getData from '../../utils/getData'
 import { paginate } from '../../utils/pagination'
 
 const Products = ({ page: initialPage, num_per_page }) => {
   const [page, setPage] = useState(initialPage || 1)
 
-  const { data: products, error: errorProducts } = useQuery({
-    queryKey: ['products'],
-    queryFn: () => getData(apiGetAllProducts),
+  const { data: products, error: errorProducts, isLoading }  = useFetch({
+    api: apiGetAllProducts,
+    key: ['products'],
   })
 
   // console.log("products", products, "error", errorProducts) 
@@ -28,7 +27,8 @@ const Products = ({ page: initialPage, num_per_page }) => {
   }
 
   return (
-    <>
+    <>        
+      {isLoading && <Loader loader={4} />}
       <div className='flex items-center justify-center w-full gap-10'>
         <p className='font-medium text-black/70 text-xs md:text-sm'>Currently Exploring products in</p>
         <div className="flex items-center justify-center gap-2 px-4 py-2 bg-orange-light">

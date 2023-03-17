@@ -7,7 +7,7 @@ import JobData from '../../data/job-data.json'
 import AllJobs from './AllJobs'
 import JobDescription from './JobDescription'
 import JobSideBar from './JobSideBar'
-import { paginate } from '../../utils/pagination'
+import Loader from '../Loader'
 
 const staleTime = 1000 * 60 * 60 * 24
 
@@ -25,6 +25,7 @@ const index = ({ page, num_per_page }) => {
   // console.log("jobs", jobs)
   return (
     <>
+      {isLoading && <Loader loader={4} />}
       <div className='flex items-center justify-center w-full gap-10'>
         <p className='font-medium text-black/70 text-xs md:text-sm'>Currently Exploring businesses in</p>
         <div className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-light">
