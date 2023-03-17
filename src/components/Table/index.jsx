@@ -128,7 +128,7 @@ const formatDate = (date) => {
 };
 
 
-const Table = ({ data=[], columns }) => {
+const Table = ({ data=[], columns, className }) => {
   const [filtererdData, setFilteredData] = React.useState(null);
 
   const handleFilter = (e) => {

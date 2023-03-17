@@ -1,17 +1,65 @@
-import React, {useState} from 'react'
+import React, { useState, useReducer } from 'react'
 import Button from '../ui/Button'
 import PropTypes from 'prop-types'
 import { FaFileUpload } from 'react-icons/fa'
+import useImage from '/src/hooks/useImage'
+import { useMutation } from "@tanstack/react-query";
+import { apiSubmitApplication } from '/src/services/JobService'
+import { useAuthContext } from '/src/hooks/useAuthContext'
 
+
+const initialApplicationState = {
+	job_string: "",
+	user_string: "",
+	full_name: "",
+	email: "",
+	phone: "",
+	document: ""
+  }
+
+// reducer for form fields
+const formReducer = (state, val) => {
+	return {
+		...state,
+		...val	
+	}							
+}			
 
 const JobDescription = ({ job }) => {
+	const { user } = useAuthContext()
+	const [application, setApplication] = useReducer(formReducer, initialApplicationState)
 	const [tab, setTab] = useState(1)
-	// console.log(job)
+    const { url, uploadImage, error, progress } = useImage()
+
+	const submitJobApplication = useMutation({
+        mutationFn: async (data) => {
+          const response =  await apiSubmitApplication(data)
+          console.log("response", response)
+          if (response?.data?.status === "success") {
+            return response?.data?.data
+          } else {
+            throw new Error(response?.data?.message)
+            }
+        },
+        onSuccess: (data, variables, context) => {
+            // console.log("success submitting application", data)
+			setApplication(initialApplicationState)
+			setTab(3)
+        },
+        onError: (error, variables, context) => {
+          console.log("error submitting application", error)
+        },
+      })
+    
+    const handleSubmit = () => {
+        const data = { ...application, job_string: job?.job_string, document: url, user_string: user?.verify_string }
+        console.log("data", data)
+        submitJobApplication.mutate(data)
+    }
   return (
     <div className='flex flex-col flex-1 w-full'>
-
 		<>
-			<div className="relative flex gap-3 justify-center overflow-hidden items-center w-full -z-50 bg-blue px-4 py-6">
+			<div className="relative flex gap-3 justify-center overflow-hidden items-center w-full -z-50 bg-blue px-4 py-6 text-sm">
 				<svg className='absolute -top-4 -right-[20%] -z-10' width="488" height="383" viewBox="0 0 488 383" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g opacity="0.45">
 					<path d="M359.724 5.62459C336.186 3.38521 315.122 10.799 294.154 18.6548C293.142 19.034 292.13 19.4143 291.117 19.7945C271.121 27.308 251.104 34.8292 228.789 34.667C207.485 34.512 187.558 25.8183 168.035 17.3007C165.644 16.2578 163.26 15.2175 160.88 14.1959C139.144 4.86637 117.748 -2.91045 95.7345 3.73556C85.2682 6.89533 78.7949 11.9787 74.7612 18.2983C70.7431 24.5934 69.1959 32.0395 68.4295 39.8306C68.0628 43.5581 67.8734 47.3861 67.6837 51.2171C67.6751 51.3923 67.6664 51.5675 67.6577 51.7427C67.4586 55.7562 67.2504 59.7706 66.8313 63.7155C65.9929 71.6074 64.316 79.1516 60.2385 85.7127C56.4615 91.7903 51.1719 97.4567 45.2726 102.965C41.4536 106.531 37.4076 110.006 33.3641 113.478C31.1509 115.379 28.9385 117.279 26.7644 119.193C20.6403 124.584 14.85 130.063 10.3759 135.863C5.8994 141.667 2.70964 147.832 1.83746 154.6C-1.92243 183.776 12.4967 213.861 41.0673 236.759C70.1989 260.106 112.88 282.857 160.201 281.755C184.041 281.2 202.01 271.842 219.261 261.044C222.375 259.095 225.464 257.1 228.559 255.102C242.636 246.013 256.835 236.845 274.118 231.48C287.574 227.303 303.657 226.777 319.574 226.256C322.464 226.162 325.348 226.067 328.21 225.951C337.493 225.575 346.533 224.969 354.691 223.367C362.849 221.765 370.178 219.159 376.013 214.747C381.902 210.295 384.406 205.102 385.045 199.508C385.679 193.967 384.477 188.064 383.059 182.185C382.838 181.268 382.612 180.351 382.385 179.435C381.151 174.438 379.927 169.481 379.606 164.657C379.229 158.982 380.114 153.576 383.698 148.645C389.788 140.266 399.687 132.892 411.104 125.948C418.746 121.301 427.014 116.878 435.225 112.485C439.283 110.313 443.328 108.149 447.277 105.969C459.177 99.399 470.193 92.6884 477.848 85.2601C485.514 77.8217 489.916 69.556 488.323 59.916C486.928 51.4789 481.329 44.1936 473.043 37.9517C464.753 31.7077 453.703 26.4518 441.246 22.0816C416.33 13.3399 385.632 8.08938 359.724 5.62459Z" stroke="white" strokeWidth="1.5"/>
@@ -62,32 +110,54 @@ const JobDescription = ({ job }) => {
 				{tab===2 &&
 					<>
 						<h2 className='text-xl mb-4 text-black/70'>Application Form</h2>
-						<div className='grid gap-3 lg:grid-cols-2'>
+						<div className='grid gap-3 lg:grid-cols-2 text-sm'>
 							<div>
-								<label htmlFor="name" className='text-sm font-medium text-black/70'>Full Name</label>
-								<input type="text" name="name" id="name" className='w-full border-2 border-gray-light p-2 rounded-md' />
+								<label htmlFor="full_name" className='text-sm font-medium text-black/70'>Full Name</label>
+								<input
+								value={application?.full_name}
+								onChange={(e) => setApplication({[e.target.name]: e.target.value})}
+								type="text" name="full_name" id="full_name" className='w-full border-2 border-gray-light p-2 rounded-md' />
 							</div>
 							<div>
 								<label htmlFor="email" className='text-sm font-medium text-black/70'>Email</label>
-								<input type="email" name="email" id="email" className='w-full border-2 border-gray-light p-2 rounded-md' />
+								<input
+								value={application?.email}
+								onChange={(e) => setApplication({[e.target.name]: e.target.value})}
+								type="email" name="email" id="email" className='w-full border-2 border-gray-light p-2 rounded-md' />
 							</div>
 							<div>
 								<label htmlFor="phone" className='text-sm font-medium text-black/70'>Phone Number</label>
-								<input type="text" name="phone" id="phone" className='w-full border-2 border-gray-light p-2 rounded-md' />
+								<input 
+								value={application?.phone}
+								onChange={(e) => setApplication({[e.target.name]: e.target.value})}
+								type="text" name="phone" id="phone" className='w-full border-2 border-gray-light p-2 rounded-md' />
 							</div>
 						</div>
 						<div className='text-xs'>
 							<span className='font-medium text-black/70'>Resume</span>
-							<label htmlFor="resume" className='text-sm font-medium text-black/70 flex items-center gap-6 justify-between border border-dashed rounded-md p-2 border-black/30'>
+							<label htmlFor="document" className='text-sm font-medium text-black/70 flex items-center gap-6 justify-between border border-dashed rounded-md p-2 border-black/30 cursor-pointer'>
 								<div className='flex flex-col gap-2'>
 									<span className='text-base'>Click this box to upload your resume/CV</span>
 									<span className='text-xs'>File should be in PDF format and less than 2mb.</span>
 								</div>
 								<FaFileUpload className='text-2xl md:text-3xl text-black/70' />
 							</label>
-							<input type="file" name="resume" id="resume" className='w-full border-2 border-gray-light p-2 rounded-md hidden' />
+							<div className='mt-4 mb-2'>
+								{url &&
+									<iframe src={url} style={{width: "100%", height: "100px"}}></iframe>
+								}    
+								<input onChange={(e) => uploadImage(e.target.files[0])} type="file" name="document" id="document" className='w-full border-2 border-gray-light p-2 rounded-md hidden' />
+							</div>
 						</div>
-						<Button onClickFunc={() => setTab(2)} className='my-2 w-fit py-1 px-4 text-smm font-medium mt-auto' variant='job'>Apply For this Job</Button>
+						<Button onClickFunc={handleSubmit} className='my-2 w-fit py-1 px-4 text-smm font-medium mt-auto' variant='job'>Apply For this Job</Button>
+					</>
+				}{ /* successful application  */
+					tab===3 &&
+					<>
+						<h2 className='text-xl mb-4 text-black/70'>Application Successful</h2>
+						<div className='flex flex-col gap-2'>
+							<p className='font-light text-xs'>Thank you for applying for this job. We will get back to you shortly.</p>
+						</div>
 					</>
 				}
 			</div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Navigate, useLocation } from 'react-router-dom'
-import { useAuthContext } from '../../hooks/useAuthContext'
+import { useAuthContext } from '/src/hooks/useAuthContext'
 
 
 const ProtectedRoutes = ({ children }) => {

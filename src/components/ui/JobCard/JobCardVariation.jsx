@@ -41,7 +41,7 @@ const JobCardVariation = ({ job, className, setSelectedJobIndex, index, selected
 export default JobCardVariation
 
 JobCardVariation.defaultProps = {
-  job: [],
+  job: {},
   className: '',
   setSelectedJobIndex: () => {},
   selectedJobIndex: 0,
