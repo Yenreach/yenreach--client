@@ -26,7 +26,7 @@ const index = ({ page, num_per_page }) => {
   return (
     <>
       <div className='flex items-center justify-center w-full gap-10'>
-        <p className='font-medium text-smm'>Currently Exploring businesses in</p>
+        <p className='font-medium text-black/70 text-xs md:text-sm'>Currently Exploring businesses in</p>
         <div className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-light">
           <img src={Location} alt="location" />
           <span className='font-medium text-blue text-smm'>Bayelsa, Yenegoa</span>

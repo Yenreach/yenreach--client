@@ -3,7 +3,7 @@ import ProductCard from '../ui/ProductCard'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import SearchBar from '../ui/SearchBar'
 import Location from '../../assets/location.svg'
-
+import Pagination from '../Pagination'
 import { useQuery } from '@tanstack/react-query'
 import { apiGetAllProducts } from '../../services/ProductService'
 import getData from '../../utils/getData'
@@ -30,14 +30,14 @@ const Products = ({ page: initialPage, num_per_page }) => {
   return (
     <>
       <div className='flex items-center justify-center w-full gap-10'>
-        <p className='font-medium text-smm'>Currently Exploring businesses in</p>
+        <p className='font-medium text-black/70 text-xs md:text-sm'>Currently Exploring products in</p>
         <div className="flex items-center justify-center gap-2 px-4 py-2 bg-orange-light">
           <img src={Location} alt="location" />
           <span className='font-medium text-smm'>Bayelsa, Yenegoa</span>
         </div>
       </div>
       <SearchBar variant='product' />
-      <div className="w-full bg-[url('assets/new-job-listing.svg')] text-white rounded-2xl font-extrabold text-xl grid place-items-center bg-cover bg-center py-6">
+      <div className="w-full bg-[url('assets/new-job-listing.svg')] text-white rounded-2xl font-semibold text-xl grid place-items-center bg-cover bg-center py-6">
         New Job Listings available       
       </div>
       <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -45,13 +45,7 @@ const Products = ({ page: initialPage, num_per_page }) => {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      <div className="flex gap-2 mt-10 border border-gray w-fit">
-        <MdChevronLeft size={"1.5rem"} />
-        {products && [...Array(paginate({page, num_per_page, data: products})?.pages).keys()]?.map((page_num) => 
-          <span key={page_num+1} onClick={() => handlePageChange(page_num+1)} className={`${page===page_num+1 && "border-b"} mx-2 font-medium cursor-pointer`}>{page_num + 1}</span>
-        )}
-        <MdChevronRight size={"1.5rem"} />
-      </div>
+      <Pagination page={page} num_per_page={num_per_page} data={products} handlePageChange={handlePageChange} />
     </>
   )
 }

@@ -34,38 +34,38 @@ const index = () => {
   }, [location])
 
   return (
-    <div className='relative w-full pt-22'>
+    <div className='relative w-full'>
         <Header />
-        <div className="tab flex px-4 py-6 md:px-28 gap-3 md:gap-8 shadow-md border-t border-gray-light sticky z-20 top-[79px] md:top-[88px] bg-white">
+        <div className="top tab flex px-4 py-6 md:px-28 gap-3 md:gap-8 shadow-md border-t border-gray-light sticky z-20 top-[48px] md:top-[88px] bg-white">
             { activeTab == 'business' ?
               <div className="flex items-center justify-start gap-1 business md:marker:gap-3 relative hover:cursor-pointer after:content-[''] after:bg-green after:absolute after:h-[0.15rem] after:w-full after:-bottom-2" onClick={() => setActiveTab('business')}>
-                <img className='w-full' src={BusinessActive} alt="" />
-                <span className='text-xs font-medium text-green'>Business</span>
+                <img className='h-3 xs:h-4 md:h-5' src={BusinessActive} alt="" />
+                <span className='text-xs md:text-sm font-medium text-green'>Business</span>
               </div> :
               <div className="flex items-center justify-start gap-1 business md:marker:gap-3 hover:cursor-pointer" onClick={() => setActiveTab('business')}>
-                <img className='w-full' src={BusinessIcon} alt="" />
-                <span className='text-xs font-medium text-gray'>Business</span>
+                <img className='h-3 xs:h-4 md:h-5' src={BusinessIcon} alt="" />
+                <span className='text-xs md:text-sm font-medium text-gray'>Business</span>
               </div>
             }
             { activeTab == 'jobs' ?
               <div className="flex items-center justify-start gap-1 business md:marker:gap-3 relative hover:cursor-pointer after:content-[''] after:bg-blue after:absolute after:h-[0.15rem] after:w-full after:-bottom-2" onClick={() => setActiveTab('jobs')}>
-                <img src={JobActive} alt="" />
-                <span className='text-xs font-medium text-blue'>Jobs & Careers</span>
+                <img className='h-3 xs:h-4 md:h-5' src={JobActive} alt="" />
+                <span className='text-xs md:text-sm font-medium text-blue'>Jobs & Careers</span>
               </div> :
               <div className="flex items-center justify-start gap-1 business md:marker:gap-3 hover:cursor-pointer" onClick={() => setActiveTab('jobs')}>
-                <img src={JobIcon} alt="" />
-                <span className='text-xs font-medium text-gray'>Jobs & Careers</span>
+                <img className='h-3 xs:h-4 md:h-5' src={JobIcon} alt="" />
+                <span className='text-xs md:text-sm font-medium text-gray'>Jobs & Careers</span>
               </div>
             }
             {
               activeTab == 'marketplace' ?
               <div className="flex items-center justify-start gap-1 business md:marker:gap-3 relative hover:cursor-pointer after:content-[''] after:bg-orange after:absolute after:h-[0.15rem] after:w-full after:-bottom-2" onClick={() => setActiveTab('marketplace')}>
                 <img className='w-full' src={ProductActive} alt="" />
-                <span className='text-xs font-medium text-orange'>Marketplace</span>
+                <span className='text-xs md:text-sm font-medium text-orange'>Marketplace</span>
               </div> :
               <div className="flex items-center justify-start gap-1 business md:marker:gap-3 hover:cursor-pointer" onClick={() => setActiveTab('marketplace')}>
-                <img src={ProductIcon} alt="" />
-                <span className='text-xs font-medium text-gray'>Marketplace</span>
+                <img className='h-3 xs:h-4 md:h-5' src={ProductIcon} alt="" />
+                <span className='text-xs md:text-sm font-medium text-gray'>Marketplace</span>
               </div>
             }
         </div>

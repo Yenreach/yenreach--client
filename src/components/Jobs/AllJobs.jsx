@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import JobCard from '../ui/JobCard'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
-import LeftArrow from '../../assets/left-arrow.svg'
-import RightArrow from '../../assets/right-arrow.svg'
 import PropTypes from 'prop-types';
+import Pagination from '../Pagination'
 import { paginate } from '/src/utils/pagination'
 
 
@@ -20,31 +19,25 @@ const AllJobs = ({ jobs, setSelectedJobIndex, setTab, page: initialPage, num_per
 
   return (
     <>
-			<div className="grid w-full grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+			<div className="grid w-full xs:grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {
-          jobs.slice(0, 10).map((job, index) => (
+          jobs.slice(0, 20).map((job, index) => (
             <JobCard index={index} setSelectedIndex={setSelectedJobIndex} setTab={setTab} key={job?.id} job={job} />
           ))
         }
         {/* <JobCard /> */}
       </div>
-      <div className="grid w-full py-6 text-xl font-extrabold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
+      <div className="my-4 grid w-full py-6 text-xl font-semibold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
         New Job Listings available 
       </div>
       <div className="grid w-full grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
         {
-          jobs.slice(10, 21).map((job, index) => (
+          jobs.slice(20, 40).map((job, index) => (
             <JobCard index={index} setSelectedIndex={setSelectedJobIndex} setTab={setTab} key={job?.id} job={job} />
           ))
         }
       </div>
-      <div className="flex gap-2 mt-10 border border-gray w-fit">
-        <MdChevronLeft size={"1.5rem"} />
-        {jobs && [...Array(paginate({page, num_per_page, data: jobs})?.pages).keys()]?.map((page_num) => 
-          <span key={page_num+1} onClick={() => handlePageChange(page_num+1)} className={`${page===page_num+1 && "border-b"} mx-2 font-medium cursor-pointer`}>{page_num + 1}</span>
-        )}
-        <MdChevronRight size={"1.5rem"} />
-      </div>
+      <Pagination page={page} num_per_page={num_per_page} data={jobs} handlePageChange={handlePageChange} />
     </>
   )
 }

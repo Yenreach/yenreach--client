@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
             <h2 className="text-sm font-medium h-5 my-1.5 overflow-hidden">
               {product?.product_name}
             </h2>
-            <p className="text-xsm h-[26px] mb-4 overflow-hidden">
+            <p className="text-xs h-[26px] mb-4 overflow-hidden">
               {product?.product_description}
             </p>
           </div>

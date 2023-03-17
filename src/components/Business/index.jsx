@@ -12,6 +12,7 @@ import Search from '/src/assets/search.svg'
 import BusinessCard from '../ui/BusinessCard'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import Location from '../../assets/location.svg'
+import Pagination from '../Pagination'
 
 const staleTime = 1000 * 60 * 60 * 24
 
@@ -89,13 +90,13 @@ const index = ({ page: initialPage, num_per_page }) => {
         {!enabled && aprrovedBusinessesLoading && <Loader loader={4} />}
         {enabled && filteredBusinessesLoading && <Loader loader={4} />}
 			<div className='flex items-center justify-center w-full gap-10'>
-				<p className='font-medium text-smm'>Currently Exploring businesses in</p>
+				<p className='font-medium text-black/70 text-xs md:text-sm'>Currently Exploring businesses in</p>
 				<div className="flex items-center justify-center gap-2 px-4 py-2 bg-green-light">
 					<img src={Location} alt="location" />
 					<span className='font-medium text-smm'>Bayelsa, Yenegoa</span>
 				</div>
 			</div>
-      <form action="" method="post" className='flex' onSubmit={handleSearch}>
+      <form action="" method="post" onSubmit={handleSearch} className="text-xs sm:text-sm md:text-base flex">
         <Input onChange={(e) => setSearch(e.target.value)} value={search} list="categories" name="category" id="category" placeholder='business' className='rounded-tl-md rounded-bl-md' />
       <datalist className='' name="categories" id="categories" placeholder='Enter state'>
           {filledCategories?.map((category) => (
@@ -121,18 +122,12 @@ const index = ({ page: initialPage, num_per_page }) => {
       <div className="grid w-full py-6 text-xl font-extrabold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
         New Job Listings available       
       </div>
-      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-4">
         {(aprrovedBusinesses || filteredBusiness) && paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.data?.slice(20,40).map((business) => (
           <BusinessCard key={business.id} business={business} />
         ))}
       </div>
-      <div className="flex items-center flex-wrap mt-10 w-fit">
-        <MdChevronLeft size={"1.5rem"} />
-        {(aprrovedBusinesses || filteredBusiness) && [...Array(paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.pages).keys()]?.map((page_num) => 
-          <span key={page_num+1} onClick={() => handlePageChange(page_num+1)} className={`${page===page_num+1 && "border-b"} mx-2 font-medium cursor-pointer`}>{page_num + 1}</span>
-        )}
-        <MdChevronRight size={"1.5rem"} />
-      </div>
+      <Pagination page={page} num_per_page={num_per_page} data={enabled && filteredBusiness || aprrovedBusinesses} handlePageChange={handlePageChange} />
     </>
   )
 }

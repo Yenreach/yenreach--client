@@ -16,11 +16,11 @@ const index = ({ job, setSelectedIndex, index, setTab }) => {
       <div className="flex flex-col gap-2">
         <div className="flex gap-2 justify-start items-center">
           <MdBusiness size="1.3rem" className='opacity-60' />
-          <p className='text-xs text-grey'>{ job?.company_name }</p>
+          <p className='text-sm text-gray font-semibold'>{ job?.company_name }</p>
         </div>
         <div className="flex gap-2 justify-start items-center">
         <BiBriefcase size="1.3rem" className='opacity-60' color='' />
-          <p className='text-xs text-grey'>{ job?.job_title }</p>
+          <p className='text-sm text-gray font-semibold'>{ job?.job_title }</p>
         </div>
       </div>
       <div className="flex flex-col gap-2">
