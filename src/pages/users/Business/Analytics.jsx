@@ -30,10 +30,11 @@ const options = {
   plugins: {
     legend: {
       position: 'right',
+      display: false,
     },
     title: {
       display: true,
-      text: 'Visitors by Month',
+      text: 'Page Visits',
     },
   },
 };
@@ -47,7 +48,7 @@ const Analytics = ({ analytics }) => {
       labels,
       datasets: [
         {
-          label: 'Page Visits',
+          label: 'visits',
           data: analytics,
           borderColor: '#00C885',
           backgroundColor: '#00C885',

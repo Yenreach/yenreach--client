@@ -98,35 +98,35 @@ const index = () => {
         {isLoading && <Loader loader={4} />}
         {business && 
         <>
-          <div className='mt-24 mb-10 py-20 sm:py-12 px-4 md:px-10 lg:px-20 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center text-white flex items-center gap-5'>
+          <div className='top mb-10 py-16 sm:py-12 px-4 md:px-10 lg:px-20 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center text-white flex items-center gap-5'>
             <img src={Logo} alt="" className='w-16 md:w-24' />
             <div className=''>
-              <h2 className='text-3xl font-medium mb-2 sm:mb-1'>{business.name}</h2>
+              <h2 className='text-lg sm:text-xl font-medium mb-2 sm:mb-1'>{business.name}</h2>
               <div className='flex items-center gap-0.5'>
-                <img src={StarFilled} alt="" className='w-6' />
-                <img src={StarFilled} alt="" className='w-6' />
-                <img src={StarFilled} alt="" className='w-6' />
-                <img src={StarFilled} alt="" className='w-6' />
-                <img src={StarFilled} alt="" className='w-6' />
-                <span className='self-end ml-2 text-sm'>4.7 star rating</span>
+                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
+                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
+                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
+                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
+                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
+                <span className='self-end ml-2 text-xs'>4.7 star rating</span>
               </div>
             </div>
           </div>
           <section className='px-4 md:px-10 lg:px-20 mb-20 relative'>
             <div className='sm:w-4/5 md:w-2/3 lg:w-3/5 max-w-md xl:max-w-xl'>
-              <h2 className='text-2xl text-green2 font-semibold mb-1'>About Business</h2>
-              <p className='text-[#476788] text-smm mb-4'>
+              <h2 className='text-lg text-green2 font-semibold mb-1'>About Business</h2>
+              <p className='text-[#476788] text-xs sm:text-sm mb-4'>
                 {business.description}
               </p>
               {categories && <h3 className='text-green2 font-medium mb-1'>Tags</h3>}
               <div className='flex items-center flex-wrap gap-3 text-xs text-white md:w-7/8 mb-16'>
                 {categories?.map((category, index) => 
-                  <span key={index} className='bg-green2 rounded-full px-4 py-2'>{category?.category}</span>
+                  <span key={index} className='bg-green2 rounded-full px-3 sm:px-4 py-2'>{category?.category}</span>
                 )}
               </div>
               <div className='lg:absolute top-0 right-24 lg:max-w-[396px]'>
-                <h2 className='text-2xl text-green2 font-semibold mb-2'>Business Info</h2>
-                <div className='gap-1 mb-20 grid grid-cols-business-info'>
+                <h2 className='text-lg text-green2 font-semibold mb-2'>Business Info</h2>
+                <div className='gap-1 mb-20 grid grid-cols-business-info text-sm'>
                   <span className='px-5 p-3 border-2 border-gray flex items-center justify-between opacity-90'>
                     {business.website || business.whatsapp || 'No website'}
                     <img src={Mail} alt="" />
@@ -150,19 +150,19 @@ const index = () => {
                   </div>
                 </div>
               </div>
-              <h2 className='text-2xl text-green2 font-semibold mb-4'>Photos</h2>
+              <h2 className='text-lg text-green2 font-semibold mb-4'>Photos</h2>
               <div className='flex flex-wrap gap-4 mb-10'>
                 <img src={Photo1} alt="" className='h-20' />
                 <img src={Photo2} alt="" className='h-20' />
                 <img src={Photo3} alt="" className='h-20' />
               </div>
-              <h2 className='text-2xl text-green2 font-semibold mb-4'>Products</h2>
+              <h2 className='text-lg text-green2 font-semibold mb-4'>Products</h2>
               <div className='flex flex-wrap gap-4 mb-10'>
                 <img src={Product1} alt="" className='h-20' />
                 <img src={Product2} alt="" className='h-20' />
                 <img src={Product3} alt="" className='h-20' />
               </div>
-              <h2 className='text-2xl text-green2 font-semibold mb-3'>Reviews</h2>
+              <h2 className='text-lg text-green2 font-semibold mb-3'>Reviews</h2>
               {/* <div className='flex items-center gap-3 mb-10'>
                 <span className='text-sm font-medium opacity-90'>Rate this business</span> 
                 <div className='flex items-center gap-0.5'>
@@ -204,7 +204,7 @@ const index = () => {
             </div>
           </section>
           <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 border-t-2 border-gray mb-32'>
-            <h2 className='text-2xl text-green2 font-semibold mb-2'>People also viewed</h2>
+            <h2 className='text-lg text-green2 font-semibold mb-2'>People also viewed</h2>
             <div className='grid grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 xl:grid-cols-bus4 gap-6'>
               {relatedBusinesses?.map((business, index) => 
                 <BusinessCard key={business.id} business={business} />

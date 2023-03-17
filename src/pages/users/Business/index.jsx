@@ -103,19 +103,19 @@ const index = () => {
   }
   return (
     <Dashboard>
-      <div className='flex-1'>
+      <div className='flex-1 overflow-hidden'>
         {isLoading && <Loader loader={4} />}
           <Header business_string={id} type="business" />
           {business && (
           <>
             <div className='h-36 -z-0 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center'>
               <Button className='p-1.5 px-3 text-xs font-arialsans absolute bottom-2 right-2 sm:right-4 lg:right-16'>
-                Edit Cover Photo
+                Edit Profile
               </Button>
               <img src={BusinessIMG} alt="" className='z-100 w-28 overflow-hidden left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 mx-auto absolute' />
             </div>
             <section className='px-7'>
-              <div className='flex flex-col items-center w-10/12 mx-auto mb-12 pt-16'>
+              <div className='flex flex-col items-center w-10/12 mx-auto mb-8 pt-16'>
                 <h1 className='text-3xl font-semibold text-dark-light mb-2'>{business?.name}</h1>
                 <p className='text-sm text-[#476788] mb-3 text-center'>
                   {business?.description}
@@ -127,40 +127,52 @@ const index = () => {
               <div className='mb-11'>
                 <h2 className='text-green text-lg font-medium mb-3'>Contact Information</h2>
                 <div className='p-4 sm:py-12 sm:px-16 bg-white'>
-                  <div className='sm:flex gap-4 xl:gap-32 justify-between text-sm text-[#476788]'>
-                    <div className='flex flex-col gap-2 sm:gap-6 mb-4'>
-                      <div className='flex items-center gap-2'>
-                        <BsTelephone size="1.3rem" />
-                        <span>{business?.phonenumber || "null"}</span>
+                    <div className='flex flex-col gap-4 lg:flex-row xl:gap-32 justify-between text-sm text-[#476788]'>
+                      <div className='flex flex-col gap-4 sm:gap-6'>
+                        {business?.phonenumber &&
+                          <div className='flex items-center gap-2'>
+                          <BsTelephone size="1.3rem" />
+                          <span>{business?.phonenumber}</span>
+                        </div>}
+                        {business?.email &&
+                        <div className='flex items-center gap-2'>
+                          <MdOutlineMarkEmailUnread size="1.3rem" />
+                          <span>{business?.email}</span>
+                        </div>
+                        }
+                        {business?.website &&
+                        <div className='flex items-center gap-2'>
+                          <BsGlobe size="1.3rem" />
+                          <span>{business?.website}</span>
+                        </div>
+                        }
                       </div>
+                      {business?.address &&
                       <div className='flex items-center gap-2'>
-                        <MdOutlineMarkEmailUnread size="1.3rem" />
-                        <span>{business?.email || "null"}</span>
-                      </div>
-                      <div className='flex items-center gap-2'>
-                        <BsGlobe size="1.3rem" />
-                        <span>{business?.website || "null"}</span>
-                      </div>
-                    </div>
-                  <div className='flex items-center gap-2'>
                         <MdOutlineLocationOn size="1.3rem" />
-                        <span>{business?.address || "null"}</span>
+                        <span>{business?.address}</span>
+                      </div>}
+                      <div className='flex flex-col gap-4 sm:gap-6'>
+                      {business?.facebook_link &&
+                        <div className='flex items-center gap-2'>
+                          <TbBrandFacebook size="1.3rem" />
+                          <span>{business?.facebook_link}</span>
+                        </div>
+                        }
+                        {business?.instagram_link &&
+                        <div className='flex items-center gap-2'>
+                          <BsInstagram size="1.3rem" />
+                          <span>{business?.instagram_link}</span>
+                        </div>
+                        }
+                        {business?.whatsapp &&
+                        <div className='flex items-center gap-2'>
+                          <BsWhatsapp size="1.3rem" />
+                          <span>{business?.whatsapp}</span>
+                        </div>
+                        }
                       </div>
-                    <div className='flex flex-col gap-2 sm:gap-6'>
-                    <div className='flex items-center gap-2'>
-                        <TbBrandFacebook size="1.3rem" />
-                        <span>{business?.facebook_link || "null"}</span>
-                      </div>
-                      <div className='flex items-center gap-2'>
-                        <BsInstagram size="1.3rem" />
-                        <span>{business?.instagram_link || "null"}</span>
-                      </div>
-                      <div className='flex items-center gap-2'>
-                        <BsWhatsapp size="1.3rem" />
-                        <span>{business?.whatsapp || "null"}</span>
-                      </div>
-                    </div>
-                  </div>
+                   </div>
                 </div>
               </div>
               <div className='mb-11'>
@@ -190,7 +202,7 @@ const index = () => {
               </div>
               <div className='mb-20'>
                 <h2 className='text-green text-lg font-medium mb-3'>Business Analytics</h2>
-                <div className='font-arialsans flex sm:flex-row flex-wrap gap-6 text-sm text-[#476788] p-12 bg-white rounded-2xl overflow-hidden'>
+                <div className='font-arialsans text-sm text-[#476788] p-2 sm:p-12 bg-white rounded-2xl overflow-hidden max-h-96 w-full'>
                   <Analytics analytics={analytics} />
                 </div>
               </div>
