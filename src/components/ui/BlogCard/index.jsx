@@ -11,18 +11,18 @@ const index = ({ blog }) => {
         <img className='object-cover object-center h-32' src={BlogBg} alt="" />
         <div className="flex flex-col p-4">
           <div className="flex flex-col h-20">
-            <h2 className="text-xl font-medium max-h-14 overflow-hidden">
+            <h2 className="text-base font-medium max-h-14 overflow-hidden">
               {blog?.title}
             </h2>
-            <div className="flex w-full justify-start gap-1 text-smm text-[#98A2B3] items-center">
+            <div className="flex w-full justify-start gap-1 text-xs text-[#98A2B3] items-center">
               <img src={Clock} alt="clock" />
               <span>4 mins read</span>
             </div>
           </div>
-          <p className="text-left h-24 overflow-hidden">
+          <p className="text-left h-24 overflow-hidden text-sm">
             {blog?.snippet}
           </p>
-          <div className="flex gap-2 justify-start items-center mt-7">
+          <div className="flex gap-2 justify-start items-center mt-7 text-sm">
             <span className="text-green">Read More</span>
             <img src={Arrow} alt="arrow" />
           </div>

@@ -10,10 +10,10 @@ const index = () => {
   return (
       <>
         <Header />
-        <div className='mt-24 py-20 sm:py-12 px-4 md:px-10 lg:px-20 relative bg-[url("assets/contact-hero.svg")] bg-cover bg-center text-white flex items-center justify-center'>
+        <div className='top top-banner md:py-16 lg:py-16 relative bg-[url("assets/contact-hero.svg")] bg-cover bg-center text-white flex items-center justify-center'>
             <div className='lg:w-1/2 text-center'>
-                <h2 className='text-3xl md:text-40 font-medium mb-2 md:mb-3 text-[#89F1B4]'>Reach out to us</h2>
-                <p className='font-arialsans md:text-xl leading-tight font-light'>
+                <h2 className='text-2xl md:text-3xl font-medium mb-2 md:mb-3 text-[#89F1B4]'>Reach out to us</h2>
+                <p className='font-arialsans text-sm md:text-lg leading-tight font-light'>
                     At Yenreach, we value whatever you tell us. we recognise the need of both businesses and users and that is why we offer top notch cusomer service available 24/7
                 </p>
             </div>
@@ -23,24 +23,24 @@ const index = () => {
             <form action="" method="post" className='bg-white p-10 text-dark-light sm:w-2/3 lg:w-1/2'>
                 <div className='md:flex items-center gap-5 mb-8'>
                     <div className='mb-8 md:mb-0'>
-                        <label htmlFor="first_name" className='font-medium'>First Name</label>
+                        <label htmlFor="first_name" className='font-medium text-sm sm:text-base'>First Name</label>
                         <Input className='border border-[#D3DAE6] rounded' type="text" name="first_name" id="first_name" />
                     </div>
                     <div>
-                        <label htmlFor="last_name" className='font-medium'>Last Name</label>
+                        <label htmlFor="last_name" className='font-medium text-sm sm:text-base'>Last Name</label>
                         <Input className='border border-[#D3DAE6] rounded' type="text" name="last_name" id="last_name" />
                     </div>
                 </div>
                 <div className='mb-8'>
-                    <label htmlFor="email" className='font-medium'>Email Address</label>
+                    <label htmlFor="email" className='font-medium text-sm sm:text-base'>Email Address</label>
                     <Input className='border border-[#D3DAE6] rounded' type="email" name="email" id="email" />
                 </div>
                 <div className='mb-8'>
-                    <label htmlFor="number" className='font-medium'>Phone Number <span className='text-[#ABB4C4]'>(optional)</span></label>
+                    <label htmlFor="number" className='font-medium text-sm sm:text-base'>Phone Number <span className='text-[#ABB4C4]'>(optional)</span></label>
                     <Input className='border border-[#D3DAE6] rounded' type="tel" name="number" id="number" />
                 </div>
                 <div className='mb-8'>
-                    <label htmlFor="message" className='font-medium'>Write a Message</label>
+                    <label htmlFor="message" className='font-medium text-sm sm:text-base'>Write a Message</label>
                     <textarea className='w-full border border-[#D3DAE6] rounded-xl outline-none cursor-pointer px-4 py-3 bg-inherit' name="message" id="message" cols="30" rows="5"></textarea>
                 </div>
                 <Button className='w-full py-3 rounded font-medium'>Submit</Button>

@@ -18,6 +18,31 @@ body {
   transition: transform 0.5s ease-in-out;
 }
 
+.top {
+  margin-top: 48px;
+}
+@media only screen and (min-width:768px) {
+  .top {
+    margin-top: 80px;
+  }
+}
+
+.top-banner {
+  padding: 48px 16px;
+}
+
+@media only screen and (min-width:768px) {
+  .top-banner {
+    padding: 80px 40px;
+  }
+}
+
+@media only screen and (min-width:900px) {
+  .top-banner {
+    padding: 80px 80px;
+  }
+}
+
 .grid-container--fill {
   grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
 }

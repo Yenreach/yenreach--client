@@ -34,7 +34,7 @@ const index = () => {
         <MdOutlineClose onClick={() => setIsOpen(false)} className='cursor-pointer text-3xl md:hidden relative z-50  text-green' /> 
         : <BiMenu onClick={() => setIsOpen(true)} className='cursor-pointer text-3xl md:hidden relative z-50 text-green' />
       }
-      <div className={`md:hidden fixed top-0 right-0 w-5/6 min-h-screen h-screen bg-white z-20 translate-x-full ${isOpen && "translate-x-0"} transition-all`}>
+      <div className={`md:hidden shadow fixed top-0 right-0 w-5/6 min-h-screen h-screen bg-white z-20 translate-x-full ${isOpen && "translate-x-0"} transition-all`}>
         <nav className="md:hidden flex flex-col gap-16 p-4 pt-20 px-8 mb-8">
           <ul className='flex flex-col text-sm text-dark-light gap-7 md:gap-4 lg:gap-7 font-medium'>
             <li><Link to="/" className={`${pathname==="/" && "text-green"} pb-1.5 px-1 font-medium`}>Home</Link></li>
