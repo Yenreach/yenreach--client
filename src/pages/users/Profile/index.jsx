@@ -24,7 +24,7 @@ const Profile = () => {
     
   return (
     <Dashboard> 
-    <div className='flex-1 overflow-y-auto'>
+    <div className='flex-1 overflow-y-auto overflow-hidden'>
         <Head />
         <section className='p-8 px-4 sm:px-8 text-sm'>
             <div className='md:max-w-xl bg-white px-8 py-5 mb-16 rounded-3xl'>
@@ -33,7 +33,7 @@ const Profile = () => {
                         <img src='https://firebasestorage.googleapis.com/v0/b/fir-test-f9e66.appspot.com/o/images%2Fb61cd6ed-6fb4-4c1b-b348-c3156d03bb11?alt=media&token=f65537e4-2e26-469c-9f60-2102a3cc7912' alt='profile' className='w-full h-full rounded-full' />
                     </span>
                 </div>
-                <div className='flex gap-12 text-sm mb-12'>
+                <div className='flex flex-col lg:flex-row gap-4 lg:gap-12 text-sm mb-12'>
                     <div className='flex flex-col gap-1'>
                         <span className='text-gray-dark'>Name</span>
                         <span className='font-medium'>{profile?.name}</span>

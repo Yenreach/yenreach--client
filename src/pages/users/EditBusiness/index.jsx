@@ -7,7 +7,7 @@ import Button from '../../../components/ui/Button'
 
 const index = () => {
   return (
-    <main className='flex-1 overflow-y-scroll'>
+    <main className='flex-1 overflow-y-scroll overflow-hidden'>
     <Head />
     <section className='p-8 px-4 sm:px-8'>
         <h1 className='text-2xl text-green font-medium mb-5'>Edit your Business profile</h1>

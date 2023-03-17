@@ -26,7 +26,7 @@ const Profile = () => {
     
   return (
     <Dashboard> 
-    <div className='flex-1 overflow-y-auto'>
+    <div className='flex-1 overflow-y-auto overflow-hidden'>
         <Head />
         <section className='p-8 px-4 sm:px-8 text-sm lg:pr-60'>
             <div className='flex items-center justify-between mb-6'>
@@ -37,7 +37,7 @@ const Profile = () => {
             </div>
             <div className='bg-white px-8 py-5 mb-8 rounded-2xl flex flex-col-reverse md:flex-row md:items-center gap-4 justify-between'>
                 <div>
-                    <h2 className='text-2xl font-medium my-6 md:mt-0'>Personal Details</h2>
+                    <h2 className='text-lg font-medium my-6 md:mt-0'>Personal Details</h2>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                         <Input required className='border-gray rounded-lg mt-2 xl:w-72' type="number" name="price" id="price" placeholder='Enter Price' />
                         <Input required className='border-gray rounded-lg mt-2 xl:w-72' type="number" name="quantity" id="quantity" placeholder='Enter Available Quantity' />
@@ -51,21 +51,23 @@ const Profile = () => {
                 </div>
             </div>
             <div className='bg-white px-8 py-6 mb-8 rounded-2xl'>
-                <h4 className='text-2xl font-medium mb-6'>Skills and experience</h4>
+                <h4 className='text-lg font-medium mb-6'>Skills and experience</h4>
                 <div className='flex gap-10'>
                     <span>Resume/CV:</span>
                     <div className='flex flex-col items-start gap-3'>
-                        <span className='p-3 px-20 rounded border bg-slate-50 text-green'>Davidikperi_CV</span>
-                        <label htmlFor='resume' className='p-1 px-2 border rounded-md bg-transparent hover:border-green hover:bg-gray hover:bg-opacity-30 text-xs cursor-pointer'>
+                        <span className='p-3 px-4 md:px-10 rounded border bg-slate-50 text-green'>Davidikperi_CV</span>
+                        <label htmlFor='resume' className='p-1 px-2 border rounded-md bg-transparent hover:border-green hover:bg-gray hover:bg-opacity-30 text-xs cursor-pointer flex items-center'>
                             <MdOutlineAddBox size="0.8rem" className='inline-block mr-2' />
-                            Upload New resume/CV
+                            <span className='whitespace-nowrap'>
+                                Upload New resume/CV
+                            </span>
                             <input type="file" name="resume" id="resume" className='hidden' />
                         </label>
                     </div>
                 </div>
             </div>
             <div className='bg-white px-8 py-6 mb-16 rounded-2xl max-w-lg'>
-                <h4 className='text-2xl font-medium mb-10'>Change Password</h4>
+                <h4 className='text-lg font-medium mb-10'>Change Password</h4>
                 <div className='mb-8 flex flex-wrap gap-5'>
                     <div className='w-full'>
                         <label htmlFor="price" className='text-sm'>Current Password</label>

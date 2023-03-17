@@ -95,9 +95,17 @@ export const apiGetAllBusinessProducts = (business_string) => {
 }
 
 /* Get One Product */
-export const apiGetProduct = () => {
+export const apiGetProduct = (id) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/fetch_one_product_api${serviceSuffix}`,
+        url: `${servicePrefix}/fetch_one_product_api${serviceSuffix}?string=${id}`,
+        method: "get",  
+    })
+}
+
+/* Get One Product */
+export const apiGetRelatedProducts = (id) => {
+    return ApiAdapter.fetchData({
+        url: `${servicePrefix}/fetch_related_product_api${serviceSuffix}?string=${id}`,
         method: "get",  
     })
 }

@@ -30,12 +30,12 @@ const index = () => {
                 {isLoading && <Loader loader={4} />}
                 <Head />
                 <div className='px-7 py-4'>
-                    {!businesses && <h1 className='text-green font-medium text-xl mb-2'>Businesses</h1>}
+                    {!businesses && <h1 className='text-green font-medium text-lg mb-2'>Business</h1>}
                     {businesses && 
                         <>
                         <div className='flex flex-col md:flex-row gap-2 md:gap-4 justify-between md:items-center mb-6'>
                             <div>
-                                <h1 className='text-green font-medium text-xl mb-2'>Businesses</h1>
+                                <h1 className='text-green font-medium text-lg mb-2'>Business</h1>
                                 <p className='text-[#476788] text-sm mb-7'>You have {businesses?.length} {businesses.length > 1 ? "businesses" : "business"} listed to your account.</p>
                             </div>
                             <Link to="/users/add-business">
@@ -45,9 +45,9 @@ const index = () => {
                                 </Button>
                             </Link>
                         </div>
-                            <div className='flex flex-wrap gap-4 mb-16'>
+                            <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-16'>
                                 {businesses?.map(business => (
-                                    <Link to={`/users/business/${business.verify_string}`} key={business?.verify_string} className='bg-white rounded overflow-hidden flex text-sm w-full md:w-fit'>
+                                    <Link to={`/users/business/${business.verify_string}`} key={business?.verify_string} className='bg-white rounded overflow-hidden flex text-sm w-full'>
                                             <div>
                                                 <img src={Business} alt="" className="w-20 object-cover h-20" />
                                             </div>

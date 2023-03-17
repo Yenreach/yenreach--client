@@ -132,10 +132,10 @@ const Products = () => {
           <Header business_string={id} type="product" />
           <section className='p-8 px-4 sm:px-8'>
            {products &&
-            <div className='flex items-center justify-between mb-3'>
-              <h2 className='text-xl text-orange font-medium'>Listed Products</h2>
+            <div className='flex items-center justify-between mb-4'>
+              <h2 className='text-lg text-orange font-medium'>Listed Products</h2>
               <Link to={`/users/products/${id}/add-product`}>
-                <Button variant='product' className='px-4 py-2 text-xs flex items-center'>
+                <Button variant='product' className='px-2 py-2 text-xs flex items-center'>
                       <AiOutlinePlus className='mr-2' />
                   Add new Product
                 </Button>

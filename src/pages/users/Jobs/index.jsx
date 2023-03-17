@@ -25,7 +25,7 @@ const Jobs = () => {
 
   return (
     <Dashboard>
-        <div className='flex-1'>
+        <div className='flex-1 overflow-hidden'>
         <Header business_string={id} type="job" />
           <main className='p-8 px-4 sm:px-8'>
             {isLoading && <Loader loader={4} />}
