@@ -6,7 +6,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home'
 import Explore from './pages/Explore'
 import Business from './pages/Business'
-import Products from './pages/Products'
+import Products from './pages/Product'
 import About from './pages/About'
 import Blogs from './pages/Blog'
 import Blog from './pages/Blog/Blog'

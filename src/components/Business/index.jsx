@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
 import { apiGetApprovedBusinesses, apiGetFilledCategories, apiGetBusinessStates, apiBusinessSearch } from '../../services/CommonService'
 import useFetch from '/src/hooks/useFetch'
-import getData from '../../utils/getData'
 import { paginate } from '../../utils/pagination'
 import Loader from '../Loader'
 import Input from '/src/components/ui/Input'
 import Button from '/src/components/ui/Button'
 import Search from '/src/assets/search.svg'
 import BusinessCard from '../ui/BusinessCard'
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import Location from '../../assets/location.svg'
 import Pagination from '../Pagination'
 
@@ -46,18 +43,16 @@ const index = ({ page: initialPage, num_per_page }) => {
     }
   }, [])
 
-
-  
-  const { data: aprrovedBusinesses, error: errorApprovedBusinesses, isLoading: aprrovedBusinessesLoading  } = useQuery({
-    queryKey: ['aprrovedBusinesses'],
-    queryFn: () => getData(apiGetApprovedBusinesses),
+  const { data: aprrovedBusinesses, error: errorApprovedBusinesses, isLoading: aprrovedBusinessesLoading  } = useFetch({
+    api: apiGetApprovedBusinesses,
+    key: ['aprrovedBusinesses'],
     staleTime: staleTime,
   })
 
-  const { data: filteredBusiness, error: errorFilteredBusinesses, refetch, isLoading: filteredBusinessesLoading } = useQuery({
-    queryKey: ['filteredBusiness', searchQuery],
-    queryFn: () => getData(apiBusinessSearch, searchQuery),
-    // staleTime: staleTime,
+  const { data: filteredBusiness, error: errorFilteredBusinesses, refetch, isLoading: filteredBusinessesLoading } = useFetch({
+    api: apiBusinessSearch,
+    param: searchQuery,
+    key: ['filteredBusiness', searchQuery],
     enabled: enabled,
   })
 
