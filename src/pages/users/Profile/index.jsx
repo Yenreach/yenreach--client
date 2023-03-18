@@ -20,7 +20,8 @@ const Profile = () => {
         key: ['savedBusinesses'],
       })
 
-    //   console.log(profile)
+//   console.log("profile", profile)
+
     
   return (
     <Dashboard> 

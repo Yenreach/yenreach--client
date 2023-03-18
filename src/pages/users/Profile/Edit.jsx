@@ -62,6 +62,7 @@ const Profile = () => {
     api: apiGetUser,
     key: ['profile'],
   })
+  // console.log("profile", profile)
 
   const { data: savedBusinesses }  = useFetch({
     api: apiGetSavedBusinesses,

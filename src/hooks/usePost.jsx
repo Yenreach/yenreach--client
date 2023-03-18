@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import { toast } from 'react-toastify';
 
 const usePost = ({ api, success, error, ...rest }) => {
 
@@ -14,12 +15,14 @@ const usePost = ({ api, success, error, ...rest }) => {
         },
         onSuccess: (data, variables, context) => {
             console.log("success", data)
+            toast.success("Successful !");
             if (success) {
                 success(data, variables, context)
             }
         },
         onError: (error, variables, context) => {
             console.log("error", error)
+            toast.error("An Error Occurred !");
             if (error) {
                 error(error, variables, context)
             }

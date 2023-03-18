@@ -5,6 +5,8 @@ import App from './App'
 import './index.css'
 import { AuthContextProvider } from './contexts/AuthContext';
 import firebaseConfig from './configs/firebase.config.js'
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <AuthContextProvider>
       <QueryClientProvider client={queryClient}>
         <App />
+        <ToastContainer position="bottom-right" autoClose={3000} />
       </QueryClientProvider>
     </AuthContextProvider>
   </React.StrictMode>
