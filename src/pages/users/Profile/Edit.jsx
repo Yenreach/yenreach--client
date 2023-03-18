@@ -1,68 +1,110 @@
-import React, { useReducer } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import getData from '/src/utils/getData'
-import { apiGetUser, apiGetSavedBusinesses, apiUpdateUserCv } from '/src/services/UserService'
+import React, { useReducer, useEffect } from 'react'
+import useFetch from '/src/hooks/useFetch'
+import { apiGetUser, apiGetSavedBusinesses, apiUpdateUserCv, apiUpdateUser, apiUpdatePassword } from '/src/services/UserService'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '../../../components/ui/Button'
 import { CiEdit } from "react-icons/ci";
-import { RiAddBoxLine } from "react-icons/ri";
-
-
-
-
+import { RiAddBoxLine, RiFileTextLine } from "react-icons/ri";
+import usePost from '/src/hooks/usePost'
+import useImage from '/src/hooks/useImage'
 
 const Profile = () => {
-    const [passwordData, updatePasswordData] = useReducer(
-        (state, newValue) => {
-          return {
-            ...state,
-            ...newValue,
-          };
-        },
-        {
-          current_password: "",
-          password: "",
-          password_confirmation: "",
-        },
-      );
-    const [profileDetails, updateProfileDetails] = useReducer(
-        (state, newValue) => {
-          return {
-            ...state,
-            ...newValue,
-          };
-        },
-        {
-          date_of_birth: '',
-          email: '',
-          first_name: '',
-          gender: '',
-          phone_number: '',
-          photo: '',
-          skills: [],
-        },
-      );
-    const { isLoading, error, data: profile } = useQuery({
-        queryKey: ['profile'],
-        queryFn: () => getData(apiGetUser),
-    })
-    const { data: savedBusinesses } = useQuery({
-        queryKey: ['savedBusinesses'],
-        queryFn: () => getData(apiGetSavedBusinesses),
-    })
-      console.log("profile", profile)
-    const handleChangePassword = (e) => {
-        const { name, value } = e.target;
-        updateProfileDetails({ [name]: value });
-        };
-    
-    const handlePhotoUpload = () => {
-    }
+  const { url: cvUrl, uploadImage: uploadCV, error: cvError, progress } = useImage()
+  const { url: profilePhoto, uploadImage: uploadProfilePhoto } = useImage()
+  
+  const cvMutation = usePost({ api: apiUpdateUserCv })
+  const updateUserMutation = usePost({ api: apiUpdateUser })
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+  const [passwordData, updatePasswordData] = useReducer(
+      (state, newValue) => {
+        return {
+          ...state,
+          ...newValue,
+        };
+      },
+      {
+        password1: "",
+        password2: "",
+        password3: "",
+      },
+  );
+
+  const updatePasswordMutation = usePost({ 
+    api: apiUpdatePassword, 
+    success: (a,b,c) => {
+      updatePasswordData({
+        password1: "",
+        password2: "",
+        password3: "",
+      })
+    } 
+  })
+
+  const [profileDetails, updateProfileDetails] = useReducer(
+      (state, newValue) => {
+        return {
+          ...state,
+          ...newValue,
+        };
+      },
+      {
+        date_of_birth: '',
+        email: '',
+        name: '',
+        gender: '',
+        phone_number: '',
+        image: '',
+      },
+  );
+
+  const { isLoading, error, data: profile } = useFetch({
+    api: apiGetUser,
+    key: ['profile'],
+  })
+
+  const { data: savedBusinesses }  = useFetch({
+    api: apiGetSavedBusinesses,
+    key: ['savedBusinesses'],
+    staleTime: 1000 * 60 * 5,
+  })
+
+  useEffect(() => {
+    if (profile) {
+      updateProfileDetails(profile)
     }
+  }, [profile])
+
+  useEffect(() => {
+    const updateCV = () => {
+      cvMutation.mutate({
+        user_string: profile?.verify_string,
+        cv: cvUrl
+      })
+    }
+    if (cvUrl) {
+      updateCV()
+    }
+  }, [cvUrl])
+
+  const handleProfilePhotoUpload = (file) => {
+    console.log("file", file)
+    uploadProfilePhoto(file)
+  }
+
+  const handleUploadCV = (file) => {
+      uploadCV(file)
+  }
+
+  const handleChangePassword = () => {
+    const data = { ...passwordData, verify_string: profile?.verify_string }
+    updatePasswordMutation.mutate(data);
+  };
+
+  const handleSaveChanges = () => {
+    const data = {...profileDetails, image: profilePhoto, user_string: profile?.verify_string}
+    updateUserMutation.mutate(data)
+  }
 
   return (
     <Dashboard> 
@@ -71,7 +113,7 @@ const Profile = () => {
         <section className='p-8 px-4 sm:px-8 text-sm xl:pr-80'>
             <div className='flex items-center justify-between mb-6'>
                 <h1 className='text-25 font-normal text-green'>Edit your profile</h1>
-                <Button variant='' className="p-2 px-4 rounded-md hover:brightness-110">
+                <Button onClickFunc={handleSaveChanges} variant='' className="p-2 px-4 rounded-md hover:brightness-110">
                     Save Changes
                 </Button>
             </div>
@@ -84,18 +126,18 @@ const Profile = () => {
                         </h4>
                     </div>
                     <div className="mb-8 grid lg:grid-cols-2 gap-3 overflow-x-auto">
-                        <label htmlFor='full_name' className="flex gap-4 items-center border p-3 rounded-md relative cursor-pointer">
+                        <label htmlFor='name' className="flex gap-4 items-center border p-3 rounded-md relative cursor-pointer">
                             <CiEdit size="1.5rem" color="#25D366" className="absolute top-1/2 -translate-y-1/2 right-2" />
                             <span className="">Full Name:</span>
                             <input
-                                name='full_name'
-                                id='full_name'
+                                name='name'
+                                id='name'
                                 type="text"
                                 className="bg-inherit outline-none w-fit"
                                 placeholder=""
-                                value={profileDetails?.first_name}
+                                value={profileDetails?.name}
                                 onChange={(e) =>
-                                updateProfileDetails({ first_name: e.target.value })
+                                updateProfileDetails({ name: e.target.value })
                                 }
                             />
                         </label>
@@ -161,11 +203,12 @@ const Profile = () => {
                         </label>
                     </div>
                 </div>
-                <label htmlFor="photo" className="w-20 h-20 mx-auto bg-gray rounded-full relative cursor-pointer">
+                <label htmlFor="image" className="w-20 h-20 mx-auto bg-gray rounded-full relative cursor-pointer">
                     <span className="absolute bottom-0 right-0 -translate-x-1/2 bg-[#25D366] w-5 h-5 rounded-full overflow-hidden grid place-items-center z-10">
                         <CiEdit size="" color="white" className="" />
+                        <img src={profileDetails?.image} alt="" />
                     </span>
-                    <input type="file" name="photo" id="photo" className="hidden" onChange={(e)=> handlePhotoUpload(e.target.files[0])}  />
+                    <input type="file" name="image" id="image" className="hidden" onChange={(e)=> handleProfilePhotoUpload(e.target.files[0])}  />
                 </label>
             </div>
           <div className="flex flex-col justify-between gap-12 md:flex-row lg:gap-16  rounded-2xl bg-white p-5 md:px-7 pb-8 mb-12">
@@ -176,10 +219,19 @@ const Profile = () => {
               <div className="flex gap-8 mb-8">
                 <span className="w-20 text-right">Resume/CV:</span>
                 <div className="flex flex-col gap-3">
-                  <button className="border border-black text-black bg-transparent p-1 px-2.5 text-xs hover:border-primary hover:bg-gray-200 hover:bg-opacity-30 flex items-center gap-3 rounded-md w-fit">
+                  <div>
+                     {profile?.cv &&
+                      <a href={profile?.cv} target="_blank" className="flex items-center gap-3 text-primary">
+                        <RiFileTextLine size="1.5rem" className="inline-block" />
+                        <span className="text-sm">View Resume</span>
+                      </a>
+								    }    
+                  </div>
+                  <label className="border border-black text-black bg-transparent p-1 px-2.5 text-xs hover:border-primary hover:bg-gray-200 hover:bg-opacity-30 flex items-center gap-3 rounded-md w-fit cursor-pointer">
                     <RiAddBoxLine size="1rem" className="inline-block" />
                     Upload New resume/CV
-                  </button>
+                    <input type="file" name="cv" id="cv" className="hidden" onChange={(e)=> handleUploadCV(e.target.files[0])} />
+                  </label>
                 </div>
               </div>
               <div className="flex gap-8 mb-8">
@@ -198,28 +250,28 @@ const Profile = () => {
                   <label htmlFor="" className="font-medium">
                     Current Password
                   </label>
-                  <input value={passwordData?.current_password} onChange={(e) =>
-                      updatePasswordData({ current_password: e.target.value })
+                  <input value={passwordData?.password1} onChange={(e) =>
+                      updatePasswordData({ password1: e.target.value })
                     } type="text" className="border border-black/40 p-2 px-4 outline-none focus:outline-black/60"  />
                 </div>
                 <div className="flex flex-col gap-1">
                   <label htmlFor="" className="font-medium">
                     New Password
                   </label>
-                  <input value={passwordData?.password}  onChange={(e) =>
-                      updatePasswordData({ password: e.target.value })
+                  <input value={passwordData?.password2}  onChange={(e) =>
+                      updatePasswordData({ password2: e.target.value })
                     } type="text" className="border border-black/40 p-2 px-4 outline-none focus:outline-black/60"  />
                 </div>
                 <div className="flex flex-col gap-1">
                   <label htmlFor="" className="font-medium">
                     Confirm New Password
                   </label>
-                  <input value={passwordData?.password_confirmation} onChange={(e) =>
-                      updatePasswordData({ password_confirmation: e.target.value })
+                  <input value={passwordData?.password3} onChange={(e) =>
+                      updatePasswordData({ password3: e.target.value })
                     } type="text" className="border border-black/40 p-2 px-4 outline-none focus:outline-black/60"  />
                 </div>
                 <div className="flex justify-end mt-3">
-                  <Button onClick={handleChangePassword} className="p-2 px-4 rounded-md hover:brightness-110">
+                  <Button onClickFunc={handleChangePassword} className="p-2 px-4 rounded-md hover:brightness-110">
                     Save Changes
                   </Button>
                 </div>
