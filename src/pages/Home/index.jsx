@@ -16,7 +16,7 @@ import BusOfTheWeek from '../../assets/bus_of_the_week.svg'
 import Button from '../../components/ui/Button'
 import Loader from '/src/components/Loader'
 import useFetch from '/src/hooks/useFetch'
-
+import Error from '../../components/Error'
 
 const index = () => {
     const { data: businessOfTheWeek, error: errorBusinessOfTheWeek } = useFetch({
@@ -29,6 +29,7 @@ const index = () => {
 
   return (
     <>
+        <Error />
         <Header />
         <Hero />
         <Trustees />

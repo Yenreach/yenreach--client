@@ -23,6 +23,14 @@ export const apiUpdateUser = (data) => {
         data
     })
 }
+/* Update user */
+export const apiUpdateUserCv = (data) => {
+    return ApiAdapter.fetchData({
+        url: `update_user_cv_api${serviceSuffix}`,
+        method: "post",
+        data
+    })
+}
 
 /* Activity Log */
 export const apiAddActivityLog = (data) => {

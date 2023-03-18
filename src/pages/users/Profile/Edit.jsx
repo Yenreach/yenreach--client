@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import getData from '/src/utils/getData'
-import { apiGetUser, apiGetSavedBusinesses } from '/src/services/UserService'
+import { apiGetUser, apiGetSavedBusinesses, apiUpdateUserCv } from '/src/services/UserService'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '../../../components/ui/Button'
@@ -76,7 +76,7 @@ const Profile = () => {
                 </Button>
             </div>
             <section className="">
-            <div className="flex flex-col-reverse xl:flex-row items-center gap-4 md:gap-12 mb-12 rounded-2xl bg-white p-5 md:px-7">
+            <div className="flex flex-col-reverse xl:flex-row xl:items-center gap-4 md:gap-12 mb-12 rounded-2xl bg-white p-5 md:px-7">
                 <div className="flex-1 max-w-3xl">
                     <div className="mb-4 flex items-center justify-between">
                         <h4 className="text-lg font-semibold text-black/60">
@@ -152,7 +152,7 @@ const Profile = () => {
                                 id='email'
                                 type="text"
                                 className="bg-inherit outline-none w-fit"
-                                placeholder="Email"
+                                placeholder=""
                                 value={profileDetails?.email}
                                 onChange={(e) =>
                                 updateProfileDetails({ email: e.target.value })
@@ -161,7 +161,7 @@ const Profile = () => {
                         </label>
                     </div>
                 </div>
-                <label htmlFor="photo" className="w-20 h-20 bg-gray rounded-full relative cursor-pointer">
+                <label htmlFor="photo" className="w-20 h-20 mx-auto bg-gray rounded-full relative cursor-pointer">
                     <span className="absolute bottom-0 right-0 -translate-x-1/2 bg-[#25D366] w-5 h-5 rounded-full overflow-hidden grid place-items-center z-10">
                         <CiEdit size="" color="white" className="" />
                     </span>
