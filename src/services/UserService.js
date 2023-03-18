@@ -31,6 +31,14 @@ export const apiUpdateUserCv = (data) => {
         data
     })
 }
+/* Update Password */
+export const apiUpdatePassword = (data) => {
+    return ApiAdapter.fetchData({
+        url: `change_user_password_api${serviceSuffix}`,
+        method: "post",
+        data
+    })
+}
 
 /* Activity Log */
 export const apiAddActivityLog = (data) => {

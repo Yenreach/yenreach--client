@@ -6,7 +6,7 @@ import useImage from '/src/hooks/useImage'
 import { useMutation } from "@tanstack/react-query";
 import { apiSubmitApplication } from '/src/services/JobService'
 import { useAuthContext } from '/src/hooks/useAuthContext'
-
+import { RiFileTextLine } from "react-icons/ri";
 
 const initialApplicationState = {
 	job_string: "",
@@ -144,7 +144,10 @@ const JobDescription = ({ job }) => {
 							</label>
 							<div className='mt-4 mb-2'>
 								{url &&
-									<iframe src={url} style={{width: "100%", height: "100px"}}></iframe>
+									<a href={url} target="_blank" className="flex items-center gap-3 text-primary">
+										<RiFileTextLine size="1.5rem" className="inline-block" />
+										<span className="text-sm">View Resume</span>
+									</a>
 								}    
 								<input onChange={(e) => uploadImage(e.target.files[0])} type="file" name="document" id="document" className='w-full border-2 border-gray-light p-2 rounded-md hidden' />
 							</div>

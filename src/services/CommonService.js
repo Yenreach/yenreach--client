@@ -223,10 +223,11 @@ export const apiAddComment =  (data) => {
     })
 }
 
-export const apiPostComment =  () => {
+export const apiFeedback =  (data) => {
     return ApiAdapter.fetchData({
-        url: servicePrefix + "fetch_comments_api" + serviceSuffix,
-        method: "get"    
+        url: servicePrefix + "add_feedback_api" + serviceSuffix,
+        method: "post" ,
+        data   
     })
 }
 

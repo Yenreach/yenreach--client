@@ -13,14 +13,16 @@ const index = () => {
         <h1 className='text-xl text-[#69707D] font-medium'>
             Dashboard
         </h1>
-        <div className='flex items-center gap-1'>
-            <img src={DP} alt="" />
-            <img src={ArrowDown} alt="" />
+        <div className='flex items-center gap-4'>
+          <div className='flex items-center gap-1 h-8 w-8'>
+              <img src={DP} alt="" />
+              <img src={ArrowDown} alt="" />
+          </div>
+          { isOpen ? 
+            <MdOutlineClose onClick={() => setIsOpen(false)} className={`cursor-pointer text-3xl md:hidden relative z-50 text-gray-dark`} /> 
+            : <BiMenu onClick={() => setIsOpen(true)} className='cursor-pointer text-3xl md:hidden relative z-50 text-gray-dark' />
+          }
         </div>
-        { isOpen ? 
-          <MdOutlineClose onClick={() => setIsOpen(false)} className={`cursor-pointer text-3xl md:hidden relative z-50 text-gray-dark`} /> 
-          : <BiMenu onClick={() => setIsOpen(true)} className='cursor-pointer text-3xl md:hidden relative z-50 text-gray-dark' />
-        }
           <Links isOpen={isOpen} />
     </div>
   )

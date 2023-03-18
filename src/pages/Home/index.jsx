@@ -29,7 +29,7 @@ const index = () => {
 
   return (
     <>
-        <Error />
+        {/* <Error /> */}
         <Header />
         <Hero />
         <Trustees />
