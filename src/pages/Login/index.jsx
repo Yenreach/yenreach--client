@@ -1,8 +1,9 @@
 import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom'
+import { Navigate, useLocation, Link } from 'react-router-dom'
 import { useAuthContext } from '/src/hooks/useAuthContext'
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import Button from '../../components/ui/Button';
+import Header from '../../components/Header';
 import useAuth from '../../hooks/useAuth';
 
 const index = () => {
@@ -25,25 +26,27 @@ const index = () => {
 
   return (
     <>
-      <div className="flex flex-col w-full justify-center gap-14 items-center h-screen ">
-        <h1 className="text-green font-bold text-3xl">
+      <Header />
+      <div className="flex flex-col w-full justify-center gap-14 items-center h-screen px-6 xs:px-8">
+      <div className='max-w-lg flex flex-col justify-center items-center gap-4 w-full md:pt-8'>
+        <h1 className="text-green font-bold text-2xl mb-8">
           Login
         </h1>
-        <form className='flex flex-col w-full md:w-[30%] px-6 md:px-0 gap-10 relative' action="" onSubmit={(e) =>{ 
+        <form className='flex flex-col w-full gap-10 relative' action="" onSubmit={(e) =>{ 
             e.preventDefault()
             auth({username, password})
           }}>
           <div className="flex flex-col gap-1">
-            <label className='text-sm font-semibold' htmlFor="name">Full Name / Email Address</label>
+            <label className='text-sm font-medium text-black/80' htmlFor="name">Full Name / Email Address</label>
             <input required onChange={(event) => setUsername(event.target.value)} className='border-2 p-2 border-[#BABFC5] bg-[#f5f5f791] rounded-md' type="text" name='name' id='name' />
           </div>
           <div className="flex flex-col gap-1">
-            <label className='text-sm font-semibold' htmlFor="name">Password</label>
+            <label className='text-sm font-medium text-black/80'htmlFor="name">Password</label>
             <div className="relative w-full">
               <input required onChange={(event) => setPassword(event.target.value)} className='border-2 p-2 w-full border-[#BABFC5] bg-[#f5f5f791] rounded-md' type={showPassword ? "text" : "password"} name='password' id='password' />
               {!showPassword? <BsEye onClick={() => setShowPassword(true)} className='absolute top-0 bottom-0 m-auto right-3 z-20 scale-110 cursor-pointer' /> : <BsEyeSlash onClick={() => setShowPassword(false)} className='absolute top-0 bottom-0 m-auto right-3 z-20 scale-110 cursor-pointer' />}
             </div>
-            <p className="w-full text-xs text-[#FF6B93] text-right">Forgot Password?</p>
+            <Link to='/password-recovery' className='text-[#FF6B93] text-xs ml-auto'>Forgot Password?</Link>
           </div>
           
           <Button className='p-3 font-semibold disabled:bg-green/90' type='submit' disabled={isLoading}>
@@ -53,7 +56,8 @@ const index = () => {
             {messageState && <p className='text-[#FF6B93] text-sm'>{messageState}</p>}
           </div>
         </form>
-        <p className='font-semibold text-sm'>Don't have an account? <a className='text-[#5441ff]' href='/signup'>Sign Up</a></p>
+        <p className='font-semibold text-sm mt-8'>Don't have an account? <Link to='/signup' className='text-[#5441ff]'>Sign Up</Link></p>
+        </div>
       </div>
     </>
   )

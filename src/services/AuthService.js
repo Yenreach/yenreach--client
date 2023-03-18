@@ -18,11 +18,10 @@ export const apiLogin =  (data) => {
     })
 }
 
-export const apiForgotEmail =  (data) => {
+export const apiForgotEmail =  (email) => {
     return ApiAdapter.fetchData({
-        url: "/user_login_api.php",
-        method: "post",
-        data
+        url: `/forgot_email_api.php?string=${email}`,
+        method: "get",
     })
 }
 export const apiTest =  () => {

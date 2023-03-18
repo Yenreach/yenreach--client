@@ -1,13 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Image from '../../../assets/image.svg'
+import Img from '../../../assets/image.svg'
 import Button from '../Button'
+import Image from '/src/components/Image';
 
 const ProductCard = ({ product }) => {
+  // console.log(product)
   return (
     <Link to={`/products/${product?.product_string}`}>
       <div className='flex flex-col rounded-t-3xl overflow-hidden py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-fit justify-between'>
-        <img src={Image} className='h-40 w-full object-cover object-center rounded-xl' alt="" />
+        <img src={Img} className='h-40 w-full object-cover object-center rounded-xl' alt="" />
+        {/* <Image
+                name={business?.filename}
+                alt={business?.name}
+                className='object-cover object-center rounded-xl h-28'
+                business={business}
+               /> */}
         <div className="flex flex-col border-[#777777]">
           <div className="flex flex-col justify-between">
             <h2 className="text-sm font-medium h-5 my-1.5 overflow-hidden">
