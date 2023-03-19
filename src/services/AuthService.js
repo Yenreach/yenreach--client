@@ -18,6 +18,20 @@ export const apiLogin =  (data) => {
     })
 }
 
+export const apiResetPassword =  (data) => {
+    return ApiAdapter.fetchData({
+        url: "/reset_user_password_api.php",
+        method: "post",
+        data
+    })
+}
+export const apiCheckPassword =  ({ user_string, p_string }) => {
+    return ApiAdapter.fetchData({
+        url:`/check_user_password_api.php?user_string=${user_string}&p_string=${p_string}`,
+        method: "get",
+    })
+}
+
 export const apiForgotEmail =  (email) => {
     return ApiAdapter.fetchData({
         url: `/forgot_email_api.php?string=${email}`,
