@@ -27,6 +27,7 @@ import JobSuccess from './pages/users/Jobs/Success'
 import Profile from './pages/users/Profile'
 import Edit from './pages/users/Profile/Edit'
 import Subscription from './pages/users/Subscription'
+import VerifyPayment from './pages/users/VerifyPayment'
 import Billboard from './pages/users/Billboard'
 import Jobs from './pages/users/Jobs'
 import Applicants from './pages/users/Jobs/Applicants'
@@ -63,6 +64,7 @@ function App() {
             <Route exact path="/users/profile" element={<Profile />} />
             <Route exact path="/users/profile/edit" element={<Edit />} />
             <Route exact path="/users/subscription/:id" element={<Subscription />} />
+            <Route exact path="/users/verify-payment" element={<VerifyPayment />} />
             <Route exact path="/users/billboard" element={<Billboard />} />
             <Route exact path="/users/jobs/:id" element={<Jobs />} />
             <Route exact path="/users/jobs/:id/applicants/:job_id" element={<Applicants />} />

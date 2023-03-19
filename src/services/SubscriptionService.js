@@ -43,3 +43,11 @@ export const apiVerifyPayment = (data) => {
 }
 
 
+
+/* Get Business Subscription */
+export const apiGetAllSubscriptions = (business_token) => {
+    return ApiAdapter.fetchData({
+        url: `fetch_business_subscriptions_api${serviceSuffix}string=${business_token}`,
+        method: "get"    
+    })
+}
