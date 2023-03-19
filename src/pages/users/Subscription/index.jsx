@@ -13,6 +13,8 @@ import { MdArrowDropDown } from 'react-icons/md'
 import Loader from '/src/components/Loader'
 import { useMutation } from "@tanstack/react-query";
 import { apiInitiateSubscription, apiInitiatePayment } from '/src/services/SubscriptionService'
+import usePost from '/src/hooks/usePost'
+
 
 const initialPlanState = {
     "Special": "",
@@ -38,18 +40,9 @@ const Subscription = () => {
 
     //   console.log(user)
 
-      const subscribeMutation = useMutation({
-        mutationFn: async (data) => {
-          const response =  await apiInitiateSubscription(data)
-          console.log("response from initiate subscription", response)
-          if (response?.data?.status === "success") {
-            return response?.data?.data
-          } else {
-            throw new Error(response?.data?.message)
-            }
-        },
-        onSuccess: (data, variables, context) => {
-            console.log("success sub", data)
+    const subscribeMutation = usePost({ 
+        api: apiInitiateSubscription, 
+        success: (data,b,c) => {
             paymentMutation.mutate({
                 platform: "Flutterwave",
                 user_type: user?.user_type,
@@ -57,29 +50,14 @@ const Subscription = () => {
                 reason: "business_subscription",
                 subject: data?.verify_string
             })
-        },
-        onError: (error, variables, context) => {
-          console.log("error sub", error)
-        },
+        }
       })
-
-      const paymentMutation = useMutation({
-        mutationFn: async (data) => {
-          const response =  await apiInitiatePayment(data)
-          console.log("from initiate payment", response)
-          if (response?.data?.status === "success") {
-            return response?.data?.data
-          } else {
-            throw new Error(response?.data?.message)
-            }
-        },
-        onSuccess: (data, variables, context) => {
-            console.log("success payment", data)
+    
+    const paymentMutation = usePost({ 
+        api: apiInitiatePayment, 
+        success: (data,b,c) => {
             window.location.href = data?.url
-        },
-        onError: (error, variables, context) => {
-          console.log("error payment", error)
-        },
+        }
       })
     
     const handleSubmit = (v_string) => {

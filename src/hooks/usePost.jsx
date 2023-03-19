@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from 'react-toastify';
 
-const usePost = ({ api, success, error, ...rest }) => {
+const usePost = ({ api, success, failure, showMessage=false, ...rest }) => {
 
     const Mutation = useMutation({
         mutationFn: async (data) => {
@@ -22,9 +22,13 @@ const usePost = ({ api, success, error, ...rest }) => {
         },
         onError: (error, variables, context) => {
             console.log("error", error)
-            toast.error("An Error Occurred !");
-            if (error) {
-                error(error, variables, context)
+            if (showMessage) {
+                toast.error(error?.message);
+            } else {
+              toast.error("An Error Occurred!");
+            }
+            if (failure) {
+                failure(error, variables, context)
             }
         },
         ...rest

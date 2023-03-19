@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
-import { useMutation } from "@tanstack/react-query";
+import usePost from '/src/hooks/usePost'
 import useImage from '/src/hooks/useImage'
 import { apiAddProduct } from '../../../services/ProductService'
 import Header from "/src/components/users/Header"
@@ -61,21 +61,15 @@ const index = () => {
         setProduct(prev => ({...prev, [event.target.name]: [...product.categories, event.target.value] }))
     }
 
-    const addProductMutation = useMutation({
-        mutationFn: (data) => {
-            console.log("data", data)
-            return apiAddProduct(data)
-        },
-        onSuccess: (data, variables, context) => {
+    const addProductMutation = usePost({ 
+        api: apiAddProduct,
+        success: (data) => {
             console.log("success adding product", data)
             setProduct(initialProductState)
             navigate(`/users/products/${id}/product-success`)
         },
-        onError: (error, variables, context) => {
-          console.log("error adding product", error)
-        },
-      })
-       
+    })
+
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log("data", product)

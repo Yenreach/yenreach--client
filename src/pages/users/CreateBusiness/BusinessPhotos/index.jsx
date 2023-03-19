@@ -4,32 +4,14 @@ import Button from '/src/components/ui/Button'
 import Input from '/src/components/ui/Input'
 import Add from '/src/assets/add.svg'
 import { useMutation } from "@tanstack/react-query";
+import usePost from '/src/hooks/usePost'
 import { apiAddBusiness } from '/src/services/UserService'
-
 
 const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) => {    
     const { url: profileImg, uploadImage: uploadProfileImg, error, progress } = useImage()
     const { url: coverImg, uploadImage: uploadCoverImg, error: coverImgError, progress: coverImgProgress } = useImage()
 
-    const addBusinessMutation = useMutation({
-        mutationFn: async (data) => {
-          const response =  await apiAddBusiness(data)
-        //   console.log("response", response)
-          if (response?.data?.status === "success") {
-            return response?.data?.data
-          } else {
-            throw new Error(response?.data?.message)
-            }
-        },
-        onSuccess: (data, variables, context) => {
-            console.log("success adding business", data)
-            setStep(3)
-        },
-        onError: (error, variables, context) => {
-          console.log("error adding business", error)
-        },
-      })
-    
+    const addBusinessMutation = usePost({ api: apiAddBusiness })    
 
     console.log("url", profileImg, "error", error, "progress", progress)
     console.log("url", coverImg, "error", coverImgError, "progress", coverImgProgress)

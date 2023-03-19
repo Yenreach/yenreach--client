@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { useMutation } from "@tanstack/react-query";
+import usePost from '/src/hooks/usePost'
 import { apiAddJob } from '../../../services/JobService'
 import Header from "/src/components/users/Header"
 import Input from '../../../components/ui/Input'
@@ -48,29 +48,21 @@ const index = () => {
         setJob(prev => ({...prev, [event.target.name]: [...job.job_tags, { tag: event.target.value }] }))
     }
 
-    const addJobMutation = useMutation({
-        mutationFn: (data) => {
-          console.log("data", data)
-          return apiAddJob(data)
-        },
-        onSuccess: (data, variables, context) => {
+    const addJobMutation = usePost({ 
+        api: apiAddJob,
+        success: (data, variables, context) => {
             console.log("success adding job", data)
             setJob(initialJobState)
             navigate(`/users/jobs/${id}/job-success`)
             // setStep(3)
-        },
-        onError: (error, variables, context) => {
-          console.log("error adding job", error)
-        },
-      })
+        }
+    })
        
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log("data", job)
         addJobMutation.mutate({ ...job, business_string: id })
     }
-   
-
 
   return (
     <Dashboard> 

@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { useAuthContext } from '/src/hooks/useAuthContext'
-import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
-import { TfiCrown } from 'react-icons/tfi'
-import useFetch from '/src/hooks/useFetch'
-import { apiGetAllSubscriptions,apiGetAllSubscriptionPlans } from '/src/services/UserService'
 import SubscriptionModal from './SubscriptionModal'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
-import Button from '/src/components/ui/Button'
-import { MdArrowDropDown } from 'react-icons/md'
 import Loader from '/src/components/Loader'
-import { useMutation } from "@tanstack/react-query";
+import usePost from '/src/hooks/usePost'
 import { apiVerifyPayment } from '/src/services/SubscriptionService'
 
 
@@ -20,27 +13,8 @@ const Subscription = () => {
     const navigate = useNavigate()
     const { id, tx_ref, transaction_id, ...restData } = useParams()
 
+  const confirmSubScriptionMutation = usePost({ api: apiVerifyPayment })
 
-      const confirmSubScriptionMutation = useMutation({
-        mutationFn: async (data) => {
-          const response =  await apiVerifyPayment(data)
-          console.log("response from confirm subscription", response)
-          if (response?.data?.status === "success") {
-            return response?.data?.data
-          } else {
-            throw new Error(response?.data?.message)
-            }
-        },
-        onSuccess: (data, variables, context) => {
-            console.log("success sub", data)
-            setIsLoading(false)
-        },
-        onError: (error, variables, context) => {
-          console.log("error sub", error)
-          setIsLoading(false)
-        },
-      })
-    
       
       useEffect(() => {
         const handleCheck = (v_string) => {

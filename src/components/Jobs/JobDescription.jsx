@@ -7,6 +7,8 @@ import { useMutation } from "@tanstack/react-query";
 import { apiSubmitApplication } from '/src/services/JobService'
 import { useAuthContext } from '/src/hooks/useAuthContext'
 import { RiFileTextLine } from "react-icons/ri";
+import usePost from '/src/hooks/usePost'
+
 
 const initialApplicationState = {
 	job_string: "",
@@ -31,25 +33,13 @@ const JobDescription = ({ job }) => {
 	const [tab, setTab] = useState(1)
     const { url, uploadImage, error, progress } = useImage()
 
-	const submitJobApplication = useMutation({
-        mutationFn: async (data) => {
-          const response =  await apiSubmitApplication(data)
-          console.log("response", response)
-          if (response?.data?.status === "success") {
-            return response?.data?.data
-          } else {
-            throw new Error(response?.data?.message)
-            }
-        },
-        onSuccess: (data, variables, context) => {
-            // console.log("success submitting application", data)
+	const submitJobApplication = usePost({ 
+		api: apiSubmitApplication, 
+		success: (data,b,c) => {
 			setApplication(initialApplicationState)
 			setTab(3)
-        },
-        onError: (error, variables, context) => {
-          console.log("error submitting application", error)
-        },
-      })
+		}
+	  })
     
     const handleSubmit = () => {
         const data = { ...application, job_string: job?.job_string, document: url, user_string: user?.verify_string }
