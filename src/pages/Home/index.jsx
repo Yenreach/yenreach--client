@@ -40,9 +40,11 @@ const index = () => {
                     <h2 className='text-lg md:text-xl font-medium text-center'>Get your business to the right audience</h2>
                     <span className='text-sm'>It's Totally free</span>
                 </div>
-                <Button className='px-12 py-3 rounded'>
-                    Add my business
-                </Button>
+                <Link to="/login">
+                    <Button className='px-12 py-3 rounded'>
+                        Add my business
+                    </Button>
+                </Link>
             </div>
             <div className='flex flex-col sm:items-center mb-20 md:mb-32 sm:flex-row gap-9'>
                 <img src={AllHere} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px]" />

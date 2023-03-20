@@ -151,7 +151,7 @@ const Products = () => {
                       You have not added any products to your marketplace
                     </span>                        
                     <Link to={`/users/products/${id}/add-product`}> 
-                    <span href=""className='text-orange underline underline-offset-2'>Click here to add a new product</span>
+                      <span href=""className='text-orange underline underline-offset-2'>Click here to add a new product</span>
                     </Link>
                 </div>
             }

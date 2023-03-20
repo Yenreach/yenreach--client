@@ -103,14 +103,14 @@ const index = () => {
       <div className="backdrop-blur-[1.5px] bg-black/60 h-full w-full flex flex-col gap-14 justify-center items-center py-32 sm:py-20 sm:pt-40 px-4 md:px-10 lg:px-24 relative text-xl md:text-3xl">
         <h1 className='font-medium leading-tight text-center'>The No.1 Business listing<br />website in Nigeria</h1>
         <form action="" method="post" onSubmit={handleSearch} className="text-base flex">
-          <Input onChange={(e) => setSearch(e.target.value)} value={search} list="categories" name="category" id="category" placeholder='business' className='rounded-tl-md rounded-bl-md' />
+          <Input variant="plain" onChange={(e) => setSearch(e.target.value)} value={search} list="categories" name="category" id="category" placeholder='Search for business' className='rounded-tl-md rounded-bl-md placeholder:text-xs' />
           <datalist className='' name="categories" id="categories" placeholder='Enter state'>
               {filledCategories?.map((category) => (
                   <option key={category.id} value={category.name}>{category.name}</option>
               ))}
           </datalist>
-          <Input onChange={(e) => setLocation(e.target.value)} value={location} list="location" name="locate" id="locate" placeholder='location' className='border-l-0 border-r-0' />
-          <datalist className='' name="location" id="location" placeholder='Enter Loac'>
+          <Input variant="plain" onChange={(e) => setLocation(e.target.value)} value={location} list="location" name="locate" id="locate" placeholder='Enter Location' className='border-l-0 border-r-0 placeholder:text-xs' />
+          <datalist className='' name="location" id="location" placeholder='Enter Location'>
               {businessStates?.map((state) => (
                   <option key={state.id} value={state.name}>{state.name}</option>
               ))}

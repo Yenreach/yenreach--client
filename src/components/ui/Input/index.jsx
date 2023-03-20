@@ -6,9 +6,13 @@ function Input({ variant, override, type, id, className='',placeholder='', name,
   const [touched, setTouched] = React.useState(false)
 
   const styles = (className) => clsx(
-    ['w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400', touched && 'invalid:border-red-400'],
+    ['w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3', touched && ''],
 
-    variant === 'product'
+    variant === 'plain'
+      ? !override && ['border-gray focus:border-gray/90 hover:border-gray/90']
+      
+      // products
+    : variant === 'product'
       ? !override && ['border-orange focus:border-orange hover:border-orange']
       
     // Jobs

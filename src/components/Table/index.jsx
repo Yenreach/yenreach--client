@@ -160,7 +160,7 @@ const Table = ({ data=[], columns, className }) => {
          <input onChange={search} type="text" placeholder="search" className="my-2 border-orange p-2 rounded-lg border-2 outline-none" />
         </div> */}
         <div className="overflow-x-auto">
-          <table className="min-w-full text-center text-sm font-light">
+          <table className="min-w-full text-left text-sm font-light">
             <thead className="font-normal bg-[#FAFAFA] text-[#5F6868]">
               <tr>
                 {columns?.map((item, index) => (
@@ -179,7 +179,7 @@ const Table = ({ data=[], columns, className }) => {
                           {column?.custom(item[column?.name], item)}
                         </td>
                       )
-                    } else if (column?.name === "updated_at" || column?.name === "created_at") {
+                    } else if (column?.name === "updated_at" || column?.name === "created_at" || column?.name === "created") {
                       return <td key={index} className="whitespace-nowrap px-5 py-5">{formatDate(item[column?.name])}</td>
                     }
                     return <td key={index} className="whitespace-nowrap px-5 py-5">{item[column?.name]}</td>
