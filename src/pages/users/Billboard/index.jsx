@@ -1,13 +1,65 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { TfiCrown } from 'react-icons/tfi'
 import useFetch from '/src/hooks/useFetch'
-import { apiGetBillboardPaymentTypes } from '/src/services/UserService'
+import { apiGetBillboardPaymentTypes, apiGetUserBillboardApplications, apiGetUser } from '/src/services/UserService'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '/src/components/ui/Button'
 import Loader from '/src/components/Loader'
+import Table from '/src/components/Table'
+
+const columns = [
+    {
+      name: "code",
+      label: "Code",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "title",
+      label: "Heading",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "created",
+      label: "Date Applied",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+        name: "stage",
+        label: "Status",
+        extra: true,
+        options: {
+          filter: true,
+          sort: true,
+        },
+        custom: (value, meta) => {
+            // console.log("meta", meta)
+            return  (
+              <div className="flex items-center gap-4">
+                <span className="text-green-500">{value==="2" ? "Pending Approval" : value === "3" ? "Approved" : value === "4" ? "Paid" : "Unknown"}</span>
+              </div>
+            )
+        },
+      },
+  ];
+
 
 const Billboard = () => {
+
+    const {  data: profile } = useFetch({
+        api: apiGetUser,
+        key: ['profile'],
+      })
       
     const { isLoading, error, data: billboards} = useFetch({
         api: apiGetBillboardPaymentTypes,
@@ -15,8 +67,14 @@ const Billboard = () => {
         staleTime: 1000 * 60 * 5,
         cacheTime : 1000 * 60 * 60,
       })
+      
+    const { data: userBillboards } = useFetch({
+        api: apiGetUserBillboardApplications,
+        key:  ['userBillboards'],
+        param: profile?.verify_string,
+      })
 
-    //   console.log("billboards", billboards)
+    //   console.log("userBillboards", userBillboards)
     
   return (
     <Dashboard> 
@@ -67,12 +125,19 @@ const Billboard = () => {
                                 <div>
                                     <span className='font-medium text-lg text-green'>₦{billboard?.amount}</span><span className=''>/{billboard?.duration} {billboard?.duration_type == "3"? "Month(s)" : "Week(s)"}</span>
                                 </div>
-                                <Button className='py-1.5 px-3 rounded-sm'>
-                                    Subscribe
-                                </Button>
+                                <Link to={`/users/billboard/${billboard?.verify_string}`}>
+                                    <Button className='py-1.5 px-3 rounded-sm'>
+                                        Subscribe
+                                    </Button>
+                                </Link>
+                                
                             </div>
                         </div>)
                     )}
+                </div>
+                <div>
+                    <h3 className='text-green text-md font-medium mb-3'>Your Billboard Applications</h3>
+                     <Table data={userBillboards} columns={columns} />
                 </div>
             </div>
         </section>

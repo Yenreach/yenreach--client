@@ -147,9 +147,9 @@ export const apiGetBillboardPaymentTypes = () => {
 }
 
 /* Get Billboard Payment */
-export const apiGetUserBillboardApplications = () => {
+export const apiGetUserBillboardApplications = (user_string) => {
     return ApiAdapter.fetchData({
-        url: `fetch_all_advert_payment_types_api${serviceSuffix}?user_string=${token}`,
+        url: `fetch_billboard_applications_by_user_api${serviceSuffix}?user_string=${user_string || token}`,
         method: "get"    
     })
 }
