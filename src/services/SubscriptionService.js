@@ -15,6 +15,15 @@ export const apiGetUser = () => {
 }
 
 
+/* Initiate Billboard Subscription */
+export const apiInitiateBillboardSubscription = (data) => {
+    return ApiAdapter.fetchData({
+        url: `/initiate_billboard_application_api${serviceSuffix}`,
+        method: "post",
+        data    
+    })
+}
+
 /* Initiate Subscription */
 export const apiInitiateSubscription = (data) => {
     return ApiAdapter.fetchData({

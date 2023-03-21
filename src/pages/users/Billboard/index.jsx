@@ -130,13 +130,12 @@ const Billboard = () => {
                                         Subscribe
                                     </Button>
                                 </Link>
-                                
                             </div>
                         </div>)
                     )}
                 </div>
                 <div>
-                    <h3 className='text-green text-md font-medium mb-3'>Your Billboard Applications</h3>
+                    <h3 className='text-green text-xl font-medium mb-3'>Your Billboard Applications</h3>
                      <Table data={userBillboards} columns={columns} />
                 </div>
             </div>

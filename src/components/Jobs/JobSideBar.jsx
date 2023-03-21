@@ -4,9 +4,20 @@ import LeftArrow from '../../assets/left-arrow.svg'
 import RightArrow from '../../assets/right-arrow.svg'
 import JobCardVariation from '../ui/JobCard/JobCardVariation'
 import { useState } from 'react'
+import Pagination from '../Pagination'
+
 
 const JobSideBar = ({ jobs, setSelectedJobIndex, selectedJobIndex }) => {
-  
+  const [page, setPage] = useState(1)
+  const num_per_page = 4
+
+  const handlePageChange = (page) => {
+    setPage(page)
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+  });
+  }
   return (
     <div className='hidden md:flex flex-col h-full flex-1 max-w-sm'>
 			<div className="flex justify-start flex-col gap-3">
@@ -16,14 +27,7 @@ const JobSideBar = ({ jobs, setSelectedJobIndex, selectedJobIndex }) => {
 					))
 				}
 			</div>
-			<div className="flex gap-2 mt-10 border border-gray w-fit">
-        <img src={LeftArrow} alt="" />
-        <span className='grid p-2 font-medium place-items-center'>1</span>
-        <span className='grid p-2 font-medium place-items-center'>2</span>
-        <span className='grid p-2 font-medium place-items-center'>3</span>
-        <span className='grid p-2 font-medium place-items-center'>4</span>
-        <img src={RightArrow} alt="" />
-      </div>
+      <Pagination page={page} num_per_page={num_per_page} data={jobs} handlePageChange={handlePageChange} />
     </div>
   )
 }

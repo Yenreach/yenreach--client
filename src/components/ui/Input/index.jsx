@@ -29,7 +29,7 @@ function Input({ variant, override, type, id, className='',placeholder='', name,
     <>
       {textarea ? <textarea onFocus={() => setTouched(true)} required={required} onChange={onChange} id={id} name={name} cols="30" rows="10" className={styles(className)} placeholder={placeholder} {...rest} />
       :
-      <input onFocus={() => setTouched(true)} type={type} className={styles(className)} id={id} name={name} placeholder={placeholder} onChange={onChange} required={required} {...rest} value={value} />
+      <input onFocus={() => setTouched(true)} type={type} className={styles(className)} id={id} name={name} placeholder={placeholder} onChange={onChange} required={required} {...rest} />
     }
     </>
   )
