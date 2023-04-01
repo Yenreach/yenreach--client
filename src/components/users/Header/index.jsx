@@ -9,8 +9,6 @@ import Links from '../Links'
 
 
 
-
-
 const index = ({ business_string, type }) => {
   const [val, setVal] = React.useState("business")
   const [isOpen, setIsOpen] = React.useState(false)

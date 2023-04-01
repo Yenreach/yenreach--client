@@ -17,6 +17,7 @@ import Good from '../../../assets/good.svg'
 import Edit from '../../../assets/edit.svg'
 import Star from '../../../assets/star.svg'
 import Loader from '../../../components/Loader'
+import { expired } from '/src/utils/dateFunc'
 
 const index = () => {
   const { id } = useParams()
@@ -101,6 +102,8 @@ const index = () => {
       }
     }
   }
+
+  // console.log('subscription', subscription, expired(subscription?.true_expiry))
   return (
     <Dashboard>
       <div className='flex-1 overflow-hidden'>
@@ -209,7 +212,7 @@ const index = () => {
               <div className='mb-16'>
                 <h2 className='text-green text-lg font-medium mb-3'>Subscription</h2>
                 <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
-                  <p className='mb-4'>{subscription || "You do not have any active subscription"}</p>
+                  <p className='mb-4'>{!expired(subscription?.true_expiry) ? `You are currently on the ${subscription?.subscription} package subscription plan` : "You do not have any active subscription"}</p>
                   <a href="" className='underline text-green text-sm'>{subscription && "Click here to check out your subscription plan"}</a>
                 </div>
               </div>

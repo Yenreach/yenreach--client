@@ -16,7 +16,7 @@ const Products = ({ page: initialPage, num_per_page }) => {
     key: ['products'],
   })
 
-  // console.log("products", products, "error", errorProducts) 
+  console.log("products", products, "error", errorProducts) 
 
   const handlePageChange = (page) => {
     setPage(page)

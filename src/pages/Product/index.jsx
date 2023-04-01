@@ -32,7 +32,7 @@ const Product = () => {
     key: ['business', product?.business_string],
     enabled: !!product?.business_string,
   })
-  // console.log("product", product)
+  console.log("product", product)
 
   return (
       <>
