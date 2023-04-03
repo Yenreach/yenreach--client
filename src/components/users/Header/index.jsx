@@ -6,6 +6,8 @@ import DP from '/src/assets/dashboard/img.svg'
 import { BiMenu } from 'react-icons/bi'
 import { MdOutlineClose } from 'react-icons/md'
 import Links from '../Links'
+import useFetch from '/src/hooks/useFetch'
+import { apiGetOneBusiness } from '/src/services/UserService'
 
 
 
@@ -13,6 +15,12 @@ const index = ({ business_string, type }) => {
   const [val, setVal] = React.useState("business")
   const [isOpen, setIsOpen] = React.useState(false)
   const navigate = useNavigate()
+
+  const { isLoading, error, data: business  } = useFetch({
+    api: apiGetOneBusiness,
+    param: business_string,
+    key: ['userBusiness', business_string],
+  })
 
 
   const handleSwitch = (route) => {
@@ -26,7 +34,7 @@ const index = ({ business_string, type }) => {
   return (
     <div className='p-3 px-3 lg:pr-20 xl:pr-36 bg-white flex gap-6 items-center justify-between w-full'>
         <div className='text-[#69707D] text-xs xs:text-sm lg:text-base'>
-            Business {'>'} Hard rock cafe
+            Business {'>'} {business?.name}
         </div>
         <div className='hidden md:flex items-center gap-4 text-sm'>
             <Link to={`/users/business/${business_string}`} className={`py-1.5 px-4 ${type==="business" ? "bg-green text-white font-medium": "bg-[#F1F1F1]"}`}>Overview</Link>
@@ -48,8 +56,8 @@ const index = ({ business_string, type }) => {
             <img src={ArrowDown} alt="" />
         </div>
         { isOpen ? 
-          <MdOutlineClose onClick={() => setIsOpen(false)} className={`cursor-pointer text-3xl md:hidden relative z-50 text-gray-dark`} /> 
-          : <BiMenu onClick={() => setIsOpen(true)} className='cursor-pointer text-3xl md:hidden relative z-50 text-gray-dark' />
+          <MdOutlineClose onClick={() => setIsOpen(false)} className={`cursor-pointer text-3xl sm:hidden relative z-50 text-gray-dark`} /> 
+          : <BiMenu onClick={() => setIsOpen(true)} className='cursor-pointer text-3xl sm:hidden relative z-50 text-gray-dark' />
         }
           <Links isOpen={isOpen} />
         

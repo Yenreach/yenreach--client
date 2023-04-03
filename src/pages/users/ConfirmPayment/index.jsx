@@ -28,7 +28,7 @@ const Subscription = () => {
             console.log("data", data)
             confirmSubScriptionMutation.mutate(data)
         }
-        handleCheck
+        handleCheck()
 
     }, [])
 

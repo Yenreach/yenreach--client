@@ -64,7 +64,7 @@ const Applicants = () => {
 
   return (
     <Dashboard>
-        <main className='flex-1 overflow-hidden'>
+        <main className='flex-1 overflow-y-auto overflow-hidden'>
           <Header business_string={id} type="job" />
           {isLoading && <Loader loader={4} />}
           <section className='p-8 px-4 sm:px-8'>

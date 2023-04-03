@@ -9,7 +9,7 @@ const index = ({ children }) => {
   // console.log("dashboard business id", id)
   return (
     <ProtectedRoutes>
-      <div className='flex bg-footer-bg overflow-hidden min-h-screen w-full'>
+      <div className='flex bg-footer-bg overflow-hidden h-screen w-full'>
         <SideNav id={id} />
         {children}
       </div>

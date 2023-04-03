@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import Analytics from './Analytics';
 import { BsTelephone, BsGlobe, BsInstagram, BsWhatsapp } from 'react-icons/bs'
 import { MdOutlineMarkEmailUnread, MdOutlineLocationOn } from 'react-icons/md'
@@ -17,7 +17,7 @@ import Good from '../../../assets/good.svg'
 import Edit from '../../../assets/edit.svg'
 import Star from '../../../assets/star.svg'
 import Loader from '../../../components/Loader'
-import { expired } from '/src/utils/dateFunc'
+import { expired, formatDate } from '/src/utils/dateFunc'
 
 const index = () => {
   const { id } = useParams()
@@ -106,7 +106,7 @@ const index = () => {
   // console.log('subscription', subscription, expired(subscription?.true_expiry))
   return (
     <Dashboard>
-      <div className='flex-1 overflow-hidden'>
+      <div className='flex-1 overflow-y-auto overflow-hidden'>
         {isLoading && <Loader loader={4} />}
           <Header business_string={id} type="business" />
           {business && (
@@ -213,7 +213,7 @@ const index = () => {
                 <h2 className='text-green text-lg font-medium mb-3'>Subscription</h2>
                 <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
                   <p className='mb-4'>{!expired(subscription?.true_expiry) ? `You are currently on the ${subscription?.subscription} package subscription plan` : "You do not have any active subscription"}</p>
-                  <a href="" className='underline text-green text-sm'>{subscription && "Click here to check out your subscription plan"}</a>
+                  <Link to={`/users/subscription/${id}`} className='underline text-green text-sm'>{subscription && "Click here to check out your subscription plan"}</Link>
                 </div>
               </div>
               <div className='mb-16'>
@@ -225,7 +225,7 @@ const index = () => {
                   <p className='mb-9'>Your business is currently rated {reviewStats?.average} stars from the reviews of {reviewStats?.total} users</p>
                   <div ref={reviewsContainerRef} className='flex flex-wrap overflow-hidden gap-6 w-full'>
                     {reviews?.map(review => 
-                    <div key={review.id} className='p-3 px-5 bg-[#F0F0F0] sm:w-96'>
+                    <div key={review.id} className='p-3 px-5 bg-[#F0F0F0] w-full sm:w-96'>
                       <div className='flex items-center gap-2 mb-3'>
                         <img src={Star} alt="" />
                         <span className='text-sm'>{review.user}</span>

@@ -26,7 +26,7 @@ const index = () => {
 
     return (
         <Dashboard>
-            <div className='flex-1 overflow-hidden'>
+            <div className='flex-1 overflow-y-auto overflow-hidden'>
                 {isLoading && <Loader loader={4} />}
                 <Head />
                 <div className='px-7 py-4'>

@@ -66,7 +66,7 @@ const index = () => {
 
   return (
     <Dashboard> 
-        <div className='flex-1 overflow-hidden'>
+        <div className='flex-1 overflow-y-auto overflow-hidden'>
             <Header business_string={id} type="job" />
           <section className='p-8 px-4 sm:px-8'>
             <form className='p-8 px-4 sm:px-8 bg-white rounded-2xl' onSubmit={handleSubmit}>
