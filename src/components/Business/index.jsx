@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { apiGetApprovedBusinesses, apiGetFilledCategories, apiGetBusinessStates, apiBusinessSearch } from '../../services/CommonService'
 import useFetch from '/src/hooks/useFetch'
+import usePost from '/src/hooks/usePost'
 import { paginate } from '../../utils/pagination'
 import Loader from '../Loader'
 import Input from '/src/components/ui/Input'
@@ -22,6 +23,7 @@ const index = ({ page: initialPage, num_per_page }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchString = searchParams.get('search')
   const searchLocation = searchParams.get('location')
+  
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -78,7 +80,7 @@ const index = ({ page: initialPage, num_per_page }) => {
   });
   }
 
-  // console.log("filteredBusinessesLoading", filteredBusinessesLoading, aprrovedBusinessesLoading, enabled)
+  // console.log("approved", enabled, aprrovedBusinesses, filteredBusiness)
 
   return (
     <>
