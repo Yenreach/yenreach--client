@@ -230,6 +230,13 @@ export const apiFeedback =  (data) => {
         data   
     })
 }
+export const updateBusinessPhoto =  (data) => {
+    return ApiAdapter.fetchData({
+        url: servicePrefix + "update_business_photo_url_api" + serviceSuffix,
+        method: "post" ,
+        data   
+    })
+}
 
 
 /* User Activities */

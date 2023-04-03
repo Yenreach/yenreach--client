@@ -220,14 +220,12 @@ const Profile = () => {
               <div className="flex gap-8 mb-8">
                 <span className="w-20 text-right">Resume/CV:</span>
                 <div className="flex flex-col gap-3">
-                  <div>
-                     {profile?.cv &&
-                      <a href={profile?.cv} target="_blank" className="flex items-center gap-3 text-primary">
-                        <RiFileTextLine size="1.5rem" className="inline-block" />
-                        <span className="text-sm">View Resume</span>
-                      </a>
-								    }    
-                  </div>
+                  {profile?.cv &&
+                    <a href={profile?.cv} target="_blank" className="flex items-center gap-3 text-primary">
+                      <RiFileTextLine size="1.5rem" className="inline-block" />
+                      <span className="text-sm">View Resume</span>
+                    </a>
+                  }    
                   <label className="border border-black text-black bg-transparent p-1 px-2.5 text-xs hover:border-primary hover:bg-gray-200 hover:bg-opacity-30 flex items-center gap-3 rounded-md w-fit cursor-pointer">
                     <RiAddBoxLine size="1rem" className="inline-block" />
                     Upload New resume/CV

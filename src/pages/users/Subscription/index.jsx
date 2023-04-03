@@ -4,7 +4,7 @@ import { useAuthContext } from '/src/hooks/useAuthContext'
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 import { TfiCrown } from 'react-icons/tfi'
 import useFetch from '/src/hooks/useFetch'
-import { apiGetAllSubscriptions,apiGetAllSubscriptionPlans } from '/src/services/UserService'
+import { apiGetAllSubscriptions, apiGetBusinessSubscriptions, apiGetOneBusiness } from '/src/services/UserService'
 import SubscriptionModal from './SubscriptionModal'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
@@ -14,6 +14,77 @@ import Loader from '/src/components/Loader'
 import { useMutation } from "@tanstack/react-query";
 import { apiInitiateSubscription, apiInitiatePayment } from '/src/services/SubscriptionService'
 import usePost from '/src/hooks/usePost'
+import Table from '/src/components/Table'
+import { expired, formatDate } from '/src/utils/dateFunc'
+
+
+const columns = [
+    {
+      name: "subscription",
+      label: "Subscription",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "payment_plan",
+      label: "Plan",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "started",
+      label: "Date Started",
+      options: {
+        filter: true,
+        sort: true,
+      },
+      extra: true,
+      custom: (value, meta) => {
+        return  (
+          <div className="flex items-center">
+            <span className="">{formatDate(value)}</span>
+          </div>
+        )
+    },
+    },
+    {
+      name: "expired",
+      label: "Expiry Date",
+      extra: true,
+      options: {
+        filter: true,
+        sort: true,
+      },
+      custom: (value, meta) => {
+        return  (
+          <div className="flex items-center">
+            <span className="">{formatDate(value)}</span>
+          </div>
+        )
+    },
+    },
+    {
+        name: "expired",
+        label: "Status",
+        extra: true,
+        options: {
+          filter: true,
+          sort: true,
+        },
+        custom: (value, meta) => {
+            // console.log("meta", meta)
+            return  (
+              <div className="flex items-center gap-4">
+                <span className={expired(value) ? "text-red-500" : "text-green"}>{expired(value) ? "Expired" : "Active"}</span>
+              </div>
+            )
+        },
+      },
+  ];
 
 
 const initialPlanState = {
@@ -38,7 +109,19 @@ const Subscription = () => {
         cacheTime : 1000 * 60 * 60,
       })
 
-    //   console.log(user)
+      const {  data: business  } = useFetch({
+        api: apiGetOneBusiness,
+        param: id,
+        key: ['userBusiness', id],
+      })
+
+      const { data: userSubscriptions } = useFetch({
+        api: apiGetBusinessSubscriptions,
+        key:  ['userSubscriptions'],
+        param: id,
+      })
+
+      console.log("userSubscriptions", userSubscriptions)
 
     const subscribeMutation = usePost({ 
         api: apiInitiateSubscription, 
@@ -80,6 +163,11 @@ const Subscription = () => {
         <Head />
         {isLoading && <Loader loader={4} />}
         <section className='p-8 px-4 sm:px-8 text-sm md:pt-16 py-16'>
+           {userSubscriptions &&
+            <div className='mb-12 bg-white rounded-xl p-4'>
+                <h3 className='text-green text-xl font-medium mb-3'>{} Subscriptions</h3>
+                    <Table data={userSubscriptions} columns={columns} />
+            </div>}
             <div className='flex flex-wrap gap-4'>
                 {subscriptions?.map(subscription => 
                     (<div key={subscription.id} className='p-5 py-7 rounded min-w-[250px] bg-white'>

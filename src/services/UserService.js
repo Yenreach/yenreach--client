@@ -161,6 +161,13 @@ export const apiGetAllSubscriptions = () => {
         method: "get"    
     })
 }
+/* Get Business Subscriptions */
+export const apiGetBusinessSubscriptions = (string) => {
+    return ApiAdapter.fetchData({
+        url: `fetch_business_subscriptions_api${serviceSuffix}?string=${string}`,
+        method: "get"    
+    })
+}
 
 /* Get Billboard Payment */
 export const apiGetAllSubscriptionPlans = (package_string) => {
@@ -172,6 +179,7 @@ export const apiGetAllSubscriptionPlans = (package_string) => {
 
 /* Get Saved/Favorite Businesses */
 export const apiGetSavedBusinesses = () => {
+    // console.log("token", token)
     return ApiAdapter.fetchData({
         url: `fetch_saved_businesses_api${serviceSuffix}?string=${token}`,
         method: "get"    
