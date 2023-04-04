@@ -94,7 +94,7 @@ const Billboard = () => {
         infinite={true}
         interval={3000}
         isPlaying={true}
-        className='transition-all duration-1000 ease'
+        className='transition-all duration-1000 ease h-[65vh] relative'
       >
         <Slider className="transition duration-1000 ease">
         {billboards.map((billboard, ind) => (
@@ -116,8 +116,8 @@ const Billboard = () => {
             </Slide>
             ))}
         </Slider>
-        <ButtonBack>Back</ButtonBack>
-        <ButtonNext>Next</ButtonNext>
+        <ButtonBack className='absolute cursor-pointer top-0 left-0 w-20 h-full z-10'></ButtonBack>
+        <ButtonNext className='absolute cursor-pointer top-0 right-0 w-20 h-full z-10'></ButtonNext>
       </CarouselProvider>
   )
 }
