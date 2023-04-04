@@ -52,10 +52,10 @@ body {
 }
 
 .carousel-slide {
-  animation: slideOut 40s infinite forwards linear;
+  animation: slideOut 30s infinite forwards linear;
 }
 .carousel-slide2 {
-  animation: slideOut2 40s infinite forwards linear;
+  animation: slideOut2 30s infinite forwards linear;
 }
 
 .active {
@@ -71,15 +71,31 @@ body {
   opacity: 1;
 }
 
+.carousel-ad  {
+  opacity: 0.5;
+  display: none;
+  width: 20px;
+  height: 20px;
+  transition: all 0.s ease-in-out;
+}
+
+.ad-active {
+  opacity: 1;
+  display: block;
+  width: 500px;
+  height: 500px;
+}
+
 @keyframes slideOut {
   100% {
-    left: -100%;
-    /* transform: translateX(-422%); */
+    /* left: -140%; */
+    transform: translateX(-100%);
   }
 }
 @keyframes slideOut2 {
   100% {
-    left: 100%;
-    /* transform: translateX(-422%); */
+    /* left: 140%; */
+    transform: translateX(100%);
   }
 }
+
