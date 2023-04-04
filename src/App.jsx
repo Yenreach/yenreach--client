@@ -69,7 +69,7 @@ function App() {
             <Route exact path="/users/subscription/:id" element={<Subscription />} />
             <Route exact path="/users/verify_payment" element={<VerifyPayment />} />
             <Route exact path="/users/billboard" element={<Billboard />} />
-            <Route exact path="/users/billboard/:id" element={<AddBillboard />} />
+            <Route exact path="/users/billboard/:billboard_id" element={<AddBillboard />} />
             <Route exact path="/users/jobs/:id" element={<Jobs />} />
             <Route exact path="/users/jobs/:id/applicants/:job_id" element={<Applicants />} />
             <Route exact path="/users/jobs/:id/add-job" element={<AddJob />} />

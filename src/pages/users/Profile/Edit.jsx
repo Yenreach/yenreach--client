@@ -8,6 +8,8 @@ import { CiEdit } from "react-icons/ci";
 import { RiAddBoxLine, RiFileTextLine } from "react-icons/ri";
 import usePost from '/src/hooks/usePost'
 import useImage from '/src/hooks/useImage'
+import Loader from '/src/components/Loader'
+
 
 const Profile = () => {
   const { url: cvUrl, uploadImage: uploadCV, error: cvError, progress } = useImage()
@@ -109,6 +111,7 @@ const Profile = () => {
 
   return (
     <Dashboard> 
+    {isLoading && <Loader loader={4} />}
     <div className='flex-1 overflow-y-auto overflow-hidden'>
         <Head />
         <section className='p-8 px-4 sm:px-8 text-sm xl:pr-80'>

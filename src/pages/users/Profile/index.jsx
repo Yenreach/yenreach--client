@@ -4,16 +4,23 @@ import { MdDelete } from 'react-icons/md'
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from 'react-icons/hi'
 import useFetch from '/src/hooks/useFetch'
 import { apiGetUser, apiGetSavedBusinesses } from '/src/services/UserService'
+import { useAuthContext } from '/src/hooks/useAuthContext'
 import Head from '../../../components/users/Head'
 import Dashboard from "../../../components/layout/Dashboard"
 import Button from '../../../components/ui/Button'
 import BusinessCard from '../../../components/ui/BusinessCard'
+import Loader from '/src/components/Loader'
+
 
 
 const Profile = () => {
+  const { user } = useAuthContext()
+//   console.log("user", user)
+
     const { isLoading, error, data: profile} = useFetch({
         api: apiGetUser,
-        key: ['profile'],
+        key: ['profile', user?.verify_string],
+        param: user?.verify_string
       })
     const { data: savedBusinesses, error: errorProfile } = useFetch({
         api: apiGetSavedBusinesses,
@@ -25,6 +32,7 @@ const Profile = () => {
     
   return (
     <Dashboard> 
+    {isLoading && <Loader loader={4} />}
     <div className='flex-1 overflow-y-auto overflow-hidden'>
         <Head />
         <section className='p-8 px-4 sm:px-8 text-sm'>
@@ -49,11 +57,17 @@ const Profile = () => {
                     <div className='flex gap-12 justify-between text-sm mb-12 md:w-8/12 h-12 border border-gray rounded py-2 px-1'>
                         <div className='flex gap-4 items-center'>
                             <span className='bg-[#00c8851a] flex justify-cent items-center p-2 text-xs text-green rounded'>PDF</span>
-                            <div className='flex flex-col'>
-                                <span className=''>Nicholas.pdf</span>
-                                <span className='text-gray text-xs'>Uploaded 22-10-22</span>
-                            </div>
+                            <a target="_blank" href={profile?.cv} className='flex flex-col'>
+                                <span className=''>View Resume</span>
+                                {/* <span className='text-gray text-xs'>Uploaded 22-10-22</span> */}
+                            </a>
                         </div>
+                        {/* {profile?.cv &&
+                    <a href={profile?.cv} target="_blank" className="flex items-center gap-3 text-primary">
+                      <RiFileTextLine size="1.5rem" className="inline-block" />
+                      <span className="text-sm">View Resume</span>
+                    </a>
+                  }     */}
                         <MdDelete size='20px' color='black' />
                     </div>
                 </div>

@@ -37,7 +37,7 @@ const action_type = [
 const Billboard = () => {
     const [application, setApplication] = React.useState(initialApplicationState)
     const { user } = useAuthContext()
-    const { id } = useParams()
+    const { billboard_id } = useParams()
 
 
     const subscribeMutation = usePost({ 
@@ -67,14 +67,14 @@ const Billboard = () => {
         
     const handleSubmit = (e) => {
         e.preventDefault()
-        const data = { ...application, user_string: user?.verify_string, advert_type: id }
+        const data = { ...application, user_string: user?.verify_string, advert_type: billboard_id }
         console.log("data", data)
         subscribeMutation.mutate(data)
     }
     
     return (
         <Dashboard> 
-            <div className='flex-1 overflow-hidden'>
+            <div className='flex-1 overflow-y-auto overflow-hidden'>
              <Head />
             <section className='p-8 px-4 sm:px-8'>
                 <div className='mb-3'>

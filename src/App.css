@@ -52,10 +52,10 @@ body {
 }
 
 .carousel-slide {
-  animation: slideOut 30s infinite forwards linear;
+  animation: slideOut 50s infinite forwards linear;
 }
 .carousel-slide2 {
-  animation: slideOut2 30s infinite forwards linear;
+  animation: slideOut2 50s infinite forwards linear;
 }
 
 .active {
