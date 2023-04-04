@@ -50,6 +50,31 @@ export const apiVerifyPayment = (data) => {
         data    
     })
 }
+/* Get Transaction */
+export const apiGetTransaction = (string) => {
+    return ApiAdapter.fetchData({
+        url: `/fetch_transaction_by_verify_string_api${serviceSuffix}?string=${string}`,
+        method: "get"
+    })
+}
+
+/* Subscribe Business */
+export const apiSubscribeBusiness = (data) => {
+    return ApiAdapter.fetchData({
+        url: `/business_subscription_api${serviceSuffix}`,
+        method: "post",
+        data
+    })
+}
+
+/* Subscribe Business */
+export const apiMarkBillboardAsPaid = (data) => {
+    return ApiAdapter.fetchData({
+        url: `/mark_billboard_application_as_paid_api${serviceSuffix}`,
+        method: "post",
+        data
+    })
+}
 
 
 
