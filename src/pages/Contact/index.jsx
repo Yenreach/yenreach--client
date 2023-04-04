@@ -6,6 +6,8 @@ import Input from '../../components/ui/Input'
 import Blob from '../../assets/about-blob.svg'
 import usePost from '/src/hooks/usePost'
 import { apiFeedback } from '/src/services/CommonService'
+import Loader from '../../components/Loader'
+
 
 
 const index = () => {
@@ -41,12 +43,14 @@ const index = () => {
     })
 
     const sendFeedback = () => {
-        console.log("feedback", feedback)
+        // console.log("feedback", feedback)
         updateUserMutation.mutate({ ...feedback, name: feedback?.first_name + " " + feedback?.last_name  })
     }
 
+    // console.log("feedback1", feedback)
     return (
         <>
+            {updateUserMutation?.isLoading && <Loader loader={4} />}
             <Header />
             <div className='top top-banner md:py-16 lg:py-16 relative bg-[url("assets/contact-hero.svg")] bg-cover bg-center text-white flex items-center justify-center'>
                 <div className='lg:w-1/2 text-center'>

@@ -117,7 +117,7 @@ const Subscription = () => {
 
       const { data: userSubscriptions } = useFetch({
         api: apiGetBusinessSubscriptions,
-        key:  ['userSubscriptions'],
+        key:  ['userSubscriptions', id],
         param: id,
       })
 
@@ -125,6 +125,7 @@ const Subscription = () => {
 
     const subscribeMutation = usePost({ 
         api: apiInitiateSubscription, 
+        showSuccessMessage: false,
         success: (data,b,c) => {
             paymentMutation.mutate({
                 platform: "Flutterwave",
@@ -138,6 +139,7 @@ const Subscription = () => {
     
     const paymentMutation = usePost({ 
         api: apiInitiatePayment, 
+        showSuccessMessage: false,
         success: (data,b,c) => {
             window.location.href = data?.url
         }

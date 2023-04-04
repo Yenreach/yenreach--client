@@ -46,7 +46,7 @@ const index = () => {
 
    useEffect(() => {
          if(url) {
-                setProduct(prev => ({...prev, photos: [...product.photos, url] }))
+                setProduct(prev => ({...prev, photos: [...product.photos,  { filename: url }] }))
             }
     }, [url])
 
@@ -84,11 +84,11 @@ const index = () => {
                 <form className='p-8 px-4 sm:px-8 bg-white rounded-2xl' onSubmit={handleSubmit}>
                     <div className='mb-8'>
                         <label htmlFor="name" className='font-medium text-sm'>Product Name</label>
-                        <Input required onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="text" name="name" id="name" placeholder='Enter product name' />
+                        <Input required value={product?.name} onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="text" name="name" id="name" placeholder='Enter product name' />
                     </div>
                     <div className='mb-8'>
                         <label htmlFor="description" className='font-medium text-sm'>Description</label>
-                        <Input required={true} onChange={handleProduct} variant={"product"} textarea name="description" id="description" cols="30" rows="10" className='border-gray rounded-lg' placeholder='Enter your business Discription' />
+                        <Input required value={product?.description} onChange={handleProduct} variant={"product"} textarea name="description" id="description" cols="30" rows="10" className='border-gray rounded-lg' placeholder='Enter your business Discription' />
                     </div>
                     <div className='mb-8 md:flex justify-between gap-9'>
                         <div className='mb-8 w-full'>
@@ -107,33 +107,33 @@ const index = () => {
                         </div>
                         {/* <div className='w-full'>
                             <label htmlFor="name" className='font-medium text-sm'>Add Tags</label>
-                            <Input required onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="text" name="" id="" placeholder='Enter your business Email Address' />
+                            <Input required value={product?.name} onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="text" name="" id="" placeholder='Enter your business Email Address' />
                         </div> */}
                     </div>
                     <div className='mb-8 md:flex justify-between gap-9'>
                         <div className='mb-8 w-full'>
                             <label htmlFor="price" className='font-medium text-sm'>Price</label>
-                            <Input required onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="price" id="price" placeholder='Enter Price' />
+                            <Input required value={product?.price} onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="price" id="price" placeholder='Enter Price' />
                         </div>
                         <div className='mb-8 w-full'>
                             <label htmlFor="quantity" className='font-medium text-sm'>Quantity</label>
-                            <Input required onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="quantity" id="quantity" placeholder='Enter Available Quantity' />
+                            <Input required value={product?.quantity} onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="quantity" id="quantity" placeholder='Enter Available Quantity' />
                         </div>
                         <div className='mb-8 w-full'>
                             <label htmlFor="color" className='font-medium text-sm'>Color</label>
-                            <Input required onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="text" name="color" id="color" placeholder='Enter Color' />
+                            <Input required value={product?.color} onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="text" name="color" id="color" placeholder='Enter Color' />
                         </div>
                     </div>
                     <div className='mb-8'>
                         <label htmlFor="safety_tip" className='font-medium text-sm'>Safety Tip</label>
-                        <Input required={true} onChange={handleProduct} variant={"product"} textarea name="safety_tip" id="safety_tip" cols="30" rows="4" className='border-gray rounded-lg' placeholder='Enter safety measures for product use if any' />
+                        <Input required value={product?.safety_tip} onChange={handleProduct} variant={"product"} textarea name="safety_tip" id="safety_tip" cols="30" rows="4" className='border-gray rounded-lg' placeholder='Enter safety measures for product use if any' />
                     </div>
                     <div className='mb-8'>
                         <h6 className='font-medium text-sm'>Product Images</h6>
                         <div className='flex items-center flex-wrap gap-4 mt-2'>
                             {product.photos?.map((photo) => (
-                                <div key={photo} className='bg-gray rounded-lg w-36 h-36 overflow-hidden'>
-                                    <img src={photo} alt="" className='object-cover w-full h-full' />
+                                <div key={photo?.filename} className='bg-gray rounded-lg w-36 h-36 overflow-hidden'>
+                                    <img src={photo?.filename} alt="" className='object-cover w-full h-full' />
                                 </div>
                             ))}
                             <label htmlFor="add_image" className='font-medium text-sm mb-2 bg-gray rounded-lg w-36 h-36 flex flex-col gap-2 justify-center items-center px-4 cursor-pointer'>
@@ -143,10 +143,9 @@ const index = () => {
                                     <span className='font-normal'>or drag it here</span>
                                 </p>
                             </label>
-                            <Input 
-                                required 
+                            <Input  
                                 onChange={(e) => uploadImage(e.target.files[0])}
-                                className='border-gray rounded-lg mt-2 cursor-pointer hidden'
+                                className='border-gray rounded-lg mt-2 cursor-pointer w-1 h-1 invisible overflow-hidden'
                                 type="file" name="add_image" id="add_image"
                             />
                         </div>

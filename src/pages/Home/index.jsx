@@ -9,6 +9,7 @@ import Hero from '../../components/Hero'
 import Category from '../../components/Category'
 import Trustees from '../../components/Trustees'
 import Accordion from '../../components/Accordion'
+import Billboard from '../../components/Billboard'
 import AllHere from '../../assets/businesses/all-here.svg'
 import AllHereJ from '../../assets/jobs/all-here.svg'
 import AllHereP from '../../assets/products/all-here.svg'
@@ -134,6 +135,9 @@ const index = () => {
                     </div>
                 </div>
             </div>
+        </section>
+        <section className='px-4 mb-12 md:px-10 lg:px-24 mt-32 w-full'>
+            <Billboard />
         </section>
         <section className='px-4 py-12 sm:px-20 md:px-32 lg:px-64 mb-11'>
             <h2 className='font-medium text-center text-lg text-green'>Frequently asked questions</h2>
