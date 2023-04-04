@@ -16,6 +16,7 @@ const useImage = () => {
     const uploadImage = (file) => {
         setError(null)
         setProgress(0)
+        setLoading(true)
 
         const storageRef = ref(storage, `images/${uui}`);
         const uploadTask = uploadBytesResumable(storageRef, file);
@@ -39,12 +40,14 @@ const useImage = () => {
             }, 
             (error) => {
                 setError(error)
+                setLoading(false)
                 console.log("error", error)
             // Handle unsuccessful uploads
             }, 
             () => {
                 setError(null)
                 setProgress(100)
+                setLoading(false)
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {

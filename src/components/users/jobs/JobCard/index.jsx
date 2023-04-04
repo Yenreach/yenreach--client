@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { BiBriefcase, BiEdit } from 'react-icons/bi'
 import { MdBusiness, MdOutlinePeopleOutline } from 'react-icons/md'
 import { RiDeleteBin6Line } from 'react-icons/ri'
+import Loader from '/src/components/Loader'
 
 
 const index = ({ job, refetchJobs, removeJobsCache, business_id }) => {
@@ -63,6 +64,7 @@ const index = ({ job, refetchJobs, removeJobsCache, business_id }) => {
   
   return (
     <div className="flex flex-col gap-4 p-4 bg-white shadow text-xs">
+      {(deleteJobMutation?.isLoading || updateJobStatus?.isLoading) && <Loader loader={4} />}
       <div className="flex justify-between items-center w-full">
         <label htmlFor={`status${job?.id}`} className="flex cursor-pointer select-none items-center">
           <div className="relative">

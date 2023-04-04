@@ -32,7 +32,7 @@ const index = ({ business_string, type }) => {
     }
   }
   return (
-    <div className='p-3 px-3 lg:pr-20 xl:pr-36 bg-white flex gap-6 items-center justify-between w-full'>
+    <div className='p-3 px-3 sm:px-8 lg:pr-[d20] xl:pr-[l36] bg-white flex gap-6 items-center justify-between w-full'>
         <div className='text-[#69707D] text-xs xs:text-sm lg:text-base'>
             Business {'>'} {business?.name}
         </div>

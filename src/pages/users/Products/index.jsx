@@ -65,8 +65,8 @@ const Products = () => {
       custom: (value, meta) => {
         // console.log("meta", meta)
         return  (
-          <div className="flex items-center gap-4 justify-center">
-            <BiEdit size="1.2rem" className="text-orange" />
+          <div className="flex items-center gap-3 justify-cente">
+            {/* <BiEdit size="1.2rem" className="text-orange" /> */}
             <MdOutlineDelete size="1.2rem" className="text-red-400" />
           </div>
         )
@@ -83,7 +83,7 @@ const Products = () => {
       custom: (value, meta) => {
         // console.log("meta", meta)
         return  (
-          <label htmlFor={`status${meta?.id}`} className="flex justify-center cursor-pointer select-none items-center">
+          <label htmlFor={`status${meta?.id}`} className="flex justify-cente cursor-pointer select-none items-center">
             <div className="relative">
               <input id={`status${meta?.id}`} type="checkbox" className="sr-only peer" onChange={() => updateProductStatus({
                   "product_string": meta?.product_string,

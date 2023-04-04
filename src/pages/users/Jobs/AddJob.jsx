@@ -6,6 +6,8 @@ import Header from "/src/components/users/Header"
 import Input from '../../../components/ui/Input'
 import Button from '../../../components/ui/Button'
 import Dashboard from "../../../components/layout/Dashboard"
+import Loader from '../../../components/Loader'
+
 
 const initialJobState = {
     business_string: "",
@@ -66,6 +68,7 @@ const index = () => {
 
   return (
     <Dashboard> 
+      {(addJobMutation?.isLoading) && <Loader loader={4} />}
         <div className='flex-1 overflow-y-auto overflow-hidden'>
             <Header business_string={id} type="job" />
           <section className='p-8 px-4 sm:px-8'>
@@ -73,36 +76,36 @@ const index = () => {
                 <div className='md:flex justify-between gap-6 md:mb-4'>
                     <div className='w-full mb-8 md:mb-0'>
                         <label htmlFor="company_name" className='font-medium text-sm'>Company Name</label>
-                        <Input required onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="company_name" id="company_name" />
+                        <Input required value={job?.company_name} onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="company_name" id="company_name" />
                     </div>
                     <div className='w-full mb-8 md:mb-0'>
                         <label htmlFor="job_title" className='font-medium text-sm'>Job Title</label>
-                        <Input required onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="job_title" id="job_title" />
+                        <Input required value={job?.job_title} onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="job_title" id="job_title" />
                     </div>
                     <div className='w-full '>
                         <label htmlFor="job_type" className='font-medium text-sm'>Job Type</label>
-                        <Input required onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="job_type" id="job_type" />
+                        <Input required value={job?.job_type} onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="job_type" id="job_type" />
                     </div>
                 </div>
                 <div className='mb-8 md:mb-4 md:flex justify-between gap-6'>
                     <div className='mb-8 md:mb-0 w-full'>
                         <label htmlFor="location" className='font-medium text-sm'>Location</label>
-                        <Input required onChange={handleJob} variant={"job"} className='border-gray rounded-lg mt-2' type="text" name="location" id="location" 
+                        <Input required value={job?.location} onChange={handleJob} variant={"job"} className='border-gray rounded-lg mt-2' type="text" name="location" id="location" 
                         />
                     </div>
                     <div className='w-full'>
                         <label htmlFor="salary" className='font-medium text-sm'>Salary</label>
-                        <Input required onChange={handleJob} variant={"job"} className='border-gray rounded-lg mt-2' type="number" name="salary" id="salary" 
+                        <Input required value={job?.salary} onChange={handleJob} variant={"job"} className='border-gray rounded-lg mt-2' type="number" name="salary" id="salary" 
                         />
                     </div>
                 </div>
                 <div className='mb-8 md:mb-4'>
                     <label htmlFor="job_overview" className='font-medium text-sm'>Job Overview</label>
-                    <Input required={true} onChange={handleJob} variant={"job"} textarea name="job_overview" id="job_overview" cols="30" rows="6" className='border-gray rounded-lg' placeholder='Enter job Description' />
+                    <Input required={true} value={job?.job_overview} onChange={handleJob} variant={"job"} textarea name="job_overview" id="job_overview" cols="30" rows="6" className='border-gray rounded-lg' placeholder='Enter job Description' />
                 </div>
                 <div className='mb-8 md:mb-4'>
                     <label htmlFor="job_benefit" className='font-medium text-sm'>Job Perks and Benefits</label>
-                    <Input required={true} onChange={handleJob} variant={"job"} textarea name="job_benefit" id="job_benefit" cols="30" rows="6" className='border-gray rounded-lg' placeholder='Enter job Perks and Benefits' />
+                    <Input required={true} value={job?.job_benefit} onChange={handleJob} variant={"job"} textarea name="job_benefit" id="job_benefit" cols="30" rows="6" className='border-gray rounded-lg' placeholder='Enter job Perks and Benefits' />
 
                 </div>
                 <div className='mb-8 md:mb-4 md:flex justify-between gap-6'>

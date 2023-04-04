@@ -9,6 +9,8 @@ import Head from '../../../components/users/Head'
 import Input from '../../../components/ui/Input'
 import Button from '../../../components/ui/Button'
 import Dashboard from "../../../components/layout/Dashboard"
+import Loader from '/src/components/Loader'
+
 
 const initialProductState = { 
     business_string : "",
@@ -42,7 +44,7 @@ const index = () => {
     const { id } = useParams()
     const navigate = useNavigate()
 
-    const { url, uploadImage, error, progress } = useImage()
+    const { url, uploadImage, error, progress, loading: uploadingImg } = useImage()
 
    useEffect(() => {
          if(url) {
@@ -78,6 +80,7 @@ const index = () => {
 
     return (
         <Dashboard> 
+          {(addProductMutation?.isLoading || uploadingImg) && <Loader loader={4} />}
             <div className='flex-1 overflow-y-auto overflow-hidden'>
                 <Header business_string={id} type="product" />
             <section className='p-8 px-4 sm:px-8'>
