@@ -52,11 +52,10 @@ export const apiAddProductPhoto = (data) => {
 }
 
 /* Delete Product */
-export const apiDeleteProduct = (data) => {
+export const apiDeleteProduct = ({business_string, product_string}) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/delete_product_api${serviceSuffix}`,
-        method: "delete",
-        data    
+        url: `${servicePrefix}/delete_product_api${serviceSuffix}?business_string=${business_string}&product_string=${product_string}`,
+        method: "get",
     })
 }
 

@@ -2,10 +2,10 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import useFetch from '/src/hooks/useFetch'
 import { useMutation } from "@tanstack/react-query";
-import { apiUpdateProductStatus } from '../../../services/ProductService'
+import { apiUpdateProductStatus, apiDeleteProduct, apiGetAllBusinessProducts } from '../../../services/ProductService'
+import { apiUpdateJobStatus, apiDeleteJob } from '/src/services/JobService'
 import { BiEdit } from "react-icons/bi";
 import { MdOutlineDelete } from "react-icons/md";
-import { apiGetAllBusinessProducts } from '/src/services/ProductService'
 import Header from "/src/components/users/Header"
 import { AiOutlinePlus } from 'react-icons/ai'
 import Button from '../../../components/ui/Button'
@@ -16,6 +16,7 @@ import NoBusiness from '../../../assets/dashboard/no-business.svg'
 
 const Products = () => {
   const { id } = useParams()
+  const [deleteProductDetails, setDeleteProductDetails] = React.useState({})
   
   const { isLoading, error: errorProducts, data: products, refetch: refetchProducts } = useFetch({
     key: ['userProducts', id],
@@ -23,7 +24,9 @@ const Products = () => {
     param: id,
   })
 
-  // console.log("products", products, errorProducts)
+
+
+  // console.log("products", products)
 
   const columns = [
     {
@@ -67,7 +70,7 @@ const Products = () => {
         return  (
           <div className="flex items-center gap-3 justify-cente">
             {/* <BiEdit size="1.2rem" className="text-orange" /> */}
-            <MdOutlineDelete size="1.2rem" className="text-red-400" />
+            <MdOutlineDelete size="1.2rem" className="text-red-400" onClick={() => delteProduct(meta)} />
           </div>
         )
       },
@@ -85,7 +88,8 @@ const Products = () => {
         return  (
           <label htmlFor={`status${meta?.id}`} className="flex justify-cente cursor-pointer select-none items-center">
             <div className="relative">
-              <input id={`status${meta?.id}`} type="checkbox" className="sr-only peer" onChange={() => updateProductStatus({
+              <input id={`status${meta?.id}`} type="checkbox" className="sr-only peer" onChange={() => 
+              updateProductStatus({
                   "product_string": meta?.product_string,
                   "business_string": meta?.business_string,
                   "status": value==="1" ? false : true
@@ -105,10 +109,21 @@ const Products = () => {
     },
   ];
 
+  const deletedProduct = useFetch({
+    key: ['deleteProducts', deleteProductDetails?.business_string, deleteProductDetails?.product_string],
+    api: apiDeleteProduct,
+    param: {business_string: deleteProductDetails?.business_string, product_string: deleteProductDetails?.product_string},
+    enabled: !!deleteProductDetails?.business_string && !!deleteProductDetails?.product_string,
+    onSuccess: () => {
+      console.log("deleted")
+      setDeleteProductDetails({})
+      refetchProducts()
+    }
+  })
   
   const updateProductStatusMutation = useMutation({
     mutationFn: (data) => {
-        // console.log("mutating state", data)
+        console.log("mutating state", data)
         return apiUpdateProductStatus(data)
     },
     onSuccess: (data, variables, context) => {
@@ -121,14 +136,17 @@ const Products = () => {
   })
    
   const updateProductStatus = (data) => {
-      // console.log("data is here", data)
+      console.log("data is here", data)
       updateProductStatusMutation.mutate(data)
   }
-  
+  const delteProduct = (data) => {
+      setDeleteProductDetails(data)
+  }
+  // console.log("deleteProduct", deletedProduct)
   return (
     <Dashboard>
         <main className='flex-1 overflow-y-auto overflow-hidden'>
-          {isLoading && <Loader loader={4} />}
+          {(isLoading || updateProductStatus?.isLoading || (deletedProduct?.fetchStatus!="idle" && deletedProduct?.isLoading)) && <Loader loader={4} />}
           <Header business_string={id} type="product" />
           <section className='p-8 px-4 sm:px-8'>
            {products &&

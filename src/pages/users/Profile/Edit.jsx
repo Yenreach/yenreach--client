@@ -51,11 +51,11 @@ const Profile = () => {
         };
       },
       {
-        date_of_birth: '',
+        dob: '',
         email: '',
         name: '',
         gender: '',
-        phone_number: '',
+        phone: '',
         image: '',
       },
   );
@@ -64,7 +64,6 @@ const Profile = () => {
     api: apiGetUser,
     key: ['profile'],
   })
-  // console.log("profile", profile)
 
   const { data: savedBusinesses }  = useFetch({
     api: apiGetSavedBusinesses,
@@ -105,9 +104,12 @@ const Profile = () => {
   };
 
   const handleSaveChanges = () => {
-    const data = {...profileDetails, image: profilePhoto, user_string: profile?.verify_string}
+    const data = {...profileDetails, image: profilePhoto || profileDetails?.image, user_string: profile?.verify_string}
+    console.log("data newwww", data)
     updateUserMutation.mutate(data)
   }
+
+  console.log("image", profile)
 
   return (
     <Dashboard> 
@@ -154,9 +156,9 @@ const Profile = () => {
                                 type="text"
                                 className="bg-inherit outline-none w-fit"
                                 placeholder=""
-                                value={profileDetails?.phone_number}
+                                value={profileDetails?.phone}
                                 onChange={(e) =>
-                                updateProfileDetails({ phone_number: e.target.value })
+                                updateProfileDetails({ phone: e.target.value })
                                 }
                             />
                         </label>
@@ -169,9 +171,9 @@ const Profile = () => {
                                 type="text"
                                 className="bg-inherit outline-none w-fit"
                                 placeholder=""
-                                value={profileDetails?.date_of_birth}
+                                value={profileDetails?.dob}
                                 onChange={(e) =>
-                                updateProfileDetails({ date_of_birth: e.target.value })
+                                updateProfileDetails({ dob: e.target.value })
                                 }
                             />
                         </label>
@@ -210,9 +212,9 @@ const Profile = () => {
                 <label htmlFor="image" className="w-20 h-20 mx-auto bg-gray rounded-full relative cursor-pointer">
                     <span className="absolute bottom-0 right-0 -translate-x-1/2 bg-[#25D366] w-5 h-5 rounded-full overflow-hidden grid place-items-center z-10">
                         <CiEdit size="" color="white" className="" />
-                        <img src={profileDetails?.image} alt="" />
                     </span>
                     <input type="file" name="image" id="image" className="hidden" onChange={(e)=> handleProfilePhotoUpload(e.target.files[0])}  />
+                    <img src={profileDetails?.image} alt="" className='w-full h-full object-cover rounded-full' />
                 </label>
             </div>
           <div className="flex flex-col justify-between gap-12 md:flex-row lg:gap-16  rounded-2xl bg-white p-5 md:px-7 pb-8 mb-12">

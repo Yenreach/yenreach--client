@@ -3,9 +3,9 @@ import { useQuery } from '@tanstack/react-query'
 import getData from '/src/utils/getData'
 
 
-const useFetch = ({ api, param, key, ...rest }) => {
+const useFetch = ({ api, param, key, onSuccess, ...rest }) => {
 
-    const { data, error, isLoading, isFetching, remove, refetch } = useQuery({
+    const { data, error, isLoading, isSuccess, isFetching, remove, refetch, fetchStatus } = useQuery({
         queryKey: [...key],
         queryFn: () => getData(api, param),
         ...rest
@@ -17,8 +17,14 @@ const useFetch = ({ api, param, key, ...rest }) => {
     //     }
     // }, [clear])
 
+    useEffect(() => {
+        if (onSuccess && isSuccess && data) {
+            console.log("data", data, "onSuccess", onSuccess, "isSuccess", isSuccess)
+            onSuccess()
+        }
+    }, [data])
 
-    return { data, error, isLoading, isFetching, remove, refetch }
+    return { data, error, isLoading, isFetching, remove, refetch, fetchStatus }
 }
 
 export default useFetch

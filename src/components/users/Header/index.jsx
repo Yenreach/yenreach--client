@@ -8,6 +8,9 @@ import { MdOutlineClose } from 'react-icons/md'
 import Links from '../Links'
 import useFetch from '/src/hooks/useFetch'
 import { apiGetOneBusiness } from '/src/services/UserService'
+import { apiGetUser, apiGetSavedBusinesses } from '/src/services/UserService'
+
+
 
 
 
@@ -15,6 +18,14 @@ const index = ({ business_string, type }) => {
   const [val, setVal] = React.useState("business")
   const [isOpen, setIsOpen] = React.useState(false)
   const navigate = useNavigate()
+  const { user } = useAuthContext()
+
+  const { data: profile} = useFetch({
+    api: apiGetUser,
+    key: ['profile', user?.verify_string],
+    param: user?.verify_string
+  })
+
 
   const { isLoading, error, data: business  } = useFetch({
     api: apiGetOneBusiness,
@@ -52,8 +63,8 @@ const index = ({ business_string, type }) => {
             <option className={`py-1.5 px-4 ${type==="job" ? "bg-blue text-white font-medium": "bg-[#F1F1F1]"}`} value="job">Jobs</option>
         </select>
         <div className='flex items-center gap-1'>
-            <img src={DP} alt="" />
-            <img src={ArrowDown} alt="" />
+            <img src={profile?.image || DP} alt="" className='w-8 h-8 rounded-full object-cover' />
+            {/* <img src={ArrowDown} alt="" /> */}
         </div>
         { isOpen ? 
           <MdOutlineClose onClick={() => setIsOpen(false)} className={`cursor-pointer text-3xl sm:hidden relative z-50 text-gray-dark`} /> 

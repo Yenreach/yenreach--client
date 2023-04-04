@@ -7,7 +7,7 @@ import Input from '../../../../components/ui/Input'
 import Button from '../../../../components/ui/Button'
 
 
-const index = ({ setStep, handleBusinessData}) => {
+const index = ({ setStep, businessData, handleBusinessData}) => {
     const [stateId, setStateId] = React.useState(null)
     const [filteredLgas, setfilteredLgas] = React.useState([]) 
 
@@ -51,24 +51,24 @@ const index = ({ setStep, handleBusinessData}) => {
         </div>
         <div className='mb-8'>
             <label htmlFor="name" className='font-medium text-sm'>Business Name</label>
-            <Input required={true} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="name" id="name" placeholder='Enter your business name' />
+            <Input required={true} value={businessData?.name} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="name" id="name" placeholder='Enter your business name' />
         </div>
         <div className='mb-8'>
             <label htmlFor="description" className='font-medium text-sm'>Business Description</label>
-            <Input required={true} onChange={handleBusinessData} textarea name="description" id="description" cols="30" rows="10" className='border-gray rounded-lg' placeholder='Enter your business Discription' />
+            <Input required={true} value={businessData?.description} onChange={handleBusinessData} textarea name="description" id="description" cols="30" rows="10" className='border-gray rounded-lg' placeholder='Enter your business Discription' />
         </div>
-        <div className='mb-8'> 
+        {/* <div className='mb-8'> 
             <label htmlFor="category" className='font-medium text-sm'>Add tags</label>
-            <Input required={true} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="category" id="category" placeholder='Add a tag to your business' />
-        </div>
+            <Input required={true} value={businessData?.category} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="category" id="category" placeholder='Add a tag to your business' />
+        </div> */}
         <div className='mb-8 md:flex justify-between gap-9'>
             <div className='mb-8 w-full'>
                 <label htmlFor="phone" className='font-medium text-sm'>Phone Number</label>
-                <Input required={true} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="phone" id="phone" placeholder='Enter your business Phone number' />
+                <Input required={true} value={businessData?.phone} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="phone" id="phone" placeholder='Enter your business Phone number' />
             </div>
             <div className='w-full'>
                 <label htmlFor="email" className='font-medium text-sm'>Email Address</label>
-                <Input required={true} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="email" id="email" placeholder='Enter your business Email Address' />
+                <Input required={true} value={businessData?.email} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="email" id="email" placeholder='Enter your business Email Address' />
             </div>
         </div>
         <div className='mb-8 md:flex justify-between gap-9'>
@@ -83,7 +83,7 @@ const index = ({ setStep, handleBusinessData}) => {
             </div>
             <div className='w-full mb-8'>
                 <label htmlFor="lga" className='font-medium text-sm'>LGA</label>
-                <select onChange={handleBusinessData} className='w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-green cursor-pointer rounded-lg' name="lga" id="lga" placeholder='Enter LGA'>
+                <select value={businessData?.name} onChange={handleBusinessData} className='w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-green cursor-pointer rounded-lg' name="lga" id="lga" placeholder='Enter LGA'>
                     <option value="">Enter LGA</option>
                     {filteredLgas?.map((lga) => (
                         <option key={lga.id} value={lga.name}>{lga.name}</option>
@@ -92,21 +92,21 @@ const index = ({ setStep, handleBusinessData}) => {
             </div>
             <div className='w-full '>
                 <label htmlFor="town" className='font-medium text-sm'>City/Town</label>
-                <Input required={true} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="town" id="town" placeholder='Enter city' />
+                <Input required={true} value={businessData?.town} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="town" id="town" placeholder='Enter city' />
             </div>
         </div>
         <div className='mb-8'>
             <label htmlFor="address" className='font-medium text-sm'>Business Address</label>
-            <Input required={true} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="address" id="address" placeholder='Enter your business Address' />
+            <Input required={true} value={businessData?.address} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="address" id="address" placeholder='Enter your business Address' />
         </div>
         <div className='mb-8 md:flex justify-between gap-9'>
             <div className='w-full mb-8'>
                 <label htmlFor="month_started" className='font-medium text-sm'>Business start month</label>
-                <Input required={true} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="month_started" id="month_started" placeholder='Enter your business start Month' />
+                <Input required={true} value={businessData?.month_started} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="month_started" id="month_started" placeholder='Enter your business start Month' />
             </div>
             <div className='w-full '>
                 <label htmlFor="year_started" className='font-medium text-sm'>Business start year</label>
-                <Input required={true} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="year_started" id="year_started" placeholder='Enter your business start Year' />
+                <Input required={true} value={businessData?.year_started} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="year_started" id="year_started" placeholder='Enter your business start Year' />
             </div>
         </div>
         <Button type='submit' className='p-3 w-full flex justify-center'>

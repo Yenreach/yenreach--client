@@ -25,7 +25,7 @@ const index = () => {
           <section className='p-8 px-4 sm:px-8'>
               <h1 className='text-2xl text-green font-medium mb-5'>Create your new Business</h1>
               {step === 1 ? 
-                <BusinessDetails handleBusinessData={handleBusinessData} step={step} setStep={setStep} />
+                <BusinessDetails businessData={businessData} handleBusinessData={handleBusinessData} step={step} setStep={setStep} />
                 : step === 2 ? 
                 <BusinessPhotos setBusinessData={setBusinessData} businessData={businessData} handleBusinessData={handleBusinessData} setStep={setStep} /> 
                 : <BusinessCreatedSuccess />
