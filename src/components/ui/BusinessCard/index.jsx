@@ -19,10 +19,11 @@ const BusinessCard = ({ className, business }) => {
           <div className='flex flex-col'>       
               {/* <img src={Computer} alt="" className='object-cover object-center rounded-xl h-28' /> */}
               <Image
-                name={business?.filename}
+                url={business?.profile_img}
+                name={business?.name}
                 alt={business?.name}
                 className='object-cover object-center rounded-xl h-28'
-                business={business}
+                data={business}
                />
               <h6 className='text-sm font-medium h-11 my-2 overflow-hidden'>{business?.name || "Blossom boutique flower tsfdsfddfsdtfdl"}</h6>
               <ul className='flex items-center flex-wrap text-xsm list-disc pl-4 gap-4 h-9 overflow-hidden pb-12'>

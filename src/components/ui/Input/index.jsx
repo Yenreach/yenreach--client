@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from "clsx";
 import PropTypes from 'prop-types';
 
-function Input({ variant, override, type, id, className='',placeholder='', name, onChange, required, textarea, value, ...rest }) {
+function Input({ variant, override, type, id, className='',placeholder='', name, required, textarea, value, onChange, ...rest }) {
   const [touched, setTouched] = React.useState(false)
 
   const styles = (className) => clsx(
@@ -27,9 +27,9 @@ function Input({ variant, override, type, id, className='',placeholder='', name,
     
   return (
     <>
-      {textarea ? <textarea onFocus={() => setTouched(true)} required={required} onChange={onChange} id={id} name={name} cols="30" rows="10" className={styles(className)} placeholder={placeholder} {...rest} />
+      {textarea ? <textarea onFocus={() => setTouched(true)} required={required} onChange={onChange} id={id} name={name} cols="30" rows="10" className={styles(className)} placeholder={placeholder} value={value} {...rest} />
       :
-      <input onFocus={() => setTouched(true)} type={type} className={styles(className)} id={id} name={name} placeholder={placeholder} onChange={onChange} required={required} {...rest} />
+      <input onFocus={() => setTouched(true)} value={value} onChange={onChange} type={type} className={styles(className)} id={id} name={name} placeholder={placeholder} required={required} {...rest} />
     }
     </>
   )

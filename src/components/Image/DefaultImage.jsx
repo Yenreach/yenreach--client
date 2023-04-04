@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DefaultImage = ({ business_name, className }) => {
+const DefaultImage = ({ obj_name, className, children }) => {
     const [res, setRes] = React.useState(null)
 
     function generateColor (){
@@ -24,10 +24,10 @@ const DefaultImage = ({ business_name, className }) => {
         return clean;
     }
 
-    function setBusinessImage(business_name) {
+    function setBusinessImage(obj_name) {
         let res = "";
         const color = generateColor();
-        const name = business_name.trim();
+        const name = obj_name.trim();
         // console.log("name", name, "color", color)
         if (name.includes(' ')) {
             const exploded = name?.split(' ');
@@ -50,12 +50,13 @@ const DefaultImage = ({ business_name, className }) => {
     }
 
     React.useEffect(() => {
-        setRes(setBusinessImage(business_name))
+        setRes(setBusinessImage(obj_name))
     }, [])
 
   return (
-    <div className={`${className} w-full h-full flex justify-center items-center text-wrap text-uppercase text-4xl bg-[${res?.color?.bg}] text-[${res?.color?.col}]`} style={{color: res?.color?.col, background: res?.color?.bg}}>
+    <div className={`${className} relative w-full h-full flex justify-center items-center text-wrap text-uppercase text-4xl bg-[${res?.color?.bg}] text-[${res?.color?.col}]`} style={{color: res?.color?.col, background: res?.color?.bg}}>
         {res?.name}
+        {children}
     </div>
   )
 }
