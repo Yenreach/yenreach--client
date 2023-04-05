@@ -19,6 +19,8 @@ import Product3 from '../../assets/businesses/product-3.svg'
 import Star from '/src/assets/star.svg'
 import Mail from '../../assets/mail.svg'
 import Map from '../../assets/map.svg'
+import Image from '/src/components/Image';
+
 
 const index = () => {
   const [modalOpen, setModalOpen] = React.useState(false)
@@ -79,7 +81,7 @@ const index = () => {
     enabled: !!businessSubscription?.subscription_string,
   })
 
-  // console.log("reviewsContainerRef", reviews)
+  console.log("business", business)
 
   const nextReview = () => {
     if(reviewsContainerRef.current?.children?.length > 0){
@@ -99,7 +101,14 @@ const index = () => {
         {business && 
         <>
           <div className='top mb-10 py-16 sm:py-12 px-4 md:px-10 lg:px-20 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center text-white flex items-center gap-5'>
-            <img src={Logo} alt="" className='w-16 md:w-24' />
+            {/* <img src={Logo} alt=""  /> */}
+            <Image
+                url={business?.profile_img}
+                name={business?.name}
+                alt={business?.name}
+                className='w-16 h-16 md:w-24 md:h-24 object-cover rounded-full'
+                data={business}
+               />
             <div className=''>
               <h2 className='text-lg sm:text-xl font-medium mb-2 sm:mb-1'>{business.name}</h2>
               <div className='flex items-center gap-0.5'>
@@ -162,6 +171,8 @@ const index = () => {
                 <img src={Product2} alt="" className='h-20' />
                 <img src={Product3} alt="" className='h-20' />
               </div>
+              {reviews && 
+              <>
               <h2 className='text-lg text-green2 font-semibold mb-3'>Reviews</h2>
               {/* <div className='flex items-center gap-3 mb-10'>
                 <span className='text-sm font-medium opacity-90'>Rate this business</span> 
@@ -173,6 +184,7 @@ const index = () => {
                   <img src={StarFilled} alt="" className='w-6' />
                 </div>
               </div> */}
+              
               <div className='py-2 pb-14 relative mb-5 max-w-lg'>
                 <div className='p-4 bg-[#68888f21] rounded-xl'>
                   <div ref={reviewsContainerRef} className='flex w-full overflow-hidden gap-2'>
@@ -198,9 +210,10 @@ const index = () => {
                   </Button>
                 </div>
               </div>
-              {/* Review modal*/}
+              </>}
               {modalOpen &&  <BusinessReviewModal setModalOpen={setModalOpen} modalOpen={modalOpen} />} 
               <p onClick={() => setModalOpen(true)} className='text-smm text-green opacity-70 underline cursor-pointer'>Write a review</p>
+              {/* Review modal*/}
             </div>
           </section>
           <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 border-t-2 border-gray mb-32'>

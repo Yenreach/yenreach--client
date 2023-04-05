@@ -25,8 +25,8 @@ const BusinessCard = ({ className, business }) => {
                 className='object-cover object-center rounded-xl h-28'
                 data={business}
                />
-              <h6 className='text-sm font-medium h-11 my-2 overflow-hidden'>{business?.name || "Blossom boutique flower tsfdsfddfsdtfdl"}</h6>
-              <ul className='flex items-center flex-wrap text-xsm list-disc pl-4 gap-4 h-9 overflow-hidden pb-12'>
+              <h6 className='text-sm font-medium h-[42px] my-2 overflow-hidden'>{business?.name}</h6>
+              <ul className='flex items-center flex-wrap text-xsm list-disc pl-4 gap-x-4 gap-2 h-[51px] overflow-hidden pb-12'>
                   {business?.categories?.map((category) => ( 
                       <li key={category.id}><span className='relative -left-1.5'>{category.category}</span></li>
                   ))}

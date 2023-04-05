@@ -8,6 +8,8 @@ import { apiSubmitApplication } from '/src/services/JobService'
 import { useAuthContext } from '/src/hooks/useAuthContext'
 import { RiFileTextLine } from "react-icons/ri";
 import usePost from '/src/hooks/usePost'
+import Loader from '../Loader'
+
 
 
 const initialApplicationState = {
@@ -31,13 +33,17 @@ const JobDescription = ({ job }) => {
 	const { user } = useAuthContext()
 	const [application, setApplication] = useReducer(formReducer, initialApplicationState)
 	const [tab, setTab] = useState(1)
-    const { url, uploadImage, error, progress } = useImage()
+    const { url, uploadImage, error, progress, loading: upLoadingImage } = useImage()
 
 	const submitJobApplication = usePost({ 
 		api: apiSubmitApplication, 
 		success: (data,b,c) => {
 			setApplication(initialApplicationState)
 			setTab(3)
+			setTimeout(() => {
+				setTab(1)
+			}
+			, 5000)
 		}
 	  })
     
@@ -48,6 +54,7 @@ const JobDescription = ({ job }) => {
     }
   return (
     <div className='flex flex-col flex-1 w-full'>
+        {(upLoadingImage || submitJobApplication?.isLoading) && <Loader loader={4} />}
 		<>
 			<div className="relative flex gap-3 justify-center overflow-hidden items-center w-full -z-50 bg-blue px-4 py-6 text-sm">
 				<svg className='absolute -top-4 -right-[20%] -z-10' width="488" height="383" viewBox="0 0 488 383" fill="none" xmlns="http://www.w3.org/2000/svg">
