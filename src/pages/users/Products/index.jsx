@@ -18,7 +18,7 @@ const Products = () => {
   const { id } = useParams()
   const [deleteProductDetails, setDeleteProductDetails] = React.useState({})
   
-  const { isLoading, error: errorProducts, data: products, refetch: refetchProducts } = useFetch({
+  const { isLoading, error: errorProducts, data: products, refetch: refetchProducts, remove: removeProductsCache } = useFetch({
     key: ['userProducts', id],
     api: apiGetAllBusinessProducts,
     param: id,
@@ -70,7 +70,7 @@ const Products = () => {
         return  (
           <div className="flex items-center gap-3 justify-cente">
             {/* <BiEdit size="1.2rem" className="text-orange" /> */}
-            <MdOutlineDelete size="1.2rem" className="text-red-400 cursor-pointer" onClick={() => delteProduct(meta)} />
+            <MdOutlineDelete size="1.2rem" className="text-red-400 cursor-pointer" onClick={() => delteteProduct(meta)} />
           </div>
         )
       },
@@ -109,17 +109,36 @@ const Products = () => {
     },
   ];
 
-  const deletedProduct = useFetch({
-    key: ['deleteProducts', deleteProductDetails?.business_string, deleteProductDetails?.product_string],
-    api: apiDeleteProduct,
-    param: {business_string: deleteProductDetails?.business_string, product_string: deleteProductDetails?.product_string},
-    enabled: !!deleteProductDetails?.business_string && !!deleteProductDetails?.product_string,
-    onSuccess: () => {
-      console.log("deleted")
-      setDeleteProductDetails({})
-      refetchProducts()
-    }
+  // const deletedProduct = useFetch({
+  //   key: ['deleteProducts', deleteProductDetails?.business_string, deleteProductDetails?.product_string],
+  //   api: apiDeleteProduct,
+  //   param: {business_string: deleteProductDetails?.business_string, product_string: deleteProductDetails?.product_string},
+  //   enabled: !!deleteProductDetails?.business_string && !!deleteProductDetails?.product_string,
+  //   onSuccess: () => {
+  //     console.log("deleted")
+  //     setDeleteProductDetails({})
+  //     refetchProducts()
+  //   }
+  // })
+
+  const deletedProductMutation = useMutation({
+    mutationFn: (data) => {
+      console.log("data", data)
+      return apiDeleteProduct(data)
+    },
+    onSuccess: (data, variables, context) => {
+        console.log("success deleting product", data)
+        setDeleteProductDetails({})
+        removeProductsCache()
+        refetchProducts()
+        // statusRef.current.checked = !statusRef.current.checked
+    },
+    onError: (error, variables, context) => {
+      console.log("error deleting product", error)
+    },
   })
+   
+  // console.log("deleting", deletedProduct)
   
   const updateProductStatusMutation = useMutation({
     mutationFn: (data) => {
@@ -139,14 +158,17 @@ const Products = () => {
       console.log("data is here", data)
       updateProductStatusMutation.mutate(data)
   }
-  const delteProduct = (data) => {
-      setDeleteProductDetails(data)
+
+
+  const delteteProduct = (data) => {
+    setDeleteProductDetails(data)
+    deletedProductMutation.mutate(data)
   }
   // console.log("deleteProduct", deletedProduct)
   return (
     <Dashboard>
         <main className='flex-1 overflow-y-auto overflow-hidden'>
-          {(isLoading || updateProductStatus?.isLoading || (deletedProduct?.fetchStatus!="idle" && deletedProduct?.isLoading)) && <Loader loader={4} />}
+          {(isLoading || updateProductStatus?.isLoading || (deletedProductMutation?.isLoading)) && <Loader loader={4} />}
           <Header business_string={id} type="product" />
           <section className='p-8 px-4 sm:px-8'>
            {products &&

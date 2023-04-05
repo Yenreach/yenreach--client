@@ -19,7 +19,7 @@ const useFetch = ({ api, param, key, onSuccess, ...rest }) => {
 
     useEffect(() => {
         if (onSuccess && isSuccess && data) {
-            console.log("data", data, "onSuccess", onSuccess, "isSuccess", isSuccess)
+            // console.log("data", data, "onSuccess", onSuccess, "isSuccess", isSuccess)
             onSuccess()
         }
     }, [data])

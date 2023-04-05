@@ -17,9 +17,9 @@ const index = () => {
     password2: '',
     referer: ''
   });
+  const location = useLocation()
 
   const { auth, error, isLoading, setError, messageState } = useAuth({from: location?.state?.from});
-  const location = useLocation()
 
   const handleSubmit = (event) => {
     event.preventDefault();

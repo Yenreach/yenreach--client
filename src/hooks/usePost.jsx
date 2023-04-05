@@ -28,7 +28,7 @@ const usePost = ({ api, success, failure, showSuccessMessage=true, showErrorMess
             if (showErrorMessage) {
               toast.error(error?.message);
             } else {
-              toast.error("An Error Occurred!");
+              // toast.error("An Error Occurred!");
             }
             if (failure) {
                 failure(error, variables, context)
