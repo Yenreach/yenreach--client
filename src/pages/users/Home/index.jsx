@@ -11,6 +11,7 @@ import Business from '../../../assets/bus_of_the_week.svg'
 import Elipse from '../../../assets/dashboard/elipse.svg'
 import NoBusiness from '../../../assets/dashboard/no-business.svg'
 import { useAuthContext } from '/src/hooks/useAuthContext'
+import Image from '../../../components/Image'
 
 
 const index = () => {
@@ -49,7 +50,7 @@ const index = () => {
                                 {businesses?.map(business => (
                                     <Link to={`/users/business/${business.verify_string}`} key={business?.verify_string} className='bg-white rounded overflow-hidden flex text-sm w-full'>
                                             <div>
-                                                <img src={Business} alt="" className="w-20 object-cover h-20" />
+                                                <Image url={business?.profile_img} name={business?.name} className="w-20 object-cover h-20" />
                                             </div>
                                             <div className='p-4 px-6 relative'>
                                                 <p className='font-semibold mb-1'>{business.name}</p>

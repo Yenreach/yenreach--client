@@ -18,6 +18,7 @@ import Edit from '../../../assets/edit.svg'
 import Star from '../../../assets/star.svg'
 import Loader from '../../../components/Loader'
 import { expired, formatDate } from '/src/utils/dateFunc'
+import Image from '../../../components/Image';
 
 const index = () => {
   const { id } = useParams()
@@ -115,7 +116,9 @@ const index = () => {
               <Link to={`/users/edit-business/${id}`} className='p-1.5 px-3 text-xs font-arialsans absolute bottom-2 right-2 sm:right-4 lg:right-16 bg-green text-white'>
                 Edit Profile
               </Link>
-              <img src={BusinessIMG} alt="" className='z-100 w-28 overflow-hidden left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 mx-auto absolute' />
+              <div className='z-100 w-28 h-28 overflow-hidden left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 mx-auto absolute rounded-full' >
+                <Image url={business?.profile_img} name={business?.name} />
+              </div>
             </div>
             <section className='px-7'>
               <div className='flex flex-col items-center w-10/12 mx-auto mb-8 pt-16'>
@@ -198,10 +201,10 @@ const index = () => {
                     </div>)}
                   </div>
                 </div>
-                <Button className='flex items-center justify-center gap-3 rounded-md py-2.5 w-full mt-11'>
+                <Link to={`/users/edit-business/${id}`} className='flex items-center justify-center gap-3 rounded-md py-2.5 w-full mt-11 bg-green text-white'>
                   <img src={Edit} alt="" />
                   Edit business profile
-                </Button>
+                </Link>
               </div>
               <div className='mb-20'>
                 <h2 className='text-green text-lg font-medium mb-3'>Business Analytics</h2>

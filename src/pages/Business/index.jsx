@@ -161,7 +161,7 @@ const index = () => {
               </div>
               <h2 className='text-lg text-green2 font-semibold mb-4'>Photos</h2>
               <div className='flex flex-wrap gap-4 mb-10'>
-                <img src={Photo1} alt="" className='h-20' />
+                <img src={Photo1}  alt="" className='h-20' />
                 <img src={Photo2} alt="" className='h-20' />
                 <img src={Photo3} alt="" className='h-20' />
               </div>
