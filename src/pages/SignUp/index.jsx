@@ -38,7 +38,7 @@ const index = () => {
   return (
     <>
       <Header />
-      <div className="flex flex-col w-full justify-center gap-8 items-center min-h-screen pt-20">
+      <div className="flex flex-col w-full justify-center gap-8 items-center min-h-screen pt-20 pb-20">
       <div className='max-w-lg flex flex-col justify-center items-center gap-4 w-full md:pt-8'>
         <h1 className="text-green font-bold text-2xl">
           Sign Up

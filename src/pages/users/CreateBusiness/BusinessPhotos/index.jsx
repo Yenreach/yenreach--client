@@ -6,9 +6,13 @@ import Add from '/src/assets/add.svg'
 import usePost from '/src/hooks/usePost'
 import { apiAddBusiness } from '/src/services/UserService'
 import Loader from '/src/components/Loader'
+import { useAuthContext } from '/src/hooks/useAuthContext'
+
 
 
 const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) => {    
+    const { user } = useAuthContext()
+
     const { url: profileImg, uploadImage: uploadProfileImg, error, progress, loading: uploadingProfileImg } = useImage()
     const { url: coverImg, uploadImage: uploadCoverImg, error: coverImgError, progress: coverImgProgress, loading: uploadingCoverImg } = useImage()
 
@@ -29,12 +33,12 @@ const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) =
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        const data = { ...businessData, profile_img: profileImg, cover_img: coverImg }
+        const data = { ...businessData, user_string: user?.verify_string, profile_img: profileImg, cover_img: coverImg }
         console.log("data", data)
         addBusinessMutation.mutate(data)
     }
 
-    console.log("businessData", addBusinessMutation?.isLoading, uploadingCoverImg, uploadingProfileImg)
+    // console.log("businessData", addBusinessMutation?.isLoading, uploadingCoverImg, uploadingProfileImg)
 
   return (
     <form className='p-8 px-4 sm:px-8 bg-white rounded-2xl' onSubmit={handleSubmit}>

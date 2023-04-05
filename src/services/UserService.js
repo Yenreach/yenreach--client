@@ -191,7 +191,7 @@ export const apiAddBusiness = (data) => {
     return ApiAdapter.fetchData({
         url: `add_business_api${serviceSuffix}`,
         method: "post",
-        data: {...data, user_string: token}
+        data: {...data, user_string: data?.user_string || token}
     })
 }
 /* Edit business */

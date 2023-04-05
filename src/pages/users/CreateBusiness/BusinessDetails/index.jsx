@@ -120,7 +120,7 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
             </div>
             <div className='w-full mb-8'>
                 <label htmlFor="lga" className='font-medium text-sm'>LGA</label>
-                <select value={businessData?.name} onChange={handleBusinessData} className='w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-green cursor-pointer rounded-lg' name="lga" id="lga" placeholder='Enter LGA'>
+                <select value={businessData?.lga} onChange={handleBusinessData} className='w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-green cursor-pointer rounded-lg' name="lga" id="lga" placeholder='Enter LGA'>
                     <option value="">Enter LGA</option>
                     {filteredLgas?.map((lga) => (
                         <option key={lga.id} value={lga.name}>{lga.name}</option>
