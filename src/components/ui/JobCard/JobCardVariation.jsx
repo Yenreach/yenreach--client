@@ -3,6 +3,7 @@ import JobImage from '../../../assets/craig-marolf-z33FLebN9G0-unsplash.jpg'
 import PropTypes from 'prop-types';
 import Computer from '../../../assets/computer.svg'
 import Image from '../../../assets/image.svg'
+import JobImg from '../../../assets/jobsearch.jpg'
 import { useState } from 'react'
 import clsx from 'clsx'
 
@@ -19,7 +20,7 @@ const JobCardVariation = ({ job, className, setSelectedJobIndex, index, selected
     <div className={styles(className)} onClick={ () => { setSelectedJobIndex(index) }}>
       {/* { selectedJobIndex === index && <div className='absolute top-0 left-0 w-full h-full bg-[#F5F7FA] opacity-50'></div>} */}
       <div className='w-1/3 h-full rounded-l-2xl overflow-hidden'>
-        <img className='h-full object-cover' src={Image} alt="" />
+        <img className='h-full object-cover' src={JobImg} alt="" />
       </div>
       <div className="flex w-[80%] h-full flex-col gap-2 bg-[#F5F7FA] rounded-r-2xl border-y border-r border-gray px-3 pt-5 pb-2">
         <h3 className="text-smm">{ job.company_name }</h3>
@@ -49,7 +50,7 @@ JobCardVariation.defaultProps = {
 };
 
 JobCardVariation.propTypes = {
-  job: PropTypes.array,
+  job: PropTypes.object,
   className: PropTypes.string,
   setSelectedJobIndex: PropTypes.func,
   selectedJobIndex: PropTypes.number,

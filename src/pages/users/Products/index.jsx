@@ -70,7 +70,7 @@ const Products = () => {
         return  (
           <div className="flex items-center gap-3 justify-cente">
             {/* <BiEdit size="1.2rem" className="text-orange" /> */}
-            <MdOutlineDelete size="1.2rem" className="text-red-400" onClick={() => delteProduct(meta)} />
+            <MdOutlineDelete size="1.2rem" className="text-red-400 cursor-pointer" onClick={() => delteProduct(meta)} />
           </div>
         )
       },
@@ -127,7 +127,7 @@ const Products = () => {
         return apiUpdateProductStatus(data)
     },
     onSuccess: (data, variables, context) => {
-        // console.log("success updating product state", data)
+        console.log("success updating product state", data)
         refetchProducts()
     },
     onError: (error, variables, context) => {
