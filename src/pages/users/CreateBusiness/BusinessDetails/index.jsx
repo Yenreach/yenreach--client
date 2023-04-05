@@ -6,8 +6,22 @@ import { apiGetStates, apiGetLGAs } from '/src/services/UserService'
 import Input from '../../../../components/ui/Input'
 import Button from '../../../../components/ui/Button'
 
+const months = [
+    {id: 1, name: "January"},
+    {id: 2, name: "February"},
+    {id: 3, name: "March"},
+    {id: 4, name: "April"},
+    {id: 5, name: "May"},
+    {id: 6, name: "June"},
+    {id: 7, name: "July"},
+    {id: 8, name: "August"},
+    {id: 9, name: "September"},
+    {id: 10, name: "October"},
+    {id: 11, name: "November"},
+    {id: 12, name: "December"},
+]
 
-const index = ({ setStep, businessData, handleBusinessData}) => {
+const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) => {
     const [stateId, setStateId] = React.useState(null)
     const [filteredLgas, setfilteredLgas] = React.useState([]) 
 
@@ -40,6 +54,12 @@ const index = ({ setStep, businessData, handleBusinessData}) => {
     // console.log("categories", categories, "states", states, "lgas", lgas)
     // console.log("stateId", stateId, "lga", lga)
 
+    const handleCategory = (event) => {
+        if (businessData?.categories?.length < 5) {
+        setBusinessData(prev => ({...prev, [event.target.name]: [...businessData?.categories, event.target.value] }))
+        } 
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
         setStep(2)
@@ -61,6 +81,22 @@ const index = ({ setStep, businessData, handleBusinessData}) => {
             <label htmlFor="category" className='font-medium text-sm'>Add tags</label>
             <Input required={true} value={businessData?.category} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="category" id="category" placeholder='Add a tag to your business' />
         </div> */}
+         <div className='mb-8 md:flex justify-between gap-9'>
+            <div className='mb-8 w-full'>
+                <label htmlFor="categories" className='font-medium text-sm'>Categories</label>
+                <select onChange={(e) => handleCategory(e)} required className='w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-green cursor-pointer rounded-lg' name="categories" id="categories" placeholder='Enter Categoies'>
+                    <option value="">Select Categories(max 5)</option>
+                    {categories?.map((category) => (
+                        <option key={category.id} value={category.category}>{category.category}</option>
+                    ))}
+                </select>
+                <div>
+                    {businessData.categories?.map((category) => (
+                        <span key={category} className='bg-gray-200 text-gray-600 text-xs py-1 rounded-full mr-2 text-black'>{category}</span>
+                    ))}
+                </div>
+            </div>
+        </div>
         <div className='mb-8 md:flex justify-between gap-9'>
             <div className='mb-8 w-full'>
                 <label htmlFor="phone" className='font-medium text-sm'>Phone Number</label>
@@ -100,13 +136,22 @@ const index = ({ setStep, businessData, handleBusinessData}) => {
             <Input required={true} value={businessData?.address} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="address" id="address" placeholder='Enter your business Address' />
         </div>
         <div className='mb-8 md:flex justify-between gap-9'>
-            <div className='w-full mb-8'>
+            {/* <div className='w-full mb-8'>
                 <label htmlFor="month_started" className='font-medium text-sm'>Business start month</label>
                 <Input required={true} value={businessData?.month_started} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="month_started" id="month_started" placeholder='Enter your business start Month' />
+            </div> */}
+            <div className='w-full mb-8'>
+                <label htmlFor="month_started" className='font-medium text-sm'>Business start month</label>
+                <select required value={businessData?.month_started} onChange={handleBusinessData} className='w-full border-2 outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-green cursor-pointer rounded-lg' name="month_started" id="month_started" placeholder='Enter your business start Month'>
+                    <option value="">Enter your business start Month</option>
+                    {months?.map((month) => (
+                        <option key={month.id} value={month.name}>{month.name}</option>
+                    ))}
+                </select>
             </div>
             <div className='w-full '>
                 <label htmlFor="year_started" className='font-medium text-sm'>Business start year</label>
-                <Input required={true} value={businessData?.year_started} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="year_started" id="year_started" placeholder='Enter your business start Year' />
+                <Input required={true} value={businessData?.year_started} onChange={handleBusinessData} className='border-gray rounded-lg' type="number" name="year_started" id="year_started" placeholder='Enter your business start Year' />
             </div>
         </div>
         <Button type='submit' className='p-3 w-full flex justify-center'>

@@ -6,7 +6,7 @@ import { useAuthContext } from '/src/hooks/useAuthContext'
 const ProtectedRoutes = ({ children }) => {
   const { user } = useAuthContext()
   const location = useLocation()
-  console.log("location", location)
+  // console.log("location", location)
   const navigate = useNavigate()
 
   if (!user) {
