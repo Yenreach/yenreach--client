@@ -59,8 +59,8 @@ function App() {
             <Route exact path="/password_reset" element={<ChangePassword />} />
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/users/business/:id" element={<UserBusiness />} />
+            <Route exact path="/users/edit-business/:id" element={<EditBusiness />} />
             <Route exact path="/users/add-business" element={<CreateBusiness />} />
-            <Route exact path="/users/edit-business" element={<CreateBusiness />} />
             <Route exact path="/users/products/:id" element={<UserProducts />} />
             <Route exact path="/users/products/:id/add-product" element={<AddProduct />} />
             <Route exact path="/users/products/:id/product-success" element={<ProductSuccess />} />

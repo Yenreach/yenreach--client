@@ -3,7 +3,6 @@ import useImage from '/src/hooks/useImage'
 import Button from '/src/components/ui/Button'
 import Input from '/src/components/ui/Input'
 import Add from '/src/assets/add.svg'
-import { useMutation } from "@tanstack/react-query";
 import usePost from '/src/hooks/usePost'
 import { apiAddBusiness } from '/src/services/UserService'
 import Loader from '/src/components/Loader'

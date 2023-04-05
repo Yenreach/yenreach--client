@@ -194,6 +194,14 @@ export const apiAddBusiness = (data) => {
         data: {...data, user_string: token}
     })
 }
+/* Edit business */
+export const apiEditBusiness = (data) => {
+    return ApiAdapter.fetchData({
+        url: `edit_business_profile_api${serviceSuffix}`,
+        method: "post",
+        data: {...data, user_string: token}
+    })
+}
 
 /* Get states */
 export const apiGetStates = () => {
