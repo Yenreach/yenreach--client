@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import useTimeOutMessage from "./useTimeOutMessage"
 
 
-const useAuth = () => {
+const useAuth = ({from}) => {
     // error and isloading states
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
@@ -36,7 +36,7 @@ const useAuth = () => {
                 dispatch({type: "LOGIN", payload: data})
                 setError(null)
                 setIsLoading(false)
-                navigate('/users')
+                navigate(from || '/users')
             }
         } catch (error) {
             setError(null)

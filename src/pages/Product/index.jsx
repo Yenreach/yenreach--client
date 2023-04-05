@@ -34,7 +34,7 @@ const Product = () => {
     key: ['business', product?.business_string],
     enabled: !!product?.business_string,
   })
-  // console.log("business", business)
+  // console.log("relatedProducts", relatedProducts)
 
   return (
       <>
@@ -50,20 +50,22 @@ const Product = () => {
                     <span>(3.5 stars) • 10 reviews</span>
                 </div> */}
             </section>
-            <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 mb-8 flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-12 md:items-center'>
-                <div className='flex-1 w-full bg-gray min-h-[160px] max-h-[400px] overflow-hidden'>
+            <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 mb-8 flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-12 h-[400px] overflow-hidden'>
+                <div className='flex-1 w-full h-full bg-gray overflow-hidden'>
                     <img src={product?.photos[0]?.filename} alt="" className='w-full h-full object-cover' />
                 </div>
-                <div className='flex-1 w-full'>
-                    <h2 className='font-medium mb-3 text-base'>Product Description</h2>
-                    <p className='text-sm mb-12'>
-                    {product?.product_description}
-                    </p>
-                    <div className='flex flex-col text-xs mb-12'>
-                        <span className='font-medium'>Listed By</span>
-                        <span className='text-sm text-gray'>{business?.name}</span>
-                    </div>
-                    <Button variant='product' className='py-2 px-28 w-full text-xs' onClickFunc={() => setModalOpen(true)}>
+                <div className='flex-1 w-full h-full flex flex-col justify-between'>
+                  <div>
+                      <h2 className='font-medium mb-3 text-base'>Product Description</h2>
+                      <p className='text-sm mb-12'>
+                      {product?.product_description}
+                      </p>
+                  </div>
+                  <div className='flex flex-col text-xs mb-12'>
+                      <span className='font-medium'>Listed By</span>
+                      <span className='text-sm text-gray'>{business?.name}</span>
+                  </div>
+                    <Button variant='product' className='py-2 px-28 w-full text-xs ' onClickFunc={() => setModalOpen(true)}>
                         Contact Seller
                     </Button>
                 </div>

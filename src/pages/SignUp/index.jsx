@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Header from '../../components/Header';
 import ArrowDownSvg from '../../assets/arrow-down.svg';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
@@ -18,7 +18,8 @@ const index = () => {
     referer: ''
   });
 
-  const { auth, error, isLoading, setError, messageState } = useAuth();
+  const { auth, error, isLoading, setError, messageState } = useAuth({from: location?.state?.from});
+  const location = useLocation()
 
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -14,15 +14,14 @@ const index = () => {
   const { user } = useAuthContext()
   const location = useLocation()
   
-  const { auth, error, isLoading, setError, messageState } = useAuth();
+  const { auth, error, isLoading, setError, messageState } = useAuth({from: location?.state?.from});
 
-  // console.log("user", error, isLoading)
+  // console.log("location login", location)
 
   if (user) {
     return <Navigate to={{ pathname: '/users', state: { from: location } }} />
   }
 
-  
 
   return (
     <>
