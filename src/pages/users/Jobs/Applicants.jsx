@@ -5,6 +5,8 @@ import { apiGetApplicationsByJob } from '/src/services/JobService'
 import MUIDataTable from "mui-datatables";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AiOutlinePlus } from 'react-icons/ai'
+import { RiFileTextLine } from "react-icons/ri";
+
 import Header from "/src/components/users/Header"
 import Table from '/src/components/Table'
 import Button from '../../../components/ui/Button'
@@ -52,6 +54,16 @@ const Applicants = () => {
     {
       name: "document",
       label: "View",
+      extra: true,
+      custom: (value, meta) => {
+        // console.log("meta", meta)
+        return  (
+          <a href={value.replace("diatok", "dia&tok")} target="_blank" className="flex items-center gap-3 text-primary">
+            <RiFileTextLine size="1.5rem" className="inline-block" />
+            <span className="text-sm">View Resume</span>
+          </a>
+        )
+      },
       options: {
         filter: true,
         sort: false,
@@ -59,6 +71,7 @@ const Applicants = () => {
     },
   
   ];
+
 
   
 

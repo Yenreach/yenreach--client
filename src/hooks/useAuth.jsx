@@ -18,7 +18,7 @@ const useAuth = ({from}) => {
     const auth = async (fields, type="login") => {
         setIsLoading(true)
         setError(null)
-        console.log(fields, fields?.email, fields?.password)
+        // console.log(fields, fields?.email, fields?.password)
         try {
             const response = type==="signup" ? await apiRegister(fields) : await apiLogin(fields)
             // console.log("res", response)
@@ -41,7 +41,7 @@ const useAuth = ({from}) => {
         } catch (error) {
             setError(null)
             setIsLoading(false)
-            console.log("error", error)
+            // console.log("error", error)
         }       
     }
     

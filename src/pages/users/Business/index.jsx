@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import Analytics from './Analytics';
 import { BsTelephone, BsGlobe, BsInstagram, BsWhatsapp } from 'react-icons/bs'
 import { MdOutlineMarkEmailUnread, MdOutlineLocationOn } from 'react-icons/md'
@@ -23,6 +23,7 @@ import Image from '../../../components/Image';
 const index = () => {
   const { id } = useParams()
   const reviewsContainerRef = useRef(null)
+  const navigate = useNavigate()
 
   const { isLoading, error, data: business  } = useFetch({
     api: apiGetOneBusiness,
@@ -103,6 +104,12 @@ const index = () => {
       }
     }
   }
+
+  useEffect(() => {
+    if (business?.reg_stage < 3) {
+      navigate(`/users/edit-business/${id}`)
+    }
+  }, [business])
 
   // console.log('subscription', subscription, expired(subscription?.true_expiry))
   return (

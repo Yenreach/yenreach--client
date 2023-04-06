@@ -11,7 +11,6 @@ const ProtectedRoutes = ({ children }) => {
 
   if (!user) {
     return navigate('/login', { state: { from: location } })
-    // return <Navigate to={{ pathname: '/login', state: { from: location } }} />
   }
 
   return (
