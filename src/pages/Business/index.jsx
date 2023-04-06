@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import useFetch from '/src/hooks/useFetch'
-import { useParams } from 'react-router-dom'
+import { useParams, Link, useLocation } from 'react-router-dom'
 import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessWorkingHours, apiGetBusinessBranches, apiGetRelatedBusinesses, apiGetBusinessSubscription, apiGetBusinessSubscriptionByString, apiGetBusinessReviews, apiGetBusinessReviewsStats } from '/src/services/CommonService'
 import BusinessCard from '/src/components/ui/BusinessCard'
 import Header from '../../components/Header'
@@ -20,12 +20,17 @@ import Star from '/src/assets/star.svg'
 import Mail from '../../assets/mail.svg'
 import Map from '../../assets/map.svg'
 import Image from '/src/components/Image';
+import { useAuthContext } from '/src/hooks/useAuthContext'
+
 
 
 const index = () => {
   const [modalOpen, setModalOpen] = React.useState(false)
   const { id } = useParams()
   const reviewsContainerRef = useRef(null)
+  const { user } = useAuthContext()
+  const location = useLocation()
+
   
   const { data: business, error: errorBusiness, isLoading } = useFetch({
     api: apiGetOneBusiness,
@@ -81,7 +86,7 @@ const index = () => {
     enabled: !!businessSubscription?.subscription_string,
   })
 
-  console.log("business", business)
+  // console.log("business", business)
 
   const nextReview = () => {
     if(reviewsContainerRef.current?.children?.length > 0){
@@ -173,18 +178,7 @@ const index = () => {
               </div>
               {reviews && 
               <>
-              <h2 className='text-lg text-green2 font-semibold mb-3'>Reviews</h2>
-              {/* <div className='flex items-center gap-3 mb-10'>
-                <span className='text-sm font-medium opacity-90'>Rate this business</span> 
-                <div className='flex items-center gap-0.5'>
-                  <img src={StarFilled} alt="" className='w-6' />
-                  <img src={StarFilled} alt="" className='w-6' />
-                  <img src={StarFilled} alt="" className='w-6' />
-                  <img src={StarFilled} alt="" className='w-6' />
-                  <img src={StarFilled} alt="" className='w-6' />
-                </div>
-              </div> */}
-              
+              <h2 className='text-lg text-green2 font-semibold mb-3'>Reviews</h2>              
               <div className='py-2 pb-14 relative mb-5 max-w-lg'>
                 <div className='p-4 bg-[#68888f21] rounded-xl'>
                   <div ref={reviewsContainerRef} className='flex w-full overflow-hidden gap-2'>
@@ -211,8 +205,15 @@ const index = () => {
                 </div>
               </div>
               </>}
-              {modalOpen &&  <BusinessReviewModal setModalOpen={setModalOpen} modalOpen={modalOpen} />} 
-              <p onClick={() => setModalOpen(true)} className='text-smm text-green opacity-70 underline cursor-pointer'>Write a review</p>
+              {modalOpen &&  <BusinessReviewModal setModalOpen={setModalOpen} modalOpen={modalOpen} user={user} />} 
+              {user ? 
+                <button onClick={() => setModalOpen(true)} className='text-smm text-green opacity-70 underline cursor-pointer'>
+                  Write a review
+                </button>
+              : <Link to="/login"  state={{from: location}} className='text-smm text-green opacity-70 underline cursor-pointer'>
+                  Login to Write a review
+                </Link>
+              }
               {/* Review modal*/}
             </div>
           </section>

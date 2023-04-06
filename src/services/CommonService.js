@@ -80,7 +80,7 @@ export const apiBusinessSearch =  ({ search, location }) => {
 /* Get states */
 export const apiGetStates = () => {
     return ApiAdapter.fetchData({
-        url: `fetch_all_states_api${serviceSuffix}`,
+        url: `/fetch_all_states_api${serviceSuffix}`,
         method: "get",
     })
 }
@@ -88,7 +88,7 @@ export const apiGetStates = () => {
 /* Get lgas */
 export const apiGetLGAs = () => {
     return ApiAdapter.fetchData({
-        url: `fetch_all_lgas_api${serviceSuffix}`,
+        url: `/fetch_all_lgas_api${serviceSuffix}`,
         method: "get",
     })
 }
@@ -97,91 +97,105 @@ export const apiGetLGAs = () => {
 /* Business */
 export const apiGetOneBusiness = (business_token) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_by_string_api${serviceSuffix}?string=${business_token}`,
+        url: `/fetch_business_by_string_api${serviceSuffix}?string=${business_token}`,
         method: "get"    
     })
 }
 
 export const apiGetBusinessCategories = (business_token) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_categories_api${serviceSuffix}?string=${business_token}`,
+        url: `/fetch_business_categories_api${serviceSuffix}?string=${business_token}`,
         method: "get"    
     })
 }
 
 // export const apiGetBusinessApprovedPhotos = (business_token) => {
 //     return ApiAdapter.fetchData({
-//         url: `fetch_business_public_photos_api${serviceSuffix}?string=${business_token}`,
+//         url: `/fetch_business_public_photos_api${serviceSuffix}?string=${business_token}`,
 //         method: "get"    
 //     })
 // }
 
 // export const apiGetBusinessApprovedVideos = (business_token) => {
 //     return ApiAdapter.fetchData({
-//         url: `fetch_business_public_videolinks_api${serviceSuffix}?string=${business_token}`,
+//         url: `/fetch_business_public_videolinks_api${serviceSuffix}?string=${business_token}`,
 //         method: "get"    
 //     })
 // }
 export const apiGetBusinessWorkingHours = (business_token) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_working_hours_api${serviceSuffix}?string=${business_token}`,
+        url: `/fetch_business_working_hours_api${serviceSuffix}?string=${business_token}`,
         method: "get"    
     })
 }
 export const apiGetBusinessBranches = (business_token) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_public_branches_api${serviceSuffix}?string=${business_token}`,
+        url: `/fetch_business_public_branches_api${serviceSuffix}?string=${business_token}`,
         method: "get"    
     })
 }
 export const apiGetBusinessSubscription = (business_token) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_latest_subscription_api${serviceSuffix}?string=${business_token}`,
+        url: `/fetch_business_latest_subscription_api${serviceSuffix}?string=${business_token}`,
         method: "get"    
     })
 }
 export const apiGetBusinessSubscriptionByString = (subscription_string) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_subscription_by_string_api${serviceSuffix}?string=${subscription_string}`,
+        url: `/fetch_business_subscription_by_string_api${serviceSuffix}?string=${subscription_string}`,
         method: "get"    
     })
 }
 
 export const apiGetRelatedBusinesses = (business_token) => {
     return ApiAdapter.fetchData({
-        url: `fetch_related_businesses_api${serviceSuffix}?string=${business_token}`,
+        url: `/fetch_related_businesses_api${serviceSuffix}?string=${business_token}`,
         method: "get"    
     })
 }
 export const apiGetBusinessFacilities = (business_token) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_available_facilities_api${serviceSuffix}?string=${business_token}`,
+        url: `/fetch_business_available_facilities_api${serviceSuffix}?string=${business_token}`,
         method: "get"    
     })
 }
 export const apiGetBusinessReviews = (business_token) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_reviews_api${serviceSuffix}?string=${business_token}`,
+        url: `/fetch_business_reviews_api${serviceSuffix}?string=${business_token}`,
         method: "get"    
     })
 }
 export const apiGetBusinessReviewsStats = (business_token) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_review_summary_api${serviceSuffix}?string=${business_token}`,
+        url: `/fetch_business_review_summary_api${serviceSuffix}?string=${business_token}`,
         method: "get"    
+    })
+}
+export const apiAddBusinessReview = (data) => {
+    return ApiAdapter.fetchData({
+        url: `add_business_review${serviceSuffix}`,
+        method: "post",
+        data
+    })
+}
+
+export const apiSaveBusiness = ({buisnes_string}) => {
+    return ApiAdapter.fetchData({
+        url: `/save_business${serviceSuffix}?buisnes_string=${buisnes_string}}`,
+        method: "get",
     })
 }
 
 // export const apiCheckSavedBusinesses = (business_token) => {
 //     return ApiAdapter.fetchData({
-//         url: `check_saved_business_api${serviceSuffix}?user=token&business=${business_token}`,
+//         url: `/check_saved_business_api${serviceSuffix}?user=token&business=${business_token}`,
 //         method: "get"    
 //     })
 // }
 
 // export const apiGetBusinessesFacilities = (facil_string) => {
 //     return ApiAdapter.fetchData({
-//         url: `fetch_facility_by_string_api${serviceSuffix}?string=${facil_string}`,
+//         url: `/fetch_facility_by_string_api${serviceSuffix}?string=${facil_string}`,
 //         method: "get"    
 //     })
 // }

@@ -1,7 +1,25 @@
 import React from 'react'
 import Button from '../Button'
+import {  AiOutlineStar, AiFillStar } from "react-icons/ai";
+import usePost from '/src/hooks/usePost'
+import { apiAddBusinessReview } from '/src/services/CommonService'
 
-const BusinessReview = ({ setModalOpen, modalOpen }) => {
+
+
+const BusinessReview = ({ setModalOpen, modalOpen, user }) => {
+  const [review, setReview] = React.useState("")
+  const [rating, set] = React.useState(0)
+
+
+  // console.log("review", review)
+
+  const submitReview = usePost({ 
+    api: apiAddBusinessReview, 
+    success: (a,b,c) => {
+      closeModal()
+    } 
+  })
+
 
     React.useEffect(() => {
         if (modalOpen) {
@@ -11,17 +29,26 @@ const BusinessReview = ({ setModalOpen, modalOpen }) => {
         }
       }, [modalOpen])
 
-    const handleOutsideClick = (e) => {
-        if (e.target === e.currentTarget) {
-            closeModal()
-        }
-    }
+      const handleOutsideClick = (e) => {
+          if (e.target === e.currentTarget) {
+              closeModal()
+          }
+      }
 
     const closeModal = () => {
         setModalOpen(false)
         document.body.style.overflow = 'unset'
     }
     
+    const handleSubmit = () => {
+      // console.log("submit", user?.verify_string, review, rating)
+        submitReview.mutate({ 
+          user_string: user?.verify_string,
+          review, 
+          rating 
+        })
+    }
+
     
 
   return (
@@ -29,13 +56,16 @@ const BusinessReview = ({ setModalOpen, modalOpen }) => {
         <div className="modal bg-white p-8 py-6 w-full max-w-md">
             <h2 className='text-xl text-green2 font-semibold mb-3'>Write a Review</h2>
             <div className='py-2 pb-14 relative'>
-                <textarea className='border-2 border-black/10 p-4 px-6 w-full text-xs opacity-80 outline-none focus:border-black/30 rounded-xl p-2' name="review" id="review" cols="40" rows="8" defaultValue="">
-                </textarea>
+                <div className="flex items-center justify-center gap-2 mb-3">
+                    {[...Array(5).keys()].map(rate => (
+                    rating > rate ? <AiFillStar key={rate} onClick={() => set(rate+1)} className="text-green cursor-pointer" size="2rem" /> : <AiOutlineStar key={rate} onClick={() => set(rate+1)} className="text-green cursor-pointer" size="2rem" /> ))}
+                </div>
+                <textarea value={review} onChange={(e) => setReview(e.target.value)} className='border-2 border-black/10 p-4 px-6 w-full text-xs opacity-80 outline-none focus:border-black/30 rounded-xl' name="review" id="review" cols="40" rows="8"></textarea>
                 <div className='flex items-end gap-2 absolute bottom-2 right-6'>
                     <Button onClickFunc={closeModal} override={true} className='rounded px-5 py-1.5'>
                         Cancel
                     </Button>
-                    <Button className='rounded px-5 py-1.5'>
+                    <Button onClickFunc={handleSubmit} className='rounded px-5 py-1.5'>
                         Submit
                     </Button>
                 </div>
