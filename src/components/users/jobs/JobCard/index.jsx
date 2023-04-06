@@ -72,7 +72,7 @@ const index = ({ job, refetchJobs, removeJobsCache, business_id }) => {
             <div
               className="dot shadow-switch-1 absolute left-0.5 top-1/2 -translate-y-1/2 h-4 w-4 rounded-full shadow-lg bg-white transition peer-checked:translate-x-4"
             ></div>
-            <div className="h-5 w-9 rounded-full bg-blue shadow-inner"></div>
+            <div className={`h-5 w-9 rounded-full  ${job?.status==="1" ? "bg-blue" : "bg-blue/40"} shadow-inner`}></div>
           </div>
         </label>
         <div className='flex items-center gap-2'>

@@ -78,8 +78,8 @@ const columns = [
         custom: (value, meta) => {
             // console.log("meta", meta)
             return  (
-              <div className="flex items-center gap-4">
-                <span className={expired(value) ? "text-red-500" : "text-green"}>{expired(value) ? "Expired" : "Active"}</span>
+              <div className={`flex items-center gap-4 ${meta?.status}`}>
+                <span className={((!expired(value) && meta?.status == 1 )|| (!expired(value) && meta?.status==2)) ? "text-green" : "text-red-500"}>{expired(value) ? "Expired" : meta?.status==2 ? "Renewed" : meta?.status == 1 ? "Active" : "Cancelled" }</span>
               </div>
             )
         },
@@ -121,7 +121,7 @@ const Subscription = () => {
         param: id,
       })
 
-      console.log("userSubscriptions", userSubscriptions)
+      // console.log("userSubscriptions", userSubscriptions)
 
     const subscribeMutation = usePost({ 
         api: apiInitiateSubscription, 

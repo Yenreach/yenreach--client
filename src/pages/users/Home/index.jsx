@@ -56,7 +56,7 @@ const index = () => {
                                             <div>
                                                 <Image url={business?.profile_img} name={business?.name} className="w-20 object-cover h-20" />
                                             </div>
-                                            <div className='p-4 px-6 relative'>
+                                            <div className='p-4 px-6 relative w-full'>
                                                 <p className='font-semibold mb-1'>{business.name}</p>
                                                 <div className='flex gap-2 items-center text-[#777777] text-xsm'>
                                                     <span>20-10-2022</span>

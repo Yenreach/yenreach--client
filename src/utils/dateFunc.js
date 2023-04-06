@@ -19,7 +19,8 @@ export const formatDate = (date) => {
     const day = newDate.getDate();
     const month = newDate.getMonth() + 1;
     const year = newDate.getFullYear();
-    return `${day} ${months[month+1]} ${year}`;
+    // console.log("newDate", newDate, "day", day, "month", month, "year", year);
+    return `${day} ${months[month-1]} ${year}`;
 };
   
 export const expired = (date) => {

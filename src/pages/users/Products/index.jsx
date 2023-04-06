@@ -97,7 +97,7 @@ const Products = () => {
               <div
                 className="dot shadow-switch-1 absolute left-0.5 top-1/2 -translate-y-1/2 h-4 w-4 rounded-full shadow-lg bg-white transition peer-checked:translate-x-4"
               ></div>
-              <div className="h-5 w-9 rounded-full bg-orange shadow-inner"></div>
+              <div className={`h-5 w-9 rounded-full ${value==="1" ? "bg-orange" : "bg-orange/40"} shadow-inner`}></div>
             </div>
           </label>
         )
@@ -109,17 +109,6 @@ const Products = () => {
     },
   ];
 
-  // const deletedProduct = useFetch({
-  //   key: ['deleteProducts', deleteProductDetails?.business_string, deleteProductDetails?.product_string],
-  //   api: apiDeleteProduct,
-  //   param: {business_string: deleteProductDetails?.business_string, product_string: deleteProductDetails?.product_string},
-  //   enabled: !!deleteProductDetails?.business_string && !!deleteProductDetails?.product_string,
-  //   onSuccess: () => {
-  //     console.log("deleted")
-  //     setDeleteProductDetails({})
-  //     refetchProducts()
-  //   }
-  // })
 
   const deletedProductMutation = useMutation({
     mutationFn: (data) => {
@@ -131,15 +120,12 @@ const Products = () => {
         setDeleteProductDetails({})
         removeProductsCache()
         refetchProducts()
-        // statusRef.current.checked = !statusRef.current.checked
     },
     onError: (error, variables, context) => {
       console.log("error deleting product", error)
     },
   })
    
-  // console.log("deleting", deletedProduct)
-  
   const updateProductStatusMutation = useMutation({
     mutationFn: (data) => {
         console.log("mutating state", data)
@@ -168,7 +154,7 @@ const Products = () => {
   return (
     <Dashboard>
         <main className='flex-1 overflow-y-auto overflow-hidden'>
-          {(isLoading || updateProductStatus?.isLoading || (deletedProductMutation?.isLoading)) && <Loader loader={4} />}
+          {(isLoading || updateProductStatusMutation?.isLoading || (deletedProductMutation?.isLoading)) && <Loader loader={4} />}
           <Header business_string={id} type="product" />
           <section className='p-8 px-4 sm:px-8'>
            {products &&
