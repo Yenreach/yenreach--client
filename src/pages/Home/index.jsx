@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { apiBusinessOfTheWeek } from '../../services/CommonService'
+import { apiBusinessOfTheWeek, apiGetApprovedBusinesses } from '../../services/CommonService'
 import getData from '../../utils/getData'
 import Header from '/src/components/Header'
 import Footer from '../../components/Footer'
@@ -20,6 +20,13 @@ import useFetch from '/src/hooks/useFetch'
 import Error from '../../components/Error'
 
 const index = () => {
+    const { data: aprrovedBusinesses, error: errorApprovedBusinesses } = useFetch({
+        key:  ['aprrovedBusinesses'],
+        api: apiGetApprovedBusinesses,
+        staleTime: 1000 * 60 * 5,
+
+    })
+
     const { data: businessOfTheWeek, error: errorBusinessOfTheWeek } = useFetch({
         api: apiBusinessOfTheWeek,
         key: ['businessOfTheWeek'],
@@ -32,7 +39,7 @@ const index = () => {
     <>
         {/* <Error /> */}
         <Header />
-        <Hero />
+        <Hero businesses={aprrovedBusinesses} />
         <Trustees />
         <Category />
         <section className='px-4 py-12 md:px-10 lg:px-24'>

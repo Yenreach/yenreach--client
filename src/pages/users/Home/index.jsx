@@ -48,7 +48,11 @@ const index = () => {
                         </div>
                             <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-16'>
                                 {businesses?.map(business => (
-                                    <Link to={`/users/business/${business.verify_string}`} key={business?.verify_string} className='bg-white rounded overflow-hidden flex text-sm w-full'>
+                                    <Link to={business?.reg_stage == 0 ? `/users/edit-business/${business.verify_string}`
+                                    : business?.reg_stage < 3 ? `/users/edit-business/${business.verify_string}`
+                                    : business?.reg_stage == 3 ? `/users/business/${business.verify_string}`
+                                    : `/users/business/${business.verify_string}`
+                                    } key={business?.verify_string} className='bg-white rounded overflow-hidden flex text-sm w-full'>
                                             <div>
                                                 <Image url={business?.profile_img} name={business?.name} className="w-20 object-cover h-20" />
                                             </div>
@@ -59,9 +63,15 @@ const index = () => {
                                                     <img src={Elipse} alt=""  />
                                                     <span className='text-green font-medium'>234 visits</span>
                                                 </div>
-                                                <div className='absolute bottom-0 right-0 px-1 py-0.5 pr-2.5 flex text-xsm bg-green text-white'>
-                                                    <MdStar color="orange" className='mr-1' />
-                                                    4.5
+                                                <div className='absolute bottom-0 right-0 px-1 py-0.5 pt-1 flex text-xsm bg-green text-white'>
+                                                    {
+                                                        business?.reg_stage == 0 ? "Suspended" 
+                                                        : business?.reg_stage < 3 ? "Incomplete Registration" 
+                                                        : business?.reg_stage == 3 ? "Pending Approval"
+                                                        : "Active"
+                                                    }
+                                                    {/* <MdStar color="orange" className='mr-1' />
+                                                    4.5 */}
                                                 </div>
                                             </div>
                                     </Link>)

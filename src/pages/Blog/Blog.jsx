@@ -60,7 +60,7 @@ const index = () => {
       </section>
       <main>
           <section className='px-4 py-12 md:px-10 lg:px-24 max-w-[750px] mx-auto'>
-            <h2 className='text-2xl font-semibold mb-5'>Introduction</h2>
+            {/* <h2 className='text-2xl font-semibold mb-5'>Introduction</h2> */}
             <div dangerouslySetInnerHTML={{ __html: blog?.post }}></div>
         </section>
         <section className='px-4 py-12 md:px-10 lg:px-24 max-w-[750px] mx-auto'>

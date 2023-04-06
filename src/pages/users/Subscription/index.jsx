@@ -163,7 +163,7 @@ const Subscription = () => {
     <Dashboard> 
     <div className='flex-1 overflow-y-auto overflow-hidden relative'>
         <Head />
-        {isLoading && <Loader loader={4} />}
+        {(isLoading || subscribeMutation?.isLoading || paymentMutation?.isLoading) && <Loader loader={4} />}
         <section className='p-8 px-4 sm:px-8 text-sm md:pt-16 py-16'>
            {userSubscriptions &&
             <div className='mb-12 bg-white rounded-xl p-4'>

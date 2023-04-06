@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { apiGetFilledCategories, apiGetBusinessStates } from '../../services/CommonService'
 import Button from '/src/components/ui/Button'
@@ -28,9 +28,10 @@ const carouselData = [
 const staleTime = 1000 * 60 * 60 * 24
 
 
-const index = () => {
+const index = ({ businesses }) => {
   const [search, setSearch] = useState('')
   const [location, setLocation] = useState('')
+  const businessCount = useMemo(() => businesses?.length, [businesses])
 
   const carouselRef = React.useRef(null)
   const carouselInnerRef = React.useRef([])
@@ -122,7 +123,7 @@ const index = () => {
         {/* <SearchBar /> */}
         <div className='flex items-center gap-2 justify-between w-full px-2 sm:w-4/5'>
           <div className='flex flex-col items-center'>
-            <span className='font-semibold'>2000+</span>
+            <span className='font-semibold'>{businessCount}+</span>
             <span className='text-sm md:text-lg'>Businesses</span>
           </div>
           <div className='flex flex-col items-center'>
