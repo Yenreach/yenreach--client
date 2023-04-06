@@ -86,7 +86,7 @@ const index = () => {
     enabled: !!businessSubscription?.subscription_string,
   })
 
-  // console.log("business", business)
+  console.log("business", business)
 
   const nextReview = () => {
     if(reviewsContainerRef.current?.children?.length > 0){
@@ -166,15 +166,21 @@ const index = () => {
               </div>
               <h2 className='text-lg text-green2 font-semibold mb-4'>Photos</h2>
               <div className='flex flex-wrap gap-4 mb-10'>
-                <img src={Photo1}  alt="" className='h-20' />
+                {business?.photos?.length ? business?.photos?.map((photo, index) => <img key={index} src={photo?.filename} alt="" className='h-20 w-24 object-cover' />) 
+                : <span className='text-[#476788] text-xs sm:text-sm'>No photos</span>
+                }
+                {/* <img src={Photo1}  alt="" className='h-20' />
                 <img src={Photo2} alt="" className='h-20' />
-                <img src={Photo3} alt="" className='h-20' />
+                <img src={Photo3} alt="" className='h-20' /> */}
               </div>
               <h2 className='text-lg text-green2 font-semibold mb-4'>Products</h2>
               <div className='flex flex-wrap gap-4 mb-10'>
-                <img src={Product1} alt="" className='h-20' />
+              {business?.products.length ? business?.products?.map((photo, index) => <img key={index} src={photo?.filename} alt="" className='h-20 w-24 object-cover' />) 
+                : <span className='text-[#476788] text-xs sm:text-sm'>No Products</span>
+                }
+                {/* <img src={Product1} alt="" className='h-20' />
                 <img src={Product2} alt="" className='h-20' />
-                <img src={Product3} alt="" className='h-20' />
+                <img src={Product3} alt="" className='h-20' /> */}
               </div>
               {reviews && 
               <>
