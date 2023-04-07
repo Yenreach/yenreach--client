@@ -3,7 +3,6 @@ import { Link, useParams } from 'react-router-dom'
 import useFetch from '/src/hooks/useFetch'
 import { useMutation } from "@tanstack/react-query";
 import { apiUpdateProductStatus, apiDeleteProduct, apiGetAllBusinessProducts } from '../../../services/ProductService'
-import { apiUpdateJobStatus, apiDeleteJob } from '/src/services/JobService'
 import { BiEdit } from "react-icons/bi";
 import { MdOutlineDelete } from "react-icons/md";
 import Header from "/src/components/users/Header"

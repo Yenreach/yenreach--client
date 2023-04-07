@@ -1,7 +1,9 @@
 import React, { useRef } from 'react'
 import useFetch from '/src/hooks/useFetch'
+import usePost from '/src/hooks/usePost'
 import { useParams, Link, useLocation } from 'react-router-dom'
-import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessWorkingHours, apiGetBusinessBranches, apiGetRelatedBusinesses, apiGetBusinessSubscription, apiGetBusinessSubscriptionByString, apiGetBusinessReviews, apiGetBusinessReviewsStats } from '/src/services/CommonService'
+import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessWorkingHours, apiGetBusinessBranches, apiGetRelatedBusinesses, apiGetBusinessSubscription, apiGetBusinessSubscriptionByString, apiGetBusinessReviews, apiGetBusinessReviewsStats, apiAddPageVisit, apiGetCookie } from '/src/services/CommonService'
+import { apiGetAllBusinessProducts } from '/src/services/ProductService'
 import BusinessCard from '/src/components/ui/BusinessCard'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -21,6 +23,7 @@ import Mail from '../../assets/mail.svg'
 import Map from '../../assets/map.svg'
 import Image from '/src/components/Image';
 import { useAuthContext } from '/src/hooks/useAuthContext'
+import { getCookie, setCookie } from '../../utils/cookie'
 
 
 
@@ -31,13 +34,32 @@ const index = () => {
   const { user } = useAuthContext()
   const location = useLocation()
 
-  
+  const addPageVisitMutation = usePost({ 
+    api: apiAddPageVisit, 
+    showSuccessMessage: false,
+    showErrorMessage: false,
+  })
+
+
+
   const { data: business, error: errorBusiness, isLoading } = useFetch({
     api: apiGetOneBusiness,
     param: id,
     key: ['business', id],
   })
-  
+
+  const { data: cookie } = useFetch({
+    api: apiGetCookie,
+    key: ['cookie'],
+    enabled: !user?.verify_string,
+  })
+
+  const {  error: errorProducts, data: products, refetch: refetchProducts, remove: removeProductsCache } = useFetch({
+    key: ['userProducts', id],
+    api: apiGetAllBusinessProducts,
+    param: id,
+  })
+
   const { data: categories, error: errorCategories } = useFetch({
     api: apiGetBusinessCategories,
     param: id,
@@ -86,7 +108,6 @@ const index = () => {
     enabled: !!businessSubscription?.subscription_string,
   })
 
-  console.log("business", business)
 
   const nextReview = () => {
     if(reviewsContainerRef.current?.children?.length > 0){
@@ -99,6 +120,28 @@ const index = () => {
     }
   }
 
+  React.useEffect(() => {
+    const addPageVisit = (user_string) => {
+      addPageVisitMutation.mutate({
+        business_string: id,
+        user_string: user_string
+      })
+    }
+    if (user) {
+      addPageVisit(user?.verify_string)
+    } else {
+      const saved_cookie = getCookie('yenreach')
+      if (saved_cookie) {
+        const cookieData = JSON.parse(saved_cookie)
+        addPageVisit(cookieData?.user_string)
+      } else if (cookie) {
+        addPageVisit(cookie?.cookie)
+        setCookie('yenreach', JSON.stringify({ user_string: cookie?.cookie }), 1)
+      }
+    }
+  }, [cookie, user, id])
+
+  // console.log("business", cookie, user)
   return (
       <>
         <Header />
@@ -175,7 +218,7 @@ const index = () => {
               </div>
               <h2 className='text-lg text-green2 font-semibold mb-4'>Products</h2>
               <div className='flex flex-wrap gap-4 mb-10'>
-              {business?.products.length ? business?.products?.map((photo, index) => <img key={index} src={photo?.filename} alt="" className='h-20 w-24 object-cover' />) 
+              {products?.length ? products?.map((product, index) => <img key={index} src={product?.photos[0]?.filename} alt="" className='h-20 w-24 object-cover bg-black/20 shadow' />) 
                 : <span className='text-[#476788] text-xs sm:text-sm'>No Products</span>
                 }
                 {/* <img src={Product1} alt="" className='h-20' />

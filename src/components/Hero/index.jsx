@@ -31,7 +31,7 @@ const staleTime = 1000 * 60 * 60 * 24
 const index = ({ businesses }) => {
   const [search, setSearch] = useState('')
   const [location, setLocation] = useState('')
-  const businessCount = useMemo(() => businesses?.length, [businesses])
+  const businessCount = useMemo(() => Math.floor(businesses?.length / 100) * 100, [businesses])
 
   const carouselRef = React.useRef(null)
   const carouselInnerRef = React.useRef([])

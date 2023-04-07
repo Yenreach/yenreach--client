@@ -13,6 +13,12 @@ export const apiHomeBusiness =  () => {
         method: "get"    
     })
 }
+// export const apiGetUsers =  () => {
+//     return ApiAdapter.fetchData({
+//         url: servicePrefix + "fetch_all_users_api" + serviceSuffix,
+//         method: "get"    
+//     })
+// }
 
 export const apiBusinessCategories =  () => {
     return ApiAdapter.fetchData({
@@ -275,10 +281,23 @@ export const apiForgotEmail =  () => {
         method: "get"    
     })
 }
+export const apiGetCookie =  () => {
+    return ApiAdapter.fetchData({
+        url: servicePrefix + "fetch_new_cookie_api" + serviceSuffix,
+        method: "get"    
+    })
+}
 export const apiPageVisits =  () => {
     return ApiAdapter.fetchData({
         url: servicePrefix + "transfer_page_visits_api" + serviceSuffix,
         method: "get"    
+    })
+}
+export const apiAddPageVisit =  (data) => {
+    return ApiAdapter.fetchData({
+        url: servicePrefix + "create_page_visit_api" + serviceSuffix,
+        method: "post",
+        data 
     })
 }
 
