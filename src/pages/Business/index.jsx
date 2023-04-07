@@ -47,7 +47,7 @@ const index = () => {
     param: id,
     key: ['business', id],
   })
-
+// console.log("business", business)
   const { data: cookie } = useFetch({
     api: apiGetCookie,
     key: ['cookie'],

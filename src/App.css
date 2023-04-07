@@ -13,6 +13,11 @@ body {
   /* overflow-x: auto; */
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator .date-picker {
+  display: none;
+  -webkit-appearance: none;
+}
+
 .move {
   transform: translateX(-246px);
   transition: transform 0.5s ease-in-out;

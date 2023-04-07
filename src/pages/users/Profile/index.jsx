@@ -39,7 +39,7 @@ const Profile = () => {
             <div className='md:max-w-xl bg-white px-8 py-5 mb-16 rounded-3xl'>
                 <div className='mb-4'>
                     <span className='block w-12 h-12 rounded-full bg-gray'>
-                        <img src='https://firebasestorage.googleapis.com/v0/b/fir-test-f9e66.appspot.com/o/images%2Fb61cd6ed-6fb4-4c1b-b348-c3156d03bb11?alt=media&token=f65537e4-2e26-469c-9f60-2102a3cc7912' alt='profile' className='w-full h-full rounded-full' />
+                    <img src={profile?.image} alt="" className='w-full h-full object-cover rounded-full' />
                     </span>
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4 lg:gap-12 text-sm mb-12'>

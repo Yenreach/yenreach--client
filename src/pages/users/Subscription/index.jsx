@@ -121,7 +121,7 @@ const Subscription = () => {
         param: id,
       })
 
-      // console.log("userSubscriptions", userSubscriptions)
+      // console.log("subscriptions", subscriptions)
 
     const subscribeMutation = usePost({ 
         api: apiInitiateSubscription, 
@@ -170,7 +170,7 @@ const Subscription = () => {
                 <h3 className='text-green text-xl font-medium mb-3'>{} Subscriptions</h3>
                     <Table data={userSubscriptions} columns={columns} />
             </div>}
-            <div className='flex flex-wrap gap-4'>
+            <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
                 {subscriptions?.map(subscription => 
                     (<div key={subscription.id} className='p-5 py-7 rounded min-w-[250px] bg-white'>
                         <div className='flex items-center gap-3 mb-12'>
@@ -204,13 +204,14 @@ const Subscription = () => {
                                 <MdArrowDropDown className='absolute right-2 top-1/2 -translate-y-1/2' size="1.5rem" color="00C885" />
                             </div>
                         </div>
-                        <div className='flex flex-col items-center justify-center gap-4 border-t border-[#00000010] pt-6'>
+                        <div className='flex flex-col items-center justify-center gap-4 border-t border-[#00000010] pt-6 relative'>
                             <div>
-                                <span className='font-medium text-lg'>₦{plan[subscription?.package]?.split(",")[3] || "null"}</span><span>/{plan[subscription?.package]?.split(",")[1] > 1 && plan[subscription?.package]?.split(",")[1]}{plan[subscription?.package]?.split(",")[2] === "3" ? "Month(s)" : "Year"}</span>
+                                <span className='font-medium text-lg'>₦{plan[subscription?.package]?.split(",")[3] || ""}</span><span>/{plan[subscription?.package]?.split(",")[1] > 1 && plan[subscription?.package]?.split(",")[1]}{plan[subscription?.package]?.split(",")[2] === "3" ? "Month(s)" : "Year"}</span>
                             </div>
-                            <Button onClickFunc={() => handleSubmit(plan[subscription?.package].split(",")[0])} className='py-1.5 px-3 rounded-sm'>
+                            <Button disabled={!plan[subscription?.package]} onClickFunc={() => handleSubmit(plan[subscription?.package].split(",")[0])} className={`py-1.5 px-3 rounded-sm disabled:bg-green/80 peer`}>
                                 Subscribe
                             </Button>
+                            <span className='hidden peer-hover:peer-disabled:block text-xs absolute -bottom-6 text-green font-semibold'>Choose a duration above</span>
                             {/* <Button onClickFunc={() => setModalOpen(true)} className='py-1.5 px-3 rounded-sm'>
                                 Subscribe
                             </Button> */}

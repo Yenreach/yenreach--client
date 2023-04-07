@@ -15,7 +15,7 @@ import Loader from '/src/components/Loader'
 const Profile = () => {
   const { user } = useAuthContext()
   const { url: cvUrl, uploadImage: uploadCV, error: cvError, progress } = useImage()
-  const { url: profilePhoto, uploadImage: uploadProfilePhoto } = useImage()
+  const { url: profilePhoto, uploadImage: uploadProfilePhoto, loading: uploadingProfileImage } = useImage()
   
   const cvMutation = usePost({ api: apiUpdateUserCv })
   const updateUserMutation = usePost({ api: apiUpdateUser })
@@ -93,7 +93,7 @@ const Profile = () => {
   }, [cvUrl])
 
   const handleProfilePhotoUpload = (file) => {
-    console.log("file", file)
+    // console.log("file", file)
     uploadProfilePhoto(file)
   }
 
@@ -112,10 +112,11 @@ const Profile = () => {
     updateUserMutation.mutate(data)
   }
 
+  // console.log("profileDetails", profileDetails)
 
   return (
     <Dashboard> 
-    {isLoading && <Loader loader={4} />}
+    {(isLoading || updateUserMutation?.isLoading || updatePasswordMutation?.isLoading || cvMutation?.isLoading) && <Loader loader={4} />}
     <div className='flex-1 overflow-y-auto overflow-hidden'>
         <Head />
         <section className='p-8 px-4 sm:px-8 text-sm xl:pr-80'>
@@ -136,12 +137,12 @@ const Profile = () => {
                     <div className="mb-8 grid lg:grid-cols-2 gap-3 overflow-x-auto">
                         <label htmlFor='name' className="flex gap-4 items-center border p-3 rounded-md relative cursor-pointer">
                             <CiEdit size="1.5rem" color="#25D366" className="absolute top-1/2 -translate-y-1/2 right-2" />
-                            <span className="">Full Name:</span>
+                            <span className="whitespace-nowrap">Full Name:</span>
                             <input
                                 name='name'
                                 id='name'
                                 type="text"
-                                className="bg-inherit outline-none w-fit"
+                                className="bg-inherit outline-none w-full pr-6"
                                 placeholder=""
                                 value={profileDetails?.name}
                                 onChange={(e) =>
@@ -151,12 +152,12 @@ const Profile = () => {
                         </label>
                         <label htmlFor='phone' className="flex gap-4 items-center border p-3 rounded-md relative cursor-pointer">
                             <CiEdit size="1.5rem" color="#25D366" className="absolute top-1/2 -translate-y-1/2 right-2" />
-                            <label className="">Phone No.:</label>
+                            <span className="whitespace-nowrap">Phone No.:</span>
                             <input
                                 name='phone'
                                 id='phone'
                                 type="text"
-                                className="bg-inherit outline-none w-fit"
+                                className="bg-inherit outline-none w-full pr-6"
                                 placeholder=""
                                 value={profileDetails?.phone}
                                 onChange={(e) =>
@@ -166,12 +167,12 @@ const Profile = () => {
                         </label>
                         <label htmlFor='dob' className="flex gap-4 items-center border p-3 rounded-md relative cursor-pointer">
                             <CiEdit size="1.5rem" color="#25D366" className="absolute top-1/2 -translate-y-1/2 right-2" />
-                            <label className="">D.O.B.:</label>
+                            <span className="whitespace-nowrap">D.O.B.:</span>
                             <input
                                 name='dob'
                                 id='dob'
-                                type="text"
-                                className="bg-inherit outline-none w-fit"
+                                type="date"
+                                className="bg-inherit outline-none w-full pr-6 appearance-none"
                                 placeholder=""
                                 value={profileDetails?.dob}
                                 onChange={(e) =>
@@ -181,12 +182,12 @@ const Profile = () => {
                         </label>
                         <label htmlFor='gender' className="flex gap-4 items-center border p-3 rounded-md relative cursor-pointer">
                             <CiEdit size="1.5rem" color="#25D366" className="absolute top-1/2 -translate-y-1/2 right-2" />
-                            <label className="">Gender:</label>
+                            <span className="whitespace-nowrap">Gender:</span>
                             <input
                                 name='gender'
                                 id='gender'
                                 type="text"
-                                className="bg-inherit outline-none w-fit"
+                                className="bg-inherit outline-none w-full pr-6"
                                 placeholder=""
                                 value={profileDetails?.gender}
                                 onChange={(e) =>
@@ -196,12 +197,12 @@ const Profile = () => {
                         </label>
                         <label htmlFor='email' className="flex gap-4 items-center border p-3 rounded-md relative cursor-pointer">
                             <CiEdit size="1.5rem" color="#25D366" className="absolute top-1/2 -translate-y-1/2 right-2" />
-                            <label className="">Email:</label>
+                            <span className="whitespace-nowrap">Email:</span>
                             <input
                                 name='email'
                                 id='email'
                                 type="text"
-                                className="bg-inherit outline-none w-fit"
+                                className="bg-inherit outline-none w-full pr-6"
                                 placeholder=""
                                 value={profileDetails?.email}
                                 onChange={(e) =>
