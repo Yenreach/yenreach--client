@@ -275,9 +275,9 @@ export const apiLogin =  () => {
     })
 }
 
-export const apiForgotEmail =  () => {
+export const apiForgotEmail =  (email) => {
     return ApiAdapter.fetchData({
-        url: servicePrefix + "forgot_email_api" + serviceSuffix,
+        url: `${servicePrefix}forgot_email_api${serviceSuffix}?string=${email}`,
         method: "get"    
     })
 }

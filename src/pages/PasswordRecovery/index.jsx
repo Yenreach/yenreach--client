@@ -3,12 +3,33 @@ import { Link } from 'react-router-dom'
 import Header from '../../components/Header';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import Button from '../../components/ui/Button';
+import usePost from '/src/hooks/usePost'
+import { apiForgotEmail } from '/src/services/CommonService'
+import Loader from '/src/components/Loader'
+
+
 
 const index = () => {
+  const [email, setEmail] = React.useState('')
+  const [success, setSuccess] = React.useState(false)
+
+  const forgotPasswordMutation = usePost({ 
+    api: apiForgotEmail,
+    success: (data) => {
+      setSuccess(true)
+    }
+   })
+
+   const handleSubmit = () => {
+    forgotPasswordMutation.mutate(email)
+  }
+  
   return (
     <>
+    {forgotPasswordMutation.isLoading && <Loader Loader={4} />}
       <Header />
       <div className="flex flex-col w-full justify-center items-center h-screen px-6">
+        {!success ? 
         <div className='max-w-lg flex flex-col justify-center items-center gap-4 w-full md:pt-8'>
           <h1 className="text-green font-bold text-2xl mb-8">
             Password Recovery
@@ -17,15 +38,26 @@ const index = () => {
           <form className='flex flex-col w-full gap-12 mt-4 text-sm' action="">
             <div className="flex flex-col gap-1 w-full">
               <label className='text-sm font-medium text-black/80' htmlFor="name">Email Address</label>
-              <input className='border-2 p-2 border-black/10 bg-[#f5f5f791] rounded-md' type="email" name='email' id='email' />
+              <input value={email} onChange={(e) => setEmail(e.target.value)} className='border-2 p-2 border-black/10 bg-[#f5f5f791] rounded-md' type="email" name='email' id='email' />
             </div>
-            <Button className='p-3 font-semibold'>
+            <Button onClickFunc={handleSubmit} className='p-3 font-semibold'>
               Recover my account
             </Button>
           </form>
           
-          <p className='font-semibold text-sm mt-8'>Don't have an account? <Link to='/login' className='text-[#5441ff]'>Sign Up</Link></p>
+          <p className='font-semibold text-sm mt-8'>Don't have an account? <Link to='/signup' className='text-[#5441ff]'>Sign Up</Link></p>
         </div>
+        :
+        <div className='max-w-lg flex flex-col justify-center items-center gap-4 w-full md:pt-8'>
+          <h1 className="text-green font-bold text-2xl mb-8">
+            Password Recovery
+          </h1>
+          <p className='text-center'>
+              Your Password reset link has been sent to your mail - <b>{forgotPasswordMutation?.data?.email}</b>
+          </p>
+          <p className='font-semibold text-xs mt-8'>Don't have an account? <Link to='/signup' className='text-[#5441ff]'>Sign Up</Link></p>
+      </div>
+        }
       </div>
     </>
   )

@@ -26,6 +26,7 @@ export const apiResetPassword =  (data) => {
     })
 }
 export const apiCheckPassword =  ({ user_string, p_string }) => {
+    // console.log("user_string", user_string, "p_string", p_string)
     return ApiAdapter.fetchData({
         url:`/check_user_password_api.php?user_string=${user_string}&p_string=${p_string}`,
         method: "get",
