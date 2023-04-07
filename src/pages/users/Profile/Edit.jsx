@@ -8,10 +8,12 @@ import { CiEdit } from "react-icons/ci";
 import { RiAddBoxLine, RiFileTextLine } from "react-icons/ri";
 import usePost from '/src/hooks/usePost'
 import useImage from '/src/hooks/useImage'
+import { useAuthContext } from '/src/hooks/useAuthContext'
 import Loader from '/src/components/Loader'
 
 
 const Profile = () => {
+  const { user } = useAuthContext()
   const { url: cvUrl, uploadImage: uploadCV, error: cvError, progress } = useImage()
   const { url: profilePhoto, uploadImage: uploadProfilePhoto } = useImage()
   
@@ -60,9 +62,10 @@ const Profile = () => {
       },
   );
 
-  const { isLoading, error, data: profile } = useFetch({
+  const { isLoading, error, data: profile} = useFetch({
     api: apiGetUser,
-    key: ['profile'],
+    key: ['profile', user?.verify_string],
+    param: user?.verify_string
   })
 
   const { data: savedBusinesses }  = useFetch({
@@ -109,7 +112,6 @@ const Profile = () => {
     updateUserMutation.mutate(data)
   }
 
-  console.log("image", profile)
 
   return (
     <Dashboard> 
