@@ -40,7 +40,7 @@ const index = () => {
         {/* <Error /> */}
         <Header />
         <Hero businesses={aprrovedBusinesses} />
-        <Trustees />
+        {/* <Trustees /> */}
         <Category />
         <section className='px-4 py-12 md:px-10 lg:px-24'>
             <div className='bg-[url("assets/audience.svg")] h-64 md:h-60 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-28 px-4 sm:px-12 md:px-24'>     
@@ -59,12 +59,13 @@ const index = () => {
                 <div className='flex flex-col items-start gap-12 max-w-[450px]'>
                     <h3 className='font-medium text-xl text-green'>They are all Here</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
-                        Lorem ipsum dolor sit amet consectetur. Ultricies consectetur nisi ornare tempor. Senectus tortor arcu est duis posuere ante. Cras est malesuada facilisi facilisi eget morbi. Cum justo quis dui laoreet fermentum fringilla. Non non dictum ipsum est tellus adipiscing. <br />
-                        Netus a sodales a lorem eget sed. Scelerisque id urna massa convallis suspendisse ultrices dignissim sed. Facilisis vestibulum convallis varius tellus. Morbi neque egestas etiam feugiat amet. Accumsan fusce sed id id faucibus viverra nunc ut. Porttitor ac cursus rhoncus amet semper nunc quis vitae fermentum. Hendrerit ipsum quis nulla.
+                    We are the premier destination for businesses looking to expand their reach and connect with potential customers. Our platform is designed to help businesses of all sizes grow and succeed by providing them with a powerful marketing tool.
+                    <br />
+                    With our easy-to-use search engine, users can quickly and easily find the businesses they need. Whether you're looking for a restaurant, a clothing store, or a service provider, we've got you covered. Our database is constantly updated with the latest information, so you can be sure that you're getting accurate and up-to-date results.
                     </p>
                     <Link to="/explore">
                         <Button className='py-2 px-28'>
-                            CTA
+                            
                         </Button>
                     </Link>
                 </div>
@@ -73,8 +74,12 @@ const index = () => {
                 <div className='flex flex-col sm:items-end gap-12 max-w-[450px]'>
                     <h3 className='font-medium text-xl text-blue'>They are all Here</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
-                        Lorem ipsum dolor sit amet consectetur. Ultricies consectetur nisi ornare tempor. Senectus tortor arcu est duis posuere ante. Cras est malesuada facilisi facilisi eget morbi. Cum justo quis dui laoreet fermentum fringilla. Non non dictum ipsum est tellus adipiscing. <br />
-                        Netus a sodales a lorem eget sed. Scelerisque id urna massa convallis suspendisse ultrices dignissim sed. Facilisis vestibulum convallis varius tellus. Morbi neque egestas etiam feugiat amet. Accumsan fusce sed id id faucibus viverra nunc ut. Porttitor ac cursus rhoncus amet semper nunc quis vitae fermentum. Hendrerit ipsum quis nulla.
+                    Looking for your next career opportunity? Look no further than our job listing platform. We offer a wide range of job listings across various industries, making it easy for job seekers to find the perfect role for their skills and experience.
+                    <br />
+
+                    Our platform is easy to use and allows job seekers to search for jobs based on location, industry, and job title. We also offer advanced search filters to help job seekers find the exact job they're looking for.
+                    <br />
+                    For employers, we offer a simple and effective way to find the best talent for their organization. With our job listing platform, employers can easily post job openings and attract top talent from our pool of qualified candidates.
                     </p>
                     <Link to="/explore" state={{ data: "jobs" }} >
                         <Button variant='job' className='py-2 px-28'>
@@ -89,8 +94,11 @@ const index = () => {
                 <div className='flex flex-col items-start gap-12 max-w-[450px]'>
                     <h3 className='font-medium text-xl text-orange'>They are all Here</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
-                        Lorem ipsum dolor sit amet consectetur. Ultricies consectetur nisi ornare tempor. Senectus tortor arcu est duis posuere ante. Cras est malesuada facilisi facilisi eget morbi. Cum justo quis dui laoreet fermentum fringilla. Non non dictum ipsum est tellus adipiscing. <br />
-                        Netus a sodales a lorem eget sed. Scelerisque id urna massa convallis suspendisse ultrices dignissim sed. Facilisis vestibulum convallis varius tellus. Morbi neque egestas etiam feugiat amet. Accumsan fusce sed id id faucibus viverra nunc ut. Porttitor ac cursus rhoncus amet semper nunc quis vitae fermentum. Hendrerit ipsum quis nulla.
+                    We offer a marketplace for businesses to sell their products and services. Our marketplace is designed to help businesses of all sizes reach a wider audience and increase their sales.
+                        <br />
+                    With our easy-to-use platform, businesses can create an online storefront that showcases their products and services. Our platform is secure and offers a variety of payment options, making it easy for customers to purchase products and services with confidence.
+                        <br />
+                    For customers, our marketplace offers a wide range of products and services from a variety of businesses. Whether you're looking for handmade crafts, unique gifts, or professional services, our marketplace has something for everyone.
                     </p>
                     <Link to="/explore" state={{ data: "marketplace" }} >         
                         <Button variant='product' className='py-2 px-28'>
