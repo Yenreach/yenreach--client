@@ -14,7 +14,7 @@ const usePost = ({ api, success, failure, showSuccessMessage=true, showErrorMess
             }
         },
         onSuccess: (data, variables, context) => {
-            console.log("success", data)
+            // console.log("success", data)
             if (showSuccessMessage) {
               // toast.success(data?.message);
               toast.success("Successful !");
