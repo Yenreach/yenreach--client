@@ -64,8 +64,8 @@ const index = () => {
                     With our easy-to-use search engine, users can quickly and easily find the businesses they need. Whether you're looking for a restaurant, a clothing store, or a service provider, we've got you covered. Our database is constantly updated with the latest information, so you can be sure that you're getting accurate and up-to-date results.
                     </p>
                     <Link to="/explore">
-                        <Button className='py-2 px-28'>
-                            
+                        <Button className='py-2 px-20'>
+                            Explore Businesses
                         </Button>
                     </Link>
                 </div>
@@ -82,8 +82,8 @@ const index = () => {
                     For employers, we offer a simple and effective way to find the best talent for their organization. With our job listing platform, employers can easily post job openings and attract top talent from our pool of qualified candidates.
                     </p>
                     <Link to="/explore" state={{ data: "jobs" }} >
-                        <Button variant='job' className='py-2 px-28'>
-                            CTA
+                        <Button variant='job' className='py-2 px-20'>
+                            Explore Jobs
                         </Button>
                     </Link>
                 </div>
@@ -101,8 +101,8 @@ const index = () => {
                     For customers, our marketplace offers a wide range of products and services from a variety of businesses. Whether you're looking for handmade crafts, unique gifts, or professional services, our marketplace has something for everyone.
                     </p>
                     <Link to="/explore" state={{ data: "marketplace" }} >         
-                        <Button variant='product' className='py-2 px-28'>
-                            CTA
+                        <Button variant='product' className='py-2 px-20'>
+                            Explore Products
                         </Button>
                     </Link>
                 </div>
