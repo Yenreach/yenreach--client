@@ -97,7 +97,7 @@ const Billboard = () => {
   return (
     <CarouselProvider
         naturalSlideWidth={100}
-        naturalSlideHeight={125}
+        naturalSlideHeight={155}
         totalSlides={billboards.length}
         infinite={true}
         interval={6000}
@@ -107,10 +107,10 @@ const Billboard = () => {
         <Slider className="transition duration-1000 ease">
         {billboards.map((billboard, ind) => (
             <Slide index={ind} key={ind}>
-                <div key={billboard?.id} className=" h-[65vh]">
+                <div key={billboard?.id} className="h-[65vh]">
                     <div className='h-full w-full flex flex-col md:flex-row gap-8 justify-center items-center'>
-                        <div className="flex-1 h-full w-full">
-                            <img src={billboard?.image} alt="advert-banner" className='w-100 h-full object-cover carousel-img' />
+                        <div className="flex-1 h-[250px] md:h-full w-full">
+                            <img src={billboard?.image} alt="advert-banner" className='w-full h-[250px] md:h-full object-cover carousel-img' />
                         </div>
                         <div className="flex flex-col gap-4 justify-center items-center flex-1 h-full w-full text-center">
                             <h2 className="text-xl lg:text-3xl text-capitalize text-bold text-black">{billboard?.title}</h2>
