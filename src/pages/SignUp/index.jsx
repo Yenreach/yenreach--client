@@ -79,8 +79,8 @@ const index = () => {
             <input onChange={handleChange} required className='border-2 p-2 border-[#BABFC5] rounded-md w-fit' type="checkbox" name='terms' id='terms' />
             <label className='text-sm font-semibold w-full' htmlFor="terms">I agree to terms & conditions</label>
           </div>
-          <Button type='submit' className='p-3 font-semibold'>
-            Sign up for free 
+          <Button className='p-3 font-semibold disabled:bg-green/90' type='submit' disabled={isLoading}>
+            {isLoading ? "Loading..." : "Sign up for free " }
           </Button>
           <div className='flex justify-center absolute -bottom-8 left-0 w-full'>
             {messageState && <p className='text-[#FF6B93] text-sm'>{messageState}</p>}

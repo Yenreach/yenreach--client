@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react'
+import { App as CapactiorApp } from '@capacitor/app';
 import { useAuthContext } from './hooks/useAuthContext'
 import './App.css'
 import ScrollToTop from './components/ScrollToTop';
@@ -35,11 +36,18 @@ import Jobs from './pages/users/Jobs'
 import Applicants from './pages/users/Jobs/Applicants'
 import AddJob from './pages/users/Jobs/AddJob'
 
+CapactiorApp.addListener('appStateChange', ({ isActive }) => {
+  console.log('App state changed. Is active?', isActive);
+});
 
+CapactiorApp.addListener('backButton', (data) => {
+  console.log("back button", data)
+})
 
 function App() { 
-  const [count, setCount] = useState(0)
   const { user } = useAuthContext()
+
+  console.log("app, capa==", CapactiorApp)
 
   return (
     <Router>
