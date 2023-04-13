@@ -5,9 +5,12 @@ import { MdOutlineClose } from 'react-icons/md'
 import Logo from "../../assets/logo.svg"
 import Menu from "../../assets/menu.svg"
 import Button from '../ui/Button'
+import { useAuthContext } from "/src/hooks/useAuthContext"
+
 
 const index = () => {
   const [isOpen, setIsOpen] = React.useState(false)
+  const { dispatch, user } = useAuthContext()
   const { pathname } = useLocation()
 
   return (
@@ -23,7 +26,15 @@ const index = () => {
             <li><Link to="/blogs" className={`${pathname==="/blogs" && "text-green border-b-2"} pb-1.5 px-1 font-medium`}>Blog</Link></li>
             <li><Link to="/about" className={`${pathname==="/about" && "text-green border-b-2"} pb-1.5 px-1 font-medium`}>About</Link></li>
             <li><Link to="/contact" className={`${pathname==="/contact" && "text-green border-b-2"} pb-1.5 px-1 font-medium`}>Contact</Link></li>
+            {!user ? 
             <li><Link to="/login" className={`${pathname==="/login" && "text-green border-b-2"} pb-1.5 px-1 font-medium`}>Login</Link></li>
+            :
+            <li>
+              <div onClick={() => dispatch({type: "LOGOUT"})} className='px-1 font-medium cursor-pointer'>
+                 Logout
+              </div>
+            </li>
+            }
           </ul>
           <Link to="/login">
             <Button className='py-1.5 px-3 rounded-sm'>
@@ -50,7 +61,16 @@ const index = () => {
               <li><Link to="/blogs" className={`${pathname==="/blogs" && "text-green"} pb-1.5 px-1 font-medium`}>Blog</Link></li>
               <li><Link to="/about" className={`${pathname==="/about" && "text-green"} pb-1.5 px-1 font-medium`}>About</Link></li>
               <li><Link to="/contact" className={`${pathname==="/contact" && "text-green"} pb-1.5 px-1 font-medium`}>Contact</Link></li>
+              {!user ? 
               <li><Link to="/login" className={`${pathname==="/login" && "text-green"} pb-1.5 px-1 font-medium`}>Login</Link></li>
+                :
+                <li>
+                  <div onClick={() => dispatch({type: "LOGOUT"})} className='px-1 font-medium cursor-pointer'>
+                    Logout
+                  </div>
+                </li>
+              }
+             
             </ul>
             <Link to="/login">
               <Button className='py-1.5 px-3 rounded-sm'>

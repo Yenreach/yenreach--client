@@ -36,9 +36,9 @@ import Jobs from './pages/users/Jobs'
 import Applicants from './pages/users/Jobs/Applicants'
 import AddJob from './pages/users/Jobs/AddJob'
 
-CapactiorApp.addListener('appStateChange', ({ isActive }) => {
-  console.log('App state changed. Is active?', isActive);
-});
+// CapactiorApp.addListener('appStateChange', ({ isActive }) => {
+//   console.log('App state changed. Is active?', isActive);
+// });
 
 CapactiorApp.addListener('backButton', (data) => {
   console.log("back button", data)

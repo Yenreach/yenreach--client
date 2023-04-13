@@ -36,7 +36,7 @@ const useAuth = ({from}) => {
                 dispatch({type: "LOGIN", payload: data})
                 setError(null)
                 setIsLoading(false)
-                navigate(from || '/users')
+                navigate(from, {replace: true} || '/users')
             }
         } catch (error) {
             setError(null)
