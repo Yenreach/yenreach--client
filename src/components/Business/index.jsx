@@ -116,9 +116,9 @@ const index = ({ page: initialPage, num_per_page }) => {
           <BusinessCard key={business.id} business={business} />
         ))}
       </div>
-      <div className="grid w-full py-6 text-xl font-extrabold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
+      {/* <div className="grid w-full py-6 text-xl font-extrabold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
         New Job Listings available       
-      </div>
+      </div> */}
       <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-4">
         {(aprrovedBusinesses || filteredBusiness) && paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.data?.slice(20,40).map((business) => (
           <BusinessCard key={business.id} business={business} />

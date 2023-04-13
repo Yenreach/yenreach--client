@@ -19,25 +19,33 @@ const AllJobs = ({ jobs, setSelectedJobIndex, setTab, page: initialPage, num_per
 
   return (
     <>
-			<div className="grid w-full xs:grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {
-          jobs.slice(0, 20).map((job, index) => (
-            <JobCard index={index} setSelectedIndex={setSelectedJobIndex} setTab={setTab} key={job?.id} job={job} />
-          ))
-        }
-        {/* <JobCard /> */}
+			{jobs?.length ? 
+        <>
+        <div className="grid w-full xs:grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {
+            jobs.slice(0, 20).map((job, index) => (
+              <JobCard index={index} setSelectedIndex={setSelectedJobIndex} setTab={setTab} key={job?.id} job={job} />
+            ))
+          }
+          {/* <JobCard /> */}
+        </div>
+        {/* <div className="my-4 grid w-full py-6 text-xl font-semibold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
+          New Job Listings available 
+        </div> */}
+        <div className="grid w-full grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
+          {
+            jobs.slice(20, 40).map((job, index) => (
+              <JobCard index={index} setSelectedIndex={setSelectedJobIndex} setTab={setTab} key={job?.id} job={job} />
+            ))
+          }
+        </div>
+        <Pagination page={page} num_per_page={num_per_page} data={jobs} handlePageChange={handlePageChange} />
+        </>
+      : 
+      <div className='flex justify-center items-center h-24 text-black/70'>
+        No jobs Available yet
       </div>
-      {/* <div className="my-4 grid w-full py-6 text-xl font-semibold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
-        New Job Listings available 
-      </div> */}
-      <div className="grid w-full grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-        {
-          jobs.slice(20, 40).map((job, index) => (
-            <JobCard index={index} setSelectedIndex={setSelectedJobIndex} setTab={setTab} key={job?.id} job={job} />
-          ))
-        }
-      </div>
-      <Pagination page={page} num_per_page={num_per_page} data={jobs} handlePageChange={handlePageChange} />
+    }
     </>
   )
 }
