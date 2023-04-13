@@ -27,9 +27,9 @@ const AllJobs = ({ jobs, setSelectedJobIndex, setTab, page: initialPage, num_per
         }
         {/* <JobCard /> */}
       </div>
-      <div className="my-4 grid w-full py-6 text-xl font-semibold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
+      {/* <div className="my-4 grid w-full py-6 text-xl font-semibold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
         New Job Listings available 
-      </div>
+      </div> */}
       <div className="grid w-full grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
         {
           jobs.slice(20, 40).map((job, index) => (
