@@ -12,6 +12,8 @@ import Elipse from '../../../assets/dashboard/elipse.svg'
 import NoBusiness from '../../../assets/dashboard/no-business.svg'
 import { useAuthContext } from '/src/hooks/useAuthContext'
 import Image from '../../../components/Image'
+import { expired, formatDate2 } from '/src/utils/dateFunc'
+
 
 
 const index = () => {
@@ -23,7 +25,7 @@ const index = () => {
         param: user?.verify_string,
       })
 
-    //   console.log("businesses", businesses)
+      console.log("businesses", businesses)
 
     return (
         <Dashboard>
@@ -52,16 +54,16 @@ const index = () => {
                                     : business?.reg_stage < 3 ? `/users/edit-business/${business.verify_string}`
                                     : business?.reg_stage == 3 ? `/users/business/${business.verify_string}`
                                     : `/users/business/${business.verify_string}`
-                                    } key={business?.verify_string} className='bg-white rounded overflow-hidden flex text-sm w-full'>
+                                    } key={business?.verify_string} className='bg-white rounded overflow-hidden flex text-sm w-full shadow p-2'>
                                             <div>
                                                 <Image url={business?.profile_img} name={business?.name} className="w-20 object-cover h-20" />
                                             </div>
                                             <div className='p-4 px-6 relative w-full'>
                                                 <p className='font-semibold mb-1'>{business.name}</p>
                                                 <div className='flex gap-2 items-center text-[#777777] text-xsm'>
-                                                    <span>20-10-2022</span>
+                                                    <span>{formatDate2(business?.created)}</span>
                                                     <img src={Elipse} alt=""  />
-                                                    <span className='text-green font-medium'>234 visits</span>
+                                                    <span className='text-green font-medium'>0 visits</span>
                                                 </div>
                                                 <div className='absolute bottom-0 right-0 px-1 py-0.5 pt-1 flex text-xsm bg-green text-white'>
                                                     {

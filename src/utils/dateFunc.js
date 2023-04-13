@@ -22,6 +22,15 @@ export const formatDate = (date) => {
     // console.log("newDate", newDate, "day", day, "month", month, "year", year);
     return `${day} ${months[month-1]} ${year}`;
 };
+
+export const formatDate2 = (date) => {
+    const newDate = new Date(date * 1000); // convert to milliseconds
+    const day = newDate.getDate();
+    const month = newDate.getMonth() + 1;
+    const year = newDate.getFullYear();
+    // console.log("newDate", newDate, "day", day, "month", month, "year", year);
+    return `${day}-${month}-${year}`;
+};
   
 export const expired = (date) => {
     if (!date) return true;
