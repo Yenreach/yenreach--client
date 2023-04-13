@@ -48,7 +48,7 @@ const index = () => {
                     <h2 className='text-lg md:text-xl font-medium text-center'>Get your business to the right audience</h2>
                     <span className='text-sm'>It's Totally free</span>
                 </div>
-                <Link to="/login">
+                <Link to="/users">
                     <Button className='px-12 py-3 rounded'>
                         Add my business
                     </Button>
