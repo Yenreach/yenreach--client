@@ -76,8 +76,10 @@ const index = ({ job, refetchJobs, removeJobsCache, business_id }) => {
           </div>
         </label>
         <div className='flex items-center gap-2'>
-          <BiEdit size="1.3rem" className='cursor-pointer opacity-80' />
-          <RiDeleteBin6Line size="1.3rem" className='cursor-pointer opacity-60' color='red' onClick={deleteJob} />
+            <Link to={`/users/jobs/${job?.business_string}/edit-job/${job?.job_string}`}>
+              <BiEdit size="1.3rem" className='cursor-pointer opacity-80' />
+            </Link>
+            <RiDeleteBin6Line size="1.3rem" className='cursor-pointer opacity-60' color='red' onClick={deleteJob} />
         </div>
       </div>
       <div className="flex flex-col gap-2 opacity-60">

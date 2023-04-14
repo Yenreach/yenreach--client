@@ -32,11 +32,11 @@ const useAuth = ({from}) => {
                 setIsLoading(false)
             } else {
                 data = data.data
-                // console.log("success", data)
+                console.log("success", data, "FROM", from)
                 dispatch({type: "LOGIN", payload: data})
                 setError(null)
                 setIsLoading(false)
-                navigate(from, {replace: true} || '/users')
+                navigate(from ? (from, {replace: true}) : '/users')
             }
         } catch (error) {
             setError(null)

@@ -105,7 +105,7 @@ export const apiSubmitApplication = (data) => {
 export const apiUpdateJob = (data) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}/update_job_api${serviceSuffix}`,
-        method: "patch",
+        method: "post",
         data
     })
 }

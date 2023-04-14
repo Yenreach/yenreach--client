@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import usePost from '/src/hooks/usePost'
 import useImage from '/src/hooks/useImage'
-import { apiAddProduct } from '../../../services/ProductService'
+import { apiAddProduct, apiGetProduct, apiUpdateProduct } from '../../../services/ProductService'
 import Header from "/src/components/users/Header"
 import { RiAddFill } from 'react-icons/ri'
 import Head from '../../../components/users/Head'
@@ -10,7 +10,7 @@ import Input from '../../../components/ui/Input'
 import Button from '../../../components/ui/Button'
 import Dashboard from "../../../components/layout/Dashboard"
 import Loader from '/src/components/Loader'
-
+import useFetch from '/src/hooks/useFetch'
 
 const initialProductState = { 
     business_string : "",
@@ -24,6 +24,8 @@ const initialProductState = {
     photos : [],
     // product_tags : [],
 }
+
+
 
 const categories = [
     {id: 1, name: "Electronics"},
@@ -39,10 +41,36 @@ const categories = [
     {id: 11, name: "Others"},
 ]
 
-const index = () => {
+const EditProduct = () => {
     const [product, setProduct] = React.useState(initialProductState)
-    const { id } = useParams()
+    const { id, productId } = useParams()
     const navigate = useNavigate()
+
+    const { data, error: errorProduct, isLoading } = useFetch({
+        api: apiGetProduct,
+        param: productId,
+        key: ['product', productId],
+    })
+
+    // console.log("data", product)
+
+    useEffect(() => {
+        if (data) {
+            setProduct({
+                business_string : data?.business_string,
+                product_string : data?.product_string,
+                name : data?.product_name,
+                description : data?.product_description,
+                categories : data?.categories,
+                price : data?.product_price,
+                quantity : data?.product_quantity,
+                color : data?.product_color,
+                safety_tip : data?.product_safety_tip,
+                photos : data?.photos,
+            })
+        }
+    }, [data])
+
 
     const { url, uploadImage, error, progress, loading: uploadingImg } = useImage()
 
@@ -58,30 +86,30 @@ const index = () => {
         setProduct(prev => ({...prev, [event.target.name]: event.target.value }))
     }
 
-
     const handleCategory = (event) => {
         setProduct(prev => ({...prev, [event.target.name]: [...product.categories, {category: event.target.value}] }))
     }
 
 
-    const addProductMutation = usePost({ 
-        api: apiAddProduct,
+    const updateProductMutation = usePost({ 
+        api: apiUpdateProduct,
         success: (data) => {
             // console.log("success adding product", data)
             setProduct(initialProductState)
-            navigate(`/users/products/${id}/product-success`)
+            navigate(`/users/products/${id}`)
         },
     })
 
     const handleSubmit = (e) => {
         e.preventDefault()
         // console.log("data", product)
-        addProductMutation.mutate({...product, business_string: id})
+        updateProductMutation.mutate({...product, business_string: id})
     }
+
 
     return (
         <Dashboard> 
-          {(addProductMutation?.isLoading || uploadingImg) && <Loader loader={4} />}
+          {(updateProductMutation?.isLoading || uploadingImg) && <Loader loader={4} />}
             <div className='flex-1 overflow-y-auto overflow-hidden'>
                 <Header business_string={id} type="product" />
             <section className='p-8 px-4 sm:px-8'>
@@ -95,9 +123,9 @@ const index = () => {
                         <Input required value={product?.description} onChange={handleProduct} variant={"product"} textarea name="description" id="description" cols="30" rows="10" className='border-gray rounded-lg' placeholder='Enter your business Discription' />
                     </div>
                     <div className='mb-8 md:flex justify-between gap-9'>
-                         <div className='mb-8 w-full'>
+                        <div className='mb-8 w-full'>
                             <label htmlFor="categories" className='font-medium text-sm'>Categories</label>
-                            <select onChange={handleCategory} required className='w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-orange cursor-pointer rounded-lg' name="categories" id="categories" placeholder='Enter Categoies'>
+                            <select value={product?.categories?.slice(-1)[0]?.category} onChange={handleCategory} required className='w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-orange cursor-pointer rounded-lg' name="categories" id="categories" placeholder='Enter Categoies'>
                                 <option value="">Select Product Categories</option>
                                 {categories?.map((category) => (
                                     <option key={category.id} value={category.name}>{category.name}</option>
@@ -169,4 +197,4 @@ const index = () => {
     )
 }
 
-export default index
+export default EditProduct

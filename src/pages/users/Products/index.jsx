@@ -68,7 +68,9 @@ const Products = () => {
         // console.log("meta", meta)
         return  (
           <div className="flex items-center gap-3 justify-cente">
-            {/* <BiEdit size="1.2rem" className="text-orange" /> */}
+            <Link to={`/users/products/${meta?.business_string}/edit-product/${meta?.product_string}`}>
+              <BiEdit size="1.2rem" className="text-orange" />
+            </Link>
             <MdOutlineDelete size="1.2rem" className="text-red-400 cursor-pointer" onClick={() => delteteProduct(meta)} />
           </div>
         )
