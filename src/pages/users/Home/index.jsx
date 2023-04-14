@@ -25,7 +25,7 @@ const index = () => {
         param: user?.verify_string,
       })
 
-      console.log("businesses", businesses)
+    //   console.log("businesses", businesses)
 
     return (
         <Dashboard>

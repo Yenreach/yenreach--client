@@ -56,6 +56,8 @@ const index = () => {
     key: ['userBusiness', id],
   })
 
+//   console.log("bua", business)
+
     const {  data: categories } = useQuery({
         queryKey: ['categories'],
         queryFn: () => getData(apiGetAllCategories),

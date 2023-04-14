@@ -19,26 +19,26 @@ const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) =
     const addBusinessMutation = usePost({ 
         api: apiAddBusiness,
         success: (data) => {
-            // console.log("success adding product", data)
+            // console.log("success adding bus", data)
             // setProduct(initialProductState)
             setStep(3)
             // navigate(`/users/business/${id}/product-success`)
         },
      })    
 
-    console.log("url", profileImg, "error", error, "progress", progress)
-    console.log("url", coverImg, "error", coverImgError, "progress", coverImgProgress)
+    // console.log("url", profileImg, "error", error, "progress", progress)
+    // console.log("url", coverImg, "error", coverImgError, "progress", coverImgProgress)
 
 
     
     const handleSubmit = (e) => {
         e.preventDefault()
         const data = { ...businessData, user_string: user?.verify_string, profile_img: profileImg, cover_img: coverImg }
-        console.log("data", data)
+        // console.log("data", data)
         addBusinessMutation.mutate(data)
     }
 
-    // console.log("businessData", addBusinessMutation?.isLoading, uploadingCoverImg, uploadingProfileImg)
+    // console.log("businessData", businessData)
 
   return (
     <form className='p-8 px-4 sm:px-8 bg-white rounded-2xl' onSubmit={handleSubmit}>
