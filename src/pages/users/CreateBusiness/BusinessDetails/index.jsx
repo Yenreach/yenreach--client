@@ -8,18 +8,18 @@ import Button from '../../../../components/ui/Button'
 
 
 const months = [
-    {id: 1, name: "January"},
-    {id: 2, name: "February"},
-    {id: 3, name: "March"},
-    {id: 4, name: "April"},
-    {id: 5, name: "May"},
-    {id: 6, name: "June"},
-    {id: 7, name: "July"},
-    {id: 8, name: "August"},
-    {id: 9, name: "September"},
-    {id: 10, name: "October"},
-    {id: 11, name: "November"},
-    {id: 12, name: "December"},
+    {id: "01", name: "January"},
+    {id: "02", name: "February"},
+    {id: "03", name: "March"},
+    {id: "04", name: "April"},
+    {id: "05", name: "May"},
+    {id: "06", name: "June"},
+    {id: "07", name: "July"},
+    {id: "08", name: "August"},
+    {id: "09", name: "September"},
+    {id: "10", name: "October"},
+    {id: "11", name: "November"},
+    {id: "12", name: "December"},
 ]
 
 
@@ -107,7 +107,7 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
         <div className='mb-8 md:flex justify-between gap-9'>
             <div className='mb-8 w-full'>
                 <label htmlFor="phonenumber" className='font-medium text-sm'>Phone Number</label>
-                <Input required={true} value={businessData?.phonenumber} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="phonenumber" id="phonenumber" placeholder='Enter your business Phone number' />
+                <Input required={true} value={businessData?.phone} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="phone" id="phone" placeholder='Enter your business Phone number' />
             </div>
             <div className='w-full'>
                 <label htmlFor="email" className='font-medium text-sm'>Email Address</label>
@@ -148,7 +148,7 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
                 <select required value={businessData?.month_started} onChange={handleBusinessData} className='w-full border-2 outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-green cursor-pointer rounded-lg' name="month_started" id="month_started" placeholder='Enter your business start Month'>
                     <option value="">Enter your business start Month</option>
                     {months?.map((month) => (
-                        <option key={month.id} value={month.name}>{month.name}</option>
+                        <option key={month.id} value={month.id}>{month.name}</option>
                     ))}
                 </select>
             </div>
