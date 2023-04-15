@@ -30,6 +30,7 @@ const index = () => {
     param: id,
     key: ['userBusiness', id],
   })
+
   const { data: pageVisits } = useFetch({
     api: apiGetBusinessPageVisits,
     param: id,
@@ -47,6 +48,8 @@ const index = () => {
     param: id,
     key: ['subscription', id],
   })
+
+  console.log("sub", subscription)
 
   const { data: facilities, error: errorFacilities } = useFetch({
     api: apiGetBusinessFacilities,
@@ -191,11 +194,9 @@ const index = () => {
               <div className='mb-11'>
                 <h2 className='text-green text-lg font-medium mb-3'>Business media</h2>
                 <div className='flex flex-col sm:flex-row flex-wrap gap-2 text-sm text-[#476788]'>
-                  <img src={Media} alt="" className='sm:w-32 sm:h-40 object-cover object-center' />
-                  <img src={Media} alt="" className='sm:w-32 sm:h-40 object-cover object-center' />
-                  <img src={Media} alt="" className='sm:w-32 sm:h-40 object-cover object-center' />
-                  <img src={Media} alt="" className='sm:w-32 sm:h-40 object-cover object-center' />
-                  <img src={Media} alt="" className='sm:w-32 sm:h-40 object-cover object-center' />
+                  {business?.photos?.length ? business?.photos?.map((photo, index) => <img key={index} src={photo?.filename} alt=""  className='sm:w-32 sm:h-40 object-cover object-center' />) 
+                  : <span className='text-[#476788] text-xs sm:text-sm'>No photos</span>
+                  }
                 </div>
               </div>
               <div className='mb-24 font-arialsans'>
