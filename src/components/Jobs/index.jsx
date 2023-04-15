@@ -9,7 +9,6 @@ import JobDescription from './JobDescription'
 import JobSideBar from './JobSideBar'
 import Loader from '../Loader'
 
-const staleTime = 1000 * 60 * 60 * 24
 
 const index = ({ page, num_per_page }) => {
   const [tab, setTab] = useState(1)
@@ -19,7 +18,6 @@ const index = ({ page, num_per_page }) => {
   const { data: jobs, error: errorJobs, isLoading } = useFetch({
     api: apiGetAllJobs,
     key: ['jobs'],
-    staleTime: staleTime,
   })
   
   // console.log("jobs", jobs)
