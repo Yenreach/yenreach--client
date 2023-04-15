@@ -77,7 +77,7 @@ const index = () => {
                     Looking for your next career opportunity? Look no further than our job listing platform. We offer a wide range of job listings across various industries, making it easy for job seekers to find the perfect role for their skills and experience.
                     <br />
 
-                    Our platform is easy to use and allows job seekers to search for jobs based on location, industry, and job title. We also offer advanced search filters to help job seekers find the exact job they're looking for.
+                    Our platform is easy to use and allows job seekers to search for jobs based on location, industry, and job title. 
                     <br />
                     For employers, we offer a simple and effective way to find the best talent for their organization. With our job listing platform, employers can easily post job openings and attract top talent from our pool of qualified candidates.
                     </p>
@@ -96,7 +96,8 @@ const index = () => {
                     <p className='text-xs text-[#476788] -mt-4'>
                     We offer a marketplace for businesses to sell their products and services. Our marketplace is designed to help businesses of all sizes reach a wider audience and increase their sales.
                         <br />
-                    With our easy-to-use platform, businesses can create an online storefront that showcases their products and services. Our platform is secure and offers a variety of payment options, making it easy for customers to purchase products and services with confidence.
+                    With our easy-to-use platform, businesses can create an online storefront that showcases their products and services. 
+                    {/* Our platform is secure and offers a variety of payment options, making it easy for customers to purchase products and services with confidence. */}
                         <br />
                     For customers, our marketplace offers a wide range of products and services from a variety of businesses. Whether you're looking for handmade crafts, unique gifts, or professional services, our marketplace has something for everyone.
                     </p>
