@@ -49,7 +49,7 @@ const index = () => {
     key: ['subscription', id],
   })
 
-  console.log("sub", subscription)
+  // console.log("sub", subscription)
 
   const { data: facilities, error: errorFacilities } = useFetch({
     api: apiGetBusinessFacilities,

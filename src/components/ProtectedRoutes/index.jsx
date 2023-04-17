@@ -9,9 +9,11 @@ const ProtectedRoutes = ({ children }) => {
   // console.log("location", location)
   const navigate = useNavigate()
 
-  if (!user) {
-    return navigate('/login', { state: { from: location } })
-  }
+  React.useEffect(() => {
+    if (!user) {
+      navigate('/login', { state: { from: location } })
+    }
+  }, [user])
 
   return (
     <div>

@@ -16,6 +16,7 @@ const index = () => {
   const forgotPasswordMutation = usePost({ 
     api: apiForgotEmail,
     success: (data) => {
+      console.log("data", data)
       setSuccess(true)
     }
    })

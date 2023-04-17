@@ -15,10 +15,10 @@ const index = () => {
 
   return (
     <>
-      <header className='bg-white shadow-md flex items-center justify-between py-2 px-4 md:py-5 md:px-10 lg:px-24 fixed top-0 left-0 z-10 w-full'>
-        <div>
+      <header className='bg-white shadow-md flex items-center justify-between py-2 px-4 md:py-5 md:px-10 lg:px-24 fixed top-0 left-0 z-10 w-full min-h-[50px]'>
+        <Link to={"/"}>
           <img src={Logo} alt="" className='h-8 md:h-12' />
-        </div>
+        </Link>
         <nav className="hidden md:flex items-center gap-x-14 md:gap-4 lg:gap-7">
           <ul className='flex flex-col md:flex-row items-center text-sm text-dark-light gap-7 md:gap-4 lg:gap-7 font-medium'>
             <li><Link to="/" className={`${pathname==="/" && "text-green border-b-2"} pb-1.5 px-1 font-medium`}>Home</Link></li>
