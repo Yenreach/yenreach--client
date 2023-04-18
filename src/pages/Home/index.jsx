@@ -18,13 +18,14 @@ import Button from '../../components/ui/Button'
 import Loader from '/src/components/Loader'
 import useFetch from '/src/hooks/useFetch'
 import Error from '../../components/Error'
+import Image from '/src/components/Image';
+
 
 const index = () => {
     const { data: aprrovedBusinesses, error: errorApprovedBusinesses } = useFetch({
         key:  ['aprrovedBusinesses'],
         api: apiGetApprovedBusinesses,
         staleTime: 1000 * 60 * 5,
-
     })
 
     const { data: businessOfTheWeek, error: errorBusinessOfTheWeek } = useFetch({
@@ -33,7 +34,7 @@ const index = () => {
         staleTime: 1000 * 60 * 5,
         cacheTime : 1000 * 60 * 60,
       })
-    // console.log("businessOfTheWeek", businessOfTheWeek, "error", errorBusinessOfTheWeek)
+    console.log("businessOfTheWeek", businessOfTheWeek, "error", errorBusinessOfTheWeek)
 
   return (
     <>
@@ -89,7 +90,7 @@ const index = () => {
                 </div>
                 <img src={AllHereJ} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px]" />
             </div>
-            <div className='flex flex-col sm:items-center mb-20 md:mb-32 sm:flex-row gap-9'>
+            <div className='flex flex-col sm:items-center sm:flex-row gap-9'>
                 <img src={AllHereP} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px]" />
                 <div className='flex flex-col items-start gap-12 max-w-[450px]'>
                     <h3 className='font-medium text-xl text-orange'>They are all Here</h3>
@@ -109,18 +110,18 @@ const index = () => {
                 </div>
             </div>
         </section>
-        <section className='px-4 mb-12 md:px-10 lg:px-24'>
-            {/* {businessOfTheWeek &&
+        <section className='px-4 mb-12 md:px-10 lg:px-24 mt-4 md:mt-12'>
+            {businessOfTheWeek &&
                 <div className='mb-36 py-12'>
                     <h2 className='mb-2 font-medium text-center text-xl text-green'>Business of the week</h2>
                     <div className='flex flex-col items-center sm:flex-row gap-14'>
-                        <img className='flex-1 object-cover w-full sm:w-2/5' src={BusOfTheWeek} alt="Business of The Week" />
-                        <div className='flex-1.5 flex flex-col gap-6 items-start'>
-                            <h3 className='text-lg'>Yenreach Business school</h3>
+                        <img className='flex-1 object-cover w-full sm:w-2/5' src={businessOfTheWeek?.profile_img.replace("mediatoken", "media&token")}  alt="Business of The Week"  />
+                        <div className='flex-1 flex flex-col gap-6 items-start'>
+                            <h3 className='text-lg'>{businessOfTheWeek?.name}</h3>
                             <p className='text-sm'>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus faucibus lobortis blandit consectetur massa rutrum dignissim luctus. Non quis fringilla ac semper quam non egestas velit. Mauris, odio viverra amet viverra. Quisque cursus non libero, vestibulum rhoncus, pulvinar donec hendrerit netus. Nibh neque vitae nulla morbi vulputate amet ac. Viverra elementum ullamcorper duis diam iaculis condimentum integer ut. Neque rhoncus convallis dictum viverra.
+                               {businessOfTheWeek?.description.substring(0, 400)}...
                             </p>
-                            <Link to="/business"> 
+                            <Link to={`/business/${businessOfTheWeek?.verify_string}`}> 
                                 <Button className='text-sm rounded-md py-2.5 px-10 font-medium'>
                                     view business
                                 </Button>
@@ -128,7 +129,7 @@ const index = () => {
                         </div>
                     </div>
                 </div>
-            } */}
+            }
             <div className=''>
                 <h2 className='mb-3 font-medium text-center text-lg text-green'>keep up with the business world</h2>
                 <div className='flex flex-col grid-cols-3 gap-6 text-white sm:grid'>

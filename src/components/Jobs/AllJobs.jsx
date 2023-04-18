@@ -16,6 +16,7 @@ const AllJobs = ({ jobs, setSelectedJobIndex, setTab, page: initialPage, num_per
       behavior: "smooth",
   });
   }
+  
 
   return (
     <>
