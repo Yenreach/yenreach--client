@@ -29,6 +29,13 @@ export const apiAddJob = (data) => {
 /* Get Jobs */
 export const apiGetAllJobs = () => {
     return ApiAdapter.fetchData({
+        url: `${servicePrefix}/fetch_active_job_api${serviceSuffix}`,
+        method: "get",  
+    })
+}
+/* Get Jobs */
+export const apiGetAllJobsAdmin = () => {
+    return ApiAdapter.fetchData({
         url: `${servicePrefix}/fetch_all_job_api${serviceSuffix}`,
         method: "get",  
     })

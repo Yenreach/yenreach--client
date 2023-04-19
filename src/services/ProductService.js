@@ -80,6 +80,13 @@ export const apiDeleteProductPhoto = (data) => {
 /* Get Products */
 export const apiGetAllProducts = () => {
     return ApiAdapter.fetchData({
+        url: `${servicePrefix}/fetch_active_product_api${serviceSuffix}`,
+        method: "get",  
+    })
+}
+/* Get Products */
+export const apiGetAllProductsAdmin = () => {
+    return ApiAdapter.fetchData({
         url: `${servicePrefix}/fetch_all_product_api${serviceSuffix}`,
         method: "get",  
     })
