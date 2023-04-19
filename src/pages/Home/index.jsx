@@ -61,8 +61,10 @@ const index = () => {
                     <h3 className='font-medium text-xl text-green'>They are all Here</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
                     We are the premier destination for businesses looking to expand their reach and connect with potential customers. Our platform is designed to help businesses of all sizes grow and succeed by providing them with a powerful marketing tool.
-                    <br />
+                    <br /><br />
                     With our easy-to-use search engine, users can quickly and easily find the businesses they need. Whether you're looking for a restaurant, a clothing store, or a service provider, we've got you covered. Our database is constantly updated with the latest information, so you can be sure that you're getting accurate and up-to-date results.
+                    <br /><br />
+                    Our intention is to save you the time, effort and money you would have expended going round in search of a particular business. Businesses here are arranged by states and industry. Input the industry and the state of choice in the search engine and oops you will find all the businesses in that category in the state. We understand the importance of your time, please save it by constantly using <a href="www.yenreach.com" className='underline text-green'>Yenreach.com</a> to find local businesses of choice.
                     </p>
                     <Link to="/explore">
                         <Button className='py-2 px-20'>
@@ -76,11 +78,15 @@ const index = () => {
                     <h3 className='font-medium text-xl text-blue'>They are all Here</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
                     Looking for your next career opportunity? Look no further than our job listing platform. We offer a wide range of job listings across various industries, making it easy for job seekers to find the perfect role for their skills and experience.
-                    <br />
-
-                    Our platform is easy to use and allows job seekers to search for jobs based on location, industry, and job title. 
-                    <br />
+                    {/* <br /><br />
+                    Our platform is easy to use and allows job seekers to search for jobs based on location, industry, and job title.  */}
+                    <br /><br />
                     For employers, we offer a simple and effective way to find the best talent for their organization. With our job listing platform, employers can easily post job openings and attract top talent from our pool of qualified candidates.
+                    <br /><br />
+                     We serve as a recruitment agency but also connects potential employees to job opportunities and help employers to get the best hands within a very short period. Employers can easily create and manage job listings, providing all the necessary details about the job vacancy, such as the job title, job description, job requirements, salary, and location. 
+                     {/* They can also search through resumes and filter candidates by qualifications, experience, and other relevant criteria.  */}
+                     <br /><br />
+                    Other additional services we offer here include, resume writing and optimization, interview coaching, hiring, training/certification and career advice. We understand that job hunting can be a challenging and stressful process, which is why we are here to support and guide users every step of the way.
                     </p>
                     <Link to="/explore" state={{ data: "jobs" }} >
                         <Button variant='job' className='py-2 px-20'>
@@ -96,11 +102,12 @@ const index = () => {
                     <h3 className='font-medium text-xl text-orange'>They are all Here</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
                     We offer a marketplace for businesses to sell their products and services. Our marketplace is designed to help businesses of all sizes reach a wider audience and increase their sales.
-                        <br />
+                        <br /><br />
                     With our easy-to-use platform, businesses can create an online storefront that showcases their products and services. 
-                    {/* Our platform is secure and offers a variety of payment options, making it easy for customers to purchase products and services with confidence. */}
-                        <br />
+                    <br /><br />
                     For customers, our marketplace offers a wide range of products and services from a variety of businesses. Whether you're looking for handmade crafts, unique gifts, or professional services, our marketplace has something for everyone.
+                    <br /><br />
+                    Users can buy and sell products and services daily from the comfort of their homes and get such goods delivered to them. Sellers can easily create and manage their online stores, providing all the necessary details about their products or services, e.g price, pictures and descriptions etc. Buyers can browse through the listings and contact the sellers.
                     </p>
                     <Link to="/explore" state={{ data: "marketplace" }} >         
                         <Button variant='product' className='py-2 px-20'>
