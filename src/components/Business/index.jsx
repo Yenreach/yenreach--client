@@ -23,6 +23,31 @@ const index = ({ page: initialPage, num_per_page }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchString = searchParams.get('search')
   const searchLocation = searchParams.get('location')
+  // const [filteredBusiness, setFilteredBusiness] = useState([])
+  // const [filteredBusinessesLoading, setFilteredBusinessesLoading] = useState([])
+
+  // const handleFilter = (e) => {
+  //   e.preventDefault()
+  //   console.log("SEARCHING", search)
+  //   setFilteredBusinessesLoading(true)
+  //   const value = search
+  //   const filtered = aprrovedBusinesses?.filter((item) => {
+  //     return Object.keys(item).some((key) => {
+  //       if (Array.isArray(item[key])) {
+  //           const filtered = item[key]?.filter((item) => {
+  //             return Object.keys(item).some((key) => {
+  //               return item[key]?.toString().toLowerCase().includes(value?.toLowerCase());
+  //             });
+  //           });
+  //       }
+  //       return item[key]?.toString().toLowerCase().includes(value?.toLowerCase());
+  //     });
+  //   });
+  //   setFilteredBusinessesLoading(false)
+  //   setFilteredBusiness(filtered);
+  // };
+
+  
   
 
   const handleSearch = (e) => {
@@ -57,6 +82,8 @@ const index = ({ page: initialPage, num_per_page }) => {
     key: ['filteredBusiness', searchQuery],
     enabled: enabled,
   })
+
+
 
   
   const { data: filledCategories, error: errorFilledCategories } = useFetch({

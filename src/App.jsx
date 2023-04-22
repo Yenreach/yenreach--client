@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { useState } from 'react'
 import { App as CapactiorApp } from '@capacitor/app';
 import { useAuthContext } from './hooks/useAuthContext'
@@ -24,6 +24,7 @@ import EditBusiness from './pages/users/EditBusiness'
 import UserProducts from './pages/users/Products'
 import UserBusiness from './pages/users/Business'
 import AddProduct from './pages/users/Products/AddProduct'
+import EditProduct from './pages/users/Products/EditProduct'
 import ProductSuccess from './pages/users/Products/Success'
 import JobSuccess from './pages/users/Jobs/Success'
 import Profile from './pages/users/Profile'
@@ -35,19 +36,29 @@ import AddBillboard from './pages/users/Billboard/AddBillboard'
 import Jobs from './pages/users/Jobs'
 import Applicants from './pages/users/Jobs/Applicants'
 import AddJob from './pages/users/Jobs/AddJob'
+import EditJob from './pages/users/Jobs/EditJob'
+import BottomNav from './components/BottomNav'
 
 // CapactiorApp.addListener('appStateChange', ({ isActive }) => {
 //   console.log('App state changed. Is active?', isActive);
 // });
 
-CapactiorApp.addListener('backButton', (data) => {
-  console.log("back button", data)
-})
+
 
 function App() { 
   const { user } = useAuthContext()
 
-  console.log("app, capa==", CapactiorApp)
+  CapactiorApp.addListener('backButton', (data) => {
+    if (window) {
+      if (window.location?.pathname === "/") {
+        CapactiorApp.exitApp()
+      } else {
+        window.history.back()
+      }
+    }
+  })
+
+  // console.log("app, capa==", CapactiorApp)
 
   return (
     <Router>
@@ -71,6 +82,7 @@ function App() {
             <Route exact path="/users/add-business" element={<CreateBusiness />} />
             <Route exact path="/users/products/:id" element={<UserProducts />} />
             <Route exact path="/users/products/:id/add-product" element={<AddProduct />} />
+            <Route exact path="/users/products/:id/edit-product/:productId" element={<EditProduct />} />
             <Route exact path="/users/products/:id/product-success" element={<ProductSuccess />} />
             <Route exact path="/users/profile" element={<Profile />} />
             <Route exact path="/users/profile/edit" element={<Edit />} />
@@ -81,10 +93,12 @@ function App() {
             <Route exact path="/users/jobs/:id" element={<Jobs />} />
             <Route exact path="/users/jobs/:id/applicants/:job_id" element={<Applicants />} />
             <Route exact path="/users/jobs/:id/add-job" element={<AddJob />} />
+            <Route exact path="/users/jobs/:id/edit-job/:jobId" element={<EditJob />} />
             <Route exact path="/users/jobs/:id/job-success" element={<JobSuccess />} />
             <Route exact path="/users/" element={<BusinessDash />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
+          {/* <BottomNav /> */}
         </ScrollToTop>
       </main>
     </Router>
