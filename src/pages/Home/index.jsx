@@ -56,7 +56,7 @@ const index = () => {
                 </Link>
             </div>
             <div className='flex flex-col sm:items-center mb-20 md:mb-32 sm:flex-row gap-9'>
-                <img src={AllHere} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px]" />
+                <img src={AllHere} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
                 <div className='flex flex-col items-start gap-12 max-w-[450px]'>
                     <h3 className='font-medium text-xl text-green'>They are all Here</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
@@ -94,10 +94,10 @@ const index = () => {
                         </Button>
                     </Link>
                 </div>
-                <img src={AllHereJ} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px]" />
+                <img src={AllHereJ} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
             </div>
             <div className='flex flex-col sm:items-center sm:flex-row gap-9'>
-                <img src={AllHereP} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px]" />
+                <img src={AllHereP} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
                 <div className='flex flex-col items-start gap-12 max-w-[450px]'>
                     <h3 className='font-medium text-xl text-orange'>They are all Here</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
