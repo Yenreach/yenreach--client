@@ -36,10 +36,10 @@ const index = ({ job, setSelectedIndex, index, setTab }) => {
         </div>
         <div className="grid px-2 py-1 text-sm bg-blue-light text-blue w-fit">NGN { job?.salary }</div>
       </div>
-      <Button variant='job'  className='py-2 mx-2' onClickFunc={ () => { setSelectedIndex(index); console.log('selected: ', index); setTab(2) }}>Apply</Button>
+      <Button variant='job'  className='py-2 mx-2'>Apply</Button>
   </a>
     :
-    <div className="flex flex-col gap-4 py-2.5 px-2 border-2 border-[#D3DAE6]">
+    <div onClickFunc={ () => { setSelectedIndex(index); setTab(2) }} className="flex flex-col gap-4 py-2.5 px-2 border-2 border-[#D3DAE6]">
       <div className="flex justify-between items-center w-full">
         <h2 className="text-xsm font-semibold text-blue">Posted 3 days ago</h2>
         <div className='bg-green-light rounded-full px-3 py-1 text-green text-xs'>{ job?.status==="1" ? "Active" : "Inactive" }</div>
@@ -64,7 +64,7 @@ const index = ({ job, setSelectedIndex, index, setTab }) => {
         </div>
         <div className="grid px-2 py-1 text-sm bg-blue-light text-blue w-fit">NGN { job?.salary }</div>
       </div>
-      <Button variant='job'  className='py-2 mx-2' onClickFunc={ () => { setSelectedIndex(index); console.log('selected: ', index); setTab(2) }}>Apply</Button>
+      <Button variant='job'  className='py-2 mx-2' onClickFunc={ () => { setSelectedIndex(index); setTab(2) }}>Apply</Button>
     </div>
   }
     </>
