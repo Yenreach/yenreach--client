@@ -179,7 +179,7 @@ export const apiGetBusinessReviewsStats = (business_token) => {
 }
 export const apiAddBusinessReview = (data) => {
     return ApiAdapter.fetchData({
-        url: `add_business_review${serviceSuffix}`,
+        url: `add_business_review_api${serviceSuffix}`,
         method: "post",
         data
     })

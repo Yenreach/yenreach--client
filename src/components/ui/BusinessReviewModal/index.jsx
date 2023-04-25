@@ -6,7 +6,7 @@ import { apiAddBusinessReview } from '/src/services/CommonService'
 
 
 
-const BusinessReview = ({ setModalOpen, modalOpen, user }) => {
+const BusinessReview = ({ setModalOpen, modalOpen, user, business_string }) => {
   const [review, setReview] = React.useState("")
   const [rating, set] = React.useState(0)
 
@@ -15,7 +15,8 @@ const BusinessReview = ({ setModalOpen, modalOpen, user }) => {
 
   const submitReview = usePost({ 
     api: apiAddBusinessReview, 
-    success: (a,b,c) => {
+    success: (data,b,c) => {
+      // console.log("data", data)
       closeModal()
     } 
   })
@@ -41,11 +42,12 @@ const BusinessReview = ({ setModalOpen, modalOpen, user }) => {
     }
     
     const handleSubmit = () => {
-      // console.log("submit", user?.verify_string, review, rating)
+      // console.log("submit", user?.verify_string, review, rating, business_string)
         submitReview.mutate({ 
           user_string: user?.verify_string,
+          business_string,
           review, 
-          rating 
+          star: rating 
         })
     }
 

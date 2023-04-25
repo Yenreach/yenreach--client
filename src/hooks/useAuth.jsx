@@ -36,7 +36,7 @@ const useAuth = ({from}) => {
                 dispatch({type: "LOGIN", payload: data})
                 setError(null)
                 setIsLoading(false)
-                navigate(from ? (from, {replace: true}) : '/users')
+                navigate(from?.pathname || '/users', {replace: true})
             }
         } catch (error) {
             setError(null)

@@ -248,7 +248,7 @@ const index = () => {
                 </div>
               </div>
               </>}
-              {modalOpen &&  <BusinessReviewModal setModalOpen={setModalOpen} modalOpen={modalOpen} user={user} />} 
+              {modalOpen &&  <BusinessReviewModal setModalOpen={setModalOpen} modalOpen={modalOpen} user={user} business_string={id} />} 
               {user ? 
                 <button onClick={() => setModalOpen(true)} className='text-smm text-green opacity-70 underline cursor-pointer'>
                   Write a review
