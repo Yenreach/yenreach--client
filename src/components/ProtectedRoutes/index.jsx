@@ -11,7 +11,7 @@ const ProtectedRoutes = ({ children }) => {
 
   React.useEffect(() => {
     if (!user) {
-      navigate('/login', { state: { from: location } })
+      navigate('/login')
     }
   }, [user])
 

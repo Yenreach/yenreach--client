@@ -29,7 +29,7 @@ const ChangePassword = () => {
   const resetPasswordMutation = usePost({ 
     api: apiForgotPasswordTemp,
     success: (data) => {
-        console.log("data", data)
+        // console.log("data", data)
         setLoading(false)
         setSuccess(true)
         setTimeout(() => {
