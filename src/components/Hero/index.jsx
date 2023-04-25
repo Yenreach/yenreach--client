@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { apiGetFilledCategories, apiGetBusinessStates } from '../../services/CommonService'
+import { apiGetFilledCategories, apiGetBusinessStates, apiBusinessAnalytics } from '../../services/CommonService'
 import Button from '/src/components/ui/Button'
 import Input from '/src/components/ui/Input'
 import useFetch from '/src/hooks/useFetch'
@@ -31,28 +31,35 @@ const staleTime = 1000 * 60 * 60 * 24
 const index = ({ businesses }) => {
   const [search, setSearch] = useState('')
   const [location, setLocation] = useState('')
-  const businessCount = useMemo(() => Math.floor(businesses?.length / 100) * 100, [businesses])
-
+  
   const carouselRef = React.useRef(null)
   const carouselInnerRef = React.useRef([])
-
+  
   const navigate = useNavigate()
-
+  
   const { data: filledCategories, error: errorFilledCategories } = useFetch({
     api: apiGetFilledCategories,
     key: 'filledCategories',
     staleTime: staleTime,
   })
-
+  
   const { data: businessStates, error: errorBusinessStates } = useFetch({
     api: apiGetBusinessStates,
     key: 'businessStates',
     staleTime: staleTime,
   })
 
+  const { data: analytics, error: errorAnalytics } = useFetch({
+    api: apiBusinessAnalytics,
+    key: 'analytics',
+    staleTime: staleTime,
+  })
+  
+  const businessCount = useMemo(() => Math.floor((analytics?.business_count || businesses?.length) / 100) * 100, [analytics?.business_count, businesses])
+  const userCount = useMemo(() => Math.floor(analytics?.user_count / 1000) * 1000, [analytics?.user_count])
 
   useEffect(() => {  
-  // fade in and out carousel automatically
+    // fade in and out carousel automatically
     const handleCarousel = () => {
       const carousel = carouselRef.current;
       if (!carousel) return
@@ -131,7 +138,7 @@ const index = ({ businesses }) => {
             <span className='text-sm md:text-lg'>Locations</span>
           </div>
           <div className='flex flex-col items-center'>
-            <span className='font-semibold'>1000+</span>
+            <span className='font-semibold'>{userCount || 1000}+</span>
             <span className='text-sm md:text-lg'>Audience</span>
           </div>
         </div>

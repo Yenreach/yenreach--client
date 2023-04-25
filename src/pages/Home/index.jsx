@@ -34,7 +34,7 @@ const index = () => {
         staleTime: 1000 * 60 * 5,
         cacheTime : 1000 * 60 * 60,
       })
-    console.log("businessOfTheWeek", businessOfTheWeek, "error", errorBusinessOfTheWeek)
+    // console.log("businessOfTheWeek", businessOfTheWeek, "error", errorBusinessOfTheWeek)
 
   return (
     <>

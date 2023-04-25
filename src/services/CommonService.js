@@ -33,6 +33,12 @@ export const apiBusinessOfTheWeek =  () => {
         method: "get"    
     })
 }
+export const apiBusinessAnalytics =  () => {
+    return ApiAdapter.fetchData({
+        url: servicePrefix + "fetch_analytics_data_api" + serviceSuffix,
+        method: "get"    
+    })
+}
 
 export const apiBusinessStates =  () => {
     return ApiAdapter.fetchData({
