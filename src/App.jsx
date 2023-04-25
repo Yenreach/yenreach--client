@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import PasswordRecovery from './pages/PasswordRecovery';
 import ChangePassword from './pages/PasswordRecovery/ChangePassword';
+import ChangePasswordTemp from './pages/PasswordRecovery/ChangePasswordTemp';
 import Contact from './pages/Contact'
 import NotFound from './pages/404'
 import Dashboard from './components/layout/Dashboard'
@@ -74,7 +75,8 @@ function App() {
             <Route exact path="/blogs/:id" element={<Blog />} />
             <Route exact path="/signup" element={<SignUp />} />
             <Route exact path="/login" element={<Login />} />
-            <Route exact path="/password-recovery" element={<PasswordRecovery />} />
+            <Route exact path="/password-recovery" element={<ChangePasswordTemp />} />
+            {/* <Route exact path="/password-recovery" element={<PasswordRecovery />} /> */}
             <Route exact path="/password_reset" element={<ChangePassword />} />
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/users/business/:id" element={<UserBusiness />} />

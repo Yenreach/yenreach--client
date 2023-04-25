@@ -31,7 +31,7 @@ const ChangePassword = () => {
 
   const resetPasswordMutation = usePost({ 
     api: apiResetPassword,
-    onSuccess: (data) => {
+    success: (data) => {
       setSuccess(true)
       setTimeout(() => {
         navigate('/login')

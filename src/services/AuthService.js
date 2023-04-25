@@ -39,6 +39,15 @@ export const apiForgotEmail =  (email) => {
         method: "get",
     })
 }
+
+export const apiForgotPasswordTemp =  (data) => {
+    return ApiAdapter.fetchData({
+        url: `forgot_email_api.php`,
+        method: "post",
+        data 
+    })
+}
+
 export const apiTest =  () => {
     return ApiAdapter.fetchData({
         url: "/fetch_approved_businesses_api.php",
