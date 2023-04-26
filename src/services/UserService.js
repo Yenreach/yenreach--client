@@ -90,6 +90,13 @@ export const apiGetBusinessPhotos = (business_token) => {
     })
 }
 
+export const apiAddBusinessPhoto = (business_token) => {
+    return ApiAdapter.fetchData({
+        url: `add_business_photo_api${serviceSuffix}`,
+        method: "post",
+    })
+}
+
 /* Get business videos */
 export const apiGetBusinessVideos = (business_token) => {
     return ApiAdapter.fetchData({

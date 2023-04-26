@@ -24,7 +24,7 @@ const index = ({ page: initialPage, num_per_page }) => {
   const searchString = searchParams.get('search')
   const searchLocation = searchParams.get('location')
   // const [filteredBusiness, setFilteredBusiness] = useState([])
-  // const [filteredBusinessesLoading, setFilteredBusinessesLoading] = useState([])
+  // const [filteredBusinessesLoading, setFilteredBusinessesLoading] = useState(false)
 
   // const handleFilter = (e) => {
   //   e.preventDefault()
