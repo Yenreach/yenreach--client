@@ -61,7 +61,7 @@ const Products = ({ page: initialPage, num_per_page }) => {
   }
 
 
-  
+
   return (
     <>        
       {(isLoading || filteredProductsLoading) && <Loader loader={4} />}
@@ -73,7 +73,7 @@ const Products = ({ page: initialPage, num_per_page }) => {
         </div>
       </div>
       <form action="" onSubmit={handleFilter} method="post" className='flex'>
-        <Input onChange={(e) => setSearch(e.target.value)} value={search} variant='product' type="text" name="business" id="business" placeholder='product' className='rounded-tl-md rounded-bl-md' />
+        <Input onChange={(e) => setSearch(e.target.value)} value={search} variant='product' type="text" name="product" id="product" placeholder='product' className='rounded-tl-md rounded-bl-md' />
         <Input onChange={(e) => setLocation(e.target.value)} value={location} variant='product' type="text" name="location" id="location" placeholder='location' className='border-l-0 border-r-0' />
         <Button type="submit" variant='product' className='px-4 py-4 rounded-tr-md rounded-br-md'>
           <img src={Search} alt="search icon" className='w-12' />
