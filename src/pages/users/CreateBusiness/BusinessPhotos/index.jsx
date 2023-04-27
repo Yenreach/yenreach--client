@@ -56,7 +56,7 @@ const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) =
                             <img src={Add} alt="" className='mb-4 border-2 rounded-full' />
                             <span className='text-center'>Select profile Image for your business</span>
                         </>
-                {profileImg &&
+                    {profileImg &&
                         <img src={profileImg} alt="" className='top-0 left-0 w-full h-full object-cover absolute z-10' />
                     }        
                     

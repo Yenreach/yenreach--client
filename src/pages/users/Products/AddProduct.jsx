@@ -143,7 +143,7 @@ const index = () => {
                             {product.photos?.map((photo) => (
                                 <div key={photo?.filename} className='bg-gray rounded-lg w-36 h-36 overflow-hidden relative'>
                                     <img src={photo?.filename} alt="" className='object-cover w-full h-full' />
-                                    <div onClick={() => removePhoto(photo?.filename)} className='absolute top-0 left-0 bg-black/30 w-full h-full p-4 cursor-pointer'>
+                                    <div onClick={() => removePhoto(photo?.filename)} className='absolute top-0 left-0 bg-black/30 w-full h-full p-4 cursor-pointer hover:cursor-pointer md:opacity-0 md:hover:opacity-100'>
                                         <AiOutlineClose size="24px" color='gray' className='float-right' />
                                     </div>
                                 </div>
