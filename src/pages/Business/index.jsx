@@ -18,6 +18,7 @@ import Map from '../../assets/map.svg'
 import Image from '/src/components/Image';
 import { useAuthContext } from '/src/hooks/useAuthContext'
 import { getCookie, setCookie } from '../../utils/cookie'
+import { expired, formatDate } from '/src/utils/dateFunc'
 
 
 
@@ -41,7 +42,7 @@ const index = () => {
     param: id,
     key: ['business', id],
   })
-// console.log("business", business)
+// console.log("business", business, formatDate(business?.created))
   const { data: cookie } = useFetch({
     api: apiGetCookie,
     key: ['cookie'],

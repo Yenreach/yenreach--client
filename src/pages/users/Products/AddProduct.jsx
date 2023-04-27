@@ -5,6 +5,7 @@ import useImage from '/src/hooks/useImage'
 import { apiAddProduct } from '../../../services/ProductService'
 import Header from "/src/components/users/Header"
 import { RiAddFill } from 'react-icons/ri'
+import { AiOutlineClose } from 'react-icons/ai'
 import Head from '../../../components/users/Head'
 import Input from '../../../components/ui/Input'
 import Button from '../../../components/ui/Button'
@@ -52,6 +53,10 @@ const index = () => {
             }
     }, [url])
 
+    const removePhoto = (url) => {
+
+        setProduct(prev => ({...prev, photos: product.photos.filter(photo => photo.filename != url) }))
+    }
 
 
     const handleProduct = (event) => {
@@ -136,8 +141,11 @@ const index = () => {
                         <h6 className='font-medium text-sm'>Product Images</h6>
                         <div className='flex items-center flex-wrap gap-4 mt-2'>
                             {product.photos?.map((photo) => (
-                                <div key={photo?.filename} className='bg-gray rounded-lg w-36 h-36 overflow-hidden'>
+                                <div key={photo?.filename} className='bg-gray rounded-lg w-36 h-36 overflow-hidden relative'>
                                     <img src={photo?.filename} alt="" className='object-cover w-full h-full' />
+                                    <div onClick={() => removePhoto(photo?.filename)} className='absolute top-0 left-0 bg-black/30 w-full h-full p-4 cursor-pointer'>
+                                        <AiOutlineClose size="24px" color='gray' className='float-right' />
+                                    </div>
                                 </div>
                             ))}
                             <label htmlFor="add_image" className='font-medium text-sm mb-2 bg-gray rounded-lg w-36 h-36 flex flex-col gap-2 justify-center items-center px-4 cursor-pointer'>
