@@ -130,7 +130,7 @@ const index = () => {
                     </div>
                     <div className='mb-8'>
                         <label htmlFor="safety_tip" className='font-medium text-sm'>Safety Tip</label>
-                        <Input required value={product?.safety_tip} onChange={handleProduct} variant={"product"} textarea name="safety_tip" id="safety_tip" cols="30" rows="4" className='border-gray rounded-lg' placeholder='Enter safety measures for product use if any' />
+                        <Input value={product?.safety_tip} onChange={handleProduct} variant={"product"} textarea name="safety_tip" id="safety_tip" cols="30" rows="4" className='border-gray rounded-lg' placeholder='Enter safety measures for product use if any' />
                     </div>
                     <div className='mb-8'>
                         <h6 className='font-medium text-sm'>Product Images</h6>
