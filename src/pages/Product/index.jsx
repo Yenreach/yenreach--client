@@ -35,6 +35,8 @@ const Product = () => {
     enabled: !!product?.business_string,
   })
   // console.log("relatedProducts", relatedProducts)
+  console.log("pro", product)
+
 
   return (
       <>
@@ -43,7 +45,7 @@ const Product = () => {
         <div className='mt-24 mb-10'>
             <section className='py-4 md:pt-8 sm:py-6 px-4 md:px-10 lg:px-20 mb-8'>
                 <h1 className='text-2xl font-medium mb-2'>{product?.product_name}</h1>
-                <p className='text-2xl text-black/90 mb-6'>₦{product?.product_price}</p>
+                <p className='text-xl text-black/80 font-light mb-6'>₦{product?.product_price}</p>
                 {/* <div className='flex items-center gap-1'>
                   <span >******</span>
                     <span>stars</span>
@@ -70,6 +72,18 @@ const Product = () => {
                     </Button>
                 </div>
             </section>
+            {product?.photos?.length > 1 && 
+              <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 mb-8 overflow-hidden'>
+                  <h2 className='font-medium mb-3 text-base text-orange'>More Photos</h2>
+                  <div className='flex flex-wrap md:flex-row gap-4 md:gap-8 lg:gap-12'>
+                  {product?.photos.slice(1)?.map((photo) => (
+                      <div key={photo?.filename} className='bg-gray rounded-lg w-36 h-36 overflow-hidden relative'>
+                          <img src={photo?.filename} alt="" className='object-cover w-full h-full' />
+                      </div>
+                    ))}
+                  </div>
+              </section>
+            }
             {relatedProducts?.length > 0 &&  
               <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 mb-32'>
                 <h2 className='text-xl text-orange font-semibold mb-2'>Other Related Products</h2>
