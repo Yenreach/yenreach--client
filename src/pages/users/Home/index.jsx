@@ -63,7 +63,7 @@ const index = () => {
                                                 <div className='flex gap-2 items-center text-[#777777] text-xsm'>
                                                     <span>{formatDate2(business?.created)}</span>
                                                     <img src={Elipse} alt=""  />
-                                                    <span className='text-green font-medium'>0 visits</span>
+                                                    <span className='text-green font-medium'>{business?.pagevisits || 0} visits</span>
                                                 </div>
                                                 <div className='absolute bottom-0 right-0 px-1 py-0.5 pt-1 flex text-xsm bg-green text-white'>
                                                     {

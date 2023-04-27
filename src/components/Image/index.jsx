@@ -28,7 +28,7 @@ const Image = ({ url, name, alt, className, data }) => {
     <>
     {url ? 
       <DefaultImage className={className} obj_name={name}>
-        <img src={url.replace("mediatoken", "media&token")} alt={alt} className={`absolute w-full h-full ${className}`} />
+        <img src={url.replace("mediatoken", "media&token")} className={`absolute w-full h-full ${className}`} />
       </DefaultImage>
       :
       // url ?

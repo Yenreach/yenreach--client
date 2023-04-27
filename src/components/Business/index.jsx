@@ -107,7 +107,7 @@ const index = ({ page: initialPage, num_per_page }) => {
   });
   }
 
-  // console.log("approved", filteredBusiness, enabled, aprrovedBusinesses)
+  console.log("approved", filteredBusiness)
 
   return (
     <>
