@@ -1,0 +1,72 @@
+{
+    
+    "data" : { 
+        "business": [
+           {
+            "title": "What kind of businesses are allowed on Yenreach App?",
+            "content": "Most businesses are allowed on Yenreach App, as long as they are legal and do not violate the app's terms of service"
+           }
+        ],
+        "marketplace": [
+            {
+                "title": "What is the Yenreach marketplace?",
+                "content": "The Yenreach marketplace is an online platform where buyers can browse and purchase products and services from various sellers."
+            },
+            {
+                "title": "How can I access the Yenreach marketplace?",
+                "content": "You can access the Yenreach marketplace through the Yenreach App or by visiting the Yenreach website at www.Yenreach.com."
+            },
+            {
+                "title": "Is it free to use the Yenreach marketplace?",
+                "content": "Yes, it is free to browse and search for products and services on the Yenreach marketplace."
+            },
+            {
+                "title": "How do I create an account on the Yenreach marketplace??",
+                "content": "You can create an account on the Yenreach marketplace by signing up with your email address and setting up a password."
+            },
+            {
+                "title": "How can I search for products or services on the Yenreach marketplace?",
+                "content": "You can search for products or services on the Yenreach marketplace by using the search bar and filters to narrow down your results by keywords, category, location, and price."
+            },
+            {
+                "title": "How can I contact Yenreach support for help with a purchase or order issue?",
+                "content": "You can contact Yenreach support by clicking the Contact Us link on the marketplace's homepage or sending an email to the provided support email."
+            },
+            {
+                "title": "Can I sell products or services on the Yenreach marketplace?",
+                "content": "Yes, you can sell products or services on the Yenreach marketplace by creating a user account, creating a business, and listing your products or services under your business."
+            },
+            {
+                "title": "How can I manage my seller account on the Yenreach marketplace?",
+                "content": "You can manage your seller account on the Yenreach marketplace by accessing your account dashboard and updating your product listings, prices, and inventory levels."
+            }        
+        ],
+        "job": [
+            {
+                "title": "What is the Yenreach job?",
+                "content": "Yenreach Job is an online job listing platform where job seekers can search for job vacancies and employers can post their job vacancies.."
+            },
+            {
+                "title": "How do I search for jobs on Yenreach?",
+                "content": "To search for jobs on Yenreach, simply visit the website and enter keywords related to the job you're looking for in the search bar. You can also filter your search by location, job type, and salary range."
+            },
+            {
+                "title": "How do I apply for a job on Yenreach?",
+                "content": "To apply for a job on Yenreach, create a user account by providing personal valid information. click on the job listing you're interested in and follow the instructions provided by the employer. This may include submitting a resume and cover letter or completing an online application form."
+            },
+            {
+                "title": "How do I post a job vacancy on Yenreach?",
+                "content": "To post a job vacancy on Yenreach, simply create an account and follow the instructions provided on the employer dashboard. You will need to provide details about the job vacancy, including the job title, description, and requirements."
+            },
+            {
+                "title": "How much does it cost to post a job vacancy on Yenreach?",
+                "content": "Its totally free to post jobs on yenreach"
+            },       
+            {
+                "title": "How do I edit or delete a job vacancy that I've posted on Yenreach?",
+                "content": "To  Edit or delete a job vacancy that you've posted on Yenreach, log in to your employer dashboard and navigate to the job listing you want to edit or delete. You can make changes to the listing or delete it entirely from this page."
+            } 
+        ]
+    }
+
+}

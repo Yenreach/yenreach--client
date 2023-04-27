@@ -5,6 +5,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Link } from 'react-router-dom'
+import Button from '../ui/Button'
 
 const styles = {
     color: '#000',
@@ -72,6 +74,11 @@ const index = () => {
                         </AccordionDetails>
                     </Accordion>
                 ))}
+            <Link to="/faqs">
+                <Button override={true} className='w-full py-4 mt-2 md:mt-6 text-black bg-gray-light'>
+                    See More FAQs
+                </Button>
+            </Link>
             </div>
     )
 }

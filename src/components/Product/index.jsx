@@ -95,7 +95,7 @@ const Products = ({ page: initialPage, num_per_page }) => {
             </>
           : 
             <div className='flex justify-center items-center h-24 text-black/70'>
-              No products Available
+              No products Available for this search
             </div>
           }
         </>

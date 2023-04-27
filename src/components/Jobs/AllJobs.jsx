@@ -44,7 +44,7 @@ const AllJobs = ({ jobs, setSelectedJobIndex, setTab, page: initialPage, num_per
         </>
       : 
       <div className='flex justify-center items-center h-24 text-black/70'>
-        No jobs Available yet
+        No jobs Available
       </div>
     }
     </>

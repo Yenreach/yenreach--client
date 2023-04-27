@@ -1,9 +1,9 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import Logo from "../../assets/logo.svg"
-import Circle from "../../assets/circle.svg"
 import Button from '../ui/Button'
 import Input from '../ui/Input'
+import Logo from "../../assets/logo.svg"
+import Circle from "../../assets/circle.svg"
 
 const index = () => {
   const { pathname } = useLocation()
@@ -28,7 +28,9 @@ const index = () => {
             <div>
               <h4 className='text-sm font-medium mb-7'>Other pages</h4>
               <ul className='text-xs text-footer-gray flex flex-col gap-6'>
-                <li>FAQ</li>
+                <li>
+                  <Link to={"/faqs"}>FAQ</Link>
+                  </li>
                 <li>Terms of service</li>
                 <li>Privacy policy</li>
               </ul>

@@ -9,6 +9,7 @@ import Explore from './pages/Explore'
 import Business from './pages/Business'
 import Products from './pages/Product'
 import About from './pages/About'
+import Faq from './pages/Faq'
 import Blogs from './pages/Blog'
 import Blog from './pages/Blog/Blog'
 import Login from './pages/Login';
@@ -72,6 +73,7 @@ function App() {
             <Route exact path="/products/:id" element={<Products />} />
             <Route exact path="/about" element={<About />} />
             <Route exact path="/blogs" element={<Blogs />} />
+            <Route exact path="/faqs" element={<Faq />} />
             <Route exact path="/blogs/:id" element={<Blog />} />
             <Route exact path="/signup" element={<SignUp />} />
             <Route exact path="/login" element={<Login />} />
