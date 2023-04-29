@@ -74,11 +74,11 @@ const index = () => {
                         </AccordionDetails>
                     </Accordion>
                 ))}
-            <Link to="/faqs">
-                <Button override={true} className='w-full py-4 mt-2 md:mt-6 text-black bg-gray-light'>
-                    See More FAQs
-                </Button>
-            </Link>
+                <Link to="/faqs">
+                    <Button override={true} className='w-full py-4 mt-2 md:mt-6 text-black bg-gray-light relative z-0'>
+                        See More FAQs
+                    </Button>
+                </Link>
             </div>
     )
 }

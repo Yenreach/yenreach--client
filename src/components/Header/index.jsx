@@ -36,7 +36,7 @@ const index = () => {
             </li>
             }
           </ul>
-          <Link to="/users">
+          <Link to="/users/add-business">
             <Button className='py-1.5 px-3 rounded-sm'>
               Add my business
             </Button>
@@ -72,7 +72,7 @@ const index = () => {
               }
              
             </ul>
-            <Link to="/users">
+            <Link to="/users/add-business">
               <Button className='py-1.5 px-3 rounded-sm'>
                 Add my business
               </Button>

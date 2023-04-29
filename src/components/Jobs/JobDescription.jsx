@@ -73,11 +73,11 @@ const JobDescription = ({ job }) => {
 				</svg>
 				<div className="flex h-24 w-24 bg-white rounded-full"></div>
 				<div className="flex flex-col flex-1 gap-1 text-white">
-					<h2 className='font-light'>{ job.company_name }</h2>
-					<h2 className='text-xl font-medium'>{ job.job_title }</h2>
+					<h2 className='font-light'>{ job?.company_name }</h2>
+					<h2 className='text-xl font-medium'>{ job?.job_title }</h2>
 					<div className='flex gap-2'>
 						{
-							job.job_tags?.map((tag, index) => (
+							job?.job_tags?.map((tag, index) => (
 								<span key={tag.id} className="font-normal text-xsm p-1 bg-black/40 text-white w-fit">{ tag.tag }</span>
 							))
 						}
@@ -89,19 +89,35 @@ const JobDescription = ({ job }) => {
 				{tab===1 &&
 					<>
 						<h2 className='font-semibold text-xl mb-4'>Job Description</h2>
-						<div className="flex flex-col gap-2">
-							<h3 className='text-base font-medium'>Job Overview</h3>
-							<p className='font-light text-xs'>{ job.job_overview }</p>
-						</div>
-						<div className="flex flex-col gap-2">
-							<h3 className='text-base font-medium'>Job Responsibilities</h3>
-							<p className='font-light text-xs'>{ job.job_responsibilities }</p>
-						</div>
-						<div className="flex flex-col gap-2">
-							<h3 className='text-base font-medium'>Job Perks and Benefits</h3>
-							<p className='font-light text-xs'>{ job.job_benefit }</p>
-						</div>
+						{job?.job_overview && 
+							<div className="flex flex-col gap-2">
+								<h3 className='text-base font-medium'>Job Overview</h3>
+								<p className='font-light text-xs'>{ job?.job_overview }</p>
+							</div>
+						}
+						{job?.job_responsibilities && 
+							<div className="flex flex-col gap-2">
+								<h3 className='text-base font-medium'>Job Responsibilities</h3>
+								<p className='font-light text-xs'>{ job?.job_responsibilities }</p>
+							</div>
+						}
+						{job?.job_benefit && 
+							<div className="flex flex-col gap-2">
+								<h3 className='text-base font-medium'>Job Perks and Benefits</h3>
+								<p className='font-light text-xs'>{ job?.job_benefit }</p>
+							</div>
+						}
+						{(job?.admin_job!=="1") ? 
 						<Button onClickFunc={() => setTab(2)} className='my-2 w-fit py-1 px-4 text-smm font-medium mt-auto' variant='job'>Apply For this Job</Button>
+						:  job?.job_link.includes("https") ?
+						<a href={`${job?.job_link}`} target="_blank" className='my-2 w-fit py-1 px-4 text-smm font-medium mt-auto bg-blue text-white'>
+							Go to Application Page
+						</a> : 
+						<div className='my-2 w-fit text-smm font-medium mt-auto flex flex-col gap-1'>
+							<span className='text-xs'>Apply via</span>
+							<span className='text-sm italic bg-ble/90 py-1 x-2 text-blue'>{job?.job_link}</span>
+						</div>
+						}
 					</>
 				}
 				{tab===2 &&
@@ -156,7 +172,7 @@ const JobDescription = ({ job }) => {
 					<>
 						<h2 className='text-xl mb-4 text-black/70'>Application Successful</h2>
 						<div className='flex flex-col gap-2'>
-							<p className='font-light text-xs'>Thank you for applying for this job. We will get back to you shortly.</p>
+							<p className='font-light text-xs'>Thank you for applying for this job?. We will get back to you shortly.</p>
 						</div>
 					</>
 				}
@@ -184,3 +200,6 @@ JobDescription.defualtProps = {
 JobDescription.propTypes = {
 	job: PropTypes.object,
 }
+
+
+
