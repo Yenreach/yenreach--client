@@ -41,6 +41,10 @@ const index = ({ page, num_per_page }) => {
     });
     setFilteredJobsLoading(false)
     setFilteredJobs(filtered);
+    
+    if (tab !== 1) {
+      setTab(1)
+    }
 
     if (!useFilter) {
       setUseFilter(true)
