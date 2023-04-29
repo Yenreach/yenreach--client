@@ -206,7 +206,24 @@ export const apiEditBusiness = (data) => {
     return ApiAdapter.fetchData({
         url: `edit_business_profile_api${serviceSuffix}`,
         method: "post",
-        data: {...data, user_string: token}
+        data: {...data, user_string: data?.user_string || token}
+    })
+}
+/* Edit business Profile Image */
+export const apiEditBusinessProfileImage = (data) => {
+    return ApiAdapter.fetchData({
+        url: `update_profile_image_api${serviceSuffix}`,
+        method: "post",
+        data
+    })
+}
+
+/* Edit business Profile Image */
+export const apiEditBusinessCoverImage = (data) => {
+    return ApiAdapter.fetchData({
+        url: `update_cover_image_api${serviceSuffix}`,
+        method: "post",
+        data
     })
 }
 
@@ -232,7 +249,7 @@ export const apiAddPageVisits = (data) => {
     return ApiAdapter.fetchData({
         url: `create_page_visit_api${serviceSuffix}`,
         method: "post",
-        data: {...data, user_string: token}   
+        data: {...data, user_string: data?.user_string || token}   
     })
 }
 

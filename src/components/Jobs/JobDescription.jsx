@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react'
+import React, { useState, useReducer, useEffect } from 'react'
 import Button from '../ui/Button'
 import PropTypes from 'prop-types'
 import { FaFileUpload } from 'react-icons/fa'
@@ -34,6 +34,13 @@ const JobDescription = ({ job }) => {
 	const [application, setApplication] = useReducer(formReducer, initialApplicationState)
 	const [tab, setTab] = useState(1)
     const { url, uploadImage, error, progress, loading: upLoadingImage } = useImage()
+	
+	useEffect(() => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
+	}, [])
 
 	const submitJobApplication = usePost({ 
 		api: apiSubmitApplication, 

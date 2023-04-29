@@ -5,7 +5,8 @@ import { BsTelephone, BsGlobe, BsInstagram, BsWhatsapp } from 'react-icons/bs'
 import { MdOutlineMarkEmailUnread, MdOutlineLocationOn } from 'react-icons/md'
 import { TbBrandFacebook } from 'react-icons/tb'
 import useFetch from '/src/hooks/useFetch'
-import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessSubscription, apiGetBusinessPageVisits } from '/src/services/UserService'
+import usePost from '/src/hooks/usePost'
+import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessSubscription, apiGetBusinessPageVisits, apiEditBusinessProfileImage, apiEditBusinessCoverImage } from '/src/services/UserService'
 import { apiGetBusinessFacilities, apiGetBusinessReviews, apiGetBusinessReviewsStats } from '/src/services/CommonService'
 import Header from "/src/components/users/Header"
 import Dashboard from "../../../components/layout/Dashboard"
@@ -19,18 +20,66 @@ import Star from '../../../assets/star.svg'
 import Loader from '../../../components/Loader'
 import { expired, formatDate } from '/src/utils/dateFunc'
 import Image from '../../../components/Image';
+import useImage from '/src/hooks/useImage'
+import { CiEdit } from 'react-icons/ci';
+import { useAuthContext } from '/src/hooks/useAuthContext'
+
+
 
 const index = () => {
   const { id } = useParams()
+  const { user } = useAuthContext()
   const reviewsContainerRef = useRef(null)
   const navigate = useNavigate()
+  const coverImageRef = useRef(null)
+  const { url: profilePhoto, uploadImage: uploadProfilePhoto, loading: uploadingProfileImage } = useImage()
+  const { url: CoverPhoto, uploadImage: uploadCoverPhoto, loading: uploadingCoverPhoto } = useImage()
+  const profileImageMutation = usePost({ 
+    api: apiEditBusinessProfileImage ,
+    success: (data) => {
+      console.log("data")
+    }
+  })
+  const coverImageMutation = usePost({ 
+    api: apiEditBusinessCoverImage ,
+    success: (data) => {
+      console.log("data")
+    }
+  })
 
+
+  useEffect(() => {
+    const updateProfileImg = () => {
+      profileImageMutation.mutate({
+        user_string: user?.verify_string,
+        business_string: id,
+        profile_img: profilePhoto
+      })
+    }
+    if (profilePhoto) {
+      updateProfileImg()
+    }
+  }, [profilePhoto])
+  useEffect(() => {
+    const updateCoverImg = () => {
+      coverImageMutation.mutate({
+        user_string: user?.verify_string,
+        business_string: id,
+        cover_img: CoverPhoto
+      })
+    }
+    if (profilePhoto) {
+      updateCoverImg()
+    }
+  }, [CoverPhoto])
+  
+  
   const { isLoading, error, data: business  } = useFetch({
     api: apiGetOneBusiness,
     param: id,
     key: ['userBusiness', id],
   })
-
+  console.log("b", business)
   const { data: pageVisits } = useFetch({
     api: apiGetBusinessPageVisits,
     param: id,
@@ -49,7 +98,7 @@ const index = () => {
     key: ['subscription', id],
   })
 
-  console.log("sub", subscription)
+  // console.log("sub", subscription)
 
   const { data: facilities, error: errorFacilities } = useFetch({
     api: apiGetBusinessFacilities,
@@ -115,6 +164,13 @@ const index = () => {
   }, [business])
 
   // console.log('subscription', subscription, expired(subscription?.true_expiry))
+
+  const handle = (e) => {
+    if (e.target === e?.currentTarget) {
+      console.log("cover image")
+      coverImageRef.current.click()
+    }
+  }
   return (
     <Dashboard>
       <div className='flex-1 overflow-y-auto overflow-hidden'>
@@ -122,12 +178,20 @@ const index = () => {
           <Header business_string={id} type="business" />
           {business && (
           <>
-            <div className='h-36 -z-0 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center bg-gray'>
+            <div onClick={handle} className='h-36 -z-0 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center bg-gray cursor-pointer'>
+            <input ref={coverImageRef} type="file" name="cover_image" id="cover_image" className="hidden" onChange={(e)=> uploadCoverPhoto(e.target.files[0])}  />
+
               <Link to={`/users/edit-business/${id}`} className='p-1.5 px-3 text-xs font-arialsans absolute bottom-2 right-2 sm:right-4 lg:right-16 bg-green text-white'>
                 Edit Profile
               </Link>
-              <div className='z-100 w-28 h-28 overflow-hidden left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 mx-auto absolute rounded-full' >
-                <Image url={business?.profile_img} name={business?.name} />
+              <div className='z-100 w-28 h-28 left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 mx-auto absolute rounded-full' >
+                <label htmlFor="image" className="absolute top-0 w-full h-full mx-auto bg-gray rounded-full cursor-pointer">
+                    <span className="absolute bottom-0 right-0 -translate-x-1/2 bg-[#25D366] w-5 h-5 rounded-full overflow-hidden grid place-items-center z-10">
+                        <CiEdit size="" color="white" className="" />
+                    </span>
+                    <input type="file" name="image" id="image" className="hidden" onChange={(e)=> uploadProfilePhoto(e.target.files[0])}  />
+                    <Image url={business?.profile_img} name={business?.name} className='w-full h-full object-cover rounded-full' />
+                </label>
               </div>
             </div>
             <section className='px-7'>
