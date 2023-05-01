@@ -204,7 +204,7 @@ const index = () => {
               </div>
               <h2 className='text-lg text-green2 font-semibold mb-4'>Photos</h2>
               <div className='flex flex-wrap gap-4 mb-10'>
-                {business?.photos?.length ? business?.photos?.map((photo, index) => <img key={index} src={photo?.filename} alt="" className='h-20 w-24 object-cover' />) 
+                {business?.photos?.length ? business?.photos?.map((photo, index) => <img key={index} src={photo?.filepath} alt="" className='h-20 w-24 object-cover' />) 
                 : <span className='text-[#476788] text-xs sm:text-sm'>No photos</span>
                 }
                 {/* <img src={Photo1}  alt="" className='h-20' />

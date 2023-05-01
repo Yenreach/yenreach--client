@@ -6,7 +6,7 @@ import { MdOutlineMarkEmailUnread, MdOutlineLocationOn } from 'react-icons/md'
 import { TbBrandFacebook } from 'react-icons/tb'
 import useFetch from '/src/hooks/useFetch'
 import usePost from '/src/hooks/usePost'
-import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessSubscription, apiGetBusinessPageVisits, apiEditBusinessProfileImage, apiEditBusinessCoverImage } from '/src/services/UserService'
+import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessSubscription, apiGetBusinessPageVisits, apiEditBusinessProfileImage, apiEditBusinessCoverImage, apiAddBusinessPhoto } from '/src/services/UserService'
 import { apiGetBusinessFacilities, apiGetBusinessReviews, apiGetBusinessReviewsStats } from '/src/services/CommonService'
 import Header from "/src/components/users/Header"
 import Dashboard from "../../../components/layout/Dashboard"
@@ -23,6 +23,8 @@ import Image from '../../../components/Image';
 import useImage from '/src/hooks/useImage'
 import { CiEdit } from 'react-icons/ci';
 import { useAuthContext } from '/src/hooks/useAuthContext'
+import Add from '/src/assets/add.svg'
+
 
 
 
@@ -34,16 +36,24 @@ const index = () => {
   const coverImageRef = useRef(null)
   const { url: profilePhoto, uploadImage: uploadProfilePhoto, loading: uploadingProfileImage } = useImage()
   const { url: CoverPhoto, uploadImage: uploadCoverPhoto, loading: uploadingCoverPhoto } = useImage()
+  const { url: businessPhoto, uploadImage: addBusinessPhoto, loading: uploadingBusinessPhoto } = useImage()
+
   const profileImageMutation = usePost({ 
     api: apiEditBusinessProfileImage ,
     success: (data) => {
-      console.log("data")
+      // console.log("data")
     }
   })
   const coverImageMutation = usePost({ 
     api: apiEditBusinessCoverImage ,
     success: (data) => {
-      console.log("data")
+      // console.log("data")
+    }
+  })
+  const businessImageMutation = usePost({ 
+    api: apiAddBusinessPhoto ,
+    success: (data) => {
+      // console.log("data", data)
     }
   })
 
@@ -60,6 +70,7 @@ const index = () => {
       updateProfileImg()
     }
   }, [profilePhoto])
+
   useEffect(() => {
     const updateCoverImg = () => {
       coverImageMutation.mutate({
@@ -68,10 +79,23 @@ const index = () => {
         cover_img: CoverPhoto
       })
     }
-    if (profilePhoto) {
+    if (CoverPhoto) {
       updateCoverImg()
     }
   }, [CoverPhoto])
+
+  useEffect(() => {
+    const updateCoverImg = () => {
+      businessImageMutation.mutate({
+        user_string: user?.verify_string,
+        business_string: id,
+        filepath: businessPhoto
+      })
+    }
+    if (businessPhoto) {
+      updateCoverImg()
+    }
+  }, [businessPhoto])
   
   
   const { isLoading, error, data: business  } = useFetch({
@@ -79,7 +103,9 @@ const index = () => {
     param: id,
     key: ['userBusiness', id],
   })
-  console.log("b", business)
+
+  // console.log("b", business)
+  
   const { data: pageVisits } = useFetch({
     api: apiGetBusinessPageVisits,
     param: id,
@@ -98,7 +124,7 @@ const index = () => {
     key: ['subscription', id],
   })
 
-  // console.log("sub", subscription)
+  // console.log("sub")
 
   const { data: facilities, error: errorFacilities } = useFetch({
     api: apiGetBusinessFacilities,
@@ -167,7 +193,7 @@ const index = () => {
 
   const handle = (e) => {
     if (e.target === e?.currentTarget) {
-      console.log("cover image")
+      // console.log("cover image")
       coverImageRef.current.click()
     }
   }
@@ -181,6 +207,7 @@ const index = () => {
             <div onClick={handle} className='h-36 -z-0 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center bg-gray cursor-pointer'>
             <input ref={coverImageRef} type="file" name="cover_image" id="cover_image" className="hidden" onChange={(e)=> uploadCoverPhoto(e.target.files[0])}  />
 
+              <img src={business?.cover_img.replace("mediatoken", "media&token")} name={business?.name} className='absolute w-full h-full object-cover' />
               <Link to={`/users/edit-business/${id}`} className='p-1.5 px-3 text-xs font-arialsans absolute bottom-2 right-2 sm:right-4 lg:right-16 bg-green text-white'>
                 Edit Profile
               </Link>
@@ -258,8 +285,19 @@ const index = () => {
               <div className='mb-11'>
                 <h2 className='text-green text-lg font-medium mb-3'>Business media</h2>
                 <div className='flex flex-col sm:flex-row flex-wrap gap-2 text-sm text-[#476788]'>
-                  {business?.photos?.length ? business?.photos?.map((photo, index) => <img key={index} src={photo?.filename} alt=""  className='sm:w-32 sm:h-40 object-cover object-center' />) 
+                  {business?.photos?.length ? business?.photos?.map((photo, index) => <img key={index} src={photo?.filepath} alt=""  className='sm:w-32 sm:h-40 object-cover object-center bg-black/30' />) 
                   : <span className='text-[#476788] text-xs sm:text-sm'>No photos</span>
+                  }
+                  {(business?.photos?.length < 2 || (business?.photos?.length < Number(subscription?.subscription?.photos))) && 
+                    <div className='mb-4'>
+                    <label htmlFor="business_photo" className='font-medium text-xs bg-[#E5E5E5] p-4 flex flex-col items-center justify-center relative cursor-pointer sm:w-32 sm:h-40'>
+                            <>
+                                <img src={Add} alt="" className='mb-4 border-2 rounded-full' />
+                                <span className='text-center'>Add a business Photo</span>
+                            </>                        
+                    </label>
+                    <input onChange={(e) => addBusinessPhoto(e.target.files[0])} className='border-[#E5E5E5] rounded-lg hidden' type="file" name="business_photo" id="business_photo" />
+                </div> 
                   }
                 </div>
               </div>

@@ -90,10 +90,11 @@ export const apiGetBusinessPhotos = (business_token) => {
     })
 }
 
-export const apiAddBusinessPhoto = (business_token) => {
+export const apiAddBusinessPhoto = (data) => {
     return ApiAdapter.fetchData({
         url: `add_business_photo_api${serviceSuffix}`,
         method: "post",
+        data
     })
 }
 

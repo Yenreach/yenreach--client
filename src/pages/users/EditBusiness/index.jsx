@@ -103,7 +103,7 @@ const index = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const data = { ...businessData }
-        console.log("data", data)
+        // console.log("data", data)
         editBusinessMutation.mutate(data)
     }
 
