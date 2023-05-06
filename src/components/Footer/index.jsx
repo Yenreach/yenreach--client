@@ -36,7 +36,11 @@ const index = () => {
                     Terms of service
                   </Link>
                 </li>
-                <li>Privacy policy</li>
+                <li>
+                  <Link to={"/privacy"}>
+                    Privacy policy
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
