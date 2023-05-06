@@ -31,7 +31,11 @@ const index = () => {
                 <li>
                   <Link to={"/faqs"}>FAQ</Link>
                   </li>
-                <li>Terms of service</li>
+                <li>
+                  <Link to={"/terms"}>
+                    Terms of service
+                  </Link>
+                </li>
                 <li>Privacy policy</li>
               </ul>
             </div>

@@ -40,6 +40,7 @@ import Applicants from './pages/users/Jobs/Applicants'
 import AddJob from './pages/users/Jobs/AddJob'
 import EditJob from './pages/users/Jobs/EditJob'
 import BottomNav from './components/BottomNav'
+import Terms from './pages/TermsAndPrivacy/Terms';
 
 // CapactiorApp.addListener('appStateChange', ({ isActive }) => {
 //   console.log('App state changed. Is active?', isActive);
@@ -77,6 +78,7 @@ function App() {
             <Route exact path="/blogs/:id" element={<Blog />} />
             <Route exact path="/signup" element={<SignUp />} />
             <Route exact path="/login" element={<Login />} />
+            <Route exact path="/terms" element={<Terms />} />
             <Route exact path="/password-recovery" element={<ChangePasswordTemp />} />
             {/* <Route exact path="/password-recovery" element={<PasswordRecovery />} /> */}
             <Route exact path="/password_reset" element={<ChangePassword />} />
