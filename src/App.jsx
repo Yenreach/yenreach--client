@@ -42,6 +42,7 @@ import EditJob from './pages/users/Jobs/EditJob'
 import BottomNav from './components/BottomNav'
 import Terms from './pages/TermsAndPrivacy/Terms';
 import Privacy from './pages/TermsAndPrivacy/Privacy';
+import Subsidiaries from './pages/Subsidiaries';
 
 // CapactiorApp.addListener('appStateChange', ({ isActive }) => {
 //   console.log('App state changed. Is active?', isActive);
@@ -81,6 +82,7 @@ function App() {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/terms" element={<Terms />} />
             <Route exact path="/privacy" element={<Privacy />} />
+            <Route exact path="/subsidiaries" element={<Subsidiaries />} />
             <Route exact path="/password-recovery" element={<ChangePasswordTemp />} />
             {/* <Route exact path="/password-recovery" element={<PasswordRecovery />} /> */}
             <Route exact path="/password_reset" element={<ChangePassword />} />

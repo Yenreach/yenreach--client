@@ -46,10 +46,26 @@ const index = () => {
             <div>
               <h4 className='text-sm font-medium mb-7'>Affiliates</h4>
               <ul className='text-xs text-footer-gray flex flex-col gap-6'>
-                <li>Dordorian concept LTD</li>
-                <li>BYS Graduate School</li>
-                <li>Busitech model college</li>
-                <li>Busitech University</li>
+                <li>
+                  <Link to={"/subsidiaries"}>
+                    Dordorian concept LTD
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/subsidiaries"}>
+                   BYS Graduate School
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/subsidiaries"}>
+                    Busitech model college
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/subsidiaries"}>
+                    Busitech University
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
