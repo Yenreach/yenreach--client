@@ -130,7 +130,7 @@ const index = ({ businesses }) => {
         {/* <SearchBar /> */}
         <div className='flex items-center gap-2 justify-between w-full px-2 sm:w-4/5'>
           <div className='flex flex-col items-center'>
-            <span className='font-semibold'>{businessCount || 900}+</span>
+            <span className='font-semibold'>{businessCount || 1100}+</span>
             <span className='text-sm md:text-lg'>Businesses</span>
           </div>
           <div className='flex flex-col items-center'>

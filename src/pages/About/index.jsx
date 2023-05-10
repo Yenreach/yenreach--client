@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import useFetch from '/src/hooks/useFetch'
+import { apiBusinessAnalytics } from '../../services/CommonService'
 import ISMN from '../../assets/Us/ISMN.svg'
 import CICRM from '../../assets/Us/CICRM.svg'
 import ICEN from '../../assets/Us/ICEN.svg'
@@ -14,10 +16,21 @@ import SMS from '../../assets/sms.svg'
 import Linkedin from '../../assets/linkedin.svg'
 import AboutBlob from '../../assets/about-blob.svg'
 
+const staleTime = 1000 * 60 * 60 * 24
 
 const index = () => {
-  return (
-      <>
+    const { data: analytics, error: errorAnalytics } = useFetch({
+        api: apiBusinessAnalytics,
+        key: 'analytics',
+        staleTime: staleTime,
+        })
+
+    const businessCount = useMemo(() => Math.floor((analytics?.business_count) / 100) * 100, [analytics?.business_count])
+    const userCount = useMemo(() => Math.floor(analytics?.user_count / 1000) * 1000, [analytics?.user_count])
+    
+    console.log(analytics)
+    return (
+        <>
         <Header />
         <section>
             <div className='bg-cover bg-top flex flex-col justify-between items-center gap-6 md:gap-8 py-16 pt-24 sm:py-12 sm:pt-32 px-4 sm:px-16 md:px-32 lg:px-48 relative overflow-hidden bg-footer-bg'>
@@ -30,15 +43,15 @@ const index = () => {
             <div className='py-12 px-4 md:px-10 lg:px-20'>
                 <div className='flex items-center justify-between w-full sm:w-11/12  mx-auto px-2 mb-32'>
                     <div className='flex flex-col items-center'>
-                        <span className='font-semibold text-xl md:text-3xl text-green'>2000<span className='text-blue'>+</span></span>
+                        <span className='font-semibold text-xl md:text-3xl text-green'>{businessCount || 1100}<span className='text-blue'>+</span></span>
                         <span className='text-sm md:text-lg text-[#476788] font-arialsans'>Businesses</span>
                     </div>
                     <div className='flex flex-col items-center'>
-                        <span className='font-semibold text-xl md:text-3xl text-green'>172<span className='text-blue'>+</span></span>
+                        <span className='font-semibold text-xl md:text-3xl text-green'>2<span className='text-blue'>+</span></span>
                         <span className='text-sm md:text-lg text-[#476788] font-arialsans'>Locations</span>
                     </div>
                     <div className='flex flex-col items-center'>
-                        <span className='font-semibold text-xl md:text-3xl text-green'>50000<span className='text-blue'>+</span></span>
+                        <span className='font-semibold text-xl md:text-3xl text-green'>{userCount || 1000}<span className='text-blue'>+</span></span>
                         <span className='text-sm md:text-lg text-[#476788] font-arialsans'>Audience</span>
                     </div>
                 </div>
@@ -181,8 +194,8 @@ const index = () => {
             </div>
         </section>
         <Footer />
-      </>
-  )
+        </>
+    )
 }
 
 export default index
