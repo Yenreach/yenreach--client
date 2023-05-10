@@ -4,6 +4,7 @@ import Button from '../Button'
 import PropTypes from 'prop-types';
 import { BiBriefcase, BiEdit } from 'react-icons/bi'
 import { MdBusiness, MdOutlinePeopleOutline } from 'react-icons/md'
+import { daysAgo, formatDate } from '/src/utils/dateFunc'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 
 
@@ -13,9 +14,9 @@ const index = ({ job, setSelectedIndex, index, setTab }) => {
 {
     <div onClick={ () => { setSelectedIndex(index); setTab(2) }} className="flex flex-col gap-4 py-2.5 px-2 border-2 border-[#D3DAE6] cursor-pointer">
       <div className="flex justify-between items-center w-full">
-        <h2 className="text-xsm font-semibold text-blue">Posted 3 days ago</h2>
+        <h2 className="text-xsm font-semibold text-blue">Posted {!!daysAgo(job?.created_at) ? daysAgo(job?.created_at)=== 1 ? "yesterday" : `${daysAgo(job?.created_at)} days ago` : "today"}</h2>
         <div className='bg-green-light rounded-full px-3 py-1 text-green text-xs'>{ job?.status==="1" ? "Active" : "Inactive" }</div>
-      </div>
+      </div> 
       <div className="flex flex-col gap-2">
         <div className="flex gap-2 justify-start items-center">
           <MdBusiness size="1.3rem" className='opacity-60' />

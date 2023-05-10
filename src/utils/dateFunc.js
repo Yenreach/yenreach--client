@@ -22,6 +22,16 @@ export const formatDate = (date) => {
     // console.log("newDate", newDate, "day", day, "month", month, "year", year);
     return `${day} ${months[month-1]} ${year}`;
 };
+export const daysAgo = (date) => {
+    const newDate = new Date(date * 1000); // convert to milliseconds
+    const today = Date.now();
+
+    const diffTime = Math.abs(today - newDate);
+
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    return diffDays;
+};
 
 export const formatDate2 = (date) => {
     const newDate = new Date(date * 1000); // convert to milliseconds
