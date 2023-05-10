@@ -5,6 +5,8 @@ import RightArrow from '../../assets/right-arrow.svg'
 import JobCardVariation from '../ui/JobCard/JobCardVariation'
 import { useState } from 'react'
 import Pagination from '../Pagination'
+import { paginate } from '/src/utils/pagination'
+
 
 
 const JobSideBar = ({ jobs, setSelectedJobIndex, selectedJobIndex }) => {
@@ -22,7 +24,7 @@ const JobSideBar = ({ jobs, setSelectedJobIndex, selectedJobIndex }) => {
     <div className='hidden md:flex flex-col h-full flex-1 max-w-sm'>
 			<div className="flex justify-start flex-col gap-3">
 				{
-					jobs.slice(0, 4).map((job, index) => (
+					 paginate({ page, num_per_page, data: jobs })?.data?.slice(0, 4).map((job, index) => (
 						<JobCardVariation key={job.id} job={job} index={index} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} />
 					))
 				}

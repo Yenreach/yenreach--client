@@ -25,7 +25,7 @@ const AllJobs = ({ jobs, setSelectedJobIndex, setTab, page: initialPage, num_per
         <>
         <div className="grid w-full xs:grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {
-            jobs.slice(0, 20).map((job, index) => (
+            paginate({ page, num_per_page, data: jobs })?.data?.slice(0, 20).map((job, index) => (
               <JobCard index={index} setSelectedIndex={setSelectedJobIndex} setTab={setTab} key={job?.id} job={job} />
             ))
           }
@@ -36,7 +36,7 @@ const AllJobs = ({ jobs, setSelectedJobIndex, setTab, page: initialPage, num_per
         </div> */}
         <div className="grid w-full xs:grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {
-            jobs.slice(20, 40).map((job, index) => (
+            paginate({ page, num_per_page, data: jobs })?.data?.slice(20, 40).map((job, index) => (
               <JobCard index={index} setSelectedIndex={setSelectedJobIndex} setTab={setTab} key={job?.id} job={job} />
             ))
           }

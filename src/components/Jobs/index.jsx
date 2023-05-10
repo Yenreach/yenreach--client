@@ -58,7 +58,7 @@ const index = ({ page, num_per_page }) => {
     key: ['jobs'],
   })
   
-  // console.log("jobs", jobs)
+  console.log("jobs", jobs)
   return (
     <>
       {(isLoading || filteredJobsLoading) && <Loader loader={4} />}
