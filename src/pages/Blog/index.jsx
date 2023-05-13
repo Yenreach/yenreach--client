@@ -20,7 +20,7 @@ const index = () => {
     api: apiGetAllBlogs,
   })
 
-  // console.log('blogs', blogs, 'error', errorBlogs)
+  console.log('blogs', blogs, 'error', errorBlogs)
 
   return (
     <>

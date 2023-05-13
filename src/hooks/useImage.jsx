@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { apiLogin } from '../services/AuthService'
-import { getStorage, ref, uploadBytesResumable, getDownloadURL  } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL  } from "firebase/storage";
 import storage from '../configs/firebase.config';
 import { v4 as uuidv4 } from 'uuid';
 

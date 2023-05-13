@@ -15,6 +15,7 @@ const initialJobState = {
     job_title: "",
     job_type: "",
     salary: "",
+    expiry_date: "",
     location: "",
     job_overview: "",
     job_benefit: "",
@@ -82,7 +83,7 @@ const index = () => {
                         <label htmlFor="job_title" className='font-medium text-sm'>Job Title</label>
                         <Input required value={job?.job_title} onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="job_title" id="job_title" />
                     </div>
-                    <div className='w-full '>
+                    <div className='w-full mb-8 md:mb-0'>
                         <label htmlFor="job_type" className='font-medium text-sm'>Job Type</label>
                         <Input required value={job?.job_type} onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="job_type" id="job_type" />
                     </div>
@@ -93,9 +94,14 @@ const index = () => {
                         <Input required value={job?.location} onChange={handleJob} variant={"job"} className='border-gray rounded-lg mt-2' type="text" name="location" id="location" 
                         />
                     </div>
-                    <div className='w-full'>
+                    <div className='w-full mb-8 md:mb-0'>
                         <label htmlFor="salary" className='font-medium text-sm'>Salary</label>
                         <Input required value={job?.salary} onChange={handleJob} variant={"job"} className='border-gray rounded-lg mt-2' type="number" name="salary" id="salary" 
+                        />
+                    </div>
+                    <div className='w-full'>
+                        <label htmlFor="expiry_date" className='font-medium text-sm'>Expiry Date</label>
+                        <Input required value={job?.expiry_date} onChange={handleJob} variant={"job"} className='border-gray rounded-lg mt-2' type="date" name="expiry_date" id="expiry_date" 
                         />
                     </div>
                 </div>

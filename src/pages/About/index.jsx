@@ -28,7 +28,6 @@ const index = () => {
     const businessCount = useMemo(() => Math.floor((analytics?.business_count) / 100) * 100, [analytics?.business_count])
     const userCount = useMemo(() => Math.floor(analytics?.user_count / 1000) * 1000, [analytics?.user_count])
     
-    console.log(analytics)
     return (
         <>
         <Header />
