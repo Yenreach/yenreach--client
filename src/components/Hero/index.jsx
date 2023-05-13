@@ -54,9 +54,9 @@ const index = ({ businesses }) => {
     key: 'analytics',
     staleTime: staleTime,
   })
-  
+  // console.log("analytics", analytics)
   const businessCount = useMemo(() => Math.floor((analytics?.business_count || businesses?.length) / 100) * 100, [analytics?.business_count, businesses])
-  const userCount = useMemo(() => Math.floor(analytics?.user_count / 1000) * 1000, [analytics?.user_count])
+  const userCount = useMemo(() => Math.floor(analytics?.user_count / 100) * 100, [analytics?.user_count])
 
   useEffect(() => {  
     // fade in and out carousel automatically

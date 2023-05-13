@@ -36,9 +36,9 @@ const index = () => {
             </li>
             }
           </ul>
-          <Link to="/users/add-business">
+          <Link to={user ? "/users" : "/users/add-business"}>
             <Button className='py-1.5 px-3 rounded-sm'>
-              Add my business
+              {user ? "My Businesses" : "Add my business"}
             </Button>
           </Link>
         </nav>
