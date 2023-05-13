@@ -56,7 +56,7 @@ const index = () => {
         </div>
       </div>
       <section className='px-4 py-12 md:px-10 lg:px-24'>
-        <img src={BlogImage} alt="" />
+      <img src={blog?.file_path.replace("mediatoken", "media&token") || BlogImage} alt="" className="w-full object-cover object-center min-h-[400px]" />
       </section>
       <main>
           <section className='px-4 py-12 md:px-10 lg:px-24 max-w-[750px] mx-auto'>
