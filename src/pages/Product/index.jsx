@@ -9,11 +9,15 @@ import Footer from '/src/components/Footer'
 import Loader from '/src/components/Loader'
 import ProductCard from '/src/components/ui/ProductCard'
 import SellerDetailsModal from './SellerDetailsModal'
+import FullImage from '../../components/FullImage'
 
 
 
 const Product = () => {
   const [modalOpen, setModalOpen] = useState(false)
+  const [imageModalOpen, setImageModalOpen] = useState(false)
+  const [image, setImage] = useState('')
+  
   const { id } = useParams()
 
   const { data: product, error: errorProduct, isLoading } = useFetch({
@@ -35,13 +39,19 @@ const Product = () => {
     enabled: !!product?.business_string,
   })
   // console.log("relatedProducts", relatedProducts)
-  console.log("pro", product)
+  // console.log("pro", product)
 
-
+  const handleImageClick = (image) => {
+    setImage(image)
+    setImageModalOpen(true)
+  }
   return (
       <>
         <Header />
         {isLoading && <Loader loader={4} />}
+        {imageModalOpen && (
+         <FullImage  setImageModalOpen={setImageModalOpen} image={image} />
+          )}
         <div className='mt-24 mb-10'>
             <section className='py-4 md:pt-8 sm:py-6 px-4 md:px-10 lg:px-20 mb-8'>
                 <h1 className='text-2xl font-medium mb-2'>{product?.product_name}</h1>
@@ -53,8 +63,15 @@ const Product = () => {
                 </div> */}
             </section>
             <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 mb-8 flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-12 h-[400px] overflow-hidden'>
-                <div className='flex-1 w-full h-full bg-gray overflow-hidden'>
-                    <img src={product?.photos[0]?.filename} alt="" className='w-full h-full object-cover' />
+                <div className='flex-1 w-full h-full bg-gray-light overflow-hidden relative'>
+                    <img onClick={() => handleImageClick(product?.photos[0]?.filename)} src={product?.photos[0]?.filename} alt="" className='w-full h-full object-cover cursor-pointer' />
+                    {`click to view image`}
+                    <span
+                      onClick={() => handleImageClick(product?.photos[0]?.filename)}
+                      className='absolute bottom-0 left-0 w-full h-12 bg-black/50 flex justify-center items-center text-white text-sm cursor-pointer'
+                     >
+                      View Full Image
+                    </span>
                 </div>
                 <div className='flex-1 w-full h-full flex flex-col justify-between'>
                   <div>
@@ -79,6 +96,12 @@ const Product = () => {
                   {product?.photos.slice(1)?.map((photo) => (
                       <div key={photo?.filename} className='bg-gray rounded-lg w-36 h-36 overflow-hidden relative'>
                           <img src={photo?.filename} alt="" className='object-cover w-full h-full' />
+                          <span
+                            onClick={() => handleImageClick(photo?.filename)}
+                            className='absolute bottom-0 left-0 w-full h-8 bg-black/50 flex justify-center items-center text-white text-xs cursor-pointer'
+                          >
+                            View Full Image
+                          </span>
                       </div>
                     ))}
                   </div>
