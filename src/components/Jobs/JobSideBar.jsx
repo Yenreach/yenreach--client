@@ -25,7 +25,7 @@ const JobSideBar = ({ jobs, setSelectedJobIndex, selectedJobIndex }) => {
 			<div className="flex justify-start flex-col gap-3">
 				{
 					 paginate({ page, num_per_page, data: jobs })?.data?.slice(0, 4).map((job, index) => (
-						<JobCardVariation key={job.id} job={job} index={index} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} />
+						<JobCardVariation key={job.id} job={job} index={index + (page-1)*num_per_page} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} />
 					))
 				}
 			</div>
