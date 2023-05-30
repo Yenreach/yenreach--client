@@ -4,12 +4,28 @@ import Button from '../ui/Button'
 import Input from '../ui/Input'
 import Logo from "../../assets/logo.svg"
 import Circle from "../../assets/circle.svg"
+import { toast } from 'react-toastify';
+import Loader from '../Loader'
 
-const index = () => {
+
+const Footer = () => {
   const { pathname } = useLocation()
+  const [email, setEmail] = React.useState('')
+  const [loading, setLoading] = React.useState(false)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      toast.success("Email submitted successfully");
+    }, 2000)
+    console.log(email)
+  }
 
   return (
       <footer className='bg-footer-bg pb-14'>
+        {loading && <Loader loader={4} />}
         <div className='flex items-center justify-between gap-8 py-2 border-y-2 border-[#D3DAE6] px-8 md:px-10 lg:px-24 mb-12 sm:mb-28'>
           <h3 className='text-center'>Yenreach.com 2022</h3>
           <nav className="hidden sm:flex items-center gap-x-14 md:gap-4 lg:gap-7">
@@ -72,9 +88,9 @@ const index = () => {
           <div className='mb-8'>
             <h4 className='text-25 mb-2'>Stay Updated</h4>
             <span className='text-xs text-footer-gray'>Keep a close watch on your favourite businesses</span>
-            <form action="" method="post" className='flex text-xs mt-7'>
-              <Input type="email" name="email" id="email" placeholder='Enter your email' className='px-2 py-1.5 border-r-0 border-2 rounded-tl-md rounded-bl-md border-gray w-full' />
-              <Button className='rounded-tr-md rounded-br-md py-1.5 px-5 text-xs'>
+            <form onSubmit={handleSubmit} action="" method="post" className='flex text-xs mt-7'>
+              <Input required value={email} onChange={(e) => setEmail(e.target.value)} type="email" name="email" id="email" placeholder='Enter your email' className='px-2 py-1.5 border-r-0 border-2 rounded-tl-md rounded-bl-md border-gray w-full' />
+              <Button type={'submit'} className='rounded-tr-md rounded-br-md py-1.5 px-5 text-xs'>
                 Submit
               </Button>
             </form>
@@ -92,4 +108,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Footer

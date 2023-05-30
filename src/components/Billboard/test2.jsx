@@ -3,7 +3,8 @@ import Computer from '/src/assets/computer.svg'
 import DECImg from '/src/assets/DEC_Image.jpg'
 import LogoImg from '/src/assets/LOGO_4491659091525.jpg'
 import AdsImg from '/src/assets/adsimage.jpg'
-
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
 
 
 const billboards = [
@@ -72,59 +73,63 @@ const Billboard = () => {
         }
     }
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            handleNext()
-        }, 5000)
-        return () => clearInterval(interval)
-    }, [active])
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         handleNext()
+    //     }, 5000)
+    //     return () => clearInterval(interval)
+    // }, [active])
 
-    useEffect(() => {
-        [...carouselRef.current?.children].map((child) => {
-            child.classList.remove('ad-active')
-            child.classList.add('carousel-ad')
-        })
-        carouselRef.current?.children[active]?.classList.remove('carousel-ad')
-        carouselRef.current?.children[active]?.classList.add('ad-active')
-        return () => {
-            carouselRef.current.children[active].classList.remove('ad-active')
-        }
-    }, [active])
-
-
-
-
+    // useEffect(() => {
+    //     [...carouselRef.current?.children].map((child) => {
+    //         child.classList.remove('ad-active')
+    //         child.classList.add('carousel-ad')
+    //     })
+    //     carouselRef.current?.children[active]?.classList.remove('carousel-ad')
+    //     carouselRef.current?.children[active]?.classList.add('ad-active')
+    //     return () => {
+    //         carouselRef.current.children[active].classList.remove('ad-active')
+    //     }
+    // }, [active])
 
 
 
   return (
-     <div 
-        className='flex overflow-auto pb-16 w-full'
-        >
-        <div ref={carouselRef} className="h-[400px] flex overflow-x-hidden w-screen relative">
-            {billboards.map((billboard) => (
-                <div key={billboard?.id} className="h-full w-full min-w-fit bg-white carousel-item absolute">
+    <CarouselProvider
+        naturalSlideWidth={100}
+        naturalSlideHeight={155}
+        totalSlides={billboards.length}
+        infinite={true}
+        interval={6000}
+        isPlaying={true}
+        className='transition-all duration-1000 ease h-[65vh] relative'
+      >
+        <Slider className="transition duration-1000 ease">
+        {billboards.map((billboard, ind) => (
+            <Slide index={ind} key={ind}>
+                <div key={billboard?.id} className="h-[65vh]">
                     <div className='h-full w-full flex flex-col md:flex-row gap-8 justify-center items-center'>
-                        <div className="flex-1 h-full w-full">
+                        <div className="flex-1 h-[250px] md:h-full w-full">
                             <img src={billboard?.image} alt="advert-banner" className='w-full h-[250px] md:h-full object-cover carousel-img' />
-                            {/* <img src={Computer} alt="advert-banner" className='w-100 h-full object-cover carousel-img' /> */}
                         </div>
                         <div className="flex flex-col gap-4 justify-center items-center flex-1 h-full w-full text-center">
                             <h2 className="text-xl lg:text-3xl text-capitalize text-bold text-black">{billboard?.title}</h2>
                             <p className="max-w-[400px] text-center mb-6 text-sm lg:text-base text-black/70">
                             {billboard?.description}
                             </p>
-                            {/* <p className="text-center"></p> */}
                             <a href={billboard?.link} target="_blank" className="px-4 py-2 bg-green text-white text-sm rounded">Learn more</a>
                         </div>
                     </div>
                 </div>
+            </Slide>
             ))}
-
-
-        </div>
-    </div>
+        </Slider>
+        <ButtonBack className='absolute cursor-pointer top-0 left-0 w-20 h-full z-10'></ButtonBack>
+        <ButtonNext className='absolute cursor-pointer top-0 right-0 w-20 h-full z-10'></ButtonNext>
+      </CarouselProvider>
   )
 }
 
 export default Billboard
+
+

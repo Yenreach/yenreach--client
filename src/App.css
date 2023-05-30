@@ -69,27 +69,24 @@ input[type="date"]::-webkit-calendar-picker-indicator .date-picker {
 }
 
 .carousel-item {
+  transition: transform 1s linear;
+  transform: translateX(100vw);
+  z-index: 0;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
 }
 
-.carousel-item.active {
-  opacity: 1;
-}
-
-.carousel-ad  {
-  opacity: 0.5;
-  display: none;
-  width: 20px;
-  height: 20px;
-  transition: all 0.s ease-in-out;
-}
+/* .carousel-ad  {
+  z-index: 0;
+  transform: translateX(100vw);
+  transition: transform 15s ease-in;
+} */
 
 .ad-active {
+  z-index: 5;
   opacity: 1;
-  display: block;
-  width: 500px;
-  height: 500px;
+  transform: translateX(0%);
+  /* width: 500px;
+  height: 500px; */
 }
 
 @keyframes slideOut {
