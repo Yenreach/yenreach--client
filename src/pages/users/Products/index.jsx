@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link, useParams } from 'react-router-dom'
 import useFetch from '/src/hooks/useFetch'
 import { useMutation } from "@tanstack/react-query";
@@ -12,10 +12,14 @@ import Dashboard from "../../../components/layout/Dashboard"
 import Table from '/src/components/Table'
 import Loader from '../../../components/Loader'
 import NoBusiness from '../../../assets/dashboard/no-business.svg'
+import FullImage from '../../../components/FullImage';
 
 const Products = () => {
   const { id } = useParams()
-  const [deleteProductDetails, setDeleteProductDetails] = React.useState({})
+  const [deleteProductDetails, setDeleteProductDetails] = useState({})
+  const [imageModalOpen, setImageModalOpen] = useState(false)
+  const [image, setImage] = useState('')
+
   
   const { isLoading, error: errorProducts, data: products, refetch: refetchProducts, remove: removeProductsCache } = useFetch({
     key: ['userProducts', id],
@@ -25,7 +29,7 @@ const Products = () => {
 
 
 
-  // console.log("products", products)
+  console.log("products", products)
 
   const columns = [
     {
@@ -42,6 +46,27 @@ const Products = () => {
       options: {
         filter: true,
         sort: false,
+      },
+    },
+    {
+      name: "photos",
+      label: "Photos",
+      options: {
+        filter: true,
+        sort: false,
+      },
+      extra: true,
+      custom: (value, meta) => {
+        // console.log("meta", meta)
+        return  (
+          <div className="underline text-orange cursor-pointer" onClick={() => {
+            setImage(value[0].filename)
+            setImageModalOpen(true)
+          }}>
+            {/* <a target='_blank' href={`${value[0].filename}`}>view photo</a> */}
+            view photo
+          </div>
+        )
       },
     },
     {
@@ -156,6 +181,9 @@ const Products = () => {
     <Dashboard>
         <main className='flex-1 overflow-y-auto overflow-hidden'>
           {(isLoading || updateProductStatusMutation?.isLoading || (deletedProductMutation?.isLoading)) && <Loader loader={4} />}
+          {imageModalOpen && (
+         <FullImage  setImageModalOpen={setImageModalOpen} image={image} />
+          )}
           <Header business_string={id} type="product" />
           <section className='p-8 px-4 sm:px-8'>
            {products &&
