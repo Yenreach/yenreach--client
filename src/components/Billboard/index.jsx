@@ -99,11 +99,11 @@ const Billboard = () => {
 
   return (
      <div 
-        className='flex overflow-auto pb-16 w-full'
+        className='flex overflow-hidden pb-16 w-full h-full'
         >
-        <div ref={carouselRef} className="h-[400px] flex overflow-x-hidden w-screen relative">
+        <div ref={carouselRef} className="h-fit min-h-[90vh] md:min-h-[300px] md:h-[400px] overflow-hidden flex overflow-x-hidden w-screen relative">
             {billboards.map((billboard) => (
-                <div key={billboard?.id} className="h-full w-full min-w-fit bg-white carousel-item absolute">
+                <div key={billboard?.id} className="h-fit md:h-full w-full min-w-fit bg-white carousel-billboard absolute">
                     <div className='h-full w-full flex flex-col md:flex-row gap-8 justify-center items-center'>
                         <div className="flex-1 h-full w-full">
                             <img src={billboard?.image} alt="advert-banner" className='w-full h-[250px] md:h-full object-cover carousel-img' />
