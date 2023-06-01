@@ -57,6 +57,9 @@ const Billboard = () => {
     const carouselRef = useRef(null)
 
     const handleNext = () => {
+        if (!carouselRef.current) {
+            return
+        }
         if (active === carouselRef.current?.children.length - 1) {
             setActive(0)
         } else {
@@ -65,6 +68,9 @@ const Billboard = () => {
     }
     
     const handlePrev = () => {
+        if (!carouselRef.current) {
+            return
+        }
         if (active === 0) {
             setActive(carouselRef.current?.children - 1)
         } else {
@@ -87,7 +93,7 @@ const Billboard = () => {
         carouselRef.current?.children[active]?.classList.remove('carousel-ad')
         carouselRef.current?.children[active]?.classList.add('ad-active')
         return () => {
-            carouselRef.current.children[active].classList.remove('ad-active')
+            carouselRef.current?.children[active].classList.remove('ad-active')
         }
     }, [active])
 
