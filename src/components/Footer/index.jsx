@@ -19,6 +19,7 @@ const Footer = () => {
     setTimeout(() => {
       setLoading(false)
       toast.success("Email submitted successfully");
+      setEmail('')
     }, 2000)
     console.log(email)
   }

@@ -33,7 +33,7 @@ const index = () => {
         <h2 className='text-sm md:text-base text-center px-12 text-white'>Articles on Yenreach.com makes sure you never miss a thing</h2>
       </div>
       <div className="flex flex-col gap-20 px-4 md:px-8 lg:px-[8.4375rem] py-20">
-        <div className="flex flex-col gap-6">
+        {/* <div className="flex flex-col gap-6">
           <h2 className="w-full text-center text-blue text-xl font-semibold">Top Articles</h2>
           <div className='flex flex-col sm:grid grid-cols-3 gap-2 text-white text-lg'>
             <div className="relative bg-[url('assets/businesses/coperate.svg')] bg-cover bg-center h-52 sm:h-[26.5rem] p-4">
@@ -54,7 +54,7 @@ const index = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="flex flex-col gap-4">
           <h2 className="w-full text-center text-blue text-xl font-semibold">Latest Articles</h2>
           <div className='flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6'>

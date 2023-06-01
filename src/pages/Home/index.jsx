@@ -37,7 +37,7 @@ const index = () => {
     // console.log("businessOfTheWeek", businessOfTheWeek, "error", errorBusinessOfTheWeek)
 
   return (
-    <>
+    <div className='w-full overflow-hidden'>
         {/* <Error /> */}
         <Header />
         <Hero businesses={aprrovedBusinesses} />
@@ -137,7 +137,7 @@ const index = () => {
                     </div>
                 </div>
             }
-            <div className=''>
+            {/* <div className=''>
                 <h2 className='mb-3 font-medium text-center text-lg text-green'>keep up with the business world</h2>
                 <div className='flex flex-col grid-cols-3 gap-6 text-white sm:grid'>
                     <div className="relative bg-[url('assets/businesses/coperate.svg')] bg-cover bg-center h-52 sm:h-104 p-4 min-w\">
@@ -158,7 +158,7 @@ const index = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </section>
         <section className='px-4 mb-12 md:px-10 lg:px-24 mt-32 w-screen overflow-hidden'>
             <Billboard />
@@ -168,7 +168,7 @@ const index = () => {
             <Accordion />
         </section>
         <Footer />
-    </>
+    </div>
   )
 }
 
