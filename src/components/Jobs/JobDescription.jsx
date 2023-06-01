@@ -53,6 +53,8 @@ const JobDescription = ({ job }) => {
 			, 5000)
 		}
 	  })
+
+	//   console.log({job})
     
     const handleSubmit = () => {
         const data = { ...application, job_string: job?.job_string, document: url, user_string: user?.verify_string }

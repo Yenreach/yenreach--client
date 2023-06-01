@@ -18,6 +18,7 @@ const index = ({ page, num_per_page }) => {
   const [selectedJobIndex, setSelectedJobIndex] = useState(1)
   const [search, setSearch] = useState("")
   const [location, setLocation] = useState("")
+  const [exploring, setExploring] = useState('')
   const [useFilter, setUseFilter] = useState(false)
   const [filteredJobs, setFilteredJobs] = useState([])
   const [filteredJobsLoading, setFilteredJobsLoading] = useState(false)
@@ -28,6 +29,9 @@ const index = ({ page, num_per_page }) => {
     setFilteredJobsLoading(true)
     const value = search
     const filtered = jobs?.filter((item) => {
+      if (!item?.location?.toLowerCase()?.includes(location?.toLowerCase())) {
+        return false;
+      }
       return Object.keys(item).some((key) => {
         if (Array.isArray(item[key])) {
             const filtered = item[key]?.filter((item) => {
@@ -49,6 +53,7 @@ const index = ({ page, num_per_page }) => {
     if (!useFilter) {
       setUseFilter(true)
     }
+    setExploring(location)
   };
 
 
@@ -58,7 +63,7 @@ const index = ({ page, num_per_page }) => {
     key: ['jobs'],
   })
   
-  // console.log("jobs", jobs)
+  // console.log("jobs", jobs) 
   return (
     <>
       {(isLoading || filteredJobsLoading) && <Loader loader={4} />}
@@ -66,7 +71,7 @@ const index = ({ page, num_per_page }) => {
         <p className='font-medium text-black/70 text-xs md:text-sm'>Currently Exploring jobs in</p>
         <div className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-light">
           <img src={Location} alt="location" />
-          <span className='font-medium text-blue text-smm'>Bayelsa, Yenegoa</span>
+          <span className='font-medium text-blue text-smm'>{exploring || 'Bayelsa, Yenegoa'}</span>
         </div>
       </div>
       <form action="" onSubmit={handleFilter} method="post" className='flex'>
