@@ -32,7 +32,7 @@ const index = ({ job, setSelectedIndex, index, setTab }) => {
     <div onClick={() => handleClick(index)} className="flex flex-col gap-4 py-2.5 px-2 border-2 border-[#D3DAE6] cursor-pointer">
       <div className="flex justify-between items-center w-full">
         <h2 className="text-xsm font-semibold text-blue">Posted {!!daysAgo(job?.created_at) ? daysAgo(job?.created_at)=== 1 ? "yesterday" : `${daysAgo(job?.created_at)} days ago` : "today"}</h2>
-        <div className={`rounded-full px-3 py-1  text-xs ${ (job?.status==="1" && !(Date.parse(job?.expiry_date) < Date.now())) ? "text-green bg-green-light" : "text-red-400 bg-red-100" }`}>{ job?.status==="1" ? Date.parse(job?.expiry_date) < Date.now() ? "Expired" : "Active" : "Inactive" }</div>
+        <div className={`rounded-full px-3 py-1  text-xs ${ (job?.status==="1" && !(Date.parse(job?.expiry_date) < (Date.now() - 1000*60*60*24))) ? "text-green bg-green-light" : "text-red-400 bg-red-100" }`}>{ job?.status==="1" ? Date.parse(job?.expiry_date) < (Date.now() - 1000*60*60*24) ? "Expired" : "Active" : "Inactive" }</div>
       </div> 
       <div className="flex flex-col gap-2">
         <div className="flex gap-2 justify-start items-center">

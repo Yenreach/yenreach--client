@@ -63,7 +63,7 @@ const index = ({ page, num_per_page }) => {
     key: ['jobs'],
   })
   
-  // console.log("jobs", jobs) 
+  // console.log("jobs", jobs, Date.parse(jobs[0]?.expiry_date), Date.now(), Date.parse(jobs[0]?.expiry_date) < (Date.now() - 1000*60*60*24)) 
   return (
     <>
       {(isLoading || filteredJobsLoading) && <Loader loader={4} />}
