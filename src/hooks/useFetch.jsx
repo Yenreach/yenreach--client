@@ -3,11 +3,12 @@ import { useQuery } from '@tanstack/react-query'
 import getData from '/src/utils/getData'
 
 
-const useFetch = ({ api, param, key, onSuccess, ...rest }) => {
+const useFetch = ({ api, param, key, onSuccess, select, ...rest }) => {
 
     const { data, error, isLoading, isSuccess, isFetching, remove, refetch, fetchStatus } = useQuery({
         queryKey: [...key],
         queryFn: () => getData(api, param),
+        select: select || ((data) => data?.data),
         ...rest
     })
 

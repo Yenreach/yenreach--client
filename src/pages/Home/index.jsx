@@ -23,7 +23,7 @@ import Image from '/src/components/Image';
 
 const index = () => {
     const { data: aprrovedBusinesses, error: errorApprovedBusinesses } = useFetch({
-        key:  ['aprrovedBusinesses'],
+        key: ['aprrovedBusinesses', 1],
         api: apiGetApprovedBusinesses,
         staleTime: 1000 * 60 * 5,
     })
@@ -35,6 +35,7 @@ const index = () => {
         cacheTime : 1000 * 60 * 60,
       })
     // console.log("businessOfTheWeek", businessOfTheWeek, "error", errorBusinessOfTheWeek)
+    // console.log('business', aprrovedBusinesses)
 
   return (
     <div className='w-full overflow-hidden'>

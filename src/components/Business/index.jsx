@@ -72,14 +72,20 @@ const index = ({ page: initialPage, num_per_page }) => {
 
   const { data: aprrovedBusinesses, error: errorApprovedBusinesses, isLoading: aprrovedBusinessesLoading  } = useFetch({
     api: apiGetApprovedBusinesses,
-    key: ['aprrovedBusinesses'],
+    key: ['aprrovedBusinesses', page],
+    param: { page, num_per_page },
+    // select: (data) => paginate(data?.data, page, num_per_page),
+    select: (data) => data,
     staleTime: staleTime,
   })
+
+  // console.log(1 ? 'love' : 'hate')
 
   const { data: filteredBusiness, error: errorFilteredBusinesses, refetch, isLoading: filteredBusinessesLoading } = useFetch({
     api: apiBusinessSearch,
     param: searchQuery,
     key: ['filteredBusiness', searchQuery],
+    select: (data) => data,
     enabled: enabled,
   })
 
@@ -107,7 +113,7 @@ const index = ({ page: initialPage, num_per_page }) => {
   });
   }
 
-  console.log("approved", filteredBusiness)
+  // console.log("approved", filteredBusiness)
 
   return (
     <>
@@ -139,19 +145,25 @@ const index = ({ page: initialPage, num_per_page }) => {
 		</form>
 			{/* <SearchBar variant='business' /> */}
       <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {(aprrovedBusinesses || filteredBusiness) && paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.data?.slice(0,20).map((business) => (
+        {(aprrovedBusinesses || filteredBusiness) && paginate({page, num_per_page, data: enabled && filteredBusiness?.data?.slice((page-1) * num_per_page, page * num_per_page) || aprrovedBusinesses?.data})?.data?.map((business) => (
           <BusinessCard key={business.id} business={business} />
         ))}
       </div>
       {/* <div className="grid w-full py-6 text-xl font-extrabold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
         New Job Listings available       
       </div> */}
-      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-4">
+      {/* <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-4">
         {(aprrovedBusinesses || filteredBusiness) && paginate({page, num_per_page, data: enabled && filteredBusiness || aprrovedBusinesses})?.data?.slice(20,40).map((business) => (
           <BusinessCard key={business.id} business={business} />
         ))}
-      </div>
-      <Pagination page={page} num_per_page={num_per_page} data={enabled && filteredBusiness || aprrovedBusinesses} handlePageChange={handlePageChange} />
+      </div> */}
+      <Pagination 
+        page={page} 
+        num_per_page={num_per_page} 
+        data={enabled && filteredBusiness?.data || aprrovedBusinesses?.data} 
+        handlePageChange={handlePageChange} 
+        total={enabled && filteredBusiness?.data?.length || aprrovedBusinesses?.total} 
+      />
     </>
   )
 }
