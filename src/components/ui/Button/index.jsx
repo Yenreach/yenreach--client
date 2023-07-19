@@ -61,7 +61,7 @@ Button.defaultProps = {
   };
 
 Button.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   to: PropTypes.string,
   variant: PropTypes.string,
   inverse: PropTypes.bool,
