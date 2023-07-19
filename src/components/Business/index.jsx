@@ -145,7 +145,7 @@ const index = ({ page: initialPage, num_per_page }) => {
 		</form>
 			{/* <SearchBar variant='business' /> */}
       <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {(aprrovedBusinesses || filteredBusiness) && paginate({page, num_per_page, data: enabled && filteredBusiness?.data?.slice((page-1) * num_per_page, page * num_per_page) || aprrovedBusinesses?.data})?.data?.map((business) => (
+        {(aprrovedBusinesses || filteredBusiness) && paginate({ page, num_per_page, data: enabled && filteredBusiness?.data?.slice((page-1) * num_per_page, page * num_per_page) || aprrovedBusinesses?.data })?.data?.map((business) => (
           <BusinessCard key={business.id} business={business} />
         ))}
       </div>

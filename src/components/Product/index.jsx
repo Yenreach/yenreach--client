@@ -25,7 +25,7 @@ const Products = ({ page: initialPage, num_per_page }) => {
     console.log("SEARCHING", search)
     setFilteredProductsLoading(true)
     const value = search
-    const filtered = products?.filter((item) => {
+    const filtered = products?.data?.filter((item) => {
       return Object.keys(item).some((key) => {
         if (Array.isArray(item[key])) {
             const filtered = item[key]?.filter((item) => {
@@ -48,9 +48,12 @@ const Products = ({ page: initialPage, num_per_page }) => {
 
   const { data: products, error: errorProducts, isLoading }  = useFetch({
     api: apiGetAllProducts,
-    key: ['products'],
+    select: (data) => data,
+    key: ['products', page],
   })
 
+
+  console.log({ products })
 
   const handlePageChange = (page) => {
       setPage(page)
@@ -82,16 +85,23 @@ const Products = ({ page: initialPage, num_per_page }) => {
       {/* <div className="w-full bg-[url('assets/new-job-listing.svg')] text-white rounded-2xl font-semibold text-xl grid place-items-center bg-cover bg-center py-6">
         New Job Listings available       
       </div> */}
-      {products?.length ?
+      {products?.data?.length ?
         <>        
-          {(useFilter ? filteredProducts?.length : products?.length) ?
+          {(useFilter ? filteredProducts?.length : products?.data?.length) ?
             <>        
               <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {products && paginate({page, num_per_page, data: useFilter ? filteredProducts : products})?.data?.map((product) => (
+                {products && paginate({ page, num_per_page, data: useFilter ? filteredProducts : products?.data })?.data?.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
               </div>
-              <Pagination page={page} num_per_page={num_per_page} data={(useFilter ? filteredProducts : products)} handlePageChange={handlePageChange} />
+              <Pagination 
+                page={page} 
+                num_per_page={num_per_page} 
+                data={(useFilter ? filteredProducts : products?.data)} 
+                handlePageChange={handlePageChange} 
+                total={useFilter && filteredProducts?.length || products?.total} 
+
+              />
             </>
           : 
             <div className='flex justify-center items-center h-24 text-black/70'>
