@@ -23,7 +23,7 @@ const index = () => {
     })
 
     const { data: products, error: errorProducts } = useFetch({
-        key: ['products'],
+        key: ['products', 1],
         api: apiGetAllProducts,
         staleTime: staleTime,
     })
@@ -31,7 +31,7 @@ const index = () => {
         
     const { data: jobs, error: errorJobs, isLoading } = useFetch({
         api: apiGetAllJobs,
-        key: ['jobs'],
+        key: ['jobs', 1],
         staleTime: staleTime,
     })
   

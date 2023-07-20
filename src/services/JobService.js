@@ -25,14 +25,14 @@ export const apiAddJob = (data) => {
 }
 
 
-
 /* Get Jobs */
-export const apiGetAllJobs = () => {
+export const apiGetAllJobs = (query) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/fetch_active_job_api${serviceSuffix}`,
+        url: `${servicePrefix}/fetch_active_job_api${serviceSuffix}?per_page=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}`,
         method: "get",  
     })
 }
+
 /* Get Jobs */
 export const apiGetAllJobsAdmin = () => {
     return ApiAdapter.fetchData({

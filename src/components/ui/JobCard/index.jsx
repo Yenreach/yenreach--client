@@ -19,6 +19,7 @@ const index = ({ job, setSelectedIndex, index, setTab }) => {
 
   const handleClick = (index) => {
     if (status === "Active") {
+      // console.log("active", index)
       setSelectedIndex(index)
       setTab(2)
     } else {

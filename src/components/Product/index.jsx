@@ -48,6 +48,7 @@ const Products = ({ page: initialPage, num_per_page }) => {
 
   const { data: products, error: errorProducts, isLoading }  = useFetch({
     api: apiGetAllProducts,
+    param: { page, num_per_page },
     select: (data) => data,
     key: ['products', page],
   })
@@ -99,7 +100,7 @@ const Products = ({ page: initialPage, num_per_page }) => {
                 num_per_page={num_per_page} 
                 data={(useFilter ? filteredProducts : products?.data)} 
                 handlePageChange={handlePageChange} 
-                total={useFilter && filteredProducts?.length || products?.total} 
+                total={useFilter ? filteredProducts?.length : products?.total} 
 
               />
             </>

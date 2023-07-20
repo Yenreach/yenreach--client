@@ -13,7 +13,9 @@ import Input from '../ui/Input'
 import Search from '/src/assets/search.svg'
 
 
-const index = ({ page, num_per_page }) => {
+const index = ({ page: initialPage, num_per_page: i }) => {
+  const [num_per_page, setNum_per_page] = useState(5)
+  const [page, setPage] = useState(initialPage || 1)
   const [tab, setTab] = useState(1)
   const [selectedJobIndex, setSelectedJobIndex] = useState(1)
   const [search, setSearch] = useState("")
@@ -60,10 +62,14 @@ const index = ({ page, num_per_page }) => {
     
   const { data: jobs, error: errorJobs, isLoading } = useFetch({
     api: apiGetAllJobs,
-    key: ['jobs'],
+    param: { page, num_per_page },
+    select: (data) => data,
+    key: ['jobs', page],
   })
+
+  console.log({ selectedJobIndex })
   
-  console.log("jobs", jobs, Date.parse(jobs[0]?.expiry_date), Date.now(), Date.parse(jobs[0]?.expiry_date) < (Date.now() - 1000*60*60*24)) 
+  // console.log("jobs", jobs, Date.parse(jobs[0]?.expiry_date), Date.now(), Date.parse(jobs[0]?.expiry_date) < (Date.now() - 1000*60*60*24)) 
   return (
     <>
       {(isLoading || filteredJobsLoading) && <Loader loader={4} />}
@@ -82,10 +88,10 @@ const index = ({ page, num_per_page }) => {
         </Button>
 		  </form>
       { tab === 1 
-          ?  <AllJobs jobs={useFilter ? filteredJobs : jobs} setTab={setTab} setSelectedJobIndex={setSelectedJobIndex} page={page} num_per_page={num_per_page} />
+          ?  <AllJobs jobs={useFilter ? filteredJobs : jobs?.data} setTab={setTab} setSelectedJobIndex={setSelectedJobIndex} page={page} setPage={setPage} num_per_page={num_per_page} total={useFilter ? filteredJobs?.length : jobs?.total} />
           : <div className="flex justify-around items-start gap-8 w-full sm:px-8">
-              <JobSideBar jobs={useFilter ? filteredJobs : jobs} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} />    
-              <JobDescription job={(useFilter ? filteredJobs : jobs)[selectedJobIndex]} />
+              <JobSideBar jobs={useFilter ? filteredJobs : jobs?.data} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} page={page} setPage={setPage} />    
+              <JobDescription job={(useFilter ? filteredJobs : jobs?.data)[selectedJobIndex]} page={page} setPage={setPage} />
             </div>
       }   
     </> 
