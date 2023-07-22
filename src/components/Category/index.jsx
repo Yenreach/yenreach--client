@@ -81,7 +81,7 @@ const index = () => {
                      jobs?.slice(0,4).map((job) =>  <JobCard key={job.id} job={job} /> )
                 )}
             </div>
-            <Link to="/explore" state={activeTab === 'marketplace' ? { data: "marketplace" } : activeTab === 'jobs' ? { data: "jobs" } : {}} >
+            <Link to={activeTab === 'jobs' ? '/explore/jobs' : activeTab === 'marketplace' ? '/explore/products' : '/explore'} state={activeTab === 'marketplace' ? { data: "marketplace" } : activeTab === 'jobs' ? { data: "jobs" } : {}} >
                 <Button override={true} className='w-full py-4 mt-6 text-black bg-gray-light'>
                     See More
                 </Button>

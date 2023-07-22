@@ -6,6 +6,8 @@ import './App.css'
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home'
 import Explore from './pages/Explore'
+import ExploreProducts from './pages/Explore/Products'
+import ExploreJobs from './pages/Explore/Jobs'
 import Business from './pages/Business'
 import Products from './pages/Product'
 import About from './pages/About'
@@ -72,6 +74,9 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/explore" element={<Explore />} />
+            <Route exact path="/explore/products" element={<ExploreProducts />} />
+            <Route exact path="/explore/products" element={<ExploreProducts />} />
+            <Route exact path="/explore/jobs" element={<ExploreJobs />} />
             <Route exact path="/business/:id" element={<Business />} />
             <Route exact path="/products/:id" element={<Products />} />
             <Route exact path="/about" element={<About />} />

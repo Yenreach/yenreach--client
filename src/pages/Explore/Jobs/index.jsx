@@ -1,21 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useLocation, useSearchParams } from 'react-router-dom'
+import Header from '/src/components/Header'
+import Footer from '/src/components/Footer'
+import Product from '/src/components/Product'
+import Business from '/src/components/Business'
+import Jobs from '/src/components/Jobs'
+import ExploreNav from '/src/components/ExploreNav'
+
 import useFetch from '/src/hooks/useFetch'
-import { apiGetAllJobs } from '../../services/JobService'
-import SearchBar from '../ui/SearchBar'
-import Location from '../../assets/location.svg'
-import JobData from '../../data/job-data.json'
-import AllJobs from './AllJobs'
-import JobDescription from './JobDescription'
-import JobSideBar from './JobSideBar'
-import Loader from '../Loader'
-import Button from '../ui/Button'
-import Input from '../ui/Input'
+import { apiGetAllJobs } from '/src/services/JobService'
+import Location from '/src/assets/location.svg'
+import AllJobs from '/src/components/Jobs/AllJobs'
+import JobDescription from '/src/components/Jobs/JobDescription'
+import JobSideBar from '/src/components/Jobs/JobSideBar'
+import Loader from '/src/components/Loader'
+import Button from '/src/components/ui/Button'
+import Input from '/src/components/ui/Input'
 import Search from '/src/assets/search.svg'
 
 
-const index = ({ page: initialPage, num_per_page: i }) => {
-  const [num_per_page, setNum_per_page] = useState(10)
-  const [page, setPage] = useState(initialPage || 1)
+
+const index = () => {
+  const [activeTab, setActiveTab] = useState('business');
+//   const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams();
+  const num_per_page = 40
+
+  const [page, setPage] = useState(searchParams.get('page') || 1)
   const [tab, setTab] = useState(1)
   const [selectedJobIndex, setSelectedJobIndex] = useState(1)
   const [search, setSearch] = useState("")
@@ -67,11 +78,23 @@ const index = ({ page: initialPage, num_per_page: i }) => {
     key: ['jobs', page],
   })
 
-  // console.log({ selectedJobIndex })
   
-  // console.log("jobs", jobs, Date.parse(jobs[0]?.expiry_date), Date.now(), Date.parse(jobs[0]?.expiry_date) < (Date.now() - 1000*60*60*24)) 
+//   useEffect(() => {
+//     if (location.state?.data === 'jobs') {
+//       setActiveTab('jobs')
+//     } else if (location.state?.data === 'marketplace') {
+//       setActiveTab('marketplace')
+//     } else {
+//       setActiveTab('business')
+//     }
+//   }, [location])
+
   return (
-    <>
+    <div className='relative w-full'>
+        <Header />
+        <ExploreNav activeTab={activeTab} setActiveTab={setActiveTab} />
+        <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-5 md:px-5 lg:py-20 lg:px-20">
+        <>
       {(isLoading || filteredJobsLoading) && <Loader loader={4} />}
       <div className='flex items-center justify-center w-full gap-10'>
         <p className='font-medium text-black/70 text-xs md:text-sm'>Currently Exploring jobs in</p>
@@ -95,7 +118,10 @@ const index = ({ page: initialPage, num_per_page: i }) => {
             </div>
       }   
     </> 
+        </div>
+        <Footer />
+    </div>
   )
-}
+}   
 
 export default index

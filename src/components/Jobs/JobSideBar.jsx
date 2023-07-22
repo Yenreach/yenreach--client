@@ -8,9 +8,9 @@ import useFetch from '/src/hooks/useFetch'
 import { apiGetAllJobs } from '../../services/JobService'
 
 
-const JobSideBar = ({ jobs, setSelectedJobIndex, selectedJobIndex }) => {
-  const [page, setPage] = useState(1)
+const JobSideBar = ({ jobs, setSelectedJobIndex, selectedJobIndex, total }) => {
   const num_per_page = 4
+  const [page, setPage] = useState(Math.ceil((selectedJobIndex+1)/num_per_page))
 
       
   // const { data: jobs, error: errorJobs, isLoading } = useFetch({
@@ -28,16 +28,18 @@ const JobSideBar = ({ jobs, setSelectedJobIndex, selectedJobIndex }) => {
   });
   }
 
+  // console.log({page})
+
   return (
     <div className='hidden md:flex flex-col h-full flex-1 max-w-sm'>
 			<div className="flex justify-start flex-col gap-3">
 				{
-					 paginate({ page, num_per_page, data: jobs })?.data?.slice(0, 4).map((job, index) => (
+					 paginate({ page, num_per_page, data: jobs, total })?.data?.slice((num_per_page*page)-num_per_page, num_per_page*page).map((job, index) => (
 						<JobCardVariation key={job.id} job={job} index={index + (page-1)*num_per_page} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} />
 					))
 				}
 			</div>
-      <Pagination page={page} num_per_page={num_per_page} data={jobs} handlePageChange={handlePageChange} />
+      <Pagination page={page} num_per_page={num_per_page} data={jobs} total={jobs?.length} handlePageChange={handlePageChange} />
     </div>
   )
 }

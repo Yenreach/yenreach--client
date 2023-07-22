@@ -90,7 +90,7 @@ const index = () => {
                      <br /><br />
                     Other additional services we offer here include, resume writing and optimization, interview coaching, hiring, training/certification and career advice. We understand that job hunting can be a challenging and stressful process, which is why we are here to support and guide users every step of the way.
                     </p>
-                    <Link to="/explore" state={{ data: "jobs" }} >
+                    <Link to="/explore/jobs" state={{ data: "jobs" }} >
                         <Button variant='job' className='py-2 px-20'>
                             Explore Jobs
                         </Button>
@@ -111,7 +111,7 @@ const index = () => {
                     <br /><br />
                     Users can buy and sell products and services daily from the comfort of their homes and get such goods delivered to them. Sellers can easily create and manage their online stores, providing all the necessary details about their products or services, e.g price, pictures and descriptions etc. Buyers can browse through the listings and contact the sellers.
                     </p>
-                    <Link to="/explore" state={{ data: "marketplace" }} >         
+                    <Link to="/explore/products" state={{ data: "marketplace" }} >         
                         <Button variant='product' className='py-2 px-20'>
                             Explore Products
                         </Button>
