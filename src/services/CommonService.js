@@ -57,6 +57,7 @@ export const apiBillboards =  () => {
 /* Explore */
 
 export const apiGetApprovedBusinesses =  (query) => {
+    // console.log({ query })
     return ApiAdapter.fetchData({
         url: servicePrefix + "fetch_public_approved_businesses_api" + serviceSuffix + `?per_page=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}`,
         method: "get"    

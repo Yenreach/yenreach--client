@@ -14,7 +14,7 @@ import Search from '/src/assets/search.svg'
 
 
 const index = ({ page: initialPage, num_per_page: i }) => {
-  const [num_per_page, setNum_per_page] = useState(5)
+  const [num_per_page, setNum_per_page] = useState(40)
   const [page, setPage] = useState(initialPage || 1)
   const [tab, setTab] = useState(1)
   const [selectedJobIndex, setSelectedJobIndex] = useState(1)

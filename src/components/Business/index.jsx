@@ -8,7 +8,7 @@ import Loader from '../Loader'
 import Input from '/src/components/ui/Input'
 import Button from '/src/components/ui/Button'
 import Search from '/src/assets/search.svg'
-import BusinessCard from '../ui/BusinessCard'
+import BusinessCard, { BusinessCardLoading } from '../ui/BusinessCard'
 import Location from '../../assets/location.svg'
 import Pagination from '../Pagination'
 
@@ -113,12 +113,12 @@ const index = ({ page: initialPage, num_per_page }) => {
   });
   }
 
-  // console.log("approved", filteredBusiness)
 
   return (
     <>
-        {!enabled && aprrovedBusinessesLoading && <Loader loader={4} />}
-        {enabled && filteredBusinessesLoading && <Loader loader={4} />}
+      {((enabled && filteredBusinessesLoading)) && <Loader loader={4} />}
+      {/* {((!enabled && aprrovedBusinessesLoading) || (enabled && filteredBusinessesLoading)) && <Loader loader={4} />} */}
+      {/* {enabled && filteredBusinessesLoading && <Loader loader={4} />} */}
 			<div className='flex items-center justify-center w-full gap-10'>
 				<p className='font-medium text-black/70 text-xs md:text-sm'>Currently Exploring businesses in</p>
 				<div className="flex items-center justify-center gap-2 px-4 py-2 bg-green-light">
@@ -145,9 +145,16 @@ const index = ({ page: initialPage, num_per_page }) => {
 		</form>
 			{/* <SearchBar variant='business' /> */}
       <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {(aprrovedBusinesses || filteredBusiness) && paginate({ page, num_per_page, data: enabled && filteredBusiness?.data?.slice((page-1) * num_per_page, page * num_per_page) || aprrovedBusinesses?.data })?.data?.map((business) => (
+        {(aprrovedBusinesses || filteredBusiness) ? paginate({ page, num_per_page, data: enabled && filteredBusiness?.data?.slice((page-1) * num_per_page, page * num_per_page) || aprrovedBusinesses?.data })?.data?.map((business) => (
           <BusinessCard key={business.id} business={business} />
-        ))}
+        ))
+        :
+        (
+          [...Array(40)].map((business, index) => (
+              <BusinessCardLoading key={index} />
+          ))
+        )
+      }
       </div>
       {/* <div className="grid w-full py-6 text-xl font-extrabold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
         New Job Listings available       

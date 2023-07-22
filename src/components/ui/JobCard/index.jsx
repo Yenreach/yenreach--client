@@ -36,13 +36,18 @@ const index = ({ job, setSelectedIndex, index, setTab }) => {
         <div className={`rounded-full px-3 py-1  text-xs ${ (job?.status==="1" && !(Date.parse(job?.expiry_date) < (Date.now() - 1000*60*60*24))) ? "text-green bg-green-light" : "text-red-400 bg-red-100" }`}>{ job?.status==="1" ? Date.parse(job?.expiry_date) < (Date.now() - 1000*60*60*24) ? "Expired" : "Active" : "Inactive" }</div>
       </div> 
       <div className="flex flex-col gap-2">
-        <div className="flex gap-2 justify-start items-center">
-          <MdBusiness size="1.3rem" className='opacity-60' />
-          <p className='text-sm text-gray font-semibold'>{ job?.company_name }</p>
+        <div className="flex gap-2 justify-start items-center h-8 overflow-hidden">
+          <div className='w-6 h-6'>
+           <MdBusiness size="1.3rem" className='opacity-60 inline-block w-5 h-5' />
+          </div>
+          <p className='text-sm text-gray font-semibold'>{ job?.company_name?.length < 45 ? job?.company_name : job?.company_name?.slice(0, 45) + '...'}</p>
         </div>
-        <div className="flex gap-2 justify-start items-center">
-        <BiBriefcase size="1.3rem" className='opacity-60' color='' />
-          <p className='text-sm text-gray font-semibold'>{ job?.job_title }</p>
+        <div className="flex gap-2 justify-start items-center h-8 overflow-hidden">
+          <div className='w-6 h-6'>
+            <BiBriefcase size="1.3rem" className='opacity-60 inline-block w-5 h-5' color='' />
+          </div>
+          <p className='text-sm text-gray font-semibold'>
+          { job?.job_title?.length < 45 ? job?.job_title : job?.job_title?.slice(0, 45) + '...'}</p>
         </div>
       </div>
       <div className="flex flex-col gap-2">

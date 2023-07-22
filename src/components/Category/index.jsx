@@ -7,7 +7,7 @@ import { apiGetAllJobs } from '/src/services/JobService'
 import { BiBriefcase, BiMouseAlt } from 'react-icons/bi'
 import { MdOutlineHome } from 'react-icons/md'
 import Button from '../ui/Button'
-import BusinessCard from '../ui/BusinessCard'
+import BusinessCard, { BusinessCardLoading } from '../ui/BusinessCard'
 import ProductCard from '../ui/ProductCard'
 import JobCard from '../ui/JobCard'
 
@@ -17,8 +17,9 @@ const index = () => {
     const [activeTab, setActiveTab] = useState('business');
     
     const { data: aprrovedBusinesses, error: errorApprovedBusinesses, isLoading: approvedBusinessLoading } = useFetch({
-        key: ['aprrovedBusinesses', 1],
+        key: ['aprrovedBusinesses', 0],
         api: apiGetApprovedBusinesses,
+        param: { page: 1, num_per_page: 4 },
         staleTime: staleTime,
     })
 
@@ -62,26 +63,14 @@ const index = () => {
             {/* flex items-center gap-6 flex-wrap  */}
             <div className='grid gap-6 grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 xl:grid-cols-bus4'>
                 {activeTab === 'business' && (
-                    !approvedBusinessLoading ?  (
+                    (!approvedBusinessLoading && !errorApprovedBusinesses) ?  (
                         aprrovedBusinesses?.slice(0,4).map((business) => ( 
                             <BusinessCard key={business.id} business={business} />
                         ))
                     ) :
                     (
                         [0,1,2,3].map((business) => (
-                            <div key={business} className={'py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-fit flex flex-col justify-between'}>
-                            <div className='flex flex-col'>       
-                                <div className='animate-pulse bg-gray rounded-xl h-28'></div>
-                                <h6 className='animate-pulse text-sm font-medium h-[42px] bg-gray w-full my-2 overflow-hidden'></h6>
-                                <ul className='animate-pulse flex items-center flex-wrap text-xsm list-disc gap-x-4 gap-2 h-[51px] overflow-hidden pb-12'>
-                                    {[0,1].map((category) => ( 
-                                       <span key={category} className='relative h-3 w-24 bg-gray'></span>
-                                    ))}
-                                </ul>
-                            </div>
-                            <Button className='animate-pulse mt-6 w-full text-xs rounded-xl py-4 px-4 font-semibold text-white object-green text-center'>
-                            </Button>
-                        </div>
+                            <BusinessCardLoading key={business} />
                         ))
                     )
                 )}

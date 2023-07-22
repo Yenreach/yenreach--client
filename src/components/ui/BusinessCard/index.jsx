@@ -40,6 +40,28 @@ const BusinessCard = ({ className, business }) => {
   )
 }
 
+const BusinessCardLoading = () => {
+
+  // console.log(className)
+  return (
+    <div className={'py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-fit flex flex-col justify-between'}>
+      <div className='flex flex-col'>       
+        <div className='animate-pulse bg-gray rounded-xl h-28'></div>
+        <h6 className='animate-pulse text-sm font-medium h-[42px] bg-gray w-full my-2 overflow-hidden'></h6>
+        <ul className='animate-pulse flex items-center flex-wrap text-xsm list-disc gap-x-4 gap-2 h-[51px] overflow-hidden pb-12'>
+            {[0,1].map((category) => ( 
+                <span key={category} className='relative h-3 w-24 bg-gray'></span>
+            ))}
+        </ul>
+      </div>
+      <Button className='animate-pulse mt-6 w-full text-xs rounded-xl py-4 px-4 font-semibold text-white object-green text-center'>
+      </Button>
+    </div>
+  )
+}
+
+export { BusinessCardLoading }
+
 export default BusinessCard
 
 
