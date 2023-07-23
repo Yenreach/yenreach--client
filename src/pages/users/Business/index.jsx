@@ -10,10 +10,7 @@ import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessSubscription
 import { apiGetBusinessFacilities, apiGetBusinessReviews, apiGetBusinessReviewsStats } from '/src/services/CommonService'
 import Header from "/src/components/users/Header"
 import Dashboard from "../../../components/layout/Dashboard"
-import Button from '../../../components/ui/Button'
 import { MdChevronRight, MdChevronLeft } from 'react-icons/md'
-import BusinessIMG from '../../../assets/dashboard/business-img.svg'
-import Media from '../../../assets/dashboard/media.svg'
 import Good from '../../../assets/good.svg'
 import Edit from '../../../assets/edit.svg'
 import Star from '../../../assets/star.svg'
@@ -53,7 +50,7 @@ const index = () => {
   const businessImageMutation = usePost({ 
     api: apiAddBusinessPhoto ,
     success: (data) => {
-      // console.log("data", data)
+      refetchBusiness()
     }
   })
 
@@ -98,13 +95,12 @@ const index = () => {
   }, [businessPhoto])
   
   
-  const { isLoading, error, data: business  } = useFetch({
+  const { isLoading, error, data: business, refetch: refetchBusiness  } = useFetch({
     api: apiGetOneBusiness,
     param: id,
     key: ['userBusiness', id],
   })
 
-  // console.log("b", business)
   
   const { data: pageVisits } = useFetch({
     api: apiGetBusinessPageVisits,
@@ -197,6 +193,9 @@ const index = () => {
       coverImageRef.current.click()
     }
   }
+
+  // console.log("b", subscription?.subscription)
+
   return (
     <Dashboard>
       <div className='flex-1 overflow-y-auto overflow-hidden'>
@@ -288,16 +287,31 @@ const index = () => {
                   {business?.photos?.length ? business?.photos?.map((photo, index) => <img key={index} src={photo?.filepath} alt=""  className='sm:w-32 sm:h-40 object-cover object-center bg-black/30' />) 
                   : <span className='text-[#476788] text-xs sm:text-sm'>No photos</span>
                   }
-                  {(business?.photos?.length < 2 || (business?.photos?.length < Number(subscription?.subscription?.photos))) && 
+                  {(business?.photos?.length < 2 || (business?.photos?.length < Number(subscription?.subscription?.photos))) ? 
                     <div className='mb-4'>
-                    <label htmlFor="business_photo" className='font-medium text-xs bg-[#E5E5E5] p-4 flex flex-col items-center justify-center relative cursor-pointer sm:w-32 sm:h-40'>
-                            <>
-                                <img src={Add} alt="" className='mb-4 border-2 rounded-full' />
-                                <span className='text-center'>Add a business Photo</span>
-                            </>                        
-                    </label>
-                    <input onChange={(e) => addBusinessPhoto(e.target.files[0])} className='border-[#E5E5E5] rounded-lg hidden' type="file" name="business_photo" id="business_photo" />
-                </div> 
+                      <label htmlFor="business_photo" className='font-medium text-xs bg-[#E5E5E5] p-4 flex flex-col items-center justify-center relative cursor-pointer sm:w-32 sm:h-40'>
+                              <>
+                                  <img src={Add} alt="" className='mb-4 border-2 rounded-full' />
+                                  <span className='text-center'>Add a business Photo</span>
+                              </>                        
+                      </label>
+                      <input onChange={(e) => addBusinessPhoto(e.target.files[0])} className='border-[#E5E5E5] rounded-lg hidden' type="file" name="business_photo" id="business_photo" />
+                    </div> 
+                    :
+                    <>
+                    <div className='mb-4'>
+                      <label htmlFor="business_photo" className='font-medium text-xs bg-[#E5E5E5] p-4 flex flex-col items-center justify-center relative cursor-pointer sm:w-32 sm:h-40 text-center'>
+                        {subscription?.subscription?.photos ? <span className='text-[#476788] text-xs sm:text-sm'>
+                          You have reached the maximum number of photos for your subscription
+                          </span>
+                        : <Link to={`/users/subscriptions/${id}`} className='text-[#476788] text-xs sm:text-sm'>
+                            Click here to Subscribe to add more photo(s)
+                          </Link>
+                          }                     
+                      </label>
+                    </div> 
+                    </>
+
                   }
                 </div>
               </div>

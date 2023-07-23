@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import useFetch from '/src/hooks/useFetch'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import usePost from '/src/hooks/usePost'
 import useImage from '/src/hooks/useImage'
@@ -11,6 +12,7 @@ import Input from '../../../components/ui/Input'
 import Button from '../../../components/ui/Button'
 import Dashboard from "../../../components/layout/Dashboard"
 import Loader from '/src/components/Loader'
+import { apiGetBusinessSubscription } from '/src/services/UserService'
 
 
 const initialProductState = { 
@@ -46,6 +48,12 @@ const index = () => {
     const navigate = useNavigate()
 
     const { url, uploadImage, error, progress, loading: uploadingImg } = useImage()
+
+    const { error: subscriptionError, data: subscription } = useFetch({
+        api: apiGetBusinessSubscription,
+        param: id,
+        key: ['subscription', id],
+      })
 
    useEffect(() => {
          if(url) {
@@ -148,7 +156,40 @@ const index = () => {
                                     </div>
                                 </div>
                             ))}
-                            <label htmlFor="add_image" className='font-medium text-sm mb-2 bg-gray rounded-lg w-36 h-36 flex flex-col gap-2 justify-center items-center px-4 cursor-pointer'>
+                            <>
+                            {(product.photos?.length < 2 || (product.photos?.length < Number(subscription?.subscription?.photos))) ? 
+                                <div className='mb-4'>
+                                    <label htmlFor="add_image" className='font-medium text-sm mb-2 bg-gray rounded-lg w-36 h-36 flex flex-col gap-2 justify-center items-center px-4 cursor-pointer'>
+                                        <RiAddFill size="24px" color='gray' />
+                                        <p className='text-center text-xs'>
+                                            <span className='font-semibold'>Choose a file </span>
+                                            <span className='font-normal'>or drag it here</span>
+                                        </p>
+                                    </label>
+                                    <Input  
+                                        onChange={(e) => uploadImage(e.target.files[0])}
+                                        className='border-gray rounded-lg mt-2 cursor-pointer w-1 h-1 invisible overflow-hidden'
+                                        type="file" name="add_image" id="add_image"
+                                    />
+                                </div> 
+                                :
+                                <>
+                                <div className='mb-4'>
+                                    <label htmlFor="business_photo" className='font-medium text-xs bg-[#E5E5E5] p-4 flex flex-col items-center justify-center relative cursor-pointer sm:w-48 sm:h-40 text-center'>
+                                        <span className='text-[#476788] text-xs sm:text-sm'>
+                                         You have reached the maximum number of photos for your subscription. 
+                                         <Link to={`/users/subscriptions/${id}`} className='text-[#476788] text-xs sm:text-sm'>
+                                            {" "}Click here to Subscribe or upgrade your subscription
+                                        </Link>
+                                        </span>
+                                    </label>
+                                </div> 
+                                </>
+
+                            }
+
+                            </>
+                            {/* <label htmlFor="add_image" className='font-medium text-sm mb-2 bg-gray rounded-lg w-36 h-36 flex flex-col gap-2 justify-center items-center px-4 cursor-pointer'>
                                 <RiAddFill size="24px" color='gray' />
                                 <p className='text-center text-xs'>
                                     <span className='font-semibold'>Choose a file </span>
@@ -159,7 +200,7 @@ const index = () => {
                                 onChange={(e) => uploadImage(e.target.files[0])}
                                 className='border-gray rounded-lg mt-2 cursor-pointer w-1 h-1 invisible overflow-hidden'
                                 type="file" name="add_image" id="add_image"
-                            />
+                            /> */}
                         </div>
                     </div>
                     <div className='flex sm:justify-end gap-2'>
