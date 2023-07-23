@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Img from '../../../assets/image.svg'
 import Button from '../Button'
-import Image from '/src/components/Image';
+import Image from './Image';
+// import Image from '/src/components/Image';
 
 const ProductCard = ({ product }) => {
   // console.log(product)
