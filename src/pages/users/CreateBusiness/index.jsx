@@ -17,6 +17,8 @@ const index = () => {
     setBusinessData(prev => ({...prev, [event.target.name]: event.target.value }))
   }
 
+
+
   // console.log(step)
   return (
     <Dashboard>

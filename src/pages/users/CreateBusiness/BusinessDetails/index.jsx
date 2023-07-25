@@ -5,6 +5,7 @@ import { apiGetAllCategories } from '/src/services/CommonService'
 import { apiGetStates, apiGetLGAs } from '/src/services/UserService'
 import Input from '../../../../components/ui/Input'
 import Button from '../../../../components/ui/Button'
+import useFetch from '/src/hooks/useFetch'
 
 
 const months = [
@@ -29,10 +30,17 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
     const [filteredLgas, setfilteredLgas] = React.useState([]) 
 
     
-    const { isLoading, error, data: categories } = useQuery({
-        queryKey: ['categories'],
-        queryFn: () => getData(apiGetAllCategories),
-    })
+    // const { isLoading, error, data: categories } = useQuery({
+    //     queryKey: ['categories'],
+    //     queryFn: () => getData(apiGetAllCategories),
+    // })
+
+    const { isLoading, error, data: categories } = useFetch({
+        api: apiGetAllCategories,
+        key: ['categories'],
+      })
+
+    // console.log({categories})
 
     // const { data: states } = useQuery({
     //     queryKey: ['states'],
