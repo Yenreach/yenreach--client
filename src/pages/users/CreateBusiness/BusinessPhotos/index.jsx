@@ -29,7 +29,7 @@ const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) =
     // console.log("url", profileImg, "error", error, "progress", progress)
     // console.log("url", coverImg, "error", coverImgError, "progress", coverImgProgress)
 
-
+     console.log("businessData", 'businessData')
     
     const handleSubmit = (e) => {
         e.preventDefault()

@@ -150,7 +150,7 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
             <label htmlFor="address" className='font-medium text-sm'>Business Address</label>
             <Input required={true} value={businessData?.address} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="address" id="address" placeholder='Enter your business Address' />
         </div>
-        <div className='mb-8 md:flex justify-between gap-9'>
+        {/* <div className='mb-8 md:flex justify-between gap-9'>
             <div className='w-full mb-8'>
                 <label htmlFor="month_started" className='font-medium text-sm'>Business start month</label>
                 <select required value={businessData?.month_started} onChange={handleBusinessData} className='w-full border-2 outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-green cursor-pointer rounded-lg' name="month_started" id="month_started" placeholder='Enter your business start Month'>
@@ -164,7 +164,7 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
                 <label htmlFor="year_started" className='font-medium text-sm'>Business start year</label>
                 <Input required={true} value={businessData?.year_started} onChange={handleBusinessData} className='border-gray rounded-lg' type="number" name="year_started" id="year_started" placeholder='Enter your business start Year' />
             </div>
-        </div>
+        </div> */}
         <Button type='submit' className='p-3 w-full flex justify-center'>
             Next
         </Button>

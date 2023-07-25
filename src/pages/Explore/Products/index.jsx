@@ -23,7 +23,8 @@ const ExploreProducts = () => {
     const [location, setLocation] = useState("")
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = searchParams.get('page') || 1
+  const [page, setPage] = useState(searchParams.get('page') || 1)
+
   const num_per_page = 40
 
   const [search, setSearch] = useState("")
@@ -63,6 +64,7 @@ const ExploreProducts = () => {
     select: (data) => data,
     key: ['products', page],
   })
+
 
 
   console.log({ products })
