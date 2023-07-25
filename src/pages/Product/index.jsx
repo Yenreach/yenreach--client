@@ -31,6 +31,8 @@ const Product = () => {
     param: id,
     key: ['relatedProduct', id],
   })
+
+  // console.log({ relatedProducts })
   
   const { data: business, error: errorBusiness, isLoading: businessLoading } = useFetch({
     api: apiGetOneBusiness,
@@ -111,7 +113,7 @@ const Product = () => {
               <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 mb-32'>
                 <h2 className='text-xl text-orange font-semibold mb-2'>Other Related Products</h2>
                 <div className='grid grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 xl:grid-cols-bus4 gap-6'>
-                  {relatedProducts?.map((product, index) => 
+                  {relatedProducts?.slice(0,4)?.map((product, index) => 
                     <ProductCard key={product.id} product={product} />
                   )}
                   </div>
