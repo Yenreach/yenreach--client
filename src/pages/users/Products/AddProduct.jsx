@@ -47,14 +47,16 @@ const index = () => {
     const { id } = useParams()
     const navigate = useNavigate()
 
+    
     const { url, uploadImage, error, progress, loading: uploadingImg } = useImage()
-
+    
     const { error: subscriptionError, data: subscription } = useFetch({
         api: apiGetBusinessSubscription,
         param: id,
         key: ['subscription', id],
-      })
-
+    })
+    // console.log(subscription?.subscription?.photos)
+    
    useEffect(() => {
          if(url) {
                 setProduct(prev => ({...prev, photos: [...product.photos,  { filename: url }] }))
@@ -157,24 +159,20 @@ const index = () => {
                                 </div>
                             ))}
                             <>
-                            {(product.photos?.length < 2 || (product.photos?.length < Number(subscription?.subscription?.photos))) ? 
-                                <div className='mb-4'>
-                                    <label htmlFor="add_image" className='font-medium text-sm mb-2 bg-gray rounded-lg w-36 h-36 flex flex-col gap-2 justify-center items-center px-4 cursor-pointer'>
+                            {(product.photos?.length < 5 || (product.photos?.length < Number(subscription?.subscription?.photos))) ? 
+                                <div className=''>
+                                    <label htmlFor="add_image" className='font-medium text-sm bg-gray rounded-lg w-36 h-36 flex flex-col gap-2 justify-center items-center px-4 cursor-pointer'>
                                         <RiAddFill size="24px" color='gray' />
                                         <p className='text-center text-xs'>
                                             <span className='font-semibold'>Choose a file </span>
                                             <span className='font-normal'>or drag it here</span>
                                         </p>
                                     </label>
-                                    <Input  
-                                        onChange={(e) => uploadImage(e.target.files[0])}
-                                        className='border-gray rounded-lg mt-2 cursor-pointer w-1 h-1 invisible overflow-hidden'
-                                        type="file" name="add_image" id="add_image"
-                                    />
+                                    
                                 </div> 
                                 :
                                 <>
-                                <div className='mb-4'>
+                                <div className=''>
                                     <label htmlFor="business_photo" className='font-medium text-xs bg-[#E5E5E5] p-4 flex flex-col items-center justify-center relative cursor-pointer sm:w-48 sm:h-40 text-center'>
                                         <span className='text-[#476788] text-xs sm:text-sm'>
                                          You have reached the maximum number of photos for your subscription. 
@@ -187,6 +185,12 @@ const index = () => {
                                 </>
 
                             }
+
+                                    <Input  
+                                        onChange={(e) => uploadImage(e.target.files[0])}
+                                        className='border-gray rounded-lg mt-2 cursor-pointer w-1 h-1 invisible overflow-hidden'
+                                        type="file" name="add_image" id="add_image"
+                                    />
 
                             </>
                             {/* <label htmlFor="add_image" className='font-medium text-sm mb-2 bg-gray rounded-lg w-36 h-36 flex flex-col gap-2 justify-center items-center px-4 cursor-pointer'>
