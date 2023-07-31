@@ -3,6 +3,7 @@ import Computer from '/src/assets/computer.svg'
 import DECImg from '/src/assets/DEC_Image.jpg'
 import LogoImg from '/src/assets/LOGO_4491659091525.jpg'
 import AdsImg from '/src/assets/adsimage.jpg'
+import EmitImg from '/src/assets/emite.png'
 
 
 
@@ -27,6 +28,13 @@ const billboards = [
         description: 'One of Nigeria\'s leading life Insurance provider with products ranging from, *Children Education Plan *Individual Savings Plan *Group life *General Third Party Liability *Professional Indemnity *Public Liability *Comprehensive Car Insurance *Mutual Term Assurance *Goods -in-transit E.T.C',
         image: Computer,
         link: '/business/bfd9cc92264da47e591e505e860f143ef5d69eba'
+    },
+    {
+        id: 4,
+        title: 'Emitex global Enterprise',
+        description: 'Welcome to our Furniture Electronics Shop, where we take pride in providing you with an exceptional shopping experience like no other',
+        image: EmitImg,
+        link: '/business/73457ce1a6750c8949b22309f31cdc75c0952f5c'
     },
     // {
     //     id: 4,
