@@ -5,7 +5,7 @@ import LogoImg from '/src/assets/LOGO_4491659091525.jpg'
 import AdsImg from '/src/assets/adsimage.jpg'
 import EmitImg from '/src/assets/emite.png'
 import MkImage from '/src/assets/mk.png'
-
+import MutualImage from '/src/assets/mutual.png'
 
 
 const billboards = [
@@ -27,7 +27,7 @@ const billboards = [
         id: 3,
         title: 'Mutual Benefits Life Assurance Limited',
         description: 'One of Nigeria\'s leading life Insurance provider with products ranging from, *Children Education Plan *Individual Savings Plan *Group life *General Third Party Liability *Professional Indemnity *Public Liability *Comprehensive Car Insurance *Mutual Term Assurance *Goods -in-transit E.T.C',
-        image: Computer,
+        image: MutualImage,
         link: '/business/bfd9cc92264da47e591e505e860f143ef5d69eba'
     },
     {
