@@ -4,6 +4,7 @@ import DECImg from '/src/assets/DEC_Image.jpg'
 import LogoImg from '/src/assets/LOGO_4491659091525.jpg'
 import AdsImg from '/src/assets/adsimage.jpg'
 import EmitImg from '/src/assets/emite.png'
+import MkImage from '/src/assets/mk.png'
 
 
 
@@ -36,22 +37,22 @@ const billboards = [
         image: EmitImg,
         link: '/business/73457ce1a6750c8949b22309f31cdc75c0952f5c'
     },
-    // {
-    //     id: 4,
-    //     title: 'Data Science Nigeria',
-    //     description: 'Data Science Nigeria is a community of data scientists, data analysts, data engineers, data architects, data visualizers, and data enthusiasts. We are a community of data scientists, data analysts, data engineers, data architects, data visualizers, and data enthusiasts.',
-    //     image: './assets/img/clients/business/Screenshot_20211103-132259.png',
-    //     link: '/business/bfd9cc92264da47e591e505e860f143ef5d69eba'
-    // },
-    // {
-    //     id: 5,
-    //     title: 'Data Science Nigeria',
-    //     description: 'Data Science Nigeria is a community of data scientists, data analysts, data engineers, data architects, data visualizers, and data enthusiasts. We are a community of data scientists, data analysts, data engineers, data architects, data visualizers, and data enthusiasts.',
-    //     image: './assets/img/clients/business/Screenshot_20211103-132259.png',
-    //     link: '/business/bfd9cc92264da47e591e505e860f143ef5d69eba'
-    // },
+    {
+        id: 5,
+        title: 'MK-Series',
+        description: 'Am into repairs of Android and iPhones laptops and desktops. Sales of phone gadgets and accessories, such as chargers, earpiece, head phones, original data cable, phone pouches, game pads power banks and lots more.',
+        image: MkImage,
+        link: '/business/935ed3e931dd3615ced90e0967d6704718387d7b'
+    },
     {
         id: 6,
+        title: 'Laptop Center',
+        description: 'Sales of all kinds of laptops, iPhones, phones computer accessories, keyboards, mouse, projectors, game pads, repairs of laptops etc',
+        image: Computer,
+        link: '/business/d19ed3e682a2c00406a269eb9fd60121141a0ef9'
+    },
+    {
+        id: 7,
         title: 'Advertise your business here',
         description: 'Advertise your business here',
         image: AdsImg,
