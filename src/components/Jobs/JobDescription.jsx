@@ -9,6 +9,7 @@ import { useAuthContext } from '/src/hooks/useAuthContext'
 import { RiFileTextLine } from "react-icons/ri";
 import usePost from '/src/hooks/usePost'
 import Loader from '../Loader'
+import { AiOutlineMail } from 'react-icons/ai'
 
 
 
@@ -65,7 +66,7 @@ const JobDescription = ({ job }) => {
     <div className='flex flex-col flex-1 w-full'>
         {(upLoadingImage || submitJobApplication?.isLoading) && <Loader loader={4} />}
 		<>
-			<div className="relative flex gap-5 justify-center overflow-hidden items-center w-full -z-50 bg-blue px-4 py-6 text-sm">
+			<div className="relative flex items-center justify-center w-full gap-5 px-4 py-6 overflow-hidden text-sm -z-0 bg-blue">
 				<svg className='absolute -top-4 -right-[20%] -z-10' width="488" height="383" viewBox="0 0 488 383" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g opacity="0.45">
 					<path d="M359.724 5.62459C336.186 3.38521 315.122 10.799 294.154 18.6548C293.142 19.034 292.13 19.4143 291.117 19.7945C271.121 27.308 251.104 34.8292 228.789 34.667C207.485 34.512 187.558 25.8183 168.035 17.3007C165.644 16.2578 163.26 15.2175 160.88 14.1959C139.144 4.86637 117.748 -2.91045 95.7345 3.73556C85.2682 6.89533 78.7949 11.9787 74.7612 18.2983C70.7431 24.5934 69.1959 32.0395 68.4295 39.8306C68.0628 43.5581 67.8734 47.3861 67.6837 51.2171C67.6751 51.3923 67.6664 51.5675 67.6577 51.7427C67.4586 55.7562 67.2504 59.7706 66.8313 63.7155C65.9929 71.6074 64.316 79.1516 60.2385 85.7127C56.4615 91.7903 51.1719 97.4567 45.2726 102.965C41.4536 106.531 37.4076 110.006 33.3641 113.478C31.1509 115.379 28.9385 117.279 26.7644 119.193C20.6403 124.584 14.85 130.063 10.3759 135.863C5.8994 141.667 2.70964 147.832 1.83746 154.6C-1.92243 183.776 12.4967 213.861 41.0673 236.759C70.1989 260.106 112.88 282.857 160.201 281.755C184.041 281.2 202.01 271.842 219.261 261.044C222.375 259.095 225.464 257.1 228.559 255.102C242.636 246.013 256.835 236.845 274.118 231.48C287.574 227.303 303.657 226.777 319.574 226.256C322.464 226.162 325.348 226.067 328.21 225.951C337.493 225.575 346.533 224.969 354.691 223.367C362.849 221.765 370.178 219.159 376.013 214.747C381.902 210.295 384.406 205.102 385.045 199.508C385.679 193.967 384.477 188.064 383.059 182.185C382.838 181.268 382.612 180.351 382.385 179.435C381.151 174.438 379.927 169.481 379.606 164.657C379.229 158.982 380.114 153.576 383.698 148.645C389.788 140.266 399.687 132.892 411.104 125.948C418.746 121.301 427.014 116.878 435.225 112.485C439.283 110.313 443.328 108.149 447.277 105.969C459.177 99.399 470.193 92.6884 477.848 85.2601C485.514 77.8217 489.916 69.556 488.323 59.916C486.928 51.4789 481.329 44.1936 473.043 37.9517C464.753 31.7077 453.703 26.4518 441.246 22.0816C416.33 13.3399 385.632 8.08938 359.724 5.62459Z" stroke="white" strokeWidth="1.5"/>
@@ -80,84 +81,97 @@ const JobDescription = ({ job }) => {
 					<path d="M558.786 136.328C537.789 134.337 519.002 140.928 500.317 147.904C499.416 148.24 498.516 148.577 497.615 148.915C479.792 155.588 461.966 162.263 442.095 162.119C423.128 161.981 405.385 154.268 387.985 146.703C385.855 145.777 383.73 144.853 381.608 143.946C362.24 135.661 343.148 128.742 323.499 134.653C314.157 137.464 308.371 141.988 304.764 147.62C301.172 153.228 299.792 159.856 299.108 166.78C298.781 170.092 298.612 173.493 298.443 176.895C298.435 177.051 298.428 177.207 298.42 177.363C298.243 180.927 298.057 184.49 297.684 187.99C296.937 194.993 295.445 201.678 291.821 207.489C288.461 212.877 283.753 217.903 278.498 222.793C275.096 225.959 271.493 229.042 267.89 232.125C265.918 233.814 263.945 235.501 262.006 237.203C256.548 241.991 251.383 246.861 247.391 252.019C243.396 257.18 240.544 262.669 239.764 268.699C236.409 294.647 249.279 321.391 274.755 341.739C300.724 362.479 338.778 382.695 380.973 381.716C402.241 381.222 418.269 372.902 433.646 363.311C436.423 361.578 439.177 359.807 441.936 358.032C454.48 349.96 467.123 341.826 482.513 337.065C494.494 333.359 508.813 332.892 522.999 332.429C525.574 332.345 528.145 332.261 530.697 332.158C538.971 331.824 547.032 331.286 554.308 329.862C561.584 328.438 568.129 326.12 573.343 322.192C578.609 318.225 580.852 313.592 581.425 308.601C581.991 303.663 580.916 298.407 579.653 293.188C579.455 292.371 579.253 291.556 579.052 290.743C577.952 286.305 576.863 281.911 576.578 277.636C576.243 272.61 577.029 267.831 580.208 263.472C585.626 256.045 594.434 249.503 604.607 243.338C611.416 239.212 618.78 235.286 626.096 231.385C629.714 229.457 633.319 227.534 636.84 225.597C647.445 219.763 657.271 213.799 664.102 207.193C670.943 200.578 674.886 193.212 673.46 184.611C672.213 177.088 667.205 170.602 659.811 165.052C652.415 159.5 642.558 154.829 631.454 150.947C609.241 143.18 581.878 138.517 558.786 136.328Z" stroke="white" strokeWidth="1.5"/>
 					</g>
 				</svg>
-				{/* <div className="flex h-24 w-24 bg-white rounded-full"></div> */}
+				{/* <div className="flex w-24 h-24 bg-white rounded-full"></div> */}
 				<div className="flex flex-col flex-1 gap-1 text-white">
 					<h2 className='font-light'>{ job?.company_name }</h2>
 					<h2 className='text-xl font-medium'>{ job?.job_title }</h2>
 					<div className='flex gap-2'>
 						{
 							job?.job_tags?.map((tag, index) => (
-								<span key={tag.id} className="font-normal text-xsm p-1 bg-black/40 text-white w-fit">{ tag.tag }</span>
+								<span key={tag.id} className="p-1 font-normal text-white text-xsm bg-black/40 w-fit">{ tag.tag }</span>
 							))
 						}
 					</div>
 				</div>
-				<Button className="p-2 text-sm z-10" variant='job-inverted'>Apply Now</Button>
+				{(job?.admin_job!=="1") ? 
+					<Button className="z-10 p-2 text-xs text-center bg-white cursor-pointer text-blue" variant='job-inverted'>Apply Now</Button>
+					:  job?.job_link.includes("https") ?
+					<a href={`${job?.job_link}`} target="_blank" className="z-10 p-2 text-xs text-center bg-white cursor-pointer text-blue">
+						Apply Now
+					</a> : 
+					<a target='_blank' className="z-10 p-2 text-xs text-center bg-white cursor-pointer text-blue" href={`mailto:${job?.job_link}`}>
+						Apply Now
+					</a>
+				}
+				{/* <Button className="z-10 p-2 text-sm" variant='job-inverted'>Apply Now</Button> */}
 			</div>
 			<div className="flex flex-col border-2 border-gray-light py-6 px-4 overflow-y-scroll gap-6 h-[525px]">
 				{tab===1 &&
 					<>
-						<h2 className='font-semibold text-xl mb-4'>Job Description</h2>
+						<h2 className='mb-4 text-xl font-semibold'>Job Description</h2>
 						{job?.job_overview && 
 							<div className="flex flex-col gap-2">
 								<h3 className='text-base font-medium'>Job Overview</h3>
-								<p className='font-light text-xs'>{ job?.job_overview }</p>
+								<p className='text-xs font-light'>{ job?.job_overview }</p>
 							</div>
 						}
 						{job?.job_responsibilities && 
 							<div className="flex flex-col gap-2">
 								<h3 className='text-base font-medium'>Job Responsibilities</h3>
-								<p className='font-light text-xs'>{ job?.job_responsibilities }</p>
+								<p className='text-xs font-light'>{ job?.job_responsibilities }</p>
 							</div>
 						}
 						{job?.job_benefit && 
 							<div className="flex flex-col gap-2">
 								<h3 className='text-base font-medium'>Job Perks and Benefits</h3>
-								<p className='font-light text-xs'>{ job?.job_benefit }</p>
+								<p className='text-xs font-light'>{ job?.job_benefit }</p>
 							</div>
 						}
 						{(job?.admin_job!=="1") ? 
-						<Button onClickFunc={() => setTab(2)} className='my-2 w-fit py-1 px-4 text-smm font-medium mt-auto' variant='job'>Apply For this Job</Button>
-						:  job?.job_link.includes("https") ?
-						<a href={`${job?.job_link}`} target="_blank" className='my-2 w-fit py-1 px-4 text-smm font-medium mt-auto bg-blue text-white'>
-							Go to Application Page
-						</a> : 
-						<div className='my-2 w-fit text-smm font-medium mt-auto flex flex-col gap-1'>
-							<span className='text-xs'>Apply via</span>
-							<span className='text-sm italic bg-ble/90 py-1 x-2 text-blue'>{job?.job_link}</span>
-						</div>
+							<Button onClickFunc={() => setTab(2)} className='px-4 py-1 my-2 mt-auto font-medium w-fit text-smm' variant='job'>Apply For this Job</Button>
+							:  job?.job_link.includes("https") ?
+							<a href={`${job?.job_link}`} target="_blank" className='px-4 py-1 my-2 mt-auto font-medium text-white w-fit text-smm bg-blue'>
+								Go to Application Page
+							</a> : 
+							<div className='flex flex-col gap-1 my-2 mt-auto font-medium w-fit text-smm'>
+								<span className='text-xs'>Apply via</span>
+								<a target='_blank' className='flex items-center gap-2 py-1 text-sm italic bg-ble/90 x-2 text-blue' href={`mailto:${job?.job_link}`}>
+									<AiOutlineMail />
+									{job?.job_link}
+								</a>
+							</div>
 						}
 					</>
 				}
 				{tab===2 &&
 					<>
-						<h2 className='text-xl mb-4 text-black/70'>Application Form</h2>
-						<div className='grid gap-3 lg:grid-cols-2 text-sm'>
+						<h2 className='mb-4 text-xl text-black/70'>Application Form</h2>
+						<div className='grid gap-3 text-sm lg:grid-cols-2'>
 							<div>
 								<label htmlFor="full_name" className='text-sm font-medium text-black/70'>Full Name</label>
 								<input
 								value={application?.full_name}
 								onChange={(e) => setApplication({[e.target.name]: e.target.value})}
-								type="text" name="full_name" id="full_name" className='w-full border-2 border-gray-light p-2 rounded-md' />
+								type="text" name="full_name" id="full_name" className='w-full p-2 border-2 rounded-md border-gray-light' />
 							</div>
 							<div>
 								<label htmlFor="email" className='text-sm font-medium text-black/70'>Email</label>
 								<input
 								value={application?.email}
 								onChange={(e) => setApplication({[e.target.name]: e.target.value})}
-								type="email" name="email" id="email" className='w-full border-2 border-gray-light p-2 rounded-md' />
+								type="email" name="email" id="email" className='w-full p-2 border-2 rounded-md border-gray-light' />
 							</div>
 							<div>
 								<label htmlFor="phone" className='text-sm font-medium text-black/70'>Phone Number</label>
 								<input 
 								value={application?.phone}
 								onChange={(e) => setApplication({[e.target.name]: e.target.value})}
-								type="text" name="phone" id="phone" className='w-full border-2 border-gray-light p-2 rounded-md' />
+								type="text" name="phone" id="phone" className='w-full p-2 border-2 rounded-md border-gray-light' />
 							</div>
 						</div>
 						<div className='text-xs'>
 							<span className='font-medium text-black/70'>Resume</span>
-							<label htmlFor="document" className='text-sm font-medium text-black/70 flex items-center gap-6 justify-between border border-dashed rounded-md p-2 border-black/30 cursor-pointer'>
+							<label htmlFor="document" className='flex items-center justify-between gap-6 p-2 text-sm font-medium border border-dashed rounded-md cursor-pointer text-black/70 border-black/30'>
 								<div className='flex flex-col gap-2'>
 									<span className='text-base'>Click this box to upload your resume/CV</span>
 									<span className='text-xs'>File should be in PDF format and less than 2mb.</span>
@@ -171,17 +185,17 @@ const JobDescription = ({ job }) => {
 										<span className="text-sm">View Resume</span>
 									</a>
 								}    
-								<input onChange={(e) => uploadImage(e.target.files[0])} type="file" name="document" id="document" className='w-full border-2 border-gray-light p-2 rounded-md hidden' />
+								<input onChange={(e) => uploadImage(e.target.files[0])} type="file" name="document" id="document" className='hidden w-full p-2 border-2 rounded-md border-gray-light' />
 							</div>
 						</div>
-						<Button onClickFunc={handleSubmit} className='my-2 w-fit py-1 px-4 text-smm font-medium mt-auto' variant='job'>Apply For this Job</Button>
+						<Button onClickFunc={handleSubmit} className='px-4 py-1 my-2 mt-auto font-medium w-fit text-smm' variant='job'>Apply For this Job</Button>
 					</>
 				}{ /* successful application  */
 					tab===3 &&
 					<>
-						<h2 className='text-xl mb-4 text-black/70'>Application Successful</h2>
+						<h2 className='mb-4 text-xl text-black/70'>Application Successful</h2>
 						<div className='flex flex-col gap-2'>
-							<p className='font-light text-xs'>Thank you for applying for this job?. We will get back to you shortly.</p>
+							<p className='text-xs font-light'>Thank you for applying for this job?. We will get back to you shortly.</p>
 						</div>
 					</>
 				}

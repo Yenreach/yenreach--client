@@ -20,6 +20,9 @@ import { useAuthContext } from '/src/hooks/useAuthContext'
 import { getCookie, setCookie } from '../../utils/cookie'
 import { expired, formatDate } from '/src/utils/dateFunc'
 import FullImage from '/src/components/FullImage'
+import { BsGlobe, BsTelephone } from 'react-icons/bs'
+import { AiOutlineMail } from 'react-icons/ai'
+import { CiLocationOn } from 'react-icons/ci'
 
 
 
@@ -191,22 +194,22 @@ const index = () => {
                 <div className='grid gap-1 mb-20 text-sm grid-cols-business-info'>
                   <span className='flex items-center justify-between p-3 px-5 border-2 border-gray opacity-90'>
                     {business.website || business.whatsapp || 'No website'}
-                    <img src={Mail} alt="" />
+                    <BsGlobe className='text-lg' />
                   </span>
                   <span className='flex items-center justify-between p-3 px-5 border-2 border-gray opacity-90'>
                     {business.email}
-                    <img src={Mail} alt="" />
+                    <AiOutlineMail className='text-lg' />
                   </span>
                   <span className='flex items-center justify-between p-3 px-5 border-2 border-gray opacity-90'>
                     {business.phonenumber}
-                    <img src={Mail} alt="" />
+                    <BsTelephone className='text-lg' />
                   </span>
                   <div className='flex flex-col gap-3 p-3 px-5 border-2 border-gray opacity-90'>   
                     <span className='flex items-start justify-between opacity-90'>
                       <span className='w-4/5'>
                        {business.address}, {business.lga} LGA, {business.state} State
                       </span>
-                      <img src={Mail} alt="" />
+                      <CiLocationOn className='text-lg' />
                     </span>
                     <img src={Map} alt="" className='object-cover object-center w-full' />
                   </div>
@@ -215,8 +218,8 @@ const index = () => {
               <h2 className='mb-4 text-lg font-semibold text-green2'>Photos</h2>
               <div className='flex flex-wrap gap-4 mb-10'>
                 {business?.photos?.length ? business?.photos?.map((photo, index) => 
-                      <div className='relative overflow-hidden rounded-lg bg-gray w-36 h-36'>
-                        <img key={index} src={photo?.filepath} alt="" className='object-cover w-full h-full' />
+                      <div key={index} className='relative overflow-hidden rounded-lg bg-gray w-36 h-36'>
+                        <img src={photo?.filepath} alt="" className='object-cover w-full h-full' />
                         <span
                             onClick={() => handleImageClick(photo?.filepath)}
                             className='absolute bottom-0 left-0 flex items-center justify-center w-full h-8 text-xs text-white cursor-pointer bg-black/50'
@@ -224,6 +227,7 @@ const index = () => {
                             View Full Image
                           </span>
                       </div>
+                     
                 ) 
                 : <span className='text-[#476788] text-xs sm:text-sm'>No photos</span>
                 }
@@ -233,7 +237,17 @@ const index = () => {
               </div>
               <h2 className='mb-4 text-lg font-semibold text-green2'>Products</h2>
               <div className='flex flex-wrap gap-4 mb-10'>
-              {products?.length ? products?.map((product, index) => <img key={index} src={product?.photos[0]?.filename} alt="" className='object-cover w-24 h-20 shadow bg-black/20' />) 
+              {products?.length ? products?.map((product, index) => 
+                     <div key={index} className='relative overflow-hidden rounded-lg bg-gray w-36 h-36'>
+                     <img src={product?.photos[0]?.filename} alt="" className='object-cover w-full h-full' />
+                     <span
+                         onClick={() => handleImageClick(product?.photos[0]?.filename)}
+                         className='absolute bottom-0 left-0 flex items-center justify-center w-full h-8 text-xs text-white cursor-pointer bg-black/50'
+                       >
+                         View Full Image
+                       </span>
+                   </div>
+                     ) 
                 : <span className='text-[#476788] text-xs sm:text-sm'>No Products</span>
                 }
                 {/* <img src={Product1} alt="" className='h-20' />
