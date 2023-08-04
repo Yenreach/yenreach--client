@@ -10,6 +10,8 @@ import Loader from '/src/components/Loader'
 import ProductCard from '/src/components/ui/ProductCard'
 import SellerDetailsModal from './SellerDetailsModal'
 import FullImage from '../../components/FullImage'
+import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai'
+import { BsTelephone, BsWhatsapp } from 'react-icons/bs'
 
 
 
@@ -17,8 +19,13 @@ const Product = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [imageModalOpen, setImageModalOpen] = useState(false)
   const [image, setImage] = useState('')
-  
+  const nameRef = useRef()
   const { id } = useParams()
+
+  const focus = () => {
+    console.log(nameRef.current)
+    nameRef?.current?.focus()
+  }
 
   const { data: product, error: errorProduct, isLoading } = useFetch({
     api: apiGetProduct,
@@ -41,7 +48,7 @@ const Product = () => {
     enabled: !!product?.business_string,
   })
   // console.log("relatedProducts", relatedProducts)
-  // console.log("pro", product)
+  // console.log("pro", business)
 
   const handleImageClick = (image) => {
     setImage(image)
@@ -55,9 +62,9 @@ const Product = () => {
          <FullImage  setImageModalOpen={setImageModalOpen} image={image} />
           )}
         <div className='mt-24 mb-10'>
-            <section className='py-4 md:pt-8 sm:py-6 px-4 md:px-10 lg:px-20 mb-8'>
-                <h1 className='text-2xl font-medium mb-2'>{product?.product_name}</h1>
-                <p className='text-xl text-black/80 font-light mb-6'>₦{product?.product_price}</p>
+            <section className='px-4 py-4 mb-8 md:pt-8 sm:py-6 md:px-10 lg:px-20'>
+                <h1 className='mb-2 text-2xl font-medium'>{product?.product_name}</h1>
+                <p className='mb-6 text-xl font-light text-black/80'>₦{product?.product_price}</p>
                 {/* <div className='flex items-center gap-1'>
                   <span >******</span>
                     <span>stars</span>
@@ -65,42 +72,82 @@ const Product = () => {
                 </div> */}
             </section>
             <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 mb-8 flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-12 h-[400px] overflow-hidden'>
-                <div className='flex-1 w-full h-full bg-gray-light overflow-hidden relative'>
-                    <img onClick={() => handleImageClick(product?.photos[0]?.filename)} src={product?.photos[0]?.filename} alt="" className='w-full h-full object-cover cursor-pointer' />
+                <div className='relative flex-1 w-full h-full overflow-hidden bg-gray-light'>
+                    <img onClick={() => handleImageClick(product?.photos[0]?.filename)} src={product?.photos[0]?.filename} alt="" className='object-cover w-full h-full cursor-pointer' />
                     {`click to view image`}
                     <span
                       onClick={() => handleImageClick(product?.photos[0]?.filename)}
-                      className='absolute bottom-0 left-0 w-full h-12 bg-black/50 flex justify-center items-center text-white text-sm cursor-pointer'
+                      className='absolute bottom-0 left-0 flex items-center justify-center w-full h-12 text-sm text-white cursor-pointer bg-black/50'
                      >
                       View Full Image
                     </span>
                 </div>
-                <div className='flex-1 w-full h-full flex flex-col justify-between'>
+                <div className='flex flex-col justify-between flex-1 w-full h-full'>
                   <div>
-                      <h2 className='font-medium mb-3 text-base'>Product Description</h2>
-                      <p className='text-sm mb-12'>
+                      <h2 className='mb-3 text-base font-medium'>Product Description</h2>
+                      <p className='mb-12 text-sm'>
                       {product?.product_description}
                       </p>
                   </div>
-                  <div className='flex flex-col text-xs mb-12'>
+                  <div className='flex flex-col mb-12 text-xs'>
                       <span className='font-medium'>Listed By</span>
                       <span className='text-sm text-gray'>{business?.name}</span>
                   </div>
-                    <Button variant='product' className='py-2 px-28 w-full text-xs ' onClickFunc={() => setModalOpen(true)}>
-                        Contact Seller
+                    <Button variant='product' className='w-full py-2 text-xs px-28' onClickFunc={focus}>
+                      Seller Details
                     </Button>
                 </div>
             </section>
+            <section id='contact' className='px-4 py-4 mb-8 overflow-hidden sm:py-6 md:px-10 lg:px-20'>
+              <h2 className='mb-3 text-base font-semibold text-orange'>Contact Details</h2>
+              <div className='flex flex-col flex-wrap gap-4 md:flex-row md:gap-x-12'>
+                <div ref={nameRef} tabIndex="0">
+                    <p className='text-xs text-black/60'>Name</p>
+                    <p className='text-sm font-semibold'>{business?.name}</p>
+                </div>
+                <div>
+                    <p className='text-xs text-black/60'>Email</p>
+                    <p className='text-sm font-semibold'>
+                      <a target='_blank' className='flex items-center gap-2' href={`mailto:${business?.email}`}>
+                        <AiOutlineMail />
+                        {business?.email}
+                      </a>
+                    </p>
+                </div>
+                <div>
+                    <p className='text-xs text-black/60'>Phone Number</p>
+                    <p className='text-sm font-semibold'>
+                      <a target='_blank' className='flex items-center gap-2' href={`tel:${business?.phonenumber}`}>
+                        <BsTelephone className='text-xs' />
+                        {business?.phonenumber}
+                      </a>
+                    </p>
+                </div>
+                <div>
+                    <p className='text-xs text-black/60'>Whatsapp</p>
+                    <p className='text-sm font-semibold'>
+                      <a target='_blank' className='flex items-center gap-2' href={`https://wa.me/${business?.phonenumber?.slice(1, -1)}`}>
+                        <BsWhatsapp />
+                        +234{business?.phonenumber?.slice(1, -1)}
+                      </a>
+                    </p>
+                </div>
+                <div>
+                    <p className='text-xs text-black/60'>Address</p>
+                    <p className='text-sm font-semibold'>{business?.address} {business?.state}</p>
+                </div>
+              </div>
+            </section>
             {product?.photos?.length > 1 && 
-              <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 mb-8 overflow-hidden'>
-                  <h2 className='font-medium mb-3 text-base text-orange'>More Photos</h2>
-                  <div className='flex flex-wrap md:flex-row gap-4 md:gap-8 lg:gap-12'>
+              <section className='px-4 py-4 mb-8 overflow-hidden sm:py-6 md:px-10 lg:px-20'>
+                  <h2 className='mb-3 text-base font-medium text-orange'>More Photos</h2>
+                  <div className='flex flex-wrap gap-4 md:flex-row md:gap-8 lg:gap-12'>
                   {product?.photos.slice(1)?.map((photo) => (
-                      <div key={photo?.filename} className='bg-gray rounded-lg w-36 h-36 overflow-hidden relative'>
+                      <div key={photo?.filename} className='relative overflow-hidden rounded-lg bg-gray w-36 h-36'>
                           <img src={photo?.filename} alt="" className='object-cover w-full h-full' />
                           <span
                             onClick={() => handleImageClick(photo?.filename)}
-                            className='absolute bottom-0 left-0 w-full h-8 bg-black/50 flex justify-center items-center text-white text-xs cursor-pointer'
+                            className='absolute bottom-0 left-0 flex items-center justify-center w-full h-8 text-xs text-white cursor-pointer bg-black/50'
                           >
                             View Full Image
                           </span>
@@ -110,9 +157,9 @@ const Product = () => {
               </section>
             }
             {relatedProducts?.length > 0 &&  
-              <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 mb-32'>
-                <h2 className='text-xl text-orange font-semibold mb-2'>Other Related Products</h2>
-                <div className='grid grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 xl:grid-cols-bus4 gap-6'>
+              <section className='px-4 py-4 mb-32 sm:py-6 md:px-10 lg:px-20'>
+                <h2 className='mb-2 text-xl font-semibold text-orange'>Other Related Products</h2>
+                <div className='grid gap-6 grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 xl:grid-cols-bus4'>
                   {relatedProducts?.slice(0,4)?.map((product, index) => 
                     <ProductCard key={product.id} product={product} />
                   )}
