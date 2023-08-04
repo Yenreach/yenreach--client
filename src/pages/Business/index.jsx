@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import useFetch from '/src/hooks/useFetch'
 import usePost from '/src/hooks/usePost'
 import { useParams, Link, useLocation } from 'react-router-dom'
@@ -19,11 +19,15 @@ import Image from '/src/components/Image';
 import { useAuthContext } from '/src/hooks/useAuthContext'
 import { getCookie, setCookie } from '../../utils/cookie'
 import { expired, formatDate } from '/src/utils/dateFunc'
+import FullImage from '/src/components/FullImage'
+
 
 
 
 const index = () => {
   const [modalOpen, setModalOpen] = React.useState(false)
+  const [imageModalOpen, setImageModalOpen] = useState(false)
+  const [image, setImage] = useState('')
   const { id } = useParams()
   const reviewsContainerRef = useRef(null)
   const { user } = useAuthContext()
@@ -35,7 +39,10 @@ const index = () => {
     showErrorMessage: false,
   })
 
-
+  const handleImageClick = (image) => {
+    setImage(image)
+    setImageModalOpen(true)
+  }
 
   const { data: business, error: errorBusiness, isLoading } = useFetch({
     api: apiGetOneBusiness,
@@ -141,19 +148,22 @@ const index = () => {
       <>
         <Header />
         {isLoading && <Loader loader={4} />}
+        {imageModalOpen && (
+         <FullImage  setImageModalOpen={setImageModalOpen} image={image} />
+          )}
         {business && 
         <>
           <div className={`top mb-10 py-16 sm:py-12 px-4 md:px-10 lg:px-20 relative ${business?.cover_img ? "" : 'bg-[url("assets/businesses/business-hero.svg")]'} bg-cover bg-center text-white flex items-center gap-5`}>
-             {business?.cover_img && <img src={business?.profile_img.replace("mediatoken", "media&token")} alt="" className='absolute left-0 top-0 w-full h-full -z-10' />}
+             {business?.cover_img && <img src={business?.profile_img.replace("mediatoken", "media&token")} alt="" className='absolute top-0 left-0 w-full h-full -z-10' />}
             <Image
                 url={business?.profile_img}
                 name={business?.name}
                 alt={business?.name}
-                className='w-16 h-16 md:w-24 md:h-24 object-cover rounded-full'
+                className='object-cover w-16 h-16 rounded-full md:w-24 md:h-24'
                 data={business}
                />
             <div className=''>
-              <h2 className='text-lg sm:text-xl font-medium mb-2 sm:mb-1'>{business.name}</h2>
+              <h2 className='mb-2 text-lg font-medium sm:text-xl sm:mb-1'>{business.name}</h2>
               <div className='flex items-center gap-0.5'>
                 <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
                 <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
@@ -164,56 +174,66 @@ const index = () => {
               </div>
             </div>
           </div>
-          <section className='px-4 md:px-10 lg:px-20 mb-20 relative'>
-            <div className='sm:w-4/5 md:w-2/3 lg:w-3/5 max-w-md xl:max-w-xl'>
-              <h2 className='text-lg text-green2 font-semibold mb-1'>About Business</h2>
+          <section className='relative px-4 mb-20 md:px-10 lg:px-20'>
+            <div className='max-w-md sm:w-4/5 md:w-2/3 lg:w-3/5 xl:max-w-xl'>
+              <h2 className='mb-1 text-lg font-semibold text-green2'>About Business</h2>
               <p className='text-[#476788] text-xs sm:text-sm mb-4'>
                 {business.description}
               </p>
-              {categories && <h3 className='text-green2 font-medium mb-1'>Tags</h3>}
-              <div className='flex items-center flex-wrap gap-3 text-xs text-white md:w-7/8 mb-16'>
+              {categories && <h3 className='mb-1 font-medium text-green2'>Tags</h3>}
+              <div className='flex flex-wrap items-center gap-3 mb-16 text-xs text-white md:w-7/8'>
                 {categories?.map((category, index) => 
-                  <span key={index} className='bg-green2 rounded-full px-3 sm:px-4 py-2'>{category?.category}</span>
+                  <span key={index} className='px-3 py-2 rounded-full bg-green2 sm:px-4'>{category?.category}</span>
                 )}
               </div>
               <div className='lg:absolute top-0 right-24 lg:max-w-[396px]'>
-                <h2 className='text-lg text-green2 font-semibold mb-2'>Business Info</h2>
-                <div className='gap-1 mb-20 grid grid-cols-business-info text-sm'>
-                  <span className='px-5 p-3 border-2 border-gray flex items-center justify-between opacity-90'>
+                <h2 className='mb-2 text-lg font-semibold text-green2'>Business Info</h2>
+                <div className='grid gap-1 mb-20 text-sm grid-cols-business-info'>
+                  <span className='flex items-center justify-between p-3 px-5 border-2 border-gray opacity-90'>
                     {business.website || business.whatsapp || 'No website'}
                     <img src={Mail} alt="" />
                   </span>
-                  <span className='px-5 p-3 border-2 border-gray flex items-center justify-between opacity-90'>
+                  <span className='flex items-center justify-between p-3 px-5 border-2 border-gray opacity-90'>
                     {business.email}
                     <img src={Mail} alt="" />
                   </span>
-                  <span className='px-5 p-3 border-2 border-gray flex items-center justify-between opacity-90'>
+                  <span className='flex items-center justify-between p-3 px-5 border-2 border-gray opacity-90'>
                     {business.phonenumber}
                     <img src={Mail} alt="" />
                   </span>
-                  <div className='px-5 p-3 border-2 border-gray flex flex-col gap-3 opacity-90'>   
+                  <div className='flex flex-col gap-3 p-3 px-5 border-2 border-gray opacity-90'>   
                     <span className='flex items-start justify-between opacity-90'>
                       <span className='w-4/5'>
                        {business.address}, {business.lga} LGA, {business.state} State
                       </span>
                       <img src={Mail} alt="" />
                     </span>
-                    <img src={Map} alt="" className='w-full object-cover object-center' />
+                    <img src={Map} alt="" className='object-cover object-center w-full' />
                   </div>
                 </div>
               </div>
-              <h2 className='text-lg text-green2 font-semibold mb-4'>Photos</h2>
+              <h2 className='mb-4 text-lg font-semibold text-green2'>Photos</h2>
               <div className='flex flex-wrap gap-4 mb-10'>
-                {business?.photos?.length ? business?.photos?.map((photo, index) => <img key={index} src={photo?.filepath} alt="" className='h-20 w-24 object-cover' />) 
+                {business?.photos?.length ? business?.photos?.map((photo, index) => 
+                      <div className='relative overflow-hidden rounded-lg bg-gray w-36 h-36'>
+                        <img key={index} src={photo?.filepath} alt="" className='object-cover w-full h-full' />
+                        <span
+                            onClick={() => handleImageClick(photo?.filepath)}
+                            className='absolute bottom-0 left-0 flex items-center justify-center w-full h-8 text-xs text-white cursor-pointer bg-black/50'
+                          >
+                            View Full Image
+                          </span>
+                      </div>
+                ) 
                 : <span className='text-[#476788] text-xs sm:text-sm'>No photos</span>
                 }
                 {/* <img src={Photo1}  alt="" className='h-20' />
                 <img src={Photo2} alt="" className='h-20' />
                 <img src={Photo3} alt="" className='h-20' /> */}
               </div>
-              <h2 className='text-lg text-green2 font-semibold mb-4'>Products</h2>
+              <h2 className='mb-4 text-lg font-semibold text-green2'>Products</h2>
               <div className='flex flex-wrap gap-4 mb-10'>
-              {products?.length ? products?.map((product, index) => <img key={index} src={product?.photos[0]?.filename} alt="" className='h-20 w-24 object-cover bg-black/20 shadow' />) 
+              {products?.length ? products?.map((product, index) => <img key={index} src={product?.photos[0]?.filename} alt="" className='object-cover w-24 h-20 shadow bg-black/20' />) 
                 : <span className='text-[#476788] text-xs sm:text-sm'>No Products</span>
                 }
                 {/* <img src={Product1} alt="" className='h-20' />
@@ -222,24 +242,24 @@ const index = () => {
               </div>
               {reviews && 
               <>
-              <h2 className='text-lg text-green2 font-semibold mb-3'>Reviews</h2>              
-              <div className='py-2 pb-14 relative mb-5 max-w-lg'>
+              <h2 className='mb-3 text-lg font-semibold text-green2'>Reviews</h2>              
+              <div className='relative max-w-lg py-2 mb-5 pb-14'>
                 <div className='p-4 bg-[#68888f21] rounded-xl'>
-                  <div ref={reviewsContainerRef} className='flex w-full overflow-hidden gap-2'>
+                  <div ref={reviewsContainerRef} className='flex w-full gap-2 overflow-hidden'>
                     {reviews?.map((review, index) => 
                       <div key={index} className='border-2 border-black/10 rounded-xl p-5 px-5 bg-green2 text-white min-w-[250px] max-w-[300px] overflow-hidden'>
                         <div className='flex items-center gap-2 mb-3'>
                           <img src={Star} alt="" />
                           <span className='text-sm'>{review.user}</span>
                         </div>
-                        <p className='text-xsm text-white'>
+                        <p className='text-white text-xsm'>
                           {review.review}
                         </p>
                       </div>
                     )}
                   </div>
                 </div>
-                <div className='flex items-end gap-4 absolute bottom-2 right-0'>
+                <div className='absolute right-0 flex items-end gap-4 bottom-2'>
                   <Button onClickFunc={prevReview} override={true} className='rounded px-5 py-1.5'>
                     Previous
                   </Button>
@@ -251,19 +271,19 @@ const index = () => {
               </>}
               {modalOpen &&  <BusinessReviewModal setModalOpen={setModalOpen} modalOpen={modalOpen} user={user} business_string={id} />} 
               {user ? 
-                <button onClick={() => setModalOpen(true)} className='text-smm text-green opacity-70 underline cursor-pointer'>
+                <button onClick={() => setModalOpen(true)} className='underline cursor-pointer text-smm text-green opacity-70'>
                   Write a review
                 </button>
-              : <Link to="/login"  state={{from: location}} className='text-smm text-green opacity-70 underline cursor-pointer'>
+              : <Link to="/login"  state={{from: location}} className='underline cursor-pointer text-smm text-green opacity-70'>
                   Login to Write a review
                 </Link>
               }
               {/* Review modal*/}
             </div>
           </section>
-          <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 border-t-2 border-gray mb-32'>
-            <h2 className='text-lg text-green2 font-semibold mb-2'>People also viewed</h2>
-            <div className='grid grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 xl:grid-cols-bus4 gap-6'>
+          <section className='px-4 py-4 mb-32 border-t-2 sm:py-6 md:px-10 lg:px-20 border-gray'>
+            <h2 className='mb-2 text-lg font-semibold text-green2'>People also viewed</h2>
+            <div className='grid gap-6 grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 xl:grid-cols-bus4'>
               {relatedBusinesses?.map((business, index) => 
                 <BusinessCard key={business.id} business={business} />
               )}
