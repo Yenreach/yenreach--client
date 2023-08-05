@@ -129,7 +129,7 @@ const JobDescription = ({ job }) => {
 						}
 						{(job?.admin_job!=="1") ? 
 							<Button onClickFunc={() => setTab(2)} className='px-4 py-1 my-2 mt-auto font-medium w-fit text-smm' variant='job'>Apply For this Job</Button>
-							:  job?.job_link.includes("https") ?
+							:  (job?.job_link.includes("http") || job?.job_link.includes("www"))?
 							<a href={`${job?.job_link}`} target="_blank" className='px-4 py-1 my-2 mt-auto font-medium text-white w-fit text-smm bg-blue'>
 								Go to Application Page
 							</a> : 
