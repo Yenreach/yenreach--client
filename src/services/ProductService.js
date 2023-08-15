@@ -80,7 +80,7 @@ export const apiDeleteProductPhoto = (data) => {
 /* Get Products */
 export const apiGetAllProducts = (query) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/fetch_active_product_api${serviceSuffix}?per_page=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}&search=${query?.search}`,
+        url: `${servicePrefix}/fetch_active_product_api${serviceSuffix}?per_page=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}&search=${query?.search || ''}`,
         method: "get",  
     })
 }

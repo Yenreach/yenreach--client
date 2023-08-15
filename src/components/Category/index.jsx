@@ -25,6 +25,7 @@ const index = () => {
 
     const { data: products, error: errorProducts } = useFetch({
         key: ['products', 1],
+        param: { page: 1, num_per_page: 4 },
         api: apiGetAllProducts,
         staleTime: staleTime,
     })
@@ -41,8 +42,8 @@ const index = () => {
 
   return (
     <section className='flex flex-col gap-8 px-4 py-8 md:px-10 lg:px-24 md:gap-20'>
-        <div className='flex flex-col xs:items-center gap-4'>
-            <h2 className='font-medium text-center text-lg text-green'>Browse by our recomended category</h2>
+        <div className='flex flex-col gap-4 xs:items-center'>
+            <h2 className='text-lg font-medium text-center text-green'>Browse by our recomended category</h2>
             <div className='bg-[#E9E9E9] py-2.5 px-2 rounded-md xs:px-2 sm:px-6 xs:rounded-full flex flex-col xs:flex-row xs:items-center justify-between gap-1 sm:gap-4 lg:gap-12 text-sm'>
                 <Button onClickFunc={() => setActiveTab("business")} inverse={activeTab!=="business"}  className={`text-center rounded-full flex justify-center items-center gap-0.5 py-2 px-2 pr-6 md:px-10 md:pr-14 font-semibold ${activeTab==="business" && ""}`}>
                     <MdOutlineHome size="1.3rem" />
