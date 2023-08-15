@@ -16,12 +16,10 @@ import Blogs from './pages/Blog'
 import Blog from './pages/Blog/Blog'
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import PasswordRecovery from './pages/PasswordRecovery';
 import ChangePassword from './pages/PasswordRecovery/ChangePassword';
 import ChangePasswordTemp from './pages/PasswordRecovery/ChangePasswordTemp';
 import Contact from './pages/Contact'
 import NotFound from './pages/404'
-import Dashboard from './components/layout/Dashboard'
 import BusinessDash from './pages/users/Home'
 import CreateBusiness from './pages/users/CreateBusiness'
 import EditBusiness from './pages/users/EditBusiness'

@@ -9,7 +9,7 @@ import Loader from '/src/components/Loader'
 import useFetch from '/src/hooks/useFetch'
 import Location from '/src/assets/location.svg'
 import Pagination from '/src/components/Pagination'
-import { apiGetAllProducts } from '/src/services/ProductService'
+import { apiGetAllProducts, apiSortProducts } from '/src/services/ProductService'
 import { paginate } from '/src/utils/pagination'
 import Button from '/src/components/ui/Button'
 import Input from '/src/components/ui/Input'
@@ -28,9 +28,15 @@ const ExploreProducts = () => {
   const num_per_page = 40
 
   const [search, setSearch] = useState("")
+  const [filter, setFilter] = useState("")
   const [useFilter, setUseFilter] = useState(false)
   const [filteredProducts, setFilteredProducts] = useState([])
   const [filteredProductsLoading, setFilteredProductsLoading] = useState(false)
+
+  const handleFilterChange = (e) => {
+    e.preventDefault()
+    setFilter(search)
+  }
 
   const handleFilter = (e) => {
     e.preventDefault()
@@ -60,14 +66,12 @@ const ExploreProducts = () => {
 
   const { data: products, error: errorProducts, isLoading }  = useFetch({
     api: apiGetAllProducts,
-    param: { page, num_per_page },
+    param: { page, num_per_page, search: filter },
     select: (data) => data,
-    key: ['products', page],
+    key: ['products', page, filter],
   })
 
-
-
-  console.log({ products })
+  // console.log({ products })
 
   const handlePageChange = (page) => {
       setPage(page)
@@ -78,17 +82,6 @@ const ExploreProducts = () => {
   }
 
 
-  
-//   useEffect(() => {
-//     if (location.state?.data === 'jobs') {
-//       setActiveTab('jobs')
-//     } else if (location.state?.data === 'marketplace') {
-//       setActiveTab('marketplace')
-//     } else {
-//       setActiveTab('business')
-//     }
-//   }, [location])
-
   return (
     <div className='relative w-full'>
         <Header />
@@ -97,13 +90,13 @@ const ExploreProducts = () => {
         <>        
       {(isLoading || filteredProductsLoading) && <Loader loader={4} />}
       <div className='flex items-center justify-center w-full gap-10'>
-        <p className='font-medium text-black/70 text-xs md:text-sm'>Currently Exploring products in</p>
+        <p className='text-xs font-medium text-black/70 md:text-sm'>Currently Exploring products in</p>
         <div className="flex items-center justify-center gap-2 px-4 py-2 bg-orange-light">
           <img src={Location} alt="location" />
           <span className='font-medium text-smm'>Bayelsa, Yenegoa</span>
         </div>
       </div>
-      <form action="" onSubmit={handleFilter} method="post" className='flex'>
+      <form action="" onSubmit={handleFilterChange} method="post" className='flex'>
         <Input onChange={(e) => setSearch(e.target.value)} value={search} variant='product' type="text" name="product" id="product" placeholder='product' className='rounded-tl-md rounded-bl-md' />
         <Input onChange={(e) => setLocation(e.target.value)} value={location} variant='product' type="text" name="location" id="location" placeholder='location' className='border-l-0 border-r-0' />
         <Button type="submit" variant='product' className='px-4 py-4 rounded-tr-md rounded-br-md'>
@@ -128,17 +121,16 @@ const ExploreProducts = () => {
                 data={(useFilter ? filteredProducts : products?.data)} 
                 handlePageChange={handlePageChange} 
                 total={useFilter ? filteredProducts?.length : products?.total} 
-
               />
             </>
           : 
-            <div className='flex justify-center items-center h-24 text-black/70'>
+            <div className='flex items-center justify-center h-24 text-black/70'>
               No products Available for this search
             </div>
           }
         </>
       : 
-        <div className='flex justify-center items-center h-24 text-black/70'>
+        <div className='flex items-center justify-center h-24 text-black/70'>
           No products Available yet
         </div>
       }

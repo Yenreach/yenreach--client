@@ -10,12 +10,12 @@ const ProductCard = ({ product }) => {
   return (
     <Link to={`/products/${product?.product_string}`}>
       <div className='flex flex-col rounded-t-3xl overflow-hidden py-2.5 px-2 border-2 border-[#D3DAE6] rounded-2xl h-fit justify-between'>
-        {/* <img src={Img} className='h-40 w-full object-cover object-center rounded-xl' alt="" /> */}
+        {/* <img src={Img} className='object-cover object-center w-full h-40 rounded-xl' alt="" /> */}
         <Image
                 url={product?.photos[0]?.filename}
                 name={product?.product_name}
                 alt={product?.name}
-                className='object-cover object-center rounded-xl h-28'
+                className='object-contain object-center w-full pt-[50%] pb-[50%] mx-auto rounded-xl'
                 data={product}
                />
         <div className="flex flex-col border-[#777777]">

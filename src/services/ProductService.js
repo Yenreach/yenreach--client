@@ -80,10 +80,19 @@ export const apiDeleteProductPhoto = (data) => {
 /* Get Products */
 export const apiGetAllProducts = (query) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/fetch_active_product_api${serviceSuffix}?per_page=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}`,
+        url: `${servicePrefix}/fetch_active_product_api${serviceSuffix}?per_page=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}&search=${query?.search}`,
         method: "get",  
     })
 }
+
+/* Sort Products */
+export const apiSortProducts = (query) => {
+    return ApiAdapter.fetchData({
+        url: `${servicePrefix}/sort_active_product_api${serviceSuffix}?sort=${query?.sort}`,
+        method: "get",  
+    })
+}
+
 /* Get Products */
 export const apiGetAllProductsAdmin = () => {
     return ApiAdapter.fetchData({

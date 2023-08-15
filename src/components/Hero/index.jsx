@@ -101,16 +101,16 @@ const index = ({ businesses }) => {
 
   return (
     <div className='carousel bg-[url("assets/heo.svg")] lg:h-screen bg-cover bg-center text-white relative'>
-      <div ref={carouselRef} className="carousel absolute left-0 top-0 w-full h-full -z-10">
+      <div ref={carouselRef} className="absolute top-0 left-0 w-full h-full carousel -z-10">
         {carouselData.map((item, index) => (
-          <div ref={(el) => (carouselInnerRef.current[index] = el)} key={item.id} className="carousel-item absolute w-full h-full active">
+          <div ref={(el) => (carouselInnerRef.current[index] = el)} key={item.id} className="absolute w-full h-full carousel-item active">
             <img src={carouselData[index]?.heroImg} alt="hero" className={`w-full h-full object-cover bg-red-${item.id*200}`} />
           </div>
         ))}
       </div>
       <div className="backdrop-blur-[1.5px] bg-black/60 h-full w-full flex flex-col gap-14 justify-center items-center py-32 sm:py-20 sm:pt-40 px-4 md:px-10 lg:px-24 relative text-xl md:text-3xl">
         <h1 className='font-medium leading-tight text-center'>The No.1 Business listing<br />website in Nigeria</h1>
-        <form action="" method="post" onSubmit={handleSearch} className="text-base flex">
+        <form action="" method="post" onSubmit={handleSearch} className="flex text-base">
           <Input variant="plain" onChange={(e) => setSearch(e.target.value)} value={search} list="categories" name="category" id="category" placeholder='Search for business' className='rounded-tl-md rounded-bl-md placeholder:text-xs' />
           <datalist className='' name="categories" id="categories" placeholder='Enter state'>
               {filledCategories?.map((category) => (
@@ -128,7 +128,7 @@ const index = ({ businesses }) => {
           </Button>
         </form>
         {/* <SearchBar /> */}
-        <div className='flex items-center gap-2 justify-between w-full px-2 sm:w-4/5'>
+        <div className='flex items-center justify-between w-full gap-2 px-2 sm:w-4/5'>
           <div className='flex flex-col items-center'>
             <span className='font-semibold'>{businessCount || 1100}+</span>
             <span className='text-sm md:text-lg'>Businesses</span>
