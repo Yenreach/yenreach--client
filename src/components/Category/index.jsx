@@ -19,13 +19,13 @@ const index = () => {
     const { data: aprrovedBusinesses, error: errorApprovedBusinesses, isLoading: approvedBusinessLoading } = useFetch({
         key: ['aprrovedBusinesses', 0],
         api: apiGetApprovedBusinesses,
-        param: { page: 1, num_per_page: 4 },
+        param: { page: 1, num_per_page: 5 },
         staleTime: staleTime,
     })
 
     const { data: products, error: errorProducts } = useFetch({
         key: ['products', 1],
-        param: { page: 1, num_per_page: 4 },
+        param: { page: 1, num_per_page: 5 },
         api: apiGetAllProducts,
         staleTime: staleTime,
     })
@@ -33,6 +33,7 @@ const index = () => {
         
     const { data: jobs, error: errorJobs, isLoading } = useFetch({
         api: apiGetAllJobs,
+        param: { page: 1, num_per_page: 5 },
         key: ['jobs', 1],
         staleTime: staleTime,
     })
@@ -62,10 +63,10 @@ const index = () => {
         <div className='w-full'>
             <h2 className={`mb-2 font-medium text-center text-lg ${activeTab==="business"? "text-green" : activeTab==="jobs" ? "text-blue" : "text-orange"}`}>Recommended for you</h2>
             {/* flex items-center gap-6 flex-wrap  */}
-            <div className='grid gap-6 grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 xl:grid-cols-bus4'>
+            <div className='grid gap-6 grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
                 {activeTab === 'business' && (
                     (!approvedBusinessLoading && !errorApprovedBusinesses) ?  (
-                        aprrovedBusinesses?.slice(0,4).map((business) => ( 
+                        aprrovedBusinesses?.slice(0,5).map((business) => ( 
                             <BusinessCard key={business.id} business={business} />
                         ))
                     ) :
@@ -76,10 +77,10 @@ const index = () => {
                     )
                 )}
                 {activeTab === 'marketplace' && products &&  (
-                    products?.slice(0,4).map((product) => <ProductCard key={product.id} product={product} />)
+                    products?.slice(0,5).map((product) => <ProductCard key={product.id} product={product} />)
                 )}
                 {activeTab === 'jobs' && (
-                     jobs?.slice(0,4).map((job) =>  <JobCard key={job.id} job={job} /> )
+                     jobs?.slice(0,5).map((job) =>  <JobCard key={job.id} job={job} /> )
                 )}
             </div>
             <Link to={activeTab === 'jobs' ? '/explore/jobs' : activeTab === 'marketplace' ? '/explore/products' : '/explore'} state={activeTab === 'marketplace' ? { data: "marketplace" } : activeTab === 'jobs' ? { data: "jobs" } : {}} >
