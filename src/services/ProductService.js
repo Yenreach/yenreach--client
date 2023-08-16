@@ -88,7 +88,7 @@ export const apiGetAllProducts = (query) => {
 /* Sort Products */
 export const apiSortProducts = (query) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/sort_active_product_api${serviceSuffix}?sort=${query?.sort}`,
+        url: `${servicePrefix}/sort_active_product_api${serviceSuffix}?sort=${query?.sort || ''}&per_page=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}`,
         method: "get",  
     })
 }

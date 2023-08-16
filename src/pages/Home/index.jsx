@@ -24,7 +24,7 @@ import Image from '/src/components/Image';
 const index = () => {
     const { data: aprrovedBusinesses, error: errorApprovedBusinesses } = useFetch({
         key: ['aprrovedBusinesses', 0],
-        param: { page: 1, num_per_page: 4 },
+        param: { page: 1, num_per_page: 5 },
         api: apiGetApprovedBusinesses,
         staleTime: 1000 * 60 * 5,
     })
@@ -48,7 +48,7 @@ const index = () => {
         <section className='px-4 py-12 md:px-10 lg:px-24'>
             <div className='bg-[url("assets/audience.svg")] h-64 md:h-60 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-28 px-4 sm:px-12 md:px-24'>     
                 <div className='flex flex-col items-center gap-5'>
-                    <h2 className='text-lg md:text-xl font-medium text-center'>Get your business to the right audience</h2>
+                    <h2 className='text-lg font-medium text-center md:text-xl'>Get your business to the right audience</h2>
                     <span className='text-sm'>It's Totally free</span>
                 </div>
                 <Link to="/users">
@@ -57,10 +57,10 @@ const index = () => {
                     </Button>
                 </Link>
             </div>
-            <div className='flex flex-col sm:items-center mb-20 md:mb-32 sm:flex-row gap-9'>
+            <div className='flex flex-col mb-20 sm:items-center md:mb-32 sm:flex-row gap-9'>
                 <img src={AllHere} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
                 <div className='flex flex-col items-start gap-12 max-w-[450px]'>
-                    <h3 className='font-medium text-xl text-green'>They are all Here</h3>
+                    <h3 className='text-xl font-medium text-green'>They are all Here</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
                     We are the premier destination for businesses looking to expand their reach and connect with potential customers. Our platform is designed to help businesses of all sizes grow and succeed by providing them with a powerful marketing tool.
                     <br /><br />
@@ -69,15 +69,15 @@ const index = () => {
                     Our intention is to save you the time, effort and money you would have expended going round in search of a particular business. Businesses here are arranged by states and industry. Input the industry and the state of choice in the search engine and oops you will find all the businesses in that category in the state. We understand the importance of your time, please save it by constantly using <a href="www.yenreach.com" className='underline text-green'>Yenreach.com</a> to find local businesses of choice.
                     </p>
                     <Link to="/explore">
-                        <Button className='py-2 px-20'>
+                        <Button className='px-20 py-2'>
                             Explore Businesses
                         </Button>
                     </Link>
                 </div>
             </div>
-            <div className='flex flex-col-reverse sm:items-center mb-20 md:mb-32 sm:flex-row gap-9'>
+            <div className='flex flex-col-reverse mb-20 sm:items-center md:mb-32 sm:flex-row gap-9'>
                 <div className='flex flex-col sm:items-end gap-12 max-w-[450px]'>
-                    <h3 className='font-medium text-xl text-blue'>They are all Here</h3>
+                    <h3 className='text-xl font-medium text-blue'>They are all Here</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
                     Looking for your next career opportunity? Look no further than our job listing platform. We offer a wide range of job listings across various industries, making it easy for job seekers to find the perfect role for their skills and experience.
                     {/* <br /><br />
@@ -91,7 +91,7 @@ const index = () => {
                     Other additional services we offer here include, resume writing and optimization, interview coaching, hiring, training/certification and career advice. We understand that job hunting can be a challenging and stressful process, which is why we are here to support and guide users every step of the way.
                     </p>
                     <Link to="/explore/jobs" state={{ data: "jobs" }} >
-                        <Button variant='job' className='py-2 px-20'>
+                        <Button variant='job' className='px-20 py-2'>
                             Explore Jobs
                         </Button>
                     </Link>
@@ -101,7 +101,7 @@ const index = () => {
             <div className='flex flex-col sm:items-center sm:flex-row gap-9'>
                 <img src={AllHereP} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
                 <div className='flex flex-col items-start gap-12 max-w-[450px]'>
-                    <h3 className='font-medium text-xl text-orange'>They are all Here</h3>
+                    <h3 className='text-xl font-medium text-orange'>They are all Here</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
                     We offer a marketplace for businesses to sell their products and services. Our marketplace is designed to help businesses of all sizes reach a wider audience and increase their sales.
                         <br /><br />
@@ -112,20 +112,20 @@ const index = () => {
                     Users can buy and sell products and services daily from the comfort of their homes and get such goods delivered to them. Sellers can easily create and manage their online stores, providing all the necessary details about their products or services, e.g price, pictures and descriptions etc. Buyers can browse through the listings and contact the sellers.
                     </p>
                     <Link to="/explore/products" state={{ data: "marketplace" }} >         
-                        <Button variant='product' className='py-2 px-20'>
+                        <Button variant='product' className='px-20 py-2'>
                             Explore Products
                         </Button>
                     </Link>
                 </div>
             </div>
         </section>
-        <section className='px-4 mb-12 md:px-10 lg:px-24 mt-4 md:mt-12'>
+        <section className='px-4 mt-4 mb-12 md:px-10 lg:px-24 md:mt-12'>
             {businessOfTheWeek &&
-                <div className='mb-36 py-12'>
-                    <h2 className='mb-2 font-medium text-center text-xl text-green'>Business of the week</h2>
+                <div className='py-12 mb-36'>
+                    <h2 className='mb-2 text-xl font-medium text-center text-green'>Business of the week</h2>
                     <div className='flex flex-col items-center sm:flex-row gap-14'>
                         <img className='flex-1 object-cover w-full sm:w-2/5' src={businessOfTheWeek?.profile_img.replace("mediatoken", "media&token")}  alt="Business of The Week"  />
-                        <div className='flex-1 flex flex-col gap-6 items-start'>
+                        <div className='flex flex-col items-start flex-1 gap-6'>
                             <h3 className='text-lg'>{businessOfTheWeek?.name}</h3>
                             <p className='text-sm'>
                                {businessOfTheWeek?.description.substring(0, 400)}...
@@ -140,10 +140,10 @@ const index = () => {
                 </div>
             }
             {/* <div className=''>
-                <h2 className='mb-3 font-medium text-center text-lg text-green'>keep up with the business world</h2>
+                <h2 className='mb-3 text-lg font-medium text-center text-green'>keep up with the business world</h2>
                 <div className='flex flex-col grid-cols-3 gap-6 text-white sm:grid'>
                     <div className="relative bg-[url('assets/businesses/coperate.svg')] bg-cover bg-center h-52 sm:h-104 p-4 min-w\">
-                        <span className='absolute w-2/3 bottom-12 sm:bottom-24 text-xl'>The struggle in the  Corperate world</span>
+                        <span className='absolute w-2/3 text-xl bottom-12 sm:bottom-24'>The struggle in the  Corperate world</span>
                     </div>
                     <div className='flex flex-col grid-cols-2 col-span-2 gap-2 sm:grid'>
                         <div className="relative bg-[url('assets/businesses/sme.svg')] p-5 h-52 bg-cover bg-center">
@@ -162,11 +162,11 @@ const index = () => {
                 </div>
             </div> */}
         </section>
-        <section className='px-4 mb-12 md:px-10 lg:px-24 mt-32 w-screen overflow-hidden'>
+        <section className='w-screen px-4 mt-32 mb-12 overflow-hidden md:px-10 lg:px-24'>
             <Billboard />
         </section>
         <section className='px-4 py-12 sm:px-20 md:px-32 lg:px-64 mb-11'>
-            <h2 className='font-medium text-center text-lg text-green'>Frequently asked questions</h2>
+            <h2 className='text-lg font-medium text-center text-green'>Frequently asked questions</h2>
             <Accordion />
         </section>
         <Footer />
