@@ -9,7 +9,7 @@ import Loader from '/src/components/Loader'
 import useFetch from '/src/hooks/useFetch'
 import Location from '/src/assets/location.svg'
 import Pagination from '/src/components/Pagination'
-import { apiGetAllProducts, apiSortProducts } from '/src/services/ProductService'
+import { apiGetAllProducts, apiSortProducts, apiGetProductCategory } from '/src/services/ProductService'
 import { paginate } from '/src/utils/pagination'
 import Button from '/src/components/ui/Button'
 import Input from '/src/components/ui/Input'
@@ -85,14 +85,20 @@ const ExploreProducts = () => {
     key: ['products', page, filter],
   })
 
-  const { data: sortedProducts, error: errorSortedProducts, sortProductsLoading }  = useFetch({
+  const { data: sortedProducts, error: errorSortedProducts, isLoading: sortProductsLoading }  = useFetch({
     api: apiSortProducts,
     param: { page, num_per_page, sort: filterBy },
     select: (data) => data,
     key: ['products', page, filterBy],
   })
 
-  console.log({ sortedProducts })
+  const { data: category }  = useFetch({
+    api: apiGetProductCategory,
+    select: (data) => data,
+    key: ['products', 'categoryapi'],
+  })
+
+  // console.log({ category })
 
   useEffect(() => {
     if (filterBy) {
@@ -149,7 +155,7 @@ const ExploreProducts = () => {
         <>        
           {(useFilter ? sortedProducts?.data?.length : products?.data?.length) ?
             <>        
-              <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+              <div className="grid w-full grid-cols-2 gap-2 sm:gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
                 {products && paginate({ page, num_per_page, data: useFilter ? sortedProducts?.data : products?.data })?.data?.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
@@ -159,7 +165,7 @@ const ExploreProducts = () => {
                 num_per_page={num_per_page} 
                 data={(useFilter ? sortedProducts?.data : products?.data)} 
                 handlePageChange={handlePageChange} 
-                total={useFilter ? sortedProducts?.data?.length : products?.total} 
+                total={useFilter ? sortedProducts?.total : products?.total} 
               />
             </>
           : 

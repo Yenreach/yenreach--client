@@ -71,7 +71,7 @@ const index = () => {
                         ))
                     ) :
                     (
-                        [0,1,2,3].map((business) => (
+                        [0,1,2,3,4].map((business) => (
                             <BusinessCardLoading key={business} />
                         ))
                     )
