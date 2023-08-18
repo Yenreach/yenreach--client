@@ -155,7 +155,7 @@ const ExploreProducts = () => {
         <>        
           {(useFilter ? sortedProducts?.data?.length : products?.data?.length) ?
             <>        
-              <div className="grid w-full grid-cols-2 gap-2 sm:gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
+              <div className="grid w-full grid-cols-2 gap-2 sm:gap-3 md:gap-4 lg:gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
                 {products && paginate({ page, num_per_page, data: useFilter ? sortedProducts?.data : products?.data })?.data?.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
