@@ -5,6 +5,7 @@ import { useAuthContext } from './hooks/useAuthContext'
 import './App.css'
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home'
+import MobileHome from './pages/MobileHome'
 import Explore from './pages/Explore'
 import ExploreProducts from './pages/Explore/Products'
 import ExploreJobs from './pages/Explore/Jobs'
@@ -70,7 +71,8 @@ function App() {
       <main className="App">
         <ScrollToTop>
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            {/* <Route exact path="/" element={<Home />} /> */}
+            <Route exact path="/" element={<MobileHome />} />
             <Route exact path="/explore" element={<Explore />} />
             <Route exact path="/explore/products" element={<ExploreProducts />} />
             <Route exact path="/explore/products" element={<ExploreProducts />} />
@@ -111,7 +113,7 @@ function App() {
             <Route exact path="/users/" element={<BusinessDash />} />
             <Route exact path="*" element={<NotFound />} />
           </Routes>
-          {/* <BottomNav /> */}
+          <BottomNav />
         </ScrollToTop>
       </main>
     </Router>

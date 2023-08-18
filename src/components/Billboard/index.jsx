@@ -161,7 +161,7 @@ const Billboard = () => {
 
   return (
      <div 
-        className='flex w-full h-full pb-16 overflow-hidden'
+        className='flex w-full h-full overflow-hidden'
         >
         <div ref={carouselRef} className="h-fit min-h-[90vh] md:min-h-[300px] md:h-[400px] overflow-hidden flex overflow-x-hidden w-screen relative">
             {billboards.map((billboard) => (
