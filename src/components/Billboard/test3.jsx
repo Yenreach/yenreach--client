@@ -1,7 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react'
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
-import VisionImg from '/src/assets/kristol.png'
 import Computer from '/src/assets/computer.svg'
 import DECImg from '/src/assets/DEC_Image.jpg'
 import LogoImg from '/src/assets/LOGO_4491659091525.jpg'
@@ -112,30 +109,83 @@ const billboards = [
 ]
 
 const Billboard = () => {
+    const [active, setActive] = useState(0)
+    const carouselRef = useRef(null)
+
+    const handleNext = () => {
+        if (!carouselRef.current) {
+            return
+        }
+        if (active === carouselRef.current?.children.length - 1) {
+            setActive(0)
+        } else {
+            setActive(active + 1)
+        }
+    }
     
+    const handlePrev = () => {
+        if (!carouselRef.current) {
+            return
+        }
+        if (active === 0) {
+            setActive(carouselRef.current?.children - 1)
+        } else {
+            setActive(active - 1)
+        }
+    }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            handleNext()
+        }, 5000)
+        return () => clearInterval(interval)
+    }, [active])
+
+    useEffect(() => {
+        [...carouselRef.current?.children].map((child) => {
+            child.classList.remove('ad-active')
+            child.classList.add('carousel-ad')
+        })
+        carouselRef.current?.children[active]?.classList.remove('carousel-ad')
+        carouselRef.current?.children[active]?.classList.add('ad-active')
+        return () => {
+            carouselRef.current?.children[active].classList.remove('ad-active')
+        }
+    }, [active])
+
+
+
+
+
+
 
   return (
-    <section className="pb-20 text-center section">
-    <Carousel autoPlay infiniteLoop transitionTime={700} nterval={5000} showThumbs={false}>
-    {billboards.map((billboard, index) => (  
-            <div key={index} className='flex flex-col items-center justify-center w-full h-full gap-8 md:flex-row'>
-               <div className="flex-1 w-full h-full">
-                   <img src={billboard?.image} alt="advert-banner" className='w-full h-[250px] md:h-full object-cover carousel-img' />
-                   {/* <img src={Computer} alt="advert-banner" className='object-cover h-full w-100 carousel-img' /> */}
-               </div>
-               <div className="flex flex-col items-center justify-center flex-1 w-full h-full gap-4 text-center">
-                   <h2 className="text-xl text-black lg:text-3xl text-capitalize text-bold">{billboard?.title}</h2>
-                   <p className="max-w-[400px] text-center mb-6 text-sm lg:text-base text-black/70">
-                   {billboard?.description}
-                   </p>
-                   {/* <p className="text-center"></p> */}
-                   <a href={billboard?.link} target="_blank" className="px-4 py-2 text-sm text-white rounded bg-green">Learn more</a>
-               </div>
-           </div>
-      ))}
-    </Carousel>
-   
-  </section>
+     <div 
+        className='flex w-full h-full overflow-hidden'
+        >
+        <div ref={carouselRef} className="h-fit min-h-[90vh] md:min-h-[300px] md:h-[400px] overflow-hidden flex overflow-x-hidden w-screen relative">
+            {billboards.map((billboard) => (
+                <div key={billboard?.id} className="absolute w-full bg-white h-fit md:h-full min-w-fit carousel-billboard">
+                    <div className='flex flex-col items-center justify-center w-full h-full gap-8 md:flex-row'>
+                        <div className="flex-1 w-full h-full">
+                            <img src={billboard?.image} alt="advert-banner" className='w-full h-[250px] md:h-full object-cover carousel-img' />
+                            {/* <img src={Computer} alt="advert-banner" className='object-cover h-full w-100 carousel-img' /> */}
+                        </div>
+                        <div className="flex flex-col items-center justify-center flex-1 w-full h-full gap-4 text-center">
+                            <h2 className="text-xl text-black lg:text-3xl text-capitalize text-bold">{billboard?.title}</h2>
+                            <p className="max-w-[400px] text-center mb-6 text-sm lg:text-base text-black/70">
+                            {billboard?.description}
+                            </p>
+                            {/* <p className="text-center"></p> */}
+                            <a href={billboard?.link} target="_blank" className="px-4 py-2 text-sm text-white rounded bg-green">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+            ))}
+
+
+        </div>
+    </div>
   )
 }
 

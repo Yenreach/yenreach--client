@@ -53,8 +53,8 @@ const index = () => {
               : <BiMenu onClick={() => setIsOpen(true)} className='relative z-50 text-3xl cursor-pointer md:hidden text-green' />
             }
           </div>
-          <nav className="flex flex-col gap-16 p-4 px-8 pt-20 mb-8 md:hidden">
-            <ul className='flex flex-col text-sm font-medium text-dark-light gap-7 md:gap-4 lg:gap-7'>
+          <nav className="flex flex-col gap-16 p-4 px-8 pt-32 mb-8 text-lg md:hidden">
+            <ul className='flex flex-col text-base font-medium text-dark-light gap-7 md:gap-4 lg:gap-7'>
               <li><Link to="/" className={`${pathname==="/" && "text-green"} pb-1.5 px-1 font-medium`}>Home</Link></li>
               <li><Link to="/explore" className={`${pathname==="/explore" && "text-green"} pb-1.5 px-1 font-medium`}>Explore</Link></li>
               <li><Link to="/blogs" className={`${pathname==="/blogs" && "text-green"} pb-1.5 px-1 font-medium`}>Blog</Link></li>
@@ -72,7 +72,7 @@ const index = () => {
              
             </ul>
             <Link to="/users/add-business">
-              <Button className='py-1.5 px-3 rounded-sm'>
+              <Button className='px-4 py-2 text-base rounded-sm'>
                 Add my business
               </Button>
             </Link>
