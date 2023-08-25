@@ -20,7 +20,7 @@ const index = () => {
     api: apiGetAllBlogs,
   })
 
-  // console.log('blogs', blogs, 'error', errorBlogs)
+  console.log('blogs', blogs, 'error', errorBlogs)
 
   return (
     <>
@@ -58,7 +58,7 @@ const index = () => {
         <div className="flex flex-col gap-4">
           <h2 className="w-full text-xl font-semibold text-center text-blue">Latest Articles</h2>
           <div className='flex flex-col gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3'>
-            {blogs.slice((page-1) * num_per_page, page*num_per_page)?.map((blog) => (
+            {blogs?.slice((page-1) * num_per_page, page*num_per_page)?.map((blog) => (
               <BlogCard key={blog.id} blog={blog} />
             ))}
           </div>
@@ -66,8 +66,7 @@ const index = () => {
         <div className="flex items-center justify-center w-full mt-4">
           <MdChevronLeft size={"1.5rem"} />
           {blogs && [...Array(paginate({page, num_per_page, data: blogs, total: blogs?.length})?.pages).keys()]?.map((page_num) => 
-            <span key={page_num+1} onClick={() => changePage(page_num+1, setPage)} className={`${page===page_num+1 && "bg-green text-white"} font-medium w-6 h-6 text-sm text-white grid place-items-center cursor-pointer`}>1</span>
-
+            <span key={page_num+1} onClick={() => changePage(page_num+1, setPage)} className={`${page===page_num+1 && "bg-green text-white"} font-medium w-6 h-6 text-sm text-black grid place-items-center cursor-pointer`}>{page_num+1}</span>
           )}
           <MdChevronRight size={"1.5rem"} />
         </div>
