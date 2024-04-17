@@ -101,7 +101,7 @@ const index = () => {
             <div className='py-20 sm:py-12 px-4 md:px-10 lg:px-20 mb-4 md:mb-48'>
                 <h3 className='text-xl text-green font-medium pb-3'>Meet the Team</h3>
                 <p className='text-sm text-[#476788] mb-10 font-arialsans sm:w-2/3 lg:w-1/2'>
-                    Yenreach is filled with lots of potentils that are making sure we keep offering the best to our users
+                    Yenreach is filled with lots of potentials that are making sure we keep offering the best to our users
                 </p>
                 <div className='grid sm:grid-cols-bus2 gap-4 font-arialsans'>
                     <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
