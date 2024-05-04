@@ -110,7 +110,7 @@ const Billboard = () => {
                         <Input required={true} onChange={handleChange} variant={"plain"} name="action_link" id="action_link" className='border-gray rounded-lg' placeholder='Adverts Heading' />
                     </div>
                     <div className='mb-8'>
-                        <label htmlFor="proposed_start" className='font-medium text-sm'>Enter Link</label>
+                        <label htmlFor="proposed_start" className='font-medium text-sm'>Start Date</label>
                         <Input required={true} type="date" onChange={handleChange} variant={"plain"} name="proposed_start" id="proposed_start" className='border-gray rounded-lg' placeholder='Adverts Heading' />
                     </div>
                     <div className='flex gap-2'>

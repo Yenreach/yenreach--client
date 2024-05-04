@@ -4,6 +4,7 @@ import DECImg from '/src/assets/DEC_Image.jpg'
 import LogoImg from '/src/assets/LOGO_4491659091525.jpg'
 import AdsImg from '/src/assets/adsimage.jpg'
 import EmitImg from '/src/assets/emite.png'
+import TecImg from '/src/assets/tec.jpg'
 import MkImage from '/src/assets/mk.png'
 import ImaxImage from '/src/assets/imax.png'
 import EvidenceImage from '/src/assets/evidence.png'
@@ -40,6 +41,13 @@ const billboards = [
         title: 'Emitex global Enterprise',
         description: 'Welcome to our Furniture Electronics Shop, where we take pride in providing you with an exceptional shopping experience like no other',
         image: EmitImg,
+        link: '/business/73457ce1a6750c8949b22309f31cdc75c0952f5c'
+    },
+    {
+        id: 4,
+        title: 'Tec Industrial Park',
+        description: 'Own a plot in the New city within Yenagoa metropolis',
+        image: TecImg,
         link: '/business/73457ce1a6750c8949b22309f31cdc75c0952f5c'
     },
     {
@@ -168,7 +176,7 @@ const Billboard = () => {
                 <div key={billboard?.id} className="absolute w-full bg-white h-fit md:h-full min-w-fit carousel-billboard">
                     <div className='flex flex-col items-center justify-center w-full h-full gap-8 md:flex-row'>
                         <div className="flex-1 w-full h-full">
-                            <img src={billboard?.image} alt="advert-banner" className='w-full h-[250px] md:h-full object-cover carousel-img' />
+                            <img src={billboard?.image} alt="advert-banner" className='w-full h-[250px] md:h-full object-fill carousel-img' />
                             {/* <img src={Computer} alt="advert-banner" className='object-cover h-full w-100 carousel-img' /> */}
                         </div>
                         <div className="flex flex-col items-center justify-center flex-1 w-full h-full gap-4 text-center">
