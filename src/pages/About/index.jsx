@@ -10,7 +10,7 @@ import CIA from '../../assets/Us/CIA.svg'
 import NIMN from '../../assets/Us/NIMN.svg'
 import BossImg from '../../assets/Us/dordor.png'
 import GloriaImg from '../../assets/Us/gloriasec.png'
-import MichaelImg from '../../assets/Us/michael.png'
+import EmannuelImg from '../../assets/Us/emma.png'
 import ManagerImg from '../../assets/Us/manager.png'
 import SMS from '../../assets/sms.svg'
 import Linkedin from '../../assets/linkedin.svg'
@@ -111,12 +111,12 @@ const index = () => {
                                 <p className='text-[#838282] text-sm capitalize'>President, Dordorian Group</p>
                             </div>
                             <span className='flex items-center gap-3'>
-                                <span>
+                                <a target='_blank' href="https://www.linkedin.com/in/dordor-daniel-3998b0275/">
                                     <img src={Linkedin} alt="" />
-                                </span>
-                                <span>
+                                </a>
+                                <a target='_blank' href="https://wa.me/2347037193301">
                                     <img src={SMS} alt="" />
-                                </span>
+                                </a>
                             </span>
                         </div>
                         <img src={BossImg} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
@@ -128,12 +128,12 @@ const index = () => {
                                 <p className='text-[#838282] text-sm capitalize'>Operations Manager</p>
                             </div>
                             <span className='flex items-center gap-3'>
-                                <span>
+                                <a target='_blank' href="https://www.linkedin.com/in/duadei-nicholas-05957b18b/">
                                     <img src={Linkedin} alt="" />
-                                </span>
-                                <span>
+                                </a>
+                                <a target='_blank' href="https://wa.me/2349033398824">
                                     <img src={SMS} alt="" />
-                                </span>
+                                </a>
                             </span>
                         </div>
                         <img src={ManagerImg} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
@@ -141,19 +141,19 @@ const index = () => {
                     <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
                         <div className='flex flex-col gap-6 items-start'>
                             <div className=''>
-                                <h5 className='text-[#282F38] text-base font-medium'>Michael Joseph</h5>
+                                <h5 className='text-[#282F38] text-base font-medium'>Emmanuel Nwachukwu</h5>
                                 <p className='text-[#838282] text-sm capitalize'>Business Development Executive</p>
                             </div>
                             <span className='flex items-center gap-3'>
-                                <span>
+                                <a target='_blank' href="https://www.linkedin.com/in/emmanuel-c-nwachukwu-3551b4273?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">
                                     <img src={Linkedin} alt="" />
-                                </span>
-                                <span>
+                                </a>
+                                <a target='_blank' href="https://wa.me/2348136213565">
                                     <img src={SMS} alt="" />
-                                </span>
+                                </a>
                             </span>
                         </div>
-                        <img src={MichaelImg} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
+                        <img src={EmannuelImg} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
                     </div>
                     <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
                         <div className='flex flex-col gap-6 items-start'>
@@ -162,12 +162,12 @@ const index = () => {
                                 <p className='text-[#838282] text-sm capitalize'>Administrative Secretary</p>
                             </div>
                             <span className='flex items-center gap-3'>
-                                <span>
+                                <a target='_blank' href="https://www.linkedin.com/in/george-gloria-575644244/">
                                     <img src={Linkedin} alt="" />
-                                </span>
-                                <span>
+                                </a>
+                                <a target='_blank' href="https://wa.me/2348135209757">
                                     <img src={SMS} alt="" />
-                                </span>
+                                </a>
                             </span>
                         </div>
                         <img src={GloriaImg} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
@@ -179,12 +179,12 @@ const index = () => {
                                 <p className='text-[#838282] text-sm capitalize'>President, Dordorian Group</p>
                             </div>
                             <span className='flex items-center gap-3'>
-                                <span>
+                                <a target='_blank' href="https://www.linkedin.com/in/emmanuel-c-nwachukwu-3551b4273?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">
                                     <img src={Linkedin} alt="" />
-                                </span>
-                                <span>
+                                </a>
+                                <a target='_blank' href="https://wa.me/2348136213565">
                                     <img src={SMS} alt="" />
-                                </span>
+                                </a>
                             </span>
                         </div>
                         <img src={Team1} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />

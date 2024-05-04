@@ -36,7 +36,6 @@ const ExploreProducts = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(searchParams.get('page') || 1)
-
   const num_per_page = 40
 
   const [search, setSearch] = useState("")
