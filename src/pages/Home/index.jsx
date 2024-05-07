@@ -60,7 +60,7 @@ const index = () => {
             <div className='flex flex-col mb-20 sm:items-center md:mb-32 sm:flex-row gap-9'>
                 <img src={AllHere} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
                 <div className='flex flex-col items-start gap-12 max-w-[450px]'>
-                    <h3 className='text-xl font-medium text-green'>They are all Here</h3>
+                    <h3 className='text-xl font-medium text-green'>Learn and Explore our business listings</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
                     We are the premier destination for businesses looking to expand their reach and connect with potential customers. Our platform is designed to help businesses of all sizes grow and succeed by providing them with a powerful marketing tool.
                     <br /><br />
@@ -77,7 +77,7 @@ const index = () => {
             </div>
             <div className='flex flex-col-reverse mb-20 sm:items-center md:mb-32 sm:flex-row gap-9'>
                 <div className='flex flex-col sm:items-end gap-12 max-w-[450px]'>
-                    <h3 className='text-xl font-medium text-blue'>They are all Here</h3>
+                    <h3 className='text-xl font-medium text-blue'>Searching for jobs? This is for you</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
                     Looking for your next career opportunity? Look no further than our job listing platform. We offer a wide range of job listings across various industries, making it easy for job seekers to find the perfect role for their skills and experience.
                     {/* <br /><br />
@@ -101,7 +101,7 @@ const index = () => {
             <div className='flex flex-col sm:items-center sm:flex-row gap-9'>
                 <img src={AllHereP} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
                 <div className='flex flex-col items-start gap-12 max-w-[450px]'>
-                    <h3 className='text-xl font-medium text-orange'>They are all Here</h3>
+                    <h3 className='text-xl font-medium text-orange'>Learn about the yenreach marketplace</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
                     We offer a marketplace for businesses to sell their products and services. Our marketplace is designed to help businesses of all sizes reach a wider audience and increase their sales.
                         <br /><br />
