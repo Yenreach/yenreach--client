@@ -48,7 +48,7 @@ const billboards = [
         title: 'Tec Industrial Park',
         description: 'Own a plot in the New city within Yenagoa metropolis',
         image: TecImg,
-        link: '/business/73457ce1a6750c8949b22309f31cdc75c0952f5c'
+        link: 'https://www.facebook.com/profile.php?id=61554315148708&mibextid=LQQJ4d'
     },
     {
         id: 5,
