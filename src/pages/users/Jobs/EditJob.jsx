@@ -49,13 +49,17 @@ const EditJob = () => {
 
       useEffect(() => {
         if (data) {
-            setJob(data)
+            // setJob(data)
+            setJob({
+                ...job,
+                ...data
+            })
         }
     }, [data])
 
 
 
-    // console.log('job', data)
+    // console.log('job', job)
 
 
     const handleJob = (event) => {

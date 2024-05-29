@@ -40,7 +40,7 @@ const index = () => {
     const { id } = useParams()
     const navigate = useNavigate()
 
-    console.log('job', job)
+    // console.log('job', job)
 
 
     const handleJob = (event) => {
@@ -118,7 +118,7 @@ const index = () => {
                     <div className='mb-8 md:mb-0 w-full'>
                         <label htmlFor="job_tags" className='font-medium text-sm'>Tags</label>
                         <select onChange={handleTags} required className='w-full border-2 outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-blue cursor-pointer rounded-lg' name="job_tags" id="job_tags" placeholder='Enter Categoies'>
-                                <option value="">Select Product Categories</option>
+                                <option value="">Select Job Categories</option>
                                 {job_tags?.map((tag) => (
                                     <option key={tag.id} value={tag.name}>{tag.name}</option>
                                 ))}

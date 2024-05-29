@@ -8,6 +8,8 @@ import { BiBriefcase, BiEdit } from 'react-icons/bi'
 import { MdBusiness, MdOutlinePeopleOutline } from 'react-icons/md'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import Loader from '/src/components/Loader'
+import useFetch from '../../../../hooks/useFetch';
+import { apiGetApplicationsByJob } from '../../../../services/JobService';
 
 
 const index = ({ job, refetchJobs, removeJobsCache, business_id }) => {
@@ -61,6 +63,13 @@ const index = ({ job, refetchJobs, removeJobsCache, business_id }) => {
         "business_string": job?.business_string
       })
   }
+
+  const { isLoading, error, data: applicants } = useFetch({
+    key: ['userJobApplicants', job?.job_string],
+    api: apiGetApplicationsByJob,
+    param: job?.job_string,
+  })
+
   
   return (
     <div className="flex flex-col gap-4 p-4 bg-white shadow text-xs">
@@ -93,7 +102,7 @@ const index = ({ job, refetchJobs, removeJobsCache, business_id }) => {
         </div>
         <div className="flex gap-2 justify-start items-center">
           <MdOutlinePeopleOutline size="1.3rem" />
-          <p className='text-xs text-grey'>23 Appliacants</p>
+          <p className='text-xs text-grey'>{applicants?.length || 0} Appliacants</p>
         </div>
       </div>
       <span className='w-fit bg-green-light rounded-full px-3 py-1 text-green text-xs'>{ job?.status === "1" ? "Active" : "Inactive" }</span>
