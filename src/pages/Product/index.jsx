@@ -12,10 +12,13 @@ import SellerDetailsModal from './SellerDetailsModal'
 import FullImage from '../../components/FullImage'
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai'
 import { BsTelephone, BsWhatsapp } from 'react-icons/bs'
+import ReactGA from "react-ga4";
 
 
 
 const Product = () => {
+  ReactGA.send({ hitType: "pageview", page: "/product", title: "Product Page View" });
+
   const [modalOpen, setModalOpen] = useState(false)
   const [imageModalOpen, setImageModalOpen] = useState(false)
   const [image, setImage] = useState('')

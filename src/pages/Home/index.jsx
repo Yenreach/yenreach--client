@@ -19,9 +19,14 @@ import Loader from '/src/components/Loader'
 import useFetch from '/src/hooks/useFetch'
 import Error from '../../components/Error'
 import Image from '/src/components/Image';
+import ReactGA from "react-ga4";
+
 
 
 const index = () => {
+    // Send pageview with a custom path
+    ReactGA.send({ hitType: "pageview", page: "/", title: "Home Page View" });
+
     const { data: aprrovedBusinesses, error: errorApprovedBusinesses } = useFetch({
         key: ['aprrovedBusinesses', 0],
         param: { page: 1, num_per_page: 5 },

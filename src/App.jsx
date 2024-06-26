@@ -43,6 +43,9 @@ import BottomNav from './components/BottomNav'
 import Terms from './pages/TermsAndPrivacy/Terms';
 import Privacy from './pages/TermsAndPrivacy/Privacy';
 import Subsidiaries from './pages/Subsidiaries';
+import ReactGA from "react-ga4";
+
+
 
 // CapactiorApp.addListener('appStateChange', ({ isActive }) => {
 //   console.log('App state changed. Is active?', isActive);
@@ -51,6 +54,8 @@ import Subsidiaries from './pages/Subsidiaries';
 
 
 function App() { 
+  ReactGA.initialize("G-ZPNG3YYY5F");
+
   const { user } = useAuthContext()
 
   CapactiorApp.addListener('backButton', (data) => {

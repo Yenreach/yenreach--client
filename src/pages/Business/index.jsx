@@ -23,11 +23,13 @@ import FullImage from '/src/components/FullImage'
 import { BsGlobe, BsTelephone } from 'react-icons/bs'
 import { AiOutlineMail } from 'react-icons/ai'
 import { CiLocationOn } from 'react-icons/ci'
+import ReactGA from "react-ga4";
 
 
 
 
 const index = () => {
+  ReactGA.send({ hitType: "pageview", page: "/business", title: "Business Page View" });
   const [modalOpen, setModalOpen] = React.useState(false)
   const [imageModalOpen, setImageModalOpen] = useState(false)
   const [image, setImage] = useState('')

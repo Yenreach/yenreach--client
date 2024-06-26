@@ -17,10 +17,14 @@ import Loader from '/src/components/Loader'
 import Button from '/src/components/ui/Button'
 import Input from '/src/components/ui/Input'
 import Search from '/src/assets/search.svg'
+import ReactGA from "react-ga4";
+
 
 
 
 const index = () => {
+  ReactGA.send({ hitType: "pageview", page: "/explore/jobs", title: "Explore Jobs View" });
+
   const [activeTab, setActiveTab] = useState('business');
 //   const location = useLocation()
   const [searchParams, setSearchParams] = useSearchParams();
