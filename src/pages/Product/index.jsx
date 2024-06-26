@@ -23,7 +23,11 @@ const Product = () => {
   const { id } = useParams()
 
   const focus = () => {
-    console.log(nameRef.current)
+    // console.log({window})
+    if (window) {
+      window?.scroll({top: 400, left: 0, behavior: 'smooth' })
+    }
+    // console.log(nameRef.current)
     nameRef?.current?.focus()
   }
 
@@ -94,7 +98,7 @@ const Product = () => {
                       <span className='text-sm text-gray'>{business?.name}</span>
                   </div>
                     <Button variant='product' className='w-full py-2 text-xs px-28' onClickFunc={focus}>
-                      Seller Details
+                      Contact Us
                     </Button>
                 </div>
             </section>
