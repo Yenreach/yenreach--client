@@ -27,7 +27,6 @@ import ReactGA from "react-ga4";
 
 
 
-
 const index = () => {
   ReactGA.send({ hitType: "pageview", page: "/business", title: "Business Page View" });
   const [modalOpen, setModalOpen] = React.useState(false)
@@ -92,6 +91,7 @@ const index = () => {
     param: id,
     key: ['workingHours', id],
   })
+
   const { data: branches, error: errorBranches } = useFetch({
     api: apiGetBusinessBranches,
     param: id,
@@ -114,6 +114,9 @@ const index = () => {
     key: ['businessSubscriptionDetails', businessSubscription?.subscription_string],
     enabled: !!businessSubscription?.subscription_string,
   })
+
+  console.log({ branches, workingHours, businessSubscription, businessSubscriptionDetails })
+
 
 
   const nextReview = () => {
@@ -169,14 +172,22 @@ const index = () => {
                />
             <div className=''>
               <h2 className='mb-2 text-lg font-medium sm:text-xl sm:mb-1'>{business.name}</h2>
-              <div className='flex items-center gap-0.5'>
-                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
-                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
-                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
-                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
-                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
-                <span className='self-end ml-2 text-xs'>4.7 star rating</span>
-              </div>
+              {
+                reviewsStats?.average ? 
+                  <div className='flex items-center gap-0.5'>
+                    {
+                      [...Array(Math.round(reviewsStats?.average)).keys()].map((el) => (
+                        <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
+                      ))
+
+                    }
+                    <span className='self-end ml-2 text-xs'>{reviewsStats?.average?.toFixed(1) || 'No'} star rating</span>
+                  </div>
+                  :
+                  <div className='flex items-center gap-0.5'>
+                    <span className='self-end text-xs'>No reviews yet</span>
+                  </div>
+              }
             </div>
           </div>
           <section className='relative px-4 mb-20 md:px-10 lg:px-20'>
@@ -256,6 +267,22 @@ const index = () => {
                 <img src={Product2} alt="" className='h-20' />
                 <img src={Product3} alt="" className='h-20' /> */}
               </div>
+              {
+                workingHours &&  
+                <div className="max-w-lg pb-10 mb-5 overflow-hidden bg-white rounded-lg">
+                  <h2 className="mb-3 text-lg font-semibold text-green2">Working Hours</h2>
+                  <ul className="mt-4">
+                    {workingHours.map((hour) => (
+                      <li key={hour.id} className="py-2 text-sm border-b border-gray-200 md:py-3 md:mx-4">
+                        <div className="flex justify-between">
+                          <span className="font-medium text-gray-600">{hour.day}</span>
+                          <span className="text-gray-800">{hour.opening_time} - {hour.closing_time}</span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              }
               {reviews && 
               <>
               <h2 className='mb-3 text-lg font-semibold text-green2'>Reviews</h2>              

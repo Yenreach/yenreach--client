@@ -202,6 +202,25 @@ export const apiAddBusiness = (data) => {
         data: {...data, user_string: data?.user_string || token}
     })
 }
+
+/* Add business working hour */
+export const apiAddBusinessWorkingHours = (data) => {
+    return ApiAdapter.fetchData({
+        url: `add_business_working_hours_api${serviceSuffix}`,
+        method: "post",
+        data: {...data, user_string: data?.user_string || token}
+    })
+}
+
+/* Delete working hour */
+export const apiDeleteBusinessWorkingHour = ({string}) => {
+    return ApiAdapter.fetchData({
+        url: `delete_business_working_hours_api${serviceSuffix}?string=${string}`,
+        method: "get",
+    })
+}
+
+
 /* Edit business */
 export const apiEditBusiness = (data) => {
     return ApiAdapter.fetchData({
