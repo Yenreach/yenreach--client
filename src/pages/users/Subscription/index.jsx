@@ -161,21 +161,21 @@ const Subscription = () => {
     
   return (
     <Dashboard> 
-    <div className='flex-1 overflow-y-auto overflow-hidden relative'>
+    <div className='relative flex-1 overflow-hidden overflow-y-auto'>
         <Head />
         {(isLoading || subscribeMutation?.isLoading || paymentMutation?.isLoading) && <Loader loader={4} />}
-        <section className='p-8 px-4 sm:px-8 text-sm md:pt-16 py-16'>
+        <section className='p-8 px-4 py-16 text-sm sm:px-8 md:pt-16'>
            {userSubscriptions &&
-            <div className='mb-12 bg-white rounded-xl p-4'>
-                <h3 className='text-green text-xl font-medium mb-3'>{} Subscriptions</h3>
+            <div className='p-4 mb-12 bg-white rounded-xl'>
+                <h3 className='mb-3 text-xl font-medium text-green'>{} Subscriptions</h3>
                     <Table data={userSubscriptions} columns={columns} />
             </div>}
-            <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
+            <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                 {subscriptions?.map(subscription => 
                     (<div key={subscription.id} className='p-5 py-7 rounded min-w-[250px] bg-white'>
                         <div className='flex items-center gap-3 mb-12'>
                             <TfiCrown size="1.4rem" color="00C885" />
-                            <h3 className='text-green font-medium text-lg'>{subscription?.package} Package</h3>
+                            <h3 className='text-lg font-medium text-green'>{subscription?.package} Package</h3>
                         </div>
                         <div className='flex flex-col gap-6 mb-10'>
                             <div className='flex items-center gap-2'>
@@ -194,24 +194,24 @@ const Subscription = () => {
                                 {subscription?.slider==="0" ? <MdCheckBoxOutlineBlank color="00C885" size="1.3rem" /> :<MdCheckBox color="00C885" size="1.3rem" />}
                                 <span>{subscription?.slider} slider</span>
                             </div>
-                            <div className='relative w-fit h-fit mt-2 mx-auto'>
+                            <div className='relative mx-auto mt-2 w-fit h-fit'>
                                 <select onChange={ (e) => setPlan(prev =>( {...prev, [e.target.name]: e.target.value})) } name={subscription?.package} id={subscription?.package} className='appearance-none max-w-[160px] mx-auto border border-green rounded-md outline-none cursor-pointer px-4 py-3 pr-8 bg-inherit'>
                                     <option value="">Change Duration</option>
                                     {subscription.plans?.map(plan => (
                                         <option key={plan?.verify_string} value={[plan?.verify_string, plan?.duration, plan?.duration_type, plan?.price]}>{plan?.duration} {plan?.duration_type==="3" ? "Month(s)" : "Year" }</option>
                                     ))}
                                 </select>
-                                <MdArrowDropDown className='absolute right-2 top-1/2 -translate-y-1/2' size="1.5rem" color="00C885" />
+                                <MdArrowDropDown className='absolute -translate-y-1/2 right-2 top-1/2' size="1.5rem" color="00C885" />
                             </div>
                         </div>
                         <div className='flex flex-col items-center justify-center gap-4 border-t border-[#00000010] pt-6 relative'>
                             <div>
-                                <span className='font-medium text-lg'>₦{plan[subscription?.package]?.split(",")[3] || ""}</span><span>/{plan[subscription?.package]?.split(",")[1] > 1 && plan[subscription?.package]?.split(",")[1]}{plan[subscription?.package]?.split(",")[2] === "3" ? "Month(s)" : "Year"}</span>
+                                <span className='text-lg font-medium'>₦{plan[subscription?.package]?.split(",")[3] || ""}</span><span>/{plan[subscription?.package]?.split(",")[1] > 1 && plan[subscription?.package]?.split(",")[1]}{plan[subscription?.package]?.split(",")[2] === "3" ? "Month(s)" : "Year"}</span>
                             </div>
                             <Button disabled={!plan[subscription?.package]} onClickFunc={() => handleSubmit(plan[subscription?.package].split(",")[0])} className={`py-1.5 px-3 rounded-sm disabled:bg-green/80 peer`}>
                                 Subscribe
                             </Button>
-                            <span className='hidden peer-hover:peer-disabled:block text-xs absolute -bottom-6 text-green font-semibold'>Choose a duration above</span>
+                            <span className='absolute hidden text-xs font-semibold peer-hover:peer-disabled:block -bottom-6 text-green'>Choose a duration above</span>
                             {/* <Button onClickFunc={() => setModalOpen(true)} className='py-1.5 px-3 rounded-sm'>
                                 Subscribe
                             </Button> */}
