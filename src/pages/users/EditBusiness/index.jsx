@@ -18,7 +18,7 @@ import Loader from '/src/components/Loader'
 
 
 
-const initialBusinessState = { user_string: "", name: "", description: "", categories: [], phonenumber: "", email: "", state_id: "", lga: "", town: "", address: "", month_started: "", year_started: "", profile_img: "", cover_img: ""}
+const initialBusinessState = { user_string: "", name: "", description: "", categories: [], phonenumber: "", email: "", state_id: "", lga: "", town: "", address: "", month_started: "", year_started: "", profile_img: "", cover_img: "", website: "", whatsapp: "", youtube_link: "", twitter_link: "", linkedin_link: "", instagram_link: "", facebook_link: ""}
 
 const months = [
     {id: "01", name: "January"},
@@ -170,20 +170,57 @@ const index = () => {
                         <Input required={true} value={businessData?.address} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="address" id="address" placeholder='Enter your business Address' />
                     </div>
                     <div className='justify-between mb-8 md:flex gap-9'>
-                        <div className='w-full mb-8'>
+                        <div className='w-full'>
                             <label htmlFor="month_started" className='text-sm font-medium'>Business start month</label>
-                            <select required value={businessData?.month_started} onChange={handleBusinessData} className='w-full px-4 py-3 border-2 rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="month_started" id="month_started" placeholder='Enter your business start Month'>
+                            <select value={businessData?.month_started} onChange={handleBusinessData} className='w-full px-4 py-3 border-2 rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="month_started" id="month_started" placeholder='Enter your business start Month'>
                                 <option value="">Enter your business start Month</option>
                                 {months?.map((month) => (
                                     <option key={month.id} value={month.id}>{month.name}</option>
                                 ))}
                             </select>
                         </div>
-                        <div className='w-full '>
+                        <div className='w-full'>
                             <label htmlFor="year_started" className='text-sm font-medium'>Business start year</label>
-                            <Input required={true} value={businessData?.year_started} onChange={handleBusinessData} className='rounded-lg border-gray' type="number" name="year_started" id="year_started" placeholder='Enter your business start Year' />
+                            <Input value={businessData?.year_started} onChange={handleBusinessData} className='rounded-lg border-gray' type="number" name="year_started" id="year_started" placeholder='Enter your business start Year' />
                         </div>
                     </div>
+                    <>
+                        <div className='justify-between mb-8 md:flex gap-9'>
+                            <div className='w-full'>
+                                <label htmlFor="whatsapp" className='text-sm font-medium'>Whatsapp</label>
+                                <Input value={businessData?.whatsapp} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="whatsapp" id="whatsapp" placeholder='+234 90 *** *****' />
+                            </div>
+                            <div className='w-full'>
+                                <label htmlFor="facebook_link" className='text-sm font-medium'>Facebook link</label>
+                                <Input value={businessData?.facebook_link} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="facebook_link" id="facebook_link" placeholder='Enter your facebook link' />
+                            </div>
+                        </div>
+                        <div className='justify-between mb-8 md:flex gap-9'>
+                            <div className='w-full'>
+                                <label htmlFor="twitter_link" className='text-sm font-medium'>Twitter Link</label>
+                                <Input value={businessData?.twitter_link} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="twitter_link" id="twitter_link" placeholder='Enter your twitter link' />
+                            </div>
+                            <div className='w-full'>
+                                <label htmlFor="linkedin_link" className='text-sm font-medium'>Linkedin Link</label>
+                                <Input value={businessData?.linkedin_link} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="linkedin_link" id="linkedin_link" placeholder='Enter your linkedin link' />
+                            </div>
+                        </div>
+                        <div className='justify-between mb-8 md:flex gap-9'>
+                            <div className='w-full'>
+                                <label htmlFor="youtube_link" className='text-sm font-medium'>Youtube Link</label>
+                                <Input value={businessData?.youtube_link} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="youtube_link" id="youtube_link" placeholder='Enter your youtube link' />
+                            </div>
+                            
+                            <div className='w-full'>
+                                <label htmlFor="instagram_link" className='text-sm font-medium'>Instagram link</label>
+                                <Input value={businessData?.instagram_link} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="instagram_link" id="instagram_link" placeholder='Enter your instagram link' />
+                            </div>
+                        </div>
+                        <div className='w-full mb-8'>
+                            <label htmlFor="website" className='text-sm font-medium'>Website</label>
+                            <Input value={businessData?.website} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="website" id="website" placeholder='Enter your website' />
+                        </div>
+                    </>
                     <Button type="submit" className='flex justify-center w-full p-3'>
                         Save changes
                     </Button>

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import Analytics from './Analytics';
-import { BsTelephone, BsGlobe, BsInstagram, BsWhatsapp } from 'react-icons/bs'
+import { BsTelephone, BsGlobe, BsInstagram, BsWhatsapp, BsTwitter, BsLinkedin } from 'react-icons/bs'
 import { MdOutlineMarkEmailUnread, MdOutlineLocationOn } from 'react-icons/md'
 import { TbBrandFacebook } from 'react-icons/tb'
 import useFetch from '/src/hooks/useFetch'
@@ -28,7 +28,7 @@ import workingHours from './WorkingHours';
 
 
 
-const index = () => {
+const WorkingHours = () => {
   const { id } = useParams()
   const { user } = useAuthContext()
   const reviewsContainerRef = useRef(null)
@@ -123,7 +123,7 @@ const index = () => {
     key: ['subscription', id],
   })
 
-  // console.log("sub")
+  console.log({ business })
 
   const { data: facilities, error: errorFacilities } = useFetch({
     api: apiGetBusinessFacilities,
@@ -244,51 +244,107 @@ const index = () => {
                 <h2 className='mb-3 text-lg font-medium text-green'>Contact Information</h2>
                 <div className='p-4 bg-white sm:py-12 sm:px-16'>
                     <div className='flex flex-col gap-4 lg:flex-row xl:gap-32 justify-between text-sm text-[#476788]'>
-                      <div className='flex flex-col gap-4 sm:gap-6'>
+                      <div className='flex flex-col flex-wrap gap-4 md:flex-row sm:gap-6'>
+                        {business?.address &&
+                        <div className='flex items-center gap-2'>
+                          <MdOutlineLocationOn size="1.3rem" />
+                          <span>{business?.address}</span>
+                        </div>}
                         {business?.phonenumber &&
                           <div className='flex items-center gap-2'>
-                          <BsTelephone size="1.3rem" />
-                          <span>{business?.phonenumber}</span>
+                            <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={`tel:${business.phonenumber}`}>
+                            <BsTelephone size="1.3rem" />
+                            <span>{business?.phonenumber}</span>
+                          </a>
                         </div>}
                         {business?.email &&
                         <div className='flex items-center gap-2'>
-                          <MdOutlineMarkEmailUnread size="1.3rem" />
-                          <span>{business?.email}</span>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={`mailto:${business.email}`}>
+                            <MdOutlineMarkEmailUnread size="1.3rem" />
+                            <span>Send Mail</span>
+                          </a>
                         </div>
                         }
                         {business?.website &&
                         <div className='flex items-center gap-2'>
-                          <BsGlobe size="1.3rem" />
-                          <span>{business?.website}</span>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.website}>
+                            <BsGlobe size="1.3rem" />
+                            <span>Our website</span>
+                          </a>
                         </div>
                         }
-                      </div>
-                      {business?.address &&
-                      <div className='flex items-center gap-2'>
-                        <MdOutlineLocationOn size="1.3rem" />
-                        <span>{business?.address}</span>
-                      </div>}
-                      <div className='flex flex-col gap-4 sm:gap-6'>
-                      {business?.facebook_link &&
+                          {business?.facebook_link &&
+                          <div className='flex items-center gap-2'>
+                            <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.facebook_link}>
+                              <TbBrandFacebook size="1.3rem" />
+                              <span>See us on facebook</span>
+                            </a>
+                          </div>
+                          }
+                            {business?.instagram_link &&
                         <div className='flex items-center gap-2'>
-                          <TbBrandFacebook size="1.3rem" />
-                          <span>{business?.facebook_link}</span>
-                        </div>
-                        }
-                        {business?.instagram_link &&
-                        <div className='flex items-center gap-2'>
-                          <BsInstagram size="1.3rem" />
-                          <span>{business?.instagram_link}</span>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.instagram_link}>
+                            <BsInstagram size="1.3rem" />
+                            <span>Instagram Page</span>
+                          </a>
                         </div>
                         }
                         {business?.whatsapp &&
                         <div className='flex items-center gap-2'>
-                          <BsWhatsapp size="1.3rem" />
-                          <span>{business?.whatsapp}</span>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={`https://wa.me/${business?.whatsapp}`}>
+                            <BsWhatsapp size="1.3rem" />
+                            Chat on Whatsapp
+                          </a>
+                        </div>
+                        }
+                        {business?.twitter_link &&
+                        <div className='flex items-center gap-2'>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.twitter_link}>
+                            <BsTwitter size="1.3rem" />
+                            <span>Go to twitter</span>
+                          </a>
+                        </div>
+                        }
+                        {business?.linkedin_link &&
+                        <div className='flex items-center gap-2'>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.linkedin_link}>
+                            <BsLinkedin size="1.3rem" />
+                            <span>Check out LinkedIn</span>
+                          </a>
                         </div>
                         }
                       </div>
                    </div>
+                </div>
+              </div>
+              <div className='mb-16'>
+                <h2 className='mb-3 text-lg font-medium text-green'>Working Hours</h2>
+                <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
+                {
+                workingHours ?  
+                  <div className="max-w-lg pb-10 mb-5 overflow-hidden bg-white rounded-lg">
+                    <ul className="mt-4 mb-8">
+                      {workingHours.map((hour) => (
+                        <li key={hour.id} className="py-2 text-sm border-b border-gray-200 md:py-3">
+                          <div className="flex justify-between">
+                            <span className="font-medium text-gray-600">{hour.day}</span>
+                            <span className="text-gray-800">{hour.opening_time} - {hour.closing_time}</span>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to={`/users/business/${id}/working-hours`} className='p-1.5 px-3 text-xs font-arialsans bg-green text-white mt-4'>
+                      Update Working Hours
+                    </Link>
+                  </div> 
+                :
+                  <div className='flex flex-col items-center justify-between gap-3 md:flex-row md:gap-8'>
+                    <p>No workings hours set</p>
+                    <Link to={`/users/business/${id}/working-hours`} className='p-1.5 px-3 text-xs font-arialsans bg-green text-white'>
+                      Add Working Hours
+                    </Link>
+                  </div>
+              }
                 </div>
               </div>
               <div className='mb-11'>
@@ -339,38 +395,7 @@ const index = () => {
                   <img src={Edit} alt="" />
                   Edit business profile
                 </Link>
-              </div>
-              <div className='mb-16'>
-                <h2 className='mb-3 text-lg font-medium text-green'>Working Hours</h2>
-                <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
-                {
-                workingHours ?  
-                  <div className="max-w-lg pb-10 mb-5 overflow-hidden bg-white rounded-lg">
-                    <ul className="mt-4 mb-8">
-                      {workingHours.map((hour) => (
-                        <li key={hour.id} className="py-2 text-sm border-b border-gray-200 md:py-3">
-                          <div className="flex justify-between">
-                            <span className="font-medium text-gray-600">{hour.day}</span>
-                            <span className="text-gray-800">{hour.opening_time} - {hour.closing_time}</span>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link to={`/users/business/${id}/working-hours`} className='p-1.5 px-3 text-xs font-arialsans bg-green text-white mt-4'>
-                      Update Working Hours
-                    </Link>
-                  </div> 
-                :
-                  <div className='flex flex-col items-center justify-between gap-3 md:flex-row md:gap-8'>
-                    <p>No workings hours set</p>
-                    <Link to={`/users/business/${id}/working-hours`} className='p-1.5 px-3 text-xs font-arialsans bg-green text-white'>
-                      Add Working Hours
-                    </Link>
-                  </div>
-              }
-                </div>
-              </div>
-             
+              </div>   
               <div className='mb-20'>
                 <h2 className='mb-3 text-lg font-medium text-green'>Business Analytics</h2>
                 <div className='font-arialsans text-sm text-[#476788] p-2 sm:p-12 bg-white rounded-2xl overflow-hidden max-h-96 w-full'>
@@ -433,4 +458,4 @@ const index = () => {
   )
 }
 
-export default index
+export default WorkingHours
