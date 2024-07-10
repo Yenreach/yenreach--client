@@ -340,7 +340,7 @@ const index = () => {
                           <div className='flex items-center gap-2'>
                             <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={`tel:${business.phonenumber}`}>
                             <BsTelephone size="1.3rem" />
-                            <span>{business?.phonenumber}</span>
+                            <span>Call Now</span>
                           </a>
                         </div>}
                         {business?.email &&
