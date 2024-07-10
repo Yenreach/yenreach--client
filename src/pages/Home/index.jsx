@@ -23,7 +23,7 @@ import ReactGA from "react-ga4";
 
 
 
-const index = () => {
+const Home = () => {
     // Send pageview with a custom path
     ReactGA.send({ hitType: "pageview", page: "/", title: "Home Page View" });
 
@@ -124,8 +124,9 @@ const index = () => {
                 </div>
             </div>
         </section>
+        {businessOfTheWeek &&
+
         <section className='px-4 mt-4 mb-12 md:px-10 lg:px-24 md:mt-12'>
-            {businessOfTheWeek &&
                 <div className='py-12 mb-36'>
                     <h2 className='mb-2 text-xl font-medium text-center text-green'>Business of the week</h2>
                     <div className='flex flex-col items-center sm:flex-row gap-14'>
@@ -143,7 +144,6 @@ const index = () => {
                         </div>
                     </div>
                 </div>
-            }
             {/* <div className=''>
                 <h2 className='mb-3 text-lg font-medium text-center text-green'>keep up with the business world</h2>
                 <div className='flex flex-col grid-cols-3 gap-6 text-white sm:grid'>
@@ -167,6 +167,7 @@ const index = () => {
                 </div>
             </div> */}
         </section>
+        }
         <section className='w-screen px-4 mt-32 mb-12 overflow-hidden md:px-10 lg:px-24'>
             <Billboard />
         </section>
@@ -179,4 +180,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Home
