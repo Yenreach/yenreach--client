@@ -32,32 +32,32 @@ const index = () => {
         <>
         <Header />
         <section>
-            <div className='bg-cover bg-top flex flex-col justify-between items-center gap-6 md:gap-8 py-16 pt-24 sm:py-12 sm:pt-32 px-4 sm:px-16 md:px-32 lg:px-48 relative overflow-hidden bg-footer-bg'>
-                <h1 className='text-xl md:text-3xl font-medium text-dark-light text-center sm:leading-normal'>Helping <span className='text-green'>Businesses</span> reach<br />the <span className='text-blue'>right</span> audience</h1>
+            <div className='relative flex flex-col items-center justify-between gap-6 px-4 py-16 pt-24 overflow-hidden bg-top bg-cover md:gap-8 sm:py-12 sm:pt-32 sm:px-16 md:px-32 lg:px-48 bg-footer-bg'>
+                <h1 className='text-xl font-medium text-center md:text-3xl text-dark-light sm:leading-normal'>Helping <span className='text-green'>Businesses</span> reach<br />the <span className='text-blue'>right</span> audience</h1>
                 <p className='text-center text-[#476788] font-arialsans text-sm sm:text-lg max-w-xl'>
-                    From small businesses to fortune 500 companies, Hundreds of businesses now use <span className='text-green font-semibold'>YENREACH</span> to reach out to thier customers
+                    From small businesses to fortune 500 companies, Hundreds of businesses now use <span className='font-semibold text-green'>YENREACH</span> to reach out to thier customers
                 </p>
                 <span className='hidden sm:block bg-[#89f1b433] absolute w-4/5 pb-[80%] rounded-full top-0 mt-24'></span>
             </div>
-            <div className='py-12 px-4 md:px-10 lg:px-20'>
-                <div className='flex items-center justify-between w-full sm:w-11/12  mx-auto px-2 mb-32'>
+            <div className='px-4 py-12 md:px-10 lg:px-20'>
+                <div className='flex items-center justify-between w-full px-2 mx-auto mb-32 sm:w-11/12'>
                     <div className='flex flex-col items-center'>
-                        <span className='font-semibold text-xl md:text-3xl text-green'>{businessCount || 1100}<span className='text-blue'>+</span></span>
+                        <span className='text-xl font-semibold md:text-3xl text-green'>{businessCount || 1100}<span className='text-blue'>+</span></span>
                         <span className='text-sm md:text-lg text-[#476788] font-arialsans'>Businesses</span>
                     </div>
                     <div className='flex flex-col items-center'>
-                        <span className='font-semibold text-xl md:text-3xl text-green'>2<span className='text-blue'>+</span></span>
+                        <span className='text-xl font-semibold md:text-3xl text-green'>2<span className='text-blue'>+</span></span>
                         <span className='text-sm md:text-lg text-[#476788] font-arialsans'>Locations</span>
                     </div>
                     <div className='flex flex-col items-center'>
-                        <span className='font-semibold text-xl md:text-3xl text-green'>{userCount || 1000}<span className='text-blue'>+</span></span>
+                        <span className='text-xl font-semibold md:text-3xl text-green'>{userCount || 1000}<span className='text-blue'>+</span></span>
                         <span className='text-sm md:text-lg text-[#476788] font-arialsans'>Audience</span>
                     </div>
                 </div>
-                <h3 className='text-xl text-green font-medium pb-3'>Our Mandate</h3>
+                <h3 className='pb-3 text-xl font-medium text-green'>Our Mandate</h3>
                 <div className='font-arialsans text-[#476788] relative text-sm sm:text-base'>
-                    <img src={AboutBlob} alt="" className='hidden md:block absolute right-0 top-1/2 -translate-y-1/2' />
-                    <div className='md:w-10/12 flex flex-col gap-3'>
+                    <img src={AboutBlob} alt="" className='absolute right-0 hidden -translate-y-1/2 md:block top-1/2' />
+                    <div className='flex flex-col gap-3 md:w-10/12'>
                         <p className=''>
                             For most businesses in Nigeria, the major challenge has never been about the quality of their product or service. The daunting challenge has been the need for businesses to showcase their products and services to potential customers who are eager to pay them in exchange for their excellent product and service delivery.
                         </p>
@@ -73,39 +73,39 @@ const index = () => {
                     </div>
                 </div>
             </div>
-            <div className='py-20 sm:py-12 px-4 md:px-10 lg:px-20 bg-footer-bg'>
-                <h3 className='text-xl text-center text-green font-medium mb-8'>On the stable of our consultancy are</h3>
-                <div className='flex flex-col items-center xs:flex-row gap-4 flex-wrap justify-center lg:w-5/6 mx-auto text-sm sm:text-base'>
-                    <div className='shadow-md flex items-center gap-6 px-3 pr- py-3 w-64 bg-white hover:drop-shadow-2xl'>
-                        <img src={ISMN} alt="" className='w-12 h-12 object-cover object-center' />
+            <div className='px-4 py-20 sm:py-12 md:px-10 lg:px-20 bg-footer-bg'>
+                <h3 className='mb-8 text-xl font-medium text-center text-green'>On the stable of our consultancy are</h3>
+                <div className='flex flex-col flex-wrap items-center justify-center gap-4 mx-auto text-sm xs:flex-row lg:w-5/6 sm:text-base'>
+                    <div className='flex items-center w-64 gap-6 px-3 py-3 bg-white shadow-md pr- hover:drop-shadow-2xl'>
+                        <img src={ISMN} alt="" className='object-cover object-center w-12 h-12' />
                         <p className='text-[#476788] font-arialsans'>Institute of strategic Management Nigeria <br />(ISMN)</p>
                     </div>
-                    <div className='shadow-md flex items-center gap-6 px-3 pr- py-3 w-64 xs:w-80 bg-white hover:drop-shadow-2xl'>
-                        <img src={CICRM} alt="" className='w-12 h-12 object-cover object-center' />
+                    <div className='flex items-center w-64 gap-6 px-3 py-3 bg-white shadow-md pr- xs:w-80 hover:drop-shadow-2xl'>
+                        <img src={CICRM} alt="" className='object-cover object-center w-12 h-12' />
                         <p className='text-[#476788] font-arialsans'>Chartered Institute of Customer Relationship Management <br />(CICRM)</p>
                     </div>
-                    <div className='shadow-md flex items-center gap-6 px-3 pr- py-3 w-64 bg-white hover:drop-shadow-2xl'>
-                        <img src={ICEN} alt="" className='w-12 h-12 object-cover object-center' />
+                    <div className='flex items-center w-64 gap-6 px-3 py-3 bg-white shadow-md pr- hover:drop-shadow-2xl'>
+                        <img src={ICEN} alt="" className='object-cover object-center w-12 h-12' />
                         <p className='text-[#476788] font-arialsans'>Institute of Chartered Economist of Nigeria<br />(ICEN)</p>
                     </div>
-                    <div className='shadow-md flex items-center gap-6 px-3 pr- py-3 w-64 bg-white hover:drop-shadow-2xl'>
-                        <img src={CIA} alt="" className='w-12 h-12 object-cover object-center' />
+                    <div className='flex items-center w-64 gap-6 px-3 py-3 bg-white shadow-md pr- hover:drop-shadow-2xl'>
+                        <img src={CIA} alt="" className='object-cover object-center w-12 h-12' />
                         <p className='text-[#476788] font-arialsans'>Chartered Institute of Administration <br />(CIA)</p>
                     </div>
-                    <div className='shadow-md flex items-center gap-6 px-3 pr- py-3 w-64 bg-white hover:drop-shadow-2xl'>
-                        <img src={NIMN} alt="" className='w-12 h-12 object-cover object-center' />
+                    <div className='flex items-center w-64 gap-6 px-3 py-3 bg-white shadow-md pr- hover:drop-shadow-2xl'>
+                        <img src={NIMN} alt="" className='object-cover object-center w-12 h-12' />
                         <p className='text-[#476788] font-arialsans'>National Institute of Marketing of Nigeria <br />(NIMN)</p>
                     </div>
                 </div>
             </div>
-            <div className='py-20 sm:py-12 px-4 md:px-10 lg:px-20 mb-4 md:mb-48'>
-                <h3 className='text-xl text-green font-medium pb-3'>Meet the Team</h3>
+            <div className='px-4 py-20 mb-4 sm:py-12 md:px-10 lg:px-20 md:mb-48'>
+                <h3 className='pb-3 text-xl font-medium text-green'>Meet the Team</h3>
                 <p className='text-sm text-[#476788] mb-10 font-arialsans sm:w-2/3 lg:w-1/2'>
                     Yenreach is filled with lots of potentials that are making sure we keep offering the best to our users
                 </p>
-                <div className='grid sm:grid-cols-bus2 gap-4 font-arialsans'>
+                <div className='grid gap-4 sm:grid-cols-bus2 font-arialsans'>
                     <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
-                        <div className='flex flex-col gap-6 items-start'>
+                        <div className='flex flex-col items-start gap-6'>
                             <div className=''>
                                 <h5 className='text-[#282F38] text-base font-medium'>Dordor Daniel</h5>
                                 <p className='text-[#838282] text-sm capitalize'>President, Dordorian Group</p>
@@ -119,10 +119,10 @@ const index = () => {
                                 </a>
                             </span>
                         </div>
-                        <img src={BossImg} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
+                        <img src={BossImg} alt="" className='object-cover object-center w-20 h-20 overflow-hidden rounded-full' />
                     </div>
-                    <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
-                        <div className='flex flex-col gap-6 items-start'>
+                    {/* <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
+                        <div className='flex flex-col items-start gap-6'>
                             <div className=''>
                                 <h5 className='text-[#282F38] text-base font-medium'>Ogbonna Chinedu</h5>
                                 <p className='text-[#838282] text-sm capitalize'>Operations Manager</p>
@@ -136,10 +136,10 @@ const index = () => {
                                 </a>
                             </span>
                         </div>
-                        <img src={ManagerImg} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
-                    </div>
+                        <img src={ManagerImg} alt="" className='object-cover object-center w-20 h-20 overflow-hidden rounded-full' />
+                    </div> */}
                     <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
-                        <div className='flex flex-col gap-6 items-start'>
+                        <div className='flex flex-col items-start gap-6'>
                             <div className=''>
                                 <h5 className='text-[#282F38] text-base font-medium'>Emmanuel Nwachukwu</h5>
                                 <p className='text-[#838282] text-sm capitalize'>Business Development Executive</p>
@@ -153,10 +153,10 @@ const index = () => {
                                 </a>
                             </span>
                         </div>
-                        <img src={EmannuelImg} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
+                        <img src={EmannuelImg} alt="" className='object-cover object-center w-20 h-20 overflow-hidden rounded-full' />
                     </div>
                     <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
-                        <div className='flex flex-col gap-6 items-start'>
+                        <div className='flex flex-col items-start gap-6'>
                             <div className=''>
                                 <h5 className='text-[#282F38] text-base font-medium'>George Gloria</h5>
                                 <p className='text-[#838282] text-sm capitalize'>Administrative Secretary</p>
@@ -170,10 +170,10 @@ const index = () => {
                                 </a>
                             </span>
                         </div>
-                        <img src={GloriaImg} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
+                        <img src={GloriaImg} alt="" className='object-cover object-center w-20 h-20 overflow-hidden rounded-full' />
                     </div>
                     {/* <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
-                        <div className='flex flex-col gap-6 items-start'>
+                        <div className='flex flex-col items-start gap-6'>
                             <div className=''>
                                 <h5 className='text-[#282F38] text-base font-medium'>Dordor Daniel</h5>
                                 <p className='text-[#838282] text-sm capitalize'>President, Dordorian Group</p>
@@ -187,7 +187,7 @@ const index = () => {
                                 </a>
                             </span>
                         </div>
-                        <img src={Team1} alt="" className='w-20 h-20 rounded-full object-cover object-center overflow-hidden' />
+                        <img src={Team1} alt="" className='object-cover object-center w-20 h-20 overflow-hidden rounded-full' />
                     </div> */}
                 </div>
             </div>
