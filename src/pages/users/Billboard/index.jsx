@@ -78,20 +78,20 @@ const Billboard = () => {
     
   return (
     <Dashboard> 
-    <div className='flex-1 overflow-y-auto overflow-hidden'>
+    <div className='flex-1 overflow-hidden overflow-y-auto'>
         <Head />
         {isLoading && <Loader loader={4} />}
-        <section className='p-8 px-4 sm:px-8 text-sm'>
-            <div className='p-5 py-7 bg-white'>
+        <section className='p-8 px-4 text-sm sm:px-8'>
+            <div className='p-5 bg-white py-7'>
                 <div className='mb-20 md:w-4/5'>
-                    <h3 className='text-green text-md font-medium mb-3'>Get Much More Eyeballs, Get MUCH MORE SALES</h3>
+                    <h3 className='mb-3 font-medium text-green text-md'>Get Much More Eyeballs, Get MUCH MORE SALES</h3>
                     <p className='mb-2'>
                         The only way your business can survive is by getting the right attention in the right place, at the right time and to the right people. <br />
                         By showcasing your business on our homepage billboard, you get the ultimate advantage of putting your business in front of thousands of customers who might just be searching for your product or service and are ready to do business with you, RIGHT-AWAY.    
                     </p>
                     <div>
                         <h4>Here are some of the things you enjoy just by having your business displayed on our Yenreach billboard:</h4>
-                        <ul className='list-disc pl-8'>
+                        <ul className='pl-8 list-disc'>
                             <li>Drive traffic directly to your Yenreach page so customers can contact you with ease.</li>
                             <li>Build massive brand awareness</li>
                             <li>Showcase your business to thousands of our daily website visitors</li>
@@ -102,11 +102,11 @@ const Billboard = () => {
                     </div>
                 </div>
                 <div className='mb-20 md:w-4/5'>
-                    <h3 className='text-green text-md font-medium mb-3'>What do I need?</h3>
+                    <h3 className='mb-3 font-medium text-green text-md'>What do I need?</h3>
                     <p>
-                        Getting your Business or any other interest displayed on the Yenreach Billboard is not actually as difficult as you think. All you need are need the following:
+                        Getting your Business or any other interest displayed on the Yenreach Billboard is not actually as difficult as you think. All you need the following:
                     </p>
-                    <ul className='list-decimal pl-8'>
+                    <ul className='pl-8 list-decimal'>
                         <li className=''>An Image to display. This Image has to be in either JPG, JPEG or PNG format. It must not be more than 300KB. Furthermore it should not contain any explicit or gory content. Furthermore, it is advisable that the Aspect Ratio of your Picture's resolution should be ...</li>
                         <li>Get a catchy Text/Copy for your Advert.</li>
                         <li>You'll also need a link that when the Viewer clicks on, it will lead them to a page where they'll learn more about the Ad</li>
@@ -114,16 +114,16 @@ const Billboard = () => {
                         <li>Also note that the slots for Billboard are limited. So, there is a possibility that your advert application may not be approved immediately.</li>
                     </ul>
                 </div>
-                <div className='flex flex-wrap gap-4 md:gap-8 mb-20'>
+                <div className='flex flex-wrap gap-4 mb-20 md:gap-8'>
                     {billboards?.map(billboard => 
                         (<div key={billboard?.id} className='p-5 py-7 rounded min-w-[250px] bg-white border border-[#00000011]'>
                             <div className='flex items-center gap-3 mb-12'>
                                 <TfiCrown size="1.4rem" color="00C885" />
-                                <h3 className='text-green font-medium text-lg'>{billboard?.title} Package</h3>
+                                <h3 className='text-lg font-medium text-green'>{billboard?.title} Package</h3>
                             </div>
                             <div className='flex flex-col items-center justify-center gap-4 border-t border-[#00000010] pt-6'>
                                 <div>
-                                    <span className='font-medium text-lg text-green'>₦{billboard?.amount}</span><span className=''>/{billboard?.duration} {billboard?.duration_type == "3"? "Month(s)" : "Week(s)"}</span>
+                                    <span className='text-lg font-medium text-green'>₦{billboard?.amount}</span><span className=''>/{billboard?.duration} {billboard?.duration_type == "3"? "Month(s)" : "Week(s)"}</span>
                                 </div>
                                 <Link to={`/users/billboard/${billboard?.verify_string}`}>
                                     <Button className='py-1.5 px-3 rounded-sm'>
@@ -135,7 +135,7 @@ const Billboard = () => {
                     )}
                 </div>
                 <div>
-                    <h3 className='text-green text-xl font-medium mb-3'>Your Billboard Applications</h3>
+                    <h3 className='mb-3 text-xl font-medium text-green'>Your Billboard Applications</h3>
                      <Table data={userBillboards} columns={columns} />
                 </div>
             </div>

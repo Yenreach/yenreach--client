@@ -20,14 +20,17 @@ import { useAuthContext } from '/src/hooks/useAuthContext'
 import { getCookie, setCookie } from '../../utils/cookie'
 import { expired, formatDate } from '/src/utils/dateFunc'
 import FullImage from '/src/components/FullImage'
-import { BsGlobe, BsTelephone } from 'react-icons/bs'
+import { BsGlobe, BsInstagram, BsLinkedin, BsTelephone, BsTwitter, BsWhatsapp } from 'react-icons/bs'
 import { AiOutlineMail } from 'react-icons/ai'
 import { CiLocationOn } from 'react-icons/ci'
-
+import ReactGA from "react-ga4";
+import { MdOutlineLocationOn, MdOutlineMarkEmailUnread } from 'react-icons/md'
+import { TbBrandFacebook } from 'react-icons/tb'
 
 
 
 const index = () => {
+  ReactGA.send({ hitType: "pageview", page: "/business", title: "Business Page View" });
   const [modalOpen, setModalOpen] = React.useState(false)
   const [imageModalOpen, setImageModalOpen] = useState(false)
   const [image, setImage] = useState('')
@@ -90,6 +93,7 @@ const index = () => {
     param: id,
     key: ['workingHours', id],
   })
+
   const { data: branches, error: errorBranches } = useFetch({
     api: apiGetBusinessBranches,
     param: id,
@@ -112,6 +116,9 @@ const index = () => {
     key: ['businessSubscriptionDetails', businessSubscription?.subscription_string],
     enabled: !!businessSubscription?.subscription_string,
   })
+
+  console.log({ branches, workingHours, businessSubscription, businessSubscriptionDetails })
+
 
 
   const nextReview = () => {
@@ -167,14 +174,22 @@ const index = () => {
                />
             <div className=''>
               <h2 className='mb-2 text-lg font-medium sm:text-xl sm:mb-1'>{business.name}</h2>
-              <div className='flex items-center gap-0.5'>
-                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
-                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
-                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
-                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
-                <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
-                <span className='self-end ml-2 text-xs'>4.7 star rating</span>
-              </div>
+              {
+                reviewsStats?.average ? 
+                  <div className='flex items-center gap-0.5'>
+                    {
+                      [...Array(Math.round(reviewsStats?.average)).keys()].map((el) => (
+                        <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
+                      ))
+
+                    }
+                    <span className='self-end ml-2 text-xs'>{reviewsStats?.average?.toFixed(1) || 'No'} star rating</span>
+                  </div>
+                  :
+                  <div className='flex items-center gap-0.5'>
+                    <span className='self-end text-xs'>No reviews yet</span>
+                  </div>
+              }
             </div>
           </div>
           <section className='relative px-4 mb-20 md:px-10 lg:px-20'>
@@ -254,6 +269,22 @@ const index = () => {
                 <img src={Product2} alt="" className='h-20' />
                 <img src={Product3} alt="" className='h-20' /> */}
               </div>
+              {
+                workingHours &&  
+                <div className="max-w-lg pb-10 mb-5 overflow-hidden bg-white rounded-lg">
+                  <h2 className="mb-3 text-lg font-semibold text-green2">Working Hours</h2>
+                  <ul className="mt-4">
+                    {workingHours.map((hour) => (
+                      <li key={hour.id} className="py-2 text-sm border-b border-gray-200 md:py-3 md:mx-4">
+                        <div className="flex justify-between">
+                          <span className="font-medium text-gray-600">{hour.day}</span>
+                          <span className="text-gray-800">{hour.opening_time} - {hour.closing_time}</span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              }
               {reviews && 
               <>
               <h2 className='mb-3 text-lg font-semibold text-green2'>Reviews</h2>              
@@ -293,6 +324,84 @@ const index = () => {
                 </Link>
               }
               {/* Review modal*/}
+            
+            </div>
+            <div className='my-10'>
+              <h2 className='mb-3 text-lg font-medium text-green'>Contact Information</h2>
+              <div className='p-4 bg-white sm:pb-12'>
+                  <div className='flex flex-col gap-4 lg:flex-row xl:gap-32 justify-between text-sm text-[#476788]'>
+                  <div className='flex flex-col flex-wrap gap-4 md:flex-row sm:gap-6'>
+                        {business?.address &&
+                        <div className='flex items-center gap-2'>
+                          <MdOutlineLocationOn size="1.3rem" />
+                          <span>{business?.address}</span>
+                        </div>}
+                        {business?.phonenumber &&
+                          <div className='flex items-center gap-2'>
+                            <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={`tel:${business.phonenumber}`}>
+                            <BsTelephone size="1.3rem" />
+                            <span>Call Now</span>
+                          </a>
+                        </div>}
+                        {business?.email &&
+                        <div className='flex items-center gap-2'>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={`mailto:${business.email}`}>
+                            <MdOutlineMarkEmailUnread size="1.3rem" />
+                            <span>Send Mail</span>
+                          </a>
+                        </div>
+                        }
+                        {business?.website &&
+                        <div className='flex items-center gap-2'>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.website}>
+                            <BsGlobe size="1.3rem" />
+                            <span>Our website</span>
+                          </a>
+                        </div>
+                        }
+                          {business?.facebook_link &&
+                          <div className='flex items-center gap-2'>
+                            <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.facebook_link}>
+                              <TbBrandFacebook size="1.3rem" />
+                              <span>See us on facebook</span>
+                            </a>
+                          </div>
+                          }
+                            {business?.instagram_link &&
+                        <div className='flex items-center gap-2'>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.instagram_link}>
+                            <BsInstagram size="1.3rem" />
+                            <span>Instagram Page</span>
+                          </a>
+                        </div>
+                        }
+                        {business?.whatsapp &&
+                        <div className='flex items-center gap-2'>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={`https://wa.me/${business?.whatsapp}`}>
+                            <BsWhatsapp size="1.3rem" />
+                            Chat on Whatsapp
+                          </a>
+                        </div>
+                        }
+                        {business?.twitter_link &&
+                        <div className='flex items-center gap-2'>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.twitter_link}>
+                            <BsTwitter size="1.3rem" />
+                            <span>Go to twitter</span>
+                          </a>
+                        </div>
+                        }
+                        {business?.linkedin_link &&
+                        <div className='flex items-center gap-2'>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.linkedin_link}>
+                            <BsLinkedin size="1.3rem" />
+                            <span>Check out LinkedIn</span>
+                          </a>
+                        </div>
+                        }
+                      </div>
+                  </div>
+              </div>
             </div>
           </section>
           <section className='px-4 py-4 mb-32 border-t-2 sm:py-6 md:px-10 lg:px-20 border-gray'>

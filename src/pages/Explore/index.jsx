@@ -6,10 +6,13 @@ import Product from '/src/components/Product'
 import Business from '/src/components/Business'
 import Jobs from '/src/components/Jobs'
 import ExploreNav from '/src/components/ExploreNav'
+import ReactGA from "react-ga4";
 
 
 
 const index = () => {
+  ReactGA.send({ hitType: "pageview", page: "/explore", title: "Explore Page View" });
+
   const [activeTab, setActiveTab] = useState('business');
   const location = useLocation()
   const [searchParams, setSearchParams] = useSearchParams();

@@ -19,9 +19,14 @@ import Loader from '/src/components/Loader'
 import useFetch from '/src/hooks/useFetch'
 import Error from '../../components/Error'
 import Image from '/src/components/Image';
+import ReactGA from "react-ga4";
 
 
-const index = () => {
+
+const Home = () => {
+    // Send pageview with a custom path
+    ReactGA.send({ hitType: "pageview", page: "/", title: "Home Page View" });
+
     const { data: aprrovedBusinesses, error: errorApprovedBusinesses } = useFetch({
         key: ['aprrovedBusinesses', 0],
         param: { page: 1, num_per_page: 5 },
@@ -60,7 +65,7 @@ const index = () => {
             <div className='flex flex-col mb-20 sm:items-center md:mb-32 sm:flex-row gap-9'>
                 <img src={AllHere} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
                 <div className='flex flex-col items-start gap-12 max-w-[450px]'>
-                    <h3 className='text-xl font-medium text-green'>They are all Here</h3>
+                    <h3 className='text-xl font-medium text-green'>Learn and Explore our business listings</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
                     We are the premier destination for businesses looking to expand their reach and connect with potential customers. Our platform is designed to help businesses of all sizes grow and succeed by providing them with a powerful marketing tool.
                     <br /><br />
@@ -77,7 +82,7 @@ const index = () => {
             </div>
             <div className='flex flex-col-reverse mb-20 sm:items-center md:mb-32 sm:flex-row gap-9'>
                 <div className='flex flex-col sm:items-end gap-12 max-w-[450px]'>
-                    <h3 className='text-xl font-medium text-blue'>They are all Here</h3>
+                    <h3 className='text-xl font-medium text-blue'>Searching for jobs? This is for you</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
                     Looking for your next career opportunity? Look no further than our job listing platform. We offer a wide range of job listings across various industries, making it easy for job seekers to find the perfect role for their skills and experience.
                     {/* <br /><br />
@@ -101,7 +106,7 @@ const index = () => {
             <div className='flex flex-col sm:items-center sm:flex-row gap-9'>
                 <img src={AllHereP} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
                 <div className='flex flex-col items-start gap-12 max-w-[450px]'>
-                    <h3 className='text-xl font-medium text-orange'>They are all Here</h3>
+                    <h3 className='text-xl font-medium text-orange'>Learn about the yenreach marketplace</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
                     We offer a marketplace for businesses to sell their products and services. Our marketplace is designed to help businesses of all sizes reach a wider audience and increase their sales.
                         <br /><br />
@@ -119,8 +124,9 @@ const index = () => {
                 </div>
             </div>
         </section>
+        {businessOfTheWeek &&
+
         <section className='px-4 mt-4 mb-12 md:px-10 lg:px-24 md:mt-12'>
-            {businessOfTheWeek &&
                 <div className='py-12 mb-36'>
                     <h2 className='mb-2 text-xl font-medium text-center text-green'>Business of the week</h2>
                     <div className='flex flex-col items-center sm:flex-row gap-14'>
@@ -138,7 +144,6 @@ const index = () => {
                         </div>
                     </div>
                 </div>
-            }
             {/* <div className=''>
                 <h2 className='mb-3 text-lg font-medium text-center text-green'>keep up with the business world</h2>
                 <div className='flex flex-col grid-cols-3 gap-6 text-white sm:grid'>
@@ -162,6 +167,7 @@ const index = () => {
                 </div>
             </div> */}
         </section>
+        }
         <section className='w-screen px-4 mt-32 mb-12 overflow-hidden md:px-10 lg:px-24'>
             <Billboard />
         </section>
@@ -174,4 +180,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Home

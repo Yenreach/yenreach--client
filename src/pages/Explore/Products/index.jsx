@@ -14,6 +14,8 @@ import { paginate } from '/src/utils/pagination'
 import Button from '/src/components/ui/Button'
 import Input from '/src/components/ui/Input'
 import Search from '/src/assets/search.svg'
+import ReactGA from "react-ga4";
+
 
 const categories = [
   {id: 1, name: "Electronics"},
@@ -30,13 +32,14 @@ const categories = [
 ]
 
 const ExploreProducts = () => {
+  ReactGA.send({ hitType: "pageview", page: "/explore/products", title: "Explore Products View" });
+  
   const [activeTab, setActiveTab] = useState('business');
 //   const location = useLocation()
     const [location, setLocation] = useState("")
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(searchParams.get('page') || 1)
-
   const num_per_page = 40
 
   const [search, setSearch] = useState("")

@@ -13,10 +13,13 @@ import NoBusiness from '../../../assets/dashboard/no-business.svg'
 import { useAuthContext } from '/src/hooks/useAuthContext'
 import Image from '../../../components/Image'
 import { expired, formatDate2 } from '/src/utils/dateFunc'
+import ReactGA from "react-ga4";
 
 
 
 const index = () => {
+  ReactGA.send({ hitType: "pageview", page: "/users", title: "User Page" });
+
   const { user } = useAuthContext()
   
     const { isLoading, error, data: businesses } = useFetch({

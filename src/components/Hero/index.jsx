@@ -55,8 +55,8 @@ const index = ({ businesses }) => {
     staleTime: staleTime,
   })
   // console.log("analytics", analytics)
-  const businessCount = useMemo(() => Math.floor((analytics?.business_count || businesses?.length) / 100) * 100, [analytics?.business_count, businesses])
-  const userCount = useMemo(() => Math.floor(analytics?.user_count / 100) * 100, [analytics?.user_count])
+  const businessCount = useMemo(() => Math.floor((analytics?.business_count || businesses?.length) / 10) * 10, [analytics?.business_count, businesses])
+  const userCount = useMemo(() => Math.floor(analytics?.user_count / 10) * 10, [analytics?.user_count])
 
   useEffect(() => {  
     // fade in and out carousel automatically
@@ -133,8 +133,8 @@ const index = ({ businesses }) => {
             <span className='text-sm md:text-lg'>Businesses</span>
           </div>
           <div className='flex flex-col items-center'>
-            <span className='font-semibold'>2+</span>
-            <span className='text-sm md:text-lg'>Locations</span>
+            <span className='font-semibold'>1</span>
+            <span className='text-sm md:text-lg'>Location</span>
           </div>
           <div className='flex flex-col items-center'>
             <span className='font-semibold'>{userCount || 1000}+</span>

@@ -86,7 +86,7 @@ export const apiDeleteApplication = ({application_string, job_string }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}/delete_application_api${serviceSuffix}?application_string=${application_string}&job_string=${job_string}`,
         method: "delete",
-        data    
+        data  
     })
 }
 

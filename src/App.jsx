@@ -44,6 +44,10 @@ import BottomNav from './components/BottomNav'
 import Terms from './pages/TermsAndPrivacy/Terms';
 import Privacy from './pages/TermsAndPrivacy/Privacy';
 import Subsidiaries from './pages/Subsidiaries';
+import ReactGA from "react-ga4";
+import WorkingHours from './pages/users/Business/WorkingHours';
+
+
 
 // CapactiorApp.addListener('appStateChange', ({ isActive }) => {
 //   console.log('App state changed. Is active?', isActive);
@@ -52,6 +56,8 @@ import Subsidiaries from './pages/Subsidiaries';
 
 
 function App() { 
+  ReactGA.initialize("G-ZPNG3YYY5F");
+
   const { user } = useAuthContext()
 
   CapactiorApp.addListener('backButton', (data) => {
@@ -93,6 +99,7 @@ function App() {
             <Route exact path="/password_reset" element={<ChangePassword />} />
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/users/business/:id" element={<UserBusiness />} />
+            <Route exact path="/users/business/:id/working-hours" element={<WorkingHours />} />
             <Route exact path="/users/edit-business/:id" element={<EditBusiness />} />
             <Route exact path="/users/add-business" element={<CreateBusiness />} />
             <Route exact path="/users/products/:id" element={<UserProducts />} />

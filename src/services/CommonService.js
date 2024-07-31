@@ -141,6 +141,7 @@ export const apiGetBusinessWorkingHours = (business_token) => {
         method: "get"    
     })
 }
+
 export const apiGetBusinessBranches = (business_token) => {
     return ApiAdapter.fetchData({
         url: `/fetch_business_public_branches_api${serviceSuffix}?string=${business_token}`,

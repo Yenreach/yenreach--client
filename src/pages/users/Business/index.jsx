@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import Analytics from './Analytics';
-import { BsTelephone, BsGlobe, BsInstagram, BsWhatsapp } from 'react-icons/bs'
+import { BsTelephone, BsGlobe, BsInstagram, BsWhatsapp, BsTwitter, BsLinkedin } from 'react-icons/bs'
 import { MdOutlineMarkEmailUnread, MdOutlineLocationOn } from 'react-icons/md'
 import { TbBrandFacebook } from 'react-icons/tb'
 import useFetch from '/src/hooks/useFetch'
@@ -21,11 +21,14 @@ import useImage from '/src/hooks/useImage'
 import { CiEdit } from 'react-icons/ci';
 import { useAuthContext } from '/src/hooks/useAuthContext'
 import Add from '/src/assets/add.svg'
+import { apiGetBusinessWorkingHours } from '../../../services/CommonService';
+import Button from '../../../components/ui/Button';
+import workingHours from './WorkingHours';
 
 
 
 
-const index = () => {
+const WorkingHours = () => {
   const { id } = useParams()
   const { user } = useAuthContext()
   const reviewsContainerRef = useRef(null)
@@ -108,10 +111,10 @@ const index = () => {
     key: ['pageVisits', id],
   })
   
-  const { data: userCategories } = useFetch({
+  const { data: businessCategories } = useFetch({
     api: apiGetBusinessCategories,
     param: id,
-    key: ['userCategories', id],
+    key: ['businessCategories', id],
   })
   
   const { error: subscriptionError, data: subscription } = useFetch({
@@ -120,7 +123,7 @@ const index = () => {
     key: ['subscription', id],
   })
 
-  // console.log("sub")
+  console.log({ business })
 
   const { data: facilities, error: errorFacilities } = useFetch({
     api: apiGetBusinessFacilities,
@@ -139,6 +142,13 @@ const index = () => {
     param: id,
     key: ['userReviewStats', id]
   })
+
+    const { data: workingHours, error: errorWorkingHours } = useFetch({
+    api: apiGetBusinessWorkingHours,
+    param: id,
+    key: ['workingHours', id],
+  })
+
 
   const analytics = useMemo(() => {
     if (pageVisits?.pagevisits) {
@@ -194,11 +204,11 @@ const index = () => {
     }
   }
 
-  // console.log("b", subscription?.subscription)
+
 
   return (
     <Dashboard>
-      <div className='flex-1 overflow-y-auto overflow-hidden'>
+      <div className='flex-1 overflow-hidden overflow-y-auto'>
         {isLoading && <Loader loader={4} />}
           <Header business_string={id} type="business" />
           {business && (
@@ -206,85 +216,141 @@ const index = () => {
             <div onClick={handle} className='h-36 -z-0 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center bg-gray cursor-pointer'>
             <input ref={coverImageRef} type="file" name="cover_image" id="cover_image" className="hidden" onChange={(e)=> uploadCoverPhoto(e.target.files[0])}  />
 
-              <img src={business?.cover_img.replace("mediatoken", "media&token")} name={business?.name} className='absolute w-full h-full object-cover' />
+              <img src={business?.cover_img.replace("mediatoken", "media&token")} name={business?.name} className='absolute object-cover w-full h-full' />
               <Link to={`/users/edit-business/${id}`} className='p-1.5 px-3 text-xs font-arialsans absolute bottom-2 right-2 sm:right-4 lg:right-16 bg-green text-white'>
                 Edit Profile
               </Link>
-              <div className='z-100 w-28 h-28 left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 mx-auto absolute rounded-full' >
-                <label htmlFor="image" className="absolute top-0 w-full h-full mx-auto bg-gray rounded-full cursor-pointer">
+              <div className='absolute bottom-0 mx-auto -translate-x-1/2 translate-y-1/2 rounded-full z-100 w-28 h-28 left-1/2' >
+                <label htmlFor="image" className="absolute top-0 w-full h-full mx-auto rounded-full cursor-pointer bg-gray">
                     <span className="absolute bottom-0 right-0 -translate-x-1/2 bg-[#25D366] w-5 h-5 rounded-full overflow-hidden grid place-items-center z-10">
                         <CiEdit size="" color="white" className="" />
                     </span>
                     <input type="file" name="image" id="image" className="hidden" onChange={(e)=> uploadProfilePhoto(e.target.files[0])}  />
-                    <Image url={business?.profile_img} name={business?.name} className='w-full h-full object-cover rounded-full' />
+                    <Image url={business?.profile_img} name={business?.name} className='object-cover w-full h-full rounded-full' />
                 </label>
               </div>
             </div>
             <section className='px-7'>
-              <div className='flex flex-col items-center w-10/12 mx-auto mb-8 pt-16'>
-                <h1 className='text-3xl font-semibold text-dark-light mb-2'>{business?.name}</h1>
+              <div className='flex flex-col items-center w-10/12 pt-16 mx-auto mb-8'>
+                <h1 className='mb-2 text-3xl font-semibold text-dark-light'>{business?.name}</h1>
                 <p className='text-sm text-[#476788] mb-3 text-center'>
                   {business?.description}
                 </p>
-                <div className='flex items-center flex-wrap gap-3 text-xsm text-green md:w-7/8 mb-16'>
-                  {userCategories?.map(category =><span key={category.id} className='bg-[#E0E5EE] px-4 py-2 font-medium whitespace-nowrap'>{category.category}</span>)}
+                <div className='flex flex-wrap items-center gap-3 mb-16 text-xsm text-green md:w-7/8'>
+                  {businessCategories?.map(category =><span key={category.id} className='bg-[#E0E5EE] px-4 py-2 font-medium whitespace-nowrap'>{category.category}</span>)}
                   </div>
               </div>
               <div className='mb-11'>
-                <h2 className='text-green text-lg font-medium mb-3'>Contact Information</h2>
-                <div className='p-4 sm:py-12 sm:px-16 bg-white'>
+                <h2 className='mb-3 text-lg font-medium text-green'>Contact Information</h2>
+                <div className='p-4 bg-white sm:py-12 sm:px-16'>
                     <div className='flex flex-col gap-4 lg:flex-row xl:gap-32 justify-between text-sm text-[#476788]'>
-                      <div className='flex flex-col gap-4 sm:gap-6'>
+                      <div className='flex flex-col flex-wrap gap-4 md:flex-row sm:gap-6'>
+                        {business?.address &&
+                        <div className='flex items-center gap-2'>
+                          <MdOutlineLocationOn size="1.3rem" />
+                          <span>{business?.address}</span>
+                        </div>}
                         {business?.phonenumber &&
                           <div className='flex items-center gap-2'>
-                          <BsTelephone size="1.3rem" />
-                          <span>{business?.phonenumber}</span>
+                            <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={`tel:${business.phonenumber}`}>
+                            <BsTelephone size="1.3rem" />
+                            <span>{business?.phonenumber}</span>
+                          </a>
                         </div>}
                         {business?.email &&
                         <div className='flex items-center gap-2'>
-                          <MdOutlineMarkEmailUnread size="1.3rem" />
-                          <span>{business?.email}</span>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={`mailto:${business.email}`}>
+                            <MdOutlineMarkEmailUnread size="1.3rem" />
+                            <span>Send Mail</span>
+                          </a>
                         </div>
                         }
                         {business?.website &&
                         <div className='flex items-center gap-2'>
-                          <BsGlobe size="1.3rem" />
-                          <span>{business?.website}</span>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.website}>
+                            <BsGlobe size="1.3rem" />
+                            <span>Our website</span>
+                          </a>
                         </div>
                         }
-                      </div>
-                      {business?.address &&
-                      <div className='flex items-center gap-2'>
-                        <MdOutlineLocationOn size="1.3rem" />
-                        <span>{business?.address}</span>
-                      </div>}
-                      <div className='flex flex-col gap-4 sm:gap-6'>
-                      {business?.facebook_link &&
+                          {business?.facebook_link &&
+                          <div className='flex items-center gap-2'>
+                            <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.facebook_link}>
+                              <TbBrandFacebook size="1.3rem" />
+                              <span>See us on facebook</span>
+                            </a>
+                          </div>
+                          }
+                            {business?.instagram_link &&
                         <div className='flex items-center gap-2'>
-                          <TbBrandFacebook size="1.3rem" />
-                          <span>{business?.facebook_link}</span>
-                        </div>
-                        }
-                        {business?.instagram_link &&
-                        <div className='flex items-center gap-2'>
-                          <BsInstagram size="1.3rem" />
-                          <span>{business?.instagram_link}</span>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.instagram_link}>
+                            <BsInstagram size="1.3rem" />
+                            <span>Instagram Page</span>
+                          </a>
                         </div>
                         }
                         {business?.whatsapp &&
                         <div className='flex items-center gap-2'>
-                          <BsWhatsapp size="1.3rem" />
-                          <span>{business?.whatsapp}</span>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={`https://wa.me/${business?.whatsapp}`}>
+                            <BsWhatsapp size="1.3rem" />
+                            Chat on Whatsapp
+                          </a>
+                        </div>
+                        }
+                        {business?.twitter_link &&
+                        <div className='flex items-center gap-2'>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.twitter_link}>
+                            <BsTwitter size="1.3rem" />
+                            <span>Go to twitter</span>
+                          </a>
+                        </div>
+                        }
+                        {business?.linkedin_link &&
+                        <div className='flex items-center gap-2'>
+                          <a target='_blank' className='flex items-center gap-2 w-fit p-2 rounded-md underline underline-offset-2 pr-2.5' href={business.linkedin_link}>
+                            <BsLinkedin size="1.3rem" />
+                            <span>Check out LinkedIn</span>
+                          </a>
                         </div>
                         }
                       </div>
                    </div>
                 </div>
               </div>
+              <div className='mb-16'>
+                <h2 className='mb-3 text-lg font-medium text-green'>Working Hours</h2>
+                <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
+                {
+                workingHours ?  
+                  <div className="max-w-lg pb-10 mb-5 overflow-hidden bg-white rounded-lg">
+                    <ul className="mt-4 mb-8">
+                      {workingHours.map((hour) => (
+                        <li key={hour.id} className="py-2 text-sm border-b border-gray-200 md:py-3">
+                          <div className="flex justify-between">
+                            <span className="font-medium text-gray-600">{hour.day}</span>
+                            <span className="text-gray-800">{hour.opening_time} - {hour.closing_time}</span>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to={`/users/business/${id}/working-hours`} className='p-1.5 px-3 text-xs font-arialsans bg-green text-white mt-4'>
+                      Update Working Hours
+                    </Link>
+                  </div> 
+                :
+                  <div className='flex flex-col items-center justify-between gap-3 md:flex-row md:gap-8'>
+                    <p>No workings hours set</p>
+                    <Link to={`/users/business/${id}/working-hours`} className='p-1.5 px-3 text-xs font-arialsans bg-green text-white'>
+                      Add Working Hours
+                    </Link>
+                  </div>
+              }
+                </div>
+              </div>
               <div className='mb-11'>
-                <h2 className='text-green text-lg font-medium mb-3'>Business media</h2>
+                <h2 className='mb-3 text-lg font-medium text-green'>Business media</h2>
                 <div className='flex flex-col sm:flex-row flex-wrap gap-2 text-sm text-[#476788]'>
-                  {business?.photos?.length ? business?.photos?.map((photo, index) => <img key={index} src={photo?.filepath} alt=""  className='sm:w-32 sm:h-40 object-cover object-center bg-black/30' />) 
+                  {business?.photos?.length ? business?.photos?.map((photo, index) => <img key={index} src={photo?.filepath} alt=""  className='object-cover object-center sm:w-32 sm:h-40 bg-black/30' />) 
                   : <span className='text-[#476788] text-xs sm:text-sm'>No photos</span>
                   }
                   {(business?.photos?.length < 2 || (business?.photos?.length < Number(subscription?.subscription?.photos))) ? 
@@ -316,9 +382,9 @@ const index = () => {
                 </div>
               </div>
               <div className='mb-24 font-arialsans'>
-                <h2 className='text-green text-lg font-medium mb-3'>Business Features</h2>
+                <h2 className='mb-3 text-lg font-medium text-green'>Business Features</h2>
                 <div className='bg-white text-[#476788] p-12 rounded-2xl'>
-                  <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-sm  lg:max-w-3xl'>
+                  <div className='grid grid-cols-1 gap-6 text-sm sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:max-w-3xl'>
                     {facilities?.map(facility => <div key={facility.id} className='flex items-center'>
                       <img src={Good} alt="" className='object-cover object-center mr-3' />
                       <span>{facility.facility}</span>
@@ -329,48 +395,58 @@ const index = () => {
                   <img src={Edit} alt="" />
                   Edit business profile
                 </Link>
-              </div>
+              </div>   
               <div className='mb-20'>
-                <h2 className='text-green text-lg font-medium mb-3'>Business Analytics</h2>
+                <h2 className='mb-3 text-lg font-medium text-green'>Business Analytics</h2>
                 <div className='font-arialsans text-sm text-[#476788] p-2 sm:p-12 bg-white rounded-2xl overflow-hidden max-h-96 w-full'>
                   <Analytics analytics={analytics} />
                 </div>
               </div>
               <div className='mb-16'>
-                <h2 className='text-green text-lg font-medium mb-3'>Subscription</h2>
+                <h2 className='mb-3 text-lg font-medium text-green'>Subscription</h2>
                 <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
                   <p className='mb-4'>{!expired(subscription?.true_expiry) ? `You are currently on the ${subscription?.subscription} package subscription plan` : "You do not have any active subscription"}</p>
-                  <Link to={`/users/subscription/${id}`} className='underline text-green text-sm'>{subscription && "Click here to check out your subscription plan"}</Link>
+                  <Link to={`/users/subscription/${id}`} className='text-sm underline text-green'>{subscription && "Click here to check out your subscription plan"}</Link>
                 </div>
               </div>
               <div className='mb-16'>
-                <h2 className='text-green text-lg font-medium mb-3'>Reviews</h2>
+                <h2 className='mb-3 text-lg font-medium text-green'>Reviews</h2>
                 <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
-                  <div className='flex items-center gap-3.5 mb-2'>
-                    {[...Array(reviewStats?.average).keys()].map((_, i) => <img key={i} src={Star} alt="" />)}
-                  </div>
-                  <p className='mb-9'>Your business is currently rated {reviewStats?.average} stars from the reviews of {reviewStats?.total} users</p>
-                  <div ref={reviewsContainerRef} className='flex flex-wrap overflow-hidden gap-6 w-full'>
-                    {reviews?.map(review => 
-                    <div key={review.id} className='p-3 px-5 bg-[#F0F0F0] w-full sm:w-96'>
-                      <div className='flex items-center gap-2 mb-3'>
-                        <img src={Star} alt="" />
-                        <span className='text-sm'>{review.user}</span>
-                      </div>
-                      <p className='text-xsm text-[#476788]'>
-                        {review.review}
-                      </p>
-                    </div>
-                    )}
-                  </div>
-                  <div className='hidden lg:flex gap-4 items-center justify-end'>
-                    <span  onClick={changeReview} className="bg-green cursor-pointer p-0.5 rounded-l-full">
-                      <MdChevronLeft size="1.5rem" color='white' />
-                    </span>
-                    <span onClick={changeReview} className="bg-green cursor-pointer p-0.5 rounded-r-full">
-                      <MdChevronRight size="1.5rem" color='white' />
-                    </span>
-                  </div>
+                      {
+                        (reviews?.length > 0) && (!!reviewStats?.average) ? 
+                        <>
+                           <div className='flex items-center gap-3.5 mb-2'>
+                              {[...Array(reviewStats?.average).keys()].map((_, i) => <img key={i} src={Star} alt="" />)}
+                            </div>
+                            <p className='mb-9'>Your business is currently rated {reviewStats?.average} stars from the reviews of {reviewStats?.total} users</p>
+                            <div ref={reviewsContainerRef} className='flex flex-wrap w-full gap-6 overflow-hidden'>
+                              {reviews?.map(review => 
+                              <div key={review.id} className='p-3 px-5 bg-[#F0F0F0] w-full sm:w-96'>
+                                <div className='flex items-center gap-2 mb-3'>
+                                  <img src={Star} alt="" />
+                                  <span className='text-sm'>{review.user}</span>
+                                </div>
+                                <p className='text-xsm text-[#476788]'>
+                                  {review.review}
+                                </p>
+                              </div>
+                              )}
+                            </div>
+                            <div className='items-center justify-end hidden gap-4 lg:flex'>
+                              <span  onClick={changeReview} className="bg-green cursor-pointer p-0.5 rounded-l-full">
+                                <MdChevronLeft size="1.5rem" color='white' />
+                              </span>
+                              <span onClick={changeReview} className="bg-green cursor-pointer p-0.5 rounded-r-full">
+                                <MdChevronRight size="1.5rem" color='white' />
+                              </span>
+                            </div>
+                        </>
+                        :
+                        <>
+                        <p className='mb-9'>No reviews yet</p>
+                        </>
+                      }
+               
                 </div>
               </div>
             </section>
@@ -382,4 +458,4 @@ const index = () => {
   )
 }
 
-export default index
+export default WorkingHours

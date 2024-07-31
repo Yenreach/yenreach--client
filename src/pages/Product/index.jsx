@@ -12,10 +12,13 @@ import SellerDetailsModal from './SellerDetailsModal'
 import FullImage from '../../components/FullImage'
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai'
 import { BsTelephone, BsWhatsapp } from 'react-icons/bs'
+import ReactGA from "react-ga4";
 
 
 
 const Product = () => {
+  ReactGA.send({ hitType: "pageview", page: "/product", title: "Product Page View" });
+
   const [modalOpen, setModalOpen] = useState(false)
   const [imageModalOpen, setImageModalOpen] = useState(false)
   const [image, setImage] = useState('')
@@ -23,7 +26,11 @@ const Product = () => {
   const { id } = useParams()
 
   const focus = () => {
-    console.log(nameRef.current)
+    // console.log({window})
+    if (window) {
+      window?.scroll({top: 400, left: 0, behavior: 'smooth' })
+    }
+    // console.log(nameRef.current)
     nameRef?.current?.focus()
   }
 
@@ -94,7 +101,7 @@ const Product = () => {
                       <span className='text-sm text-gray'>{business?.name}</span>
                   </div>
                     <Button variant='product' className='w-full py-2 text-xs px-28' onClickFunc={focus}>
-                      Seller Details
+                      Contact Us
                     </Button>
                 </div>
             </section>
@@ -106,29 +113,32 @@ const Product = () => {
                     <p className='text-sm font-semibold'>{business?.name}</p>
                 </div>
                 <div>
-                    <p className='text-xs text-black/60'>Email</p>
-                    <p className='text-sm font-semibold'>
-                      <a target='_blank' className='flex items-center gap-2' href={`mailto:${business?.email}`}>
+                    {/* <p className='text-xs text-black/60'>Email</p> */}
+                    <p className='text-sm'>
+                      <a target='_blank' className='flex items-center gap-2 w-fit bg-orange p-2 rounded-md text-white pr-2.5' href={`mailto:${business?.email}`}>
                         <AiOutlineMail />
-                        {business?.email}
+                        Send Mail
+                        {/* {business?.email} */}
                       </a>
                     </p>
                 </div>
                 <div>
-                    <p className='text-xs text-black/60'>Phone Number</p>
-                    <p className='text-sm font-semibold'>
-                      <a target='_blank' className='flex items-center gap-2' href={`tel:${business?.phonenumber}`}>
+                    {/* <p className='text-xs text-black/60'>Phone Number</p> */}
+                    <p className='text-sm'>
+                      <a target='_blank' className='flex items-center gap-2 w-fit bg-orange p-2 rounded-md text-white pr-2.5' href={`tel:${business?.phonenumber}`}>
                         <BsTelephone className='text-xs' />
-                        {business?.phonenumber}
+                        Call
+                        {/* {business?.phonenumber} */}
                       </a>
                     </p>
                 </div>
                 <div>
-                    <p className='text-xs text-black/60'>Whatsapp</p>
-                    <p className='text-sm font-semibold'>
-                      <a target='_blank' className='flex items-center gap-2' href={`https://wa.me/${business?.phonenumber?.slice(1, -1)}`}>
+                    {/* <p className='text-xs text-black/60'>Whatsapp</p> */}
+                    <p className='text-sm'>
+                      <a target='_blank' className='flex items-center gap-2 w-fit bg-orange p-2 rounded-md text-white pr-2.5' href={`https://wa.me/${business?.phonenumber?.slice(1, -1)}`}>
                         <BsWhatsapp />
-                        +234{business?.phonenumber?.slice(1, -1)}
+                        Chat on Whatsapp
+                        {/* +234{business?.phonenumber?.slice(1, -1)} */}
                       </a>
                     </p>
                 </div>

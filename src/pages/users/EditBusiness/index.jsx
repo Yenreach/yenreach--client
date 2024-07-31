@@ -18,7 +18,8 @@ import Loader from '/src/components/Loader'
 
 
 
-const initialBusinessState = { user_string: "", name: "", description: "", categories: [], phonenumber: "", email: "", state_id: "", lga: "", town: "", address: "", month_started: "", year_started: "", profile_img: "", cover_img: ""}
+const initialBusinessState = { user_string: "", name: "", description: "", categories: [], phonenumber: "", email: "", state_id: "", lga: "", town: "", address: "", month_started: "", year_started: "", profile_img: "", cover_img: "", website: "", whatsapp: "", youtube_link: "", twitter_link: "", linkedin_link: "", instagram_link: "", facebook_link: ""}
+
 const months = [
     {id: "01", name: "January"},
     {id: "02", name: "February"},
@@ -111,39 +112,39 @@ const index = () => {
     <Dashboard>
         {(isLoading || editBusinessMutation?.isLoading) && <Loader loader={4} />}
 
-        <main className='flex-1 overflow-y-scroll overflow-hidden'>
+        <main className='flex-1 overflow-hidden overflow-y-scroll'>
             <Header business_string={id} type="business" />
 
             <section className='p-8 px-4 sm:px-8'>
-                <h1 className='text-xl text-green font-medium mb-5'>Edit your Business profile</h1>
+                <h1 className='mb-5 text-xl font-medium text-green'>Edit your Business profile</h1>
                 {/* <BusinessDetails /> */}
-                <form className='p-8 px-4 sm:px-8 bg-white rounded-2xl' onSubmit={handleSubmit}>
+                <form className='p-8 px-4 bg-white sm:px-8 rounded-2xl' onSubmit={handleSubmit}>
                     <div className='mb-8'>
-                        <label htmlFor="business_name" className='font-medium text-sm'>Business Name</label>
-                        <Input required={true} value={businessData?.name} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="name" id="name" placeholder='Enter your business name' />
+                        <label htmlFor="business_name" className='text-sm font-medium'>Business Name</label>
+                        <Input required={true} value={businessData?.name} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="name" id="name" placeholder='Enter your business name' />
                     </div>
                     <div className='mb-8'>
-                        <label htmlFor="description" className='font-medium text-sm'>Business Description</label>
-                        <Input required={true} value={businessData?.description} onChange={handleBusinessData} textarea name="description" id="description" cols="30" rows="10" className='border-gray rounded-lg' placeholder='Enter your business Discription' />
+                        <label htmlFor="description" className='text-sm font-medium'>Business Description</label>
+                        <Input required={true} value={businessData?.description} onChange={handleBusinessData} textarea name="description" id="description" cols="30" rows="10" className='rounded-lg border-gray' placeholder='Enter your business Discription' />
                     </div>
                     {/* <div className='mb-8'>
-                        <label htmlFor="business_name" className='font-medium text-sm'>Add tags</label>
-                        <Input required={true} value={businessData?.name} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="" id="" placeholder='Add a tag to your business' />
+                        <label htmlFor="business_name" className='text-sm font-medium'>Add tags</label>
+                        <Input required={true} value={businessData?.name} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="" id="" placeholder='Add a tag to your business' />
                     </div> */}
-                    <div className='mb-8 md:flex justify-between gap-9'>
-                        <div className='mb-8 w-full'>
-                            <label htmlFor="business_name" className='font-medium text-sm'>Phone Number</label>
-                            <Input required={true} value={businessData?.phonenumber} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="phonenumber" id="phonenumber" placeholder='Enter your business Phone number' />
+                    <div className='justify-between mb-8 md:flex gap-9'>
+                        <div className='w-full mb-8'>
+                            <label htmlFor="business_name" className='text-sm font-medium'>Phone Number</label>
+                            <Input required={true} value={businessData?.phonenumber} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="phonenumber" id="phonenumber" placeholder='Enter your business Phone number' />
                         </div>
                         <div className='w-full'>
-                            <label htmlFor="business_name" className='font-medium text-sm'>Email Address</label>
-                            <Input required={true} value={businessData?.email} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="email" id="email" placeholder='Enter your business Email Address' />
+                            <label htmlFor="business_name" className='text-sm font-medium'>Email Address</label>
+                            <Input required={true} value={businessData?.email} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="email" id="email" placeholder='Enter your business Email Address' />
                         </div>
                     </div>
-                    <div className='mb-8 md:flex justify-between gap-9'>
+                    <div className='justify-between mb-8 md:flex gap-9'>
                         <div className='w-full mb-8'>
-                            <label htmlFor="state_id" className='font-medium text-sm'>State</label>
-                            <select value={businessData?.state_id} onChange={(e) => setStateId(e.target.value)} required className='w-full border-2 outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-green cursor-pointer rounded-lg' name="state_id" id="state_id" placeholder='Enter state'>
+                            <label htmlFor="state_id" className='text-sm font-medium'>State</label>
+                            <select value={businessData?.state_id} onChange={(e) => setStateId(e.target.value)} required className='w-full px-4 py-3 border-2 rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="state_id" id="state_id" placeholder='Enter state'>
                                 <option value="">Enter State</option>
                                 {states?.map((state) => (
                                     <option key={state.id} value={state.id}>{state.name}</option>
@@ -151,8 +152,8 @@ const index = () => {
                             </select>
                         </div>
                         <div className='w-full mb-8'>
-                            <label htmlFor="lga" className='font-medium text-sm'>LGA</label>
-                            <select value={businessData?.lga} onChange={handleBusinessData} className='w-full border-2 outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-green cursor-pointer rounded-lg' name="lga" id="lga" placeholder='Enter LGA'>
+                            <label htmlFor="lga" className='text-sm font-medium'>LGA</label>
+                            <select value={businessData?.lga} onChange={handleBusinessData} className='w-full px-4 py-3 border-2 rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="lga" id="lga" placeholder='Enter LGA'>
                                 <option value="">Enter LGA</option>
                                 {filteredLgas?.map((lga) => (
                                     <option key={lga.id} value={lga.name}>{lga.name}</option>
@@ -160,30 +161,67 @@ const index = () => {
                             </select>
                         </div>
                         <div className='w-full '>
-                            <label htmlFor="town" className='font-medium text-sm'>City/Town</label>
-                            <Input required={true} value={businessData?.town} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="town" id="town" placeholder='Enter city' />
+                            <label htmlFor="town" className='text-sm font-medium'>City/Town</label>
+                            <Input required={true} value={businessData?.town} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="town" id="town" placeholder='Enter city' />
                         </div>
                     </div>
                     <div className='mb-8'>
-                        <label htmlFor="address" className='font-medium text-sm'>Business Address</label>
-                        <Input required={true} value={businessData?.address} onChange={handleBusinessData} className='border-gray rounded-lg' type="text" name="address" id="address" placeholder='Enter your business Address' />
+                        <label htmlFor="address" className='text-sm font-medium'>Business Address</label>
+                        <Input required={true} value={businessData?.address} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="address" id="address" placeholder='Enter your business Address' />
                     </div>
-                    <div className='mb-8 md:flex justify-between gap-9'>
-                        <div className='w-full mb-8'>
-                            <label htmlFor="month_started" className='font-medium text-sm'>Business start month</label>
-                            <select required value={businessData?.month_started} onChange={handleBusinessData} className='w-full border-2 outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-green cursor-pointer rounded-lg' name="month_started" id="month_started" placeholder='Enter your business start Month'>
+                    <div className='justify-between mb-8 md:flex gap-9'>
+                        <div className='w-full'>
+                            <label htmlFor="month_started" className='text-sm font-medium'>Business start month</label>
+                            <select value={businessData?.month_started} onChange={handleBusinessData} className='w-full px-4 py-3 border-2 rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="month_started" id="month_started" placeholder='Enter your business start Month'>
                                 <option value="">Enter your business start Month</option>
                                 {months?.map((month) => (
                                     <option key={month.id} value={month.id}>{month.name}</option>
                                 ))}
                             </select>
                         </div>
-                        <div className='w-full '>
-                            <label htmlFor="year_started" className='font-medium text-sm'>Business start year</label>
-                            <Input required={true} value={businessData?.year_started} onChange={handleBusinessData} className='border-gray rounded-lg' type="number" name="year_started" id="year_started" placeholder='Enter your business start Year' />
+                        <div className='w-full'>
+                            <label htmlFor="year_started" className='text-sm font-medium'>Business start year</label>
+                            <Input value={businessData?.year_started} onChange={handleBusinessData} className='rounded-lg border-gray' type="number" name="year_started" id="year_started" placeholder='Enter your business start Year' />
                         </div>
                     </div>
-                    <Button type="submit" className='p-3 w-full flex justify-center'>
+                    <>
+                        <div className='justify-between mb-8 md:flex gap-9'>
+                            <div className='w-full'>
+                                <label htmlFor="whatsapp" className='text-sm font-medium'>Whatsapp</label>
+                                <Input value={businessData?.whatsapp} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="whatsapp" id="whatsapp" placeholder='+234 90 *** *****' />
+                            </div>
+                            <div className='w-full'>
+                                <label htmlFor="facebook_link" className='text-sm font-medium'>Facebook link</label>
+                                <Input value={businessData?.facebook_link} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="facebook_link" id="facebook_link" placeholder='Enter your facebook link' />
+                            </div>
+                        </div>
+                        <div className='justify-between mb-8 md:flex gap-9'>
+                            <div className='w-full'>
+                                <label htmlFor="twitter_link" className='text-sm font-medium'>Twitter Link</label>
+                                <Input value={businessData?.twitter_link} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="twitter_link" id="twitter_link" placeholder='Enter your twitter link' />
+                            </div>
+                            <div className='w-full'>
+                                <label htmlFor="linkedin_link" className='text-sm font-medium'>Linkedin Link</label>
+                                <Input value={businessData?.linkedin_link} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="linkedin_link" id="linkedin_link" placeholder='Enter your linkedin link' />
+                            </div>
+                        </div>
+                        <div className='justify-between mb-8 md:flex gap-9'>
+                            <div className='w-full'>
+                                <label htmlFor="youtube_link" className='text-sm font-medium'>Youtube Link</label>
+                                <Input value={businessData?.youtube_link} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="youtube_link" id="youtube_link" placeholder='Enter your youtube link' />
+                            </div>
+                            
+                            <div className='w-full'>
+                                <label htmlFor="instagram_link" className='text-sm font-medium'>Instagram link</label>
+                                <Input value={businessData?.instagram_link} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="instagram_link" id="instagram_link" placeholder='Enter your instagram link' />
+                            </div>
+                        </div>
+                        <div className='w-full mb-8'>
+                            <label htmlFor="website" className='text-sm font-medium'>Website</label>
+                            <Input value={businessData?.website} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="website" id="website" placeholder='Enter your website' />
+                        </div>
+                    </>
+                    <Button type="submit" className='flex justify-center w-full p-3'>
                         Save changes
                     </Button>
                 </form>
