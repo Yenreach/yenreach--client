@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import Header from '/src/components/Header'
 import Footer from '/src/components/Footer'
-import Product from '/src/components/Product'
-import Business from '/src/components/Business'
-import Jobs from '/src/components/Jobs'
 import ExploreNav from '/src/components/ExploreNav'
-
 import useFetch from '/src/hooks/useFetch'
 import { apiGetAllJobs } from '/src/services/JobService'
 import Location from '/src/assets/location.svg'
@@ -18,8 +14,6 @@ import Button from '/src/components/ui/Button'
 import Input from '/src/components/ui/Input'
 import Search from '/src/assets/search.svg'
 import ReactGA from "react-ga4";
-
-
 
 
 const index = () => {
@@ -82,6 +76,8 @@ const index = () => {
     select: (data) => data,
     key: ['jobs', page, filter],
   })
+
+  // console.log({ jobs })
 
   const handleFilterChange = (e) => {
     e.preventDefault()

@@ -111,10 +111,10 @@ const WorkingHours = () => {
     key: ['pageVisits', id],
   })
   
-  const { data: userCategories } = useFetch({
+  const { data: businessCategories } = useFetch({
     api: apiGetBusinessCategories,
     param: id,
-    key: ['userCategories', id],
+    key: ['businessCategories', id],
   })
   
   const { error: subscriptionError, data: subscription } = useFetch({
@@ -237,7 +237,7 @@ const WorkingHours = () => {
                   {business?.description}
                 </p>
                 <div className='flex flex-wrap items-center gap-3 mb-16 text-xsm text-green md:w-7/8'>
-                  {userCategories?.map(category =><span key={category.id} className='bg-[#E0E5EE] px-4 py-2 font-medium whitespace-nowrap'>{category.category}</span>)}
+                  {businessCategories?.map(category =><span key={category.id} className='bg-[#E0E5EE] px-4 py-2 font-medium whitespace-nowrap'>{category.category}</span>)}
                   </div>
               </div>
               <div className='mb-11'>
