@@ -46,7 +46,7 @@ const index = () => {
                 <span className='w-10 h-10 rounded-full bg-gray'></span>
                 <div className='flex gap-1 flex-col'>
                     <span className='font-semibold'>{blog?.author}</span>
-                    <p>12 minht . 5 min read</p>
+                    <p>6 - 12 mins read</p>
                 </div>
             </div>
             <div className='flex items-center gap-2'>
