@@ -100,7 +100,7 @@ const index = ({ businesses }) => {
   }
 
   return (
-    <div className='carousel mt-20 bg-[url("assets/heo.svg")] lg:h-screen bg-cover bg-center text-white relative min-h-[200px]'>
+    <div className='carousel top bg-[url("assets/heo.svg")] lg:h-screen bg-cover bg-center text-white relative min-h-[200px]'>
       <div ref={carouselRef} className="absolute top-0 left-0 w-full h-full carousel -z-10">
         {carouselData.map((item, index) => (
           <div ref={(el) => (carouselInnerRef.current[index] = el)} key={item.id} className="absolute w-full h-full carousel-item active">

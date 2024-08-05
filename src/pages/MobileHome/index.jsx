@@ -1,24 +1,13 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
 import { apiBusinessOfTheWeek, apiGetApprovedBusinesses } from '../../services/CommonService'
-import getData from '../../utils/getData'
-import MobileHeader from '/src/components/MobileHeader'
-import Footer from '../../components/Footer'
 import MobileHero from '../../components/MobileHero'
 import MobileCategory from '../../components/MobileCategory'
-import Trustees from '../../components/Trustees'
-import Accordion from '../../components/Accordion'
 import Billboard from '../../components/Billboard'
-import AllHere from '../../assets/businesses/all-here.svg'
-import AllHereJ from '../../assets/jobs/all-here.svg'
-import AllHereP from '../../assets/products/all-here.svg'
-import BusOfTheWeek from '../../assets/bus_of_the_week.svg'
 import Button from '../../components/ui/Button'
-import Loader from '/src/components/Loader'
 import useFetch from '/src/hooks/useFetch'
-import Error from '../../components/Error'
-import Image from '/src/components/Image';
+import Header from '../../components/Header';
+import Accordion from '../../components/Accordion'
 
 
 const MobileHome = () => {
@@ -41,7 +30,7 @@ const MobileHome = () => {
   return (
     <div className='w-full overflow-hidden'>
         {/* <Error /> */}
-        <MobileHeader />
+        <Header />
         <MobileHero businesses={aprrovedBusinesses} />
         {/* <Trustees /> */}
         <MobileCategory />
@@ -140,10 +129,17 @@ const MobileHome = () => {
         <section className='w-screen px-4 overflow-hidden md:px-10 lg:px-24'>
             <Billboard />
         </section>
-        {/* <section className='px-4 py-12 sm:px-20 md:px-32 lg:px-64 mb-11'>
-            <h2 className='text-lg font-medium text-center text-green'>Frequently asked questions</h2>
-            <Accordion />
-        </section> */}
+        <div className='bg-[url("assets/audience.svg")] h-64 md:h-60 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-12 px-4 sm:px-12 md:px-24'>     
+            <div className='flex flex-col items-center gap-5'>
+                <h2 className='text-lg font-medium text-center md:text-xl'>Get your business to the right audience</h2>
+                <span className='text-sm'>It's Totally free</span>
+            </div>
+            <Link to="/users">
+                <Button className='px-12 py-3 rounded'>
+                    Add my business
+                </Button>
+            </Link>
+        </div>
         {/* <Footer /> */}
     </div>
   )

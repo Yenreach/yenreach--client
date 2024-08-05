@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-function Button({ to, variant, inverse, className, override, children, type, onClickFunc, ...rest }) {
+function Button({ to, variant, inverse, className, override, resetSize, children, type, onClickFunc, ...rest }) {
   const [effect, setEffect] = useState(false);
   const styles = (variant, inverse, className, override, effect) => clsx(
     className,
     
-    ['text-center text-xs'], 
+    [resetSize ? '' : 'text-center text-xs'], 
     // Products/Marketplace
     variant === 'product'
       ? !override && [ inverse && 'rounded-full flex items-center gap-0.5 py-2 md:px-10 font-bold text-orange',
@@ -52,6 +52,7 @@ function Button({ to, variant, inverse, className, override, children, type, onC
 
 Button.defaultProps = {
   to: '',
+  resetSize: false,
   variant: 'business',
   inverse: false,
   className: '',
@@ -67,6 +68,7 @@ Button.propTypes = {
   inverse: PropTypes.bool,
   className: PropTypes.string,
   override: PropTypes.bool,
+  resetSize: PropTypes.bool,
   type: PropTypes.string,
   onClickFunc: PropTypes.func
 };

@@ -2,8 +2,6 @@ import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { BiMenu } from 'react-icons/bi'
 import { MdOutlineClose } from 'react-icons/md'
-import Logo from "../../assets/logo.svg"
-import Menu from "../../assets/menu.svg"
 import Button from '../ui/Button'
 import { useAuthContext } from "/src/hooks/useAuthContext"
 
