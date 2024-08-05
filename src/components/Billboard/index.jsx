@@ -6,8 +6,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import Computer from '/src/assets/computer.svg'
-import DECImg from '/src/assets/DEC_Image.jpg'
-import LogoImg from '/src/assets/LOGO_4491659091525.jpg'
 import AdsImg from '/src/assets/adsimage.jpg'
 import EmitImg from '/src/assets/emite.png'
 import TecImg from '/src/assets/tec.jpg'
@@ -262,9 +260,9 @@ const Billboard = () => {
                                     )
                                 }
                             </div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-pagination"></div>
+                            <div className="swiper-button-prev"></div>
+                            <div className="swiper-button-next"></div>
+                            <div className="swiper-pagination"></div>
                         </div>
                     }
                 </div>

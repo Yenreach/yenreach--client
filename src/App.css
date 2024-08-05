@@ -26,7 +26,7 @@ input[type="date"]::-webkit-calendar-picker-indicator .date-picker {
 }
 
 .top {
-  margin-top: 48px;
+  margin-top: 58px;
 }
 @media only screen and (min-width:768px) {
   .top {
