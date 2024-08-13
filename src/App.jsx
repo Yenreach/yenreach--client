@@ -73,7 +73,6 @@ function App() {
   return (
     <Router>
       <main className="App">
-      <HelmetProvider></HelmetProvider>
         <ScrollToTop>
           <Routes>
             <Route exact path="/" element={<Home />} />
