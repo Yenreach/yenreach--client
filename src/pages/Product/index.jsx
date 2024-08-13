@@ -80,7 +80,7 @@ const Product = () => {
             </section>
             <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 mb-8 flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-12 h-[400px] overflow-hidden'>
                 <div className='relative flex-1 w-full h-full overflow-hidden bg-gray-light'>
-                    <img onClick={() => handleImageClick(product?.photos[0]?.filename)} src={product?.photos[0]?.filename} alt="" className='object-cover w-full h-full cursor-pointer' />
+                    <img onClick={() => handleImageClick(product?.photos[0]?.filename)} src={product?.photos[0]?.filename} alt="Product" className='object-cover w-full h-full cursor-pointer' />
                     {`click to view image`}
                     <span
                       onClick={() => handleImageClick(product?.photos[0]?.filename)}
@@ -154,7 +154,7 @@ const Product = () => {
                   <div className='flex flex-wrap gap-4 md:flex-row md:gap-8 lg:gap-12'>
                   {product?.photos.slice(1)?.map((photo) => (
                       <div key={photo?.filename} className='relative overflow-hidden rounded-lg bg-gray w-36 h-36'>
-                          <img src={photo?.filename} alt="" className='object-cover w-full h-full' />
+                          <img src={photo?.filename} alt="Products" className='object-cover w-full h-full' />
                           <span
                             onClick={() => handleImageClick(photo?.filename)}
                             className='absolute bottom-0 left-0 flex items-center justify-center w-full h-8 text-xs text-white cursor-pointer bg-black/50'

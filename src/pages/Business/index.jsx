@@ -189,7 +189,7 @@ const index = () => {
                   <div className='flex items-center gap-0.5'>
                     {
                       [...Array(Math.round(reviewsStats?.average)).keys()].map((el) => (
-                        <img src={StarFilled} alt="" className='w-3 xs:w-4 md:w-5' />
+                        <img src={StarFilled} alt="Star" className='w-3 xs:w-4 md:w-5' />
                       ))
 
                     }
@@ -236,7 +236,7 @@ const index = () => {
                       </span>
                       <CiLocationOn className='text-lg' />
                     </span>
-                    <img src={Map} alt="" className='object-cover object-center w-full' />
+                    <img src={Map} alt="Location" className='object-cover object-center w-full' />
                   </div>
                 </div>
               </div>
@@ -244,7 +244,7 @@ const index = () => {
               <div className='flex flex-wrap gap-4 mb-10'>
                 {business?.photos?.length ? business?.photos?.map((photo, index) => 
                       <div key={index} className='relative overflow-hidden rounded-lg bg-gray w-36 h-36'>
-                        <img src={photo?.filepath} alt="" className='object-cover w-full h-full' />
+                        <img src={photo?.filepath} alt="Business Photos" className='object-cover w-full h-full' />
                         <span
                             onClick={() => handleImageClick(photo?.filepath)}
                             className='absolute bottom-0 left-0 flex items-center justify-center w-full h-8 text-xs text-white cursor-pointer bg-black/50'
@@ -264,7 +264,7 @@ const index = () => {
               <div className='flex flex-wrap gap-4 mb-10'>
               {products?.length ? products?.map((product, index) => 
                      <div key={index} className='relative overflow-hidden rounded-lg bg-gray w-36 h-36'>
-                     <img src={product?.photos[0]?.filename} alt="" className='object-cover w-full h-full' />
+                     <img src={product?.photos[0]?.filename} alt="Product Photos" className='object-cover w-full h-full' />
                      <span
                          onClick={() => handleImageClick(product?.photos[0]?.filename)}
                          className='absolute bottom-0 left-0 flex items-center justify-center w-full h-8 text-xs text-white cursor-pointer bg-black/50'
@@ -304,7 +304,7 @@ const index = () => {
                     {reviews?.map((review, index) => 
                       <div key={index} className='border-2 border-black/10 rounded-xl p-5 px-5 bg-green2 text-white min-w-[250px] max-w-[300px] overflow-hidden'>
                         <div className='flex items-center gap-2 mb-3'>
-                          <img src={Star} alt="" />
+                          <img src={Star} alt="Star" />
                           <span className='text-sm'>{review.user}</span>
                         </div>
                         <p className='text-white text-xsm'>

@@ -70,7 +70,7 @@ const Home = () => {
                 </Link>
             </div>
             <div className='flex flex-col mb-20 sm:items-center md:mb-32 sm:flex-row gap-9'>
-                <img src={AllHere} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
+                <img src={AllHere} alt="Businesses" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
                 <div className='flex flex-col items-start gap-12 max-w-[450px]'>
                     <h3 className='text-xl font-medium text-green'>Learn and Explore our business listings</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
@@ -108,10 +108,10 @@ const Home = () => {
                         </Button>
                     </Link>
                 </div>
-                <img src={AllHereJ} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
+                <img src={AllHereJ} alt="Jobs" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
             </div>
             <div className='flex flex-col sm:items-center sm:flex-row gap-9'>
-                <img src={AllHereP} alt="" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
+                <img src={AllHereP} alt="Products" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
                 <div className='flex flex-col items-start gap-12 max-w-[450px]'>
                     <h3 className='text-xl font-medium text-orange'>Learn about the yenreach marketplace</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
