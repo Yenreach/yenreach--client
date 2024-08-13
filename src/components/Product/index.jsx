@@ -10,6 +10,7 @@ import { paginate } from '../../utils/pagination'
 import Button from '../ui/Button'
 import Input from '../ui/Input'
 import Search from '/src/assets/search.svg'
+import SEO from '../SEO'
 
 
 const Products = ({ page: initialPage, num_per_page }) => {
@@ -69,6 +70,12 @@ const Products = ({ page: initialPage, num_per_page }) => {
   return (
     <>        
       {(isLoading || filteredProductsLoading) && <Loader loader={4} />}
+      <SEO
+          title="Explore Products - Yenreach"
+          description="Explore a diverse range of products available on Yenreach. Search by category, brand, or location to find what you need."
+          name="Yenreach"
+          type="products"
+      />
       <div className='flex items-center justify-center w-full gap-10'>
         <p className='font-medium text-black/70 text-xs md:text-sm'>Currently Exploring products in</p>
         <div className="flex items-center justify-center gap-2 px-4 py-2 bg-orange-light">

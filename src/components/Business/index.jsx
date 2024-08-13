@@ -11,6 +11,7 @@ import Search from '/src/assets/search.svg'
 import BusinessCard, { BusinessCardLoading } from '../ui/BusinessCard'
 import Location from '../../assets/location.svg'
 import Pagination from '../Pagination'
+import SEO from '../SEO'
 
 const staleTime = 1000 * 60 * 60 * 24
 
@@ -116,6 +117,12 @@ const index = ({ page: initialPage, num_per_page }) => {
 
   return (
     <>
+    <SEO
+        title="Explore Businesses - Yenreach"
+        description="Browse and discover a wide range of businesses across various categories on Yenreach. Find local services, shops, and more."
+        name="Yenreach"
+        type="businesses"
+    />
       {((enabled && filteredBusinessesLoading)) && <Loader loader={4} />}
       {/* {((!enabled && aprrovedBusinessesLoading) || (enabled && filteredBusinessesLoading)) && <Loader loader={4} />} */}
       {/* {enabled && filteredBusinessesLoading && <Loader loader={4} />} */}

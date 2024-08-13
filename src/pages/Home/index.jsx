@@ -20,6 +20,7 @@ import useFetch from '/src/hooks/useFetch'
 import Error from '../../components/Error'
 import Image from '/src/components/Image';
 import ReactGA from "react-ga4";
+import SEO from '../../components/SEO'
 
 
 
@@ -45,6 +46,12 @@ const Home = () => {
 
   return (
     <div className='w-full overflow-hidden'>
+        <SEO
+            title="Yenreach: Find Businesses, Products, and Jobs"
+            description="Discover a platform where you can find or add businesses, products, and jobs all in one place. Yenreach connects you with the best opportunities and services."
+            name="Yenreach"
+            type="website"
+        />
         {/* <Error /> */}
         <Header />
         <Hero businesses={aprrovedBusinesses} />

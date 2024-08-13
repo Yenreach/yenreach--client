@@ -47,7 +47,6 @@ import ReactGA from "react-ga4";
 import WorkingHours from './pages/users/Business/WorkingHours';
 
 
-
 // CapactiorApp.addListener('appStateChange', ({ isActive }) => {
 //   console.log('App state changed. Is active?', isActive);
 // });
@@ -74,6 +73,7 @@ function App() {
   return (
     <Router>
       <main className="App">
+      <HelmetProvider></HelmetProvider>
         <ScrollToTop>
           <Routes>
             <Route exact path="/" element={<Home />} />
