@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { apiGetApprovedBusinesses, apiGetFilledCategories, apiGetBusinessStates, apiBusinessSearch } from '../../services/CommonService'
+import { apiGetApprovedBusinesses, apiGetFilledCategories, apiGetBusinessStates, apiBusinessSearch, apiSortBusinesses, apiGetAllCategories } from '../../services/CommonService'
 import useFetch from '/src/hooks/useFetch'
 import usePost from '/src/hooks/usePost'
 import { paginate } from '../../utils/pagination'
@@ -18,12 +18,18 @@ const staleTime = 1000 * 60 * 60 * 24
 const index = ({ page: initialPage, num_per_page }) => {
   const [page, setPage] = useState(initialPage || 1)
   const [search, setSearch] = useState('')
+  const [filter, setFilter] = useState("")
+  const [useFilter, setUseFilter] = useState(false)
+  const [filterBy, setFilterBy] = useState('')
   const [location, setLocation] = useState('')
   const [searchQuery, setSearchQuery] = useState({ search: '', location: '' })
   const [enabled, setEnabled] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams();
   const searchString = searchParams.get('search')
   const searchLocation = searchParams.get('location')
+
+  // console.log({ useFilter })
+
   // const [filteredBusiness, setFilteredBusiness] = useState([])
   // const [filteredBusinessesLoading, setFilteredBusinessesLoading] = useState(false)
 
@@ -53,6 +59,7 @@ const index = ({ page: initialPage, num_per_page }) => {
 
   const handleSearch = (e) => {
     e.preventDefault()
+    setUseFilter(false)
     setSearchQuery({ search, location })
     if (!enabled) {
       setEnabled(true)
@@ -79,8 +86,15 @@ const index = ({ page: initialPage, num_per_page }) => {
     select: (data) => data,
     staleTime: staleTime,
   })
-
-  // console.log(1 ? 'love' : 'hate')
+  
+  
+  const { data: sortedBusinesses, error: errorSortedBusinesses, isLoading: sortBusinessesLoading }  = useFetch({
+    api: apiSortBusinesses,
+    param: { page, num_per_page, sort: filterBy },
+    select: (data) => data,
+    key: ['sortedBusinesses', page, filterBy],
+    enabled: !!filterBy,
+  })
 
   const { data: filteredBusiness, error: errorFilteredBusinesses, refetch, isLoading: filteredBusinessesLoading } = useFetch({
     api: apiBusinessSearch,
@@ -90,8 +104,10 @@ const index = ({ page: initialPage, num_per_page }) => {
     enabled: enabled,
   })
 
-
-
+  const { isLoading, error, data: categories } = useFetch({
+    api: apiGetAllCategories,
+    key: ['categories'],
+  })
   
   const { data: filledCategories, error: errorFilledCategories } = useFetch({
     api: apiGetFilledCategories,
@@ -114,6 +130,15 @@ const index = ({ page: initialPage, num_per_page }) => {
   });
   }
 
+  
+  useEffect(() => {
+    if (filterBy) {
+      setUseFilter(true)
+    } else {
+      setUseFilter(false)
+    }
+  }, [filterBy])
+
 
   return (
     <>
@@ -123,7 +148,7 @@ const index = ({ page: initialPage, num_per_page }) => {
         name="Yenreach"
         type="businesses"
     />
-      {((enabled && filteredBusinessesLoading)) && <Loader loader={4} />}
+      {(isLoading || filteredBusinessesLoading || sortBusinessesLoading) && <Loader loader={4} />}
       {/* {((!enabled && aprrovedBusinessesLoading) || (enabled && filteredBusinessesLoading)) && <Loader loader={4} />} */}
       {/* {enabled && filteredBusinessesLoading && <Loader loader={4} />} */}
 			<div className='flex items-center justify-center w-full gap-10'>
@@ -133,36 +158,52 @@ const index = ({ page: initialPage, num_per_page }) => {
 					<span className='font-medium text-smm'>Bayelsa, Yenegoa</span>
 				</div>
 			</div>
-      <form action="" method="post" onSubmit={handleSearch} className="text-xs sm:text-sm md:text-base flex">
-        <Input onChange={(e) => setSearch(e.target.value)} value={search} list="categories" name="category" id="category" placeholder='business' className='rounded-tl-md rounded-bl-md' />
-      <datalist className='' name="categories" id="categories" placeholder='Enter state'>
-          {filledCategories?.map((category) => (
-              <option key={category.id} value={category.name}>{category.name}</option>
-          ))}
-      </datalist>
-			<Input onChange={(e) => setLocation(e.target.value)} value={location} list="location" name="locate" id="locate" placeholder='location' className='border-l-0 border-r-0' />
-      <datalist className='' name="location" id="location" placeholder='Enter Loac'>
-          {businessStates?.map((state) => (
-              <option key={state.id} value={state.name}>{state.name}</option>
-          ))}
-      </datalist>
-			<Button type="submit" variant='business' className='px-4 py-4 rounded-tr-md rounded-br-md'>
-				<img src={Search} alt="search icon" className='w-12' />
-			</Button>
-		</form>
-			{/* <SearchBar variant='business' /> */}
-      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {(aprrovedBusinesses || filteredBusiness) ? paginate({ page, num_per_page, data: enabled && filteredBusiness?.data?.slice((page-1) * num_per_page, page * num_per_page) || aprrovedBusinesses?.data })?.data?.map((business) => (
-          <BusinessCard key={business.id} business={business} />
-        ))
-        :
-        (
-          [...Array(40)].map((business, index) => (
-              <BusinessCardLoading key={index} />
-          ))
-        )
-      }
+      <div className="flex flex-col gap-1 md:gap-4 md:flex-row">
+        <form action="" method="post" onSubmit={handleSearch} className="text-xs sm:text-sm md:text-base flex">
+          <Input onChange={(e) => setSearch(e.target.value)} value={search} list="categories" name="category" id="category" placeholder='business' className='rounded-tl-md rounded-bl-md' />
+          <datalist className='' name="categories" id="categories" placeholder='Enter state'>
+              {filledCategories?.map((category) => (
+                  <option key={category.id} value={category.name}>{category.name}</option>
+              ))}
+          </datalist>
+          <Input onChange={(e) => setLocation(e.target.value)} value={location} list="location" name="locate" id="locate" placeholder='location' className='border-l-0 border-r-0' />
+          <datalist className='' name="location" id="location" placeholder='Enter Loac'>
+              {businessStates?.map((state) => (
+                  <option key={state.id} value={state.name}>{state.name}</option>
+              ))}
+          </datalist>
+          <Button type="submit" variant='business' className='px-4 py-4 rounded-tr-md rounded-br-md'>
+            <img src={Search} alt="search icon" className='w-12' />
+          </Button>
+        </form>
+        <select className='p-2 text-base border-2 rounded-md cursor-pointer border-green hover:border-green focus:border-green focus:border-green text-black w-full md:w-32 text-black/50 active:border-green ' value={filterBy} onChange={(e) => setFilterBy(e.target.value)} name="filter" id="">
+            <option value="" className=''>Filter By</option>
+            {categories?.map((category) => (
+                <option key={category.id} value={category.category}>{category.category}</option>
+            ))}
+        </select>
       </div>
+			{/* <SearchBar variant='business' /> */}
+      {(useFilter ? sortedBusinesses?.data?.length : aprrovedBusinesses?.data?.length) ?
+          <>
+          <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {((aprrovedBusinesses || filteredBusiness)) ? paginate({ page, num_per_page, data: useFilter ? sortedBusinesses?.data : enabled ? filteredBusiness?.data?.slice((page-1) * num_per_page, page * num_per_page) : aprrovedBusinesses?.data })?.data?.map((business) => (
+                  <BusinessCard key={business.id} business={business} />
+                ))
+                :
+                (
+                  [...Array(40)].map((business, index) => (
+                      <BusinessCardLoading key={index} />
+                  ))
+                )
+              }
+          </div>
+          </>
+          :
+          <div className='flex w-full items-center justify-center h-24 text-black/70'>
+            No Business Available for this search
+          </div>
+          }
       {/* <div className="grid w-full py-6 text-xl font-extrabold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
         New Job Listings available       
       </div> */}
@@ -174,9 +215,9 @@ const index = ({ page: initialPage, num_per_page }) => {
       <Pagination 
         page={page} 
         num_per_page={num_per_page} 
-        data={enabled && filteredBusiness?.data || aprrovedBusinesses?.data} 
+        data={useFilter ? sortedBusinesses?.data : enabled ? filteredBusiness?.data : aprrovedBusinesses?.data} 
         handlePageChange={handlePageChange} 
-        total={enabled && filteredBusiness?.data?.length || aprrovedBusinesses?.total} 
+        total={useFilter ? sortedBusinesses?.data : enabled ? filteredBusiness?.data?.length : aprrovedBusinesses?.total} 
       />
     </>
   )

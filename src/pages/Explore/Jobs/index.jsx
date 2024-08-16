@@ -14,9 +14,10 @@ import Button from '/src/components/ui/Button'
 import Input from '/src/components/ui/Input'
 import Search from '/src/assets/search.svg'
 import ReactGA from "react-ga4";
+import SEO from '../../../components/SEO'
 
 
-const index = () => {
+const ExploreJobs = () => {
   ReactGA.send({ hitType: "pageview", page: "/explore/jobs", title: "Explore Jobs View" });
 
   const [activeTab, setActiveTab] = useState('business');
@@ -98,6 +99,12 @@ const index = () => {
 
   return (
     <div className='relative w-full'>
+        <SEO
+          title="Explore Jobs - Yenreach"
+          description="Find job opportunities across various industries and locations on Yenreach. Browse listings, filter by category, and apply for your next job."
+          name="Yenreach"
+          type="jobs"
+        />
         <Header />
         <ExploreNav activeTab={activeTab} setActiveTab={setActiveTab} />
         <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-5 md:px-5 lg:py-20 lg:px-20">
@@ -131,4 +138,4 @@ const index = () => {
   )
 }   
 
-export default index
+export default ExploreJobs

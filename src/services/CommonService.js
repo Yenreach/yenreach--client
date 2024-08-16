@@ -1,4 +1,5 @@
 import ApiAdapter from "./ApiService"
+import BaseService from "./BaseService"
 
 const servicePrefix = "/"
 const serviceSuffix = ".php"
@@ -55,7 +56,6 @@ export const apiBillboards =  () => {
 }
 
 /* Explore */
-
 export const apiGetApprovedBusinesses =  (query) => {
     // console.log({ query })
     return ApiAdapter.fetchData({
@@ -63,6 +63,15 @@ export const apiGetApprovedBusinesses =  (query) => {
         method: "get"    
     })
 }
+
+/* Sort Businesses */
+export const apiSortBusinesses = (query) => {
+    return ApiAdapter.fetchData({
+        url: servicePrefix + "sort_active_business_api" + serviceSuffix + `?perPage=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}&sort=${query?.sort}`,
+        method: "get",  
+    })
+}
+
 
 export const apiGetFilledCategories =  () => {
     return ApiAdapter.fetchData({

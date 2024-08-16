@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import ProductCard from '../ui/ProductCard'
 import Loader from '../Loader'
 import useFetch from '/src/hooks/useFetch'
-import SearchBar from '../ui/SearchBar'
 import Location from '../../assets/location.svg'
 import Pagination from '../Pagination'
 import { apiGetAllProducts } from '../../services/ProductService'
@@ -23,7 +22,6 @@ const Products = ({ page: initialPage, num_per_page }) => {
 
   const handleFilter = (e) => {
     e.preventDefault()
-    console.log("SEARCHING", search)
     setFilteredProductsLoading(true)
     const value = search
     const filtered = products?.data?.filter((item) => {
@@ -54,9 +52,6 @@ const Products = ({ page: initialPage, num_per_page }) => {
     key: ['products', page],
   })
 
-
-  console.log({ products })
-
   const handlePageChange = (page) => {
       setPage(page)
       window.scrollTo({
@@ -71,10 +66,10 @@ const Products = ({ page: initialPage, num_per_page }) => {
     <>        
       {(isLoading || filteredProductsLoading) && <Loader loader={4} />}
       <SEO
-          title="Explore Products - Yenreach"
-          description="Explore a diverse range of products available on Yenreach. Search by category, brand, or location to find what you need."
-          name="Yenreach"
-          type="products"
+        title="Explore Products - Yenreach"
+        description="Explore a diverse range of products available on Yenreach. Search by category, brand, or location to find what you need."
+        name="Yenreach"
+        type="products"
       />
       <div className='flex items-center justify-center w-full gap-10'>
         <p className='font-medium text-black/70 text-xs md:text-sm'>Currently Exploring products in</p>

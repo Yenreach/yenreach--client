@@ -15,6 +15,7 @@ import Button from '/src/components/ui/Button'
 import Input from '/src/components/ui/Input'
 import Search from '/src/assets/search.svg'
 import ReactGA from "react-ga4";
+import SEO from '../../../components/SEO'
 
 
 const categories = [
@@ -49,7 +50,7 @@ const ExploreProducts = () => {
   const [filteredProductsLoading, setFilteredProductsLoading] = useState(false)
   const [filterBy, setFilterBy] = useState('')
 
-  const handleFilterChange = (e) => {
+  const handleFilter = (e) => {
     e.preventDefault()
     setUseFilter(false)
     setFilter(search)
@@ -124,6 +125,12 @@ const ExploreProducts = () => {
 
   return (
     <div className='relative w-full'>
+        <SEO
+          title="Explore Products - Yenreach"
+          description="Explore a diverse range of products available on Yenreach. Search by category, brand, or location to find what you need."
+          name="Yenreach"
+          type="products"
+        />
         <Header />
         <ExploreNav activeTab={activeTab} setActiveTab={setActiveTab} />
         <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-5 md:px-5 lg:py-20 lg:px-20">
@@ -137,7 +144,7 @@ const ExploreProducts = () => {
         </div>
       </div>
       <div className="flex flex-col gap-1 md:gap-4 md:flex-row">
-        <form action="" onSubmit={handleFilterChange} method="post" className='flex'>
+        <form action="" onSubmit={handleFilter} method="post" className='flex'>
           <Input onChange={(e) => setSearch(e.target.value)} value={search} variant='product' type="text" name="product" id="product" placeholder='product' className='rounded-tl-md rounded-bl-md' />
           <Input onChange={(e) => setLocation(e.target.value)} value={location} variant='product' type="text" name="location" id="location" placeholder='location' className='border-l-0 border-r-0' />
           <Button type="submit" variant='product' className='px-4 py-4 rounded-tr-md rounded-br-md'>
@@ -149,7 +156,7 @@ const ExploreProducts = () => {
             {categories.map((category) => (
               <option key={category.name} value={category.name}>{category.name}</option>
             ))}
-          </select>
+        </select>
       </div>
       {/* <div className="w-full bg-[url('assets/new-job-listing.svg')] text-white rounded-2xl font-semibold text-xl grid place-items-center bg-cover bg-center py-6">
         New Job Listings available       
