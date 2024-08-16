@@ -28,35 +28,6 @@ const index = ({ page: initialPage, num_per_page }) => {
   const searchString = searchParams.get('search')
   const searchLocation = searchParams.get('location')
 
-  // console.log({ useFilter })
-
-  // const [filteredBusiness, setFilteredBusiness] = useState([])
-  // const [filteredBusinessesLoading, setFilteredBusinessesLoading] = useState(false)
-
-  // const handleFilter = (e) => {
-  //   e.preventDefault()
-  //   console.log("SEARCHING", search)
-  //   setFilteredBusinessesLoading(true)
-  //   const value = search
-  //   const filtered = aprrovedBusinesses?.filter((item) => {
-  //     return Object.keys(item).some((key) => {
-  //       if (Array.isArray(item[key])) {
-  //           const filtered = item[key]?.filter((item) => {
-  //             return Object.keys(item).some((key) => {
-  //               return item[key]?.toString().toLowerCase().includes(value?.toLowerCase());
-  //             });
-  //           });
-  //       }
-  //       return item[key]?.toString().toLowerCase().includes(value?.toLowerCase());
-  //     });
-  //   });
-  //   setFilteredBusinessesLoading(false)
-  //   setFilteredBusiness(filtered);
-  // };
-
-  
-  
-
   const handleSearch = (e) => {
     e.preventDefault()
     setUseFilter(false)
@@ -72,7 +43,7 @@ const index = ({ page: initialPage, num_per_page }) => {
   }
 
   useEffect(() => {
-    if (searchString) {
+    if (!!searchString) {
       setSearchQuery({ search: searchString, location: searchLocation })
       setEnabled(true)
     }
@@ -103,6 +74,8 @@ const index = ({ page: initialPage, num_per_page }) => {
     select: (data) => data,
     enabled: enabled,
   })
+
+  console.log({ filteredBusinessesLoading, filteredBusiness, aprrovedBusinesses, aprrovedBusinessesLoading, useFilter, sortBusinessesLoading, sortedBusinesses })
 
   const { isLoading, error, data: categories } = useFetch({
     api: apiGetAllCategories,
@@ -148,9 +121,9 @@ const index = ({ page: initialPage, num_per_page }) => {
         name="Yenreach"
         type="businesses"
     />
-      {(isLoading || filteredBusinessesLoading || sortBusinessesLoading) && <Loader loader={4} />}
-      {/* {((!enabled && aprrovedBusinessesLoading) || (enabled && filteredBusinessesLoading)) && <Loader loader={4} />} */}
-      {/* {enabled && filteredBusinessesLoading && <Loader loader={4} />} */}
+      {((enabled && filteredBusinessesLoading) || (useFilter && sortBusinessesLoading)) && <Loader loader={4} />}
+
+
 			<div className='flex items-center justify-center w-full gap-10'>
 				<p className='font-medium text-black/70 text-xs md:text-sm'>Currently Exploring businesses in</p>
 				<div className="flex items-center justify-center gap-2 px-4 py-2 bg-green-light">
@@ -184,7 +157,7 @@ const index = ({ page: initialPage, num_per_page }) => {
         </select>
       </div>
 			{/* <SearchBar variant='business' /> */}
-      {(useFilter ? sortedBusinesses?.data?.length : aprrovedBusinesses?.data?.length) ?
+      {(useFilter ? sortedBusinesses?.data?.length : enabled ? filteredBusiness?.data.length : aprrovedBusinesses?.data?.length) ?
           <>
           <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {((aprrovedBusinesses || filteredBusiness)) ? paginate({ page, num_per_page, data: useFilter ? sortedBusinesses?.data : enabled ? filteredBusiness?.data?.slice((page-1) * num_per_page, page * num_per_page) : aprrovedBusinesses?.data })?.data?.map((business) => (
