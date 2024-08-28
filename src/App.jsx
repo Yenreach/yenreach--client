@@ -43,7 +43,7 @@ import BottomNav from './components/BottomNav'
 import Terms from './pages/TermsAndPrivacy/Terms';
 import Privacy from './pages/TermsAndPrivacy/Privacy';
 import Subsidiaries from './pages/Subsidiaries';
-import ReactGA from "react-ga4";
+// import ReactGA from "react-ga4";
 import WorkingHours from './pages/users/Business/WorkingHours';
 
 
@@ -54,7 +54,7 @@ import WorkingHours from './pages/users/Business/WorkingHours';
 
 
 function App() { 
-  ReactGA.initialize("G-ZPNG3YYY5F");
+  // ReactGA.initialize("G-ZPNG3YYY5F");
 
   const { user } = useAuthContext()
 
