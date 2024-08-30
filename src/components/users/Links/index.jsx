@@ -1,5 +1,6 @@
 import React from 'react'
 import Logo from "/src/assets/logo.svg"
+import Logo2 from "../../../assets/yenreach.png"
 import { MdTrendingUp, MdPersonOutline } from 'react-icons/md'
 import { RiBillLine, RiAdvertisementLine } from 'react-icons/ri'
 import Logout from "/src/assets/dashboard/logout.svg"
@@ -12,21 +13,22 @@ const Links = ({isOpen}) => {
     const { pathname, ...k } = useLocation()
   return (
     <div className={`md:hidden shadow fixed top-0 right-0 w-5/6 min-h-screen h-screen bg-white px-4  py-2 md:px-10 z-30 translate-x-full ${isOpen && "translate-x-0"} transition-all duration-300`}>
-        <div className='flex flex-col justify-between bg-white h-screen pt-2 overflow-hidden'>
+        <div className='flex flex-col justify-between h-screen pt-2 overflow-hidden bg-white'>
             <div>
                 <Link to={"/"}>
-                    <img src={Logo} alt="" className='h-8 md:h-8 mb-12' />
+                    {/* <img src={Logo} alt="" className='h-8 mb-12 md:h-8' /> */}
+                    <img src={Logo2} alt="" className='h-4 mx-auto my-2.5 mb-16 w-32 md:w-36 md:h-4.5' />
                 </Link>
-                <div className='flex flex-col text-dark-light gap-3'>
+                <div className='flex flex-col gap-3 text-dark-light'>
                     <Link className={`${pathname!=="/users/profile" && pathname!=="/users/subscription" && pathname!=="/users/billboard" ? "font-medium text-white bg-green" : "opacity-50"} py-2.5 pl-6 text-sm flex items-center gap-2`} to="/users">
                         {/* <img src={Trend} alt="" className='z-100' />  */}
-                        <span className='w-4 h-4 bg-white flex justify-center items-center rounded border'>
+                        <span className='flex items-center justify-center w-4 h-4 bg-white border rounded'>
                             <MdTrendingUp color='#000000' size={"0.6rem"} />
                         </span> 
                         Business
                     </Link>
                     <Link className={`${pathname==="/users/profile" ? "font-medium text-white bg-green" : "opacity-50"} py-2.5 pl-6 text-sm flex items-center gap-2`} to={"/users/profile"}>
-                        <span className='w-4 h-4 bg-white flex justify-center items-center rounded border'>
+                        <span className='flex items-center justify-center w-4 h-4 bg-white border rounded'>
                             <MdPersonOutline color={`${pathname==="/users/profile" ? "#000000" : ""}`} size={"0.8rem"} />
                         </span> 
                         Profile

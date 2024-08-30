@@ -5,6 +5,7 @@ import { MdTrendingUp, MdPersonOutline } from 'react-icons/md'
 import { RiBillLine, RiAdvertisementLine } from 'react-icons/ri'
 import Button from '/src/components/ui/Button';
 import Logo from "../../../assets/logo.svg"
+import Logo2 from "../../../assets/yenreach.png"
 import Logout from "../../../assets/dashboard/logout.svg"
 
 
@@ -17,18 +18,19 @@ const SideNav = ({ id }) => {
     <div className='hidden sm:flex flex-col justify-between bg-white h-screen min-w-[200px] w-52 border-r border-[#ABB4C4] pt-4 pb-6 overflow-hidden'>
         <div>
              <Link to={"/"}>
-                <img src={Logo} alt="" className='h-16 md:h-12 mb-12 mx-auto' />
+                {/* <img src={Logo} alt="" className='h-16 mx-auto mb-12 md:h-12' /> */}
+                <img src={Logo2} alt="" className='h-4 mx-auto my-3 mb-16 w-28 md:w-36 md:h-4.5' />
             </Link>
-            <div className='flex flex-col text-dark-light gap-3'>
+            <div className='flex flex-col gap-3 text-dark-light'>
                 <Link className={`${pathname!=="/users/profile" && !pathname.includes("/users/subscription") && pathname!=="/users/billboard" ? "font-medium text-white bg-green" : "opacity-50"} py-2.5 pl-6 text-sm flex items-center gap-2`} to="/users">
                     {/* <img src={Trend} alt="" className='z-100' />  */}
-                    <span className='w-4 h-4 bg-white flex justify-center items-center rounded border'>
+                    <span className='flex items-center justify-center w-4 h-4 bg-white border rounded'>
                         <MdTrendingUp color='#000000' size={"0.6rem"} />
                     </span> 
                     Business
                 </Link>
                 <Link className={`${pathname==="/users/profile" ? "font-medium text-white bg-green" : "opacity-50"} py-2.5 pl-6 text-sm flex items-center gap-2`} to={"/users/profile"}>
-                    <span className='w-4 h-4 bg-white flex justify-center items-center rounded border'>
+                    <span className='flex items-center justify-center w-4 h-4 bg-white border rounded'>
                         <MdPersonOutline color={`${pathname==="/users/profile" ? "#000000" : ""}`} size={"0.8rem"} />
                     </span> 
                     Profile
