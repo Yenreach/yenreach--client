@@ -1,6 +1,7 @@
 import React from 'react'
-import Logo from "/src/assets/logo.svg"
-import Logo2 from "../../../assets/yenreach.png"
+// import Logo from "/src/assets/logo.svg"
+// import Logo2 from "../../../assets/yenreach.png"
+import Logo3 from "../../../assets/yen-logo.png"
 import { MdTrendingUp, MdPersonOutline } from 'react-icons/md'
 import { RiBillLine, RiAdvertisementLine } from 'react-icons/ri'
 import Logout from "/src/assets/dashboard/logout.svg"
@@ -17,7 +18,9 @@ const Links = ({isOpen}) => {
             <div>
                 <Link to={"/"}>
                     {/* <img src={Logo} alt="" className='h-8 mb-12 md:h-8' /> */}
-                    <img src={Logo2} alt="" className='h-4 mx-auto my-2.5 mb-16 w-32 md:w-36 md:h-4.5' />
+                    {/* <img src={Logo2} alt="" className='h-4 mx-auto my-2.5 mb-16 w-32 md:w-36 md:h-4.5' /> */}
+                    <img src={Logo3} alt="" className='h-8 mx-auto md:my-3 md:w-40 w-36 md:h-9 mb-16' />
+
                 </Link>
                 <div className='flex flex-col gap-3 text-dark-light'>
                     <Link className={`${pathname!=="/users/profile" && pathname!=="/users/subscription" && pathname!=="/users/billboard" ? "font-medium text-white bg-green" : "opacity-50"} py-2.5 pl-6 text-sm flex items-center gap-2`} to="/users">

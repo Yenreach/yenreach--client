@@ -2,11 +2,12 @@ import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import Button from '../ui/Button'
 import Input from '../ui/Input'
-import Logo from "../../assets/logo.svg"
 import Circle from "../../assets/circle.svg"
 import { toast } from 'react-toastify';
 import Loader from '../Loader'
-import Logo2 from "../../assets/yenreach.png"
+// import Logo from "../../assets/logo.svg"
+// import Logo2 from "../../assets/yenreach.png"
+import Logo3 from "../../assets/yen-logo.png"
 
 
 
@@ -100,7 +101,9 @@ const Footer = () => {
         </div>
         <div className='flex items-center justify-between pt-3 px-8 md:px-10 lg:px-24 border-t-2 border-[#D3DAE6]'>
           {/* <img src={Logo} alt="" className='' /> */}
-          <img src={Logo2} alt="" className='w-32 h-4 my-2 md:my-3 md:w-36 md:h-5' />
+          {/* <img src={Logo2} alt="" className='w-32 h-4 my-2 md:my-3 md:w-36 md:h-5' /> */}
+          <img src={Logo3} alt="" className='h-8 md:my-3 md:w-44 w-36 md:h-10' />
+
           <div className='flex items-center gap-4'>
             <img src={Circle} alt="" className='w-4 md:w-6' />
             <img src={Circle} alt="" className='w-4 md:w-6 ' />
