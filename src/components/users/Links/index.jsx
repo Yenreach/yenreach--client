@@ -13,7 +13,7 @@ const Links = ({isOpen}) => {
     const { dispatch } = useAuthContext()
     const { pathname, ...k } = useLocation()
   return (
-    <div className={`md:hidden shadow fixed top-0 right-0 w-5/6 min-h-screen h-screen bg-white px-4  py-2 md:px-10 z-30 translate-x-full ${isOpen && "translate-x-0"} transition-all duration-300`}>
+    <div className={`md:hidden shadow fixed top-0 right-0 w-5/6 min-h-screen h-screen bg-white px-4  py-2 md:px-10 z-30 ${isOpen ? "translate-x-0" : "translate-x-full"} transition-all duration-300`}>
         <div className='flex flex-col justify-between h-screen pt-2 overflow-hidden bg-white'>
             <div>
                 <Link to={"/"}>
