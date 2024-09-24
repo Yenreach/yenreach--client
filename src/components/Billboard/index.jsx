@@ -11,6 +11,7 @@ import LogoImg from '/src/assets/LOGO_4491659091525.jpg'
 import AdsImg from '/src/assets/adsimage.jpg'
 import EmitImg from '/src/assets/emite.png'
 import TecImg from '/src/assets/tec.jpg'
+import YenCityImg from '/src/assets/yen-city.jpg'
 import MkImage from '/src/assets/mk.png'
 import ImaxImage from '/src/assets/imax.png'
 import EvidenceImage from '/src/assets/evidence.png'
@@ -52,11 +53,18 @@ const billboards = [
     },
     {
         id: 4,
-        title: 'Tec Industrial Park',
+        title: 'Yenreach City',
         description: 'Own a plot in the New city within Yenagoa metropolis',
-        image: TecImg,
+        image: YenCityImg,
         link: 'https://www.facebook.com/profile.php?id=61554315148708&mibextid=LQQJ4d'
     },
+    // {
+    //     id: 4,
+    //     title: 'Tec Industrial Park',
+    //     description: 'Own a plot in the New city within Yenagoa metropolis',
+    //     image: TecImg,
+    //     link: 'https://www.facebook.com/profile.php?id=61554315148708&mibextid=LQQJ4d'
+    // },
     {
         id: 5,
         title: 'MK-Series',
