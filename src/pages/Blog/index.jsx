@@ -9,6 +9,8 @@ import BlogCard from '../../components/ui/BlogCard'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Loader from '/src/components/Loader'
+import SEO from '../../components/SEO'
+
 
 
 const index = () => {
@@ -24,6 +26,12 @@ const index = () => {
 
   return (
     <>
+      <SEO
+        title="Explore Blogs - Yenreach"
+        description="Dive into a diverse collection of blogs on Yenreach. Discover expert insights, tips, stories, and articles across various topics and industries."
+        name="Yenreach"
+        type="blogs"
+      />
       <Header />
       {isLoading && <Loader loader={4} />}
       <div className="top top-banner flex flex-col justify-center items-center gap-4 bg-[url(assets/blog-hero-bg.svg)]">

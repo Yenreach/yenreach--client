@@ -8,6 +8,8 @@ import { MdChevronRight } from 'react-icons/md'
 import BlogImage from '../../assets/blog/single-blog.svg'
 import Loader from '/src/components/Loader'
 import Share from './Share'
+import SEO from '../../components/SEO'
+
 
 
 const index = () => {
@@ -30,6 +32,14 @@ const index = () => {
 
   return (
     <>
+        <SEO
+            title={`${blog?.title} - Discover blog?es on Yenreach`}
+            description={`${blog?.description}. Find out more about this blog? on Yenreach.`}
+            name={blog?.title}
+            type="blog"
+            url={`https://www.yenreach.com/blog?/${blog?.verify_string}`}
+            // imageUrl={blog?.image || '/default-image.png'}
+        />
       <Header />
       {isLoading && <Loader loader={4} />}
       <div className='py-10 px-4 md:py-24 mt-[79px] md:mt-[88px] max-w-[750px] mx-auto'>
@@ -40,11 +50,11 @@ const index = () => {
                 Category    
             </span>
         </div>
-        <h1 className='text-3xl font-semibold mb-12'>{blog?.title}</h1>
+        <h1 className='mb-12 text-3xl font-semibold'>{blog?.title}</h1>
         <div className='flex items-center justify-between text-xs'>
             <div className='flex items-center gap-3'>
                 <span className='w-10 h-10 rounded-full bg-gray'></span>
-                <div className='flex gap-1 flex-col'>
+                <div className='flex flex-col gap-1'>
                     <span className='font-semibold'>{blog?.author}</span>
                     <p>5 to 7 mins read</p>
                 </div>
@@ -60,23 +70,23 @@ const index = () => {
       </section>
       <main>
           <section className='px-4 py-12 md:px-10 lg:px-24 max-w-[750px] mx-auto'>
-            {/* <h2 className='text-2xl font-semibold mb-5'>Introduction</h2> */}
+            {/* <h2 className='mb-5 text-2xl font-semibold'>Introduction</h2> */}
             <div dangerouslySetInnerHTML={{ __html: blog?.post }}></div>
         </section>
         <section className='px-4 py-12 md:px-10 lg:px-24 max-w-[750px] mx-auto'>
-            {/* <h2 className='text-2xl font-semibold mb-5'>Conclusion</h2> */}
-            {/* <p className='text-sm mb-4'>
+            {/* <h2 className='mb-5 text-2xl font-semibold'>Conclusion</h2> */}
+            {/* <p className='mb-4 text-sm'>
             Morbi sed imperdiet in ipsum, adipiscing elit dui lectus. Tellus id scelerisque est ultricies ultricies. Duis est sit sed leo nisl, blandit elit sagittis. Quisque tristique consequat quam sed. Nisl at scelerisque amet nulla purus habitasse.
             </p>
-            <p className='text-sm mb-4'>
+            <p className='mb-4 text-sm'>
             Eget quis mi enim, leo lacinia pharetra, semper. Eget in volutpat mollis at volutpat lectus velit, sed auctor. Porttitor fames arcu quis fusce augue enim. Quis at habitant diam at. Suscipit tristique risus, at donec. In turpis vel et quam imperdiet. Ipsum molestie aliquet sodales id est ac volutpat.
             </p>
-            <p className='text-sm mb-4'>
+            <p className='mb-4 text-sm'>
             Morbi sed imperdiet in ipsum, adipiscing elit dui lectus. Tellus id scelerisque est ultricies ultricies. Duis est sit sed leo nisl, blandit elit sagittis. Quisque tristique consequat quam sed. Nisl at scelerisque amet nulla purus habitasse.
             </p> */}
             <div className='pb-10 mb-10 border-b-2 border-gray'>
-                <span className='block font-semibold text-sm mb-2'>Share this post</span>
-                <div className='flex justify-between items-center'>
+                <span className='block mb-2 text-sm font-semibold'>Share this post</span>
+                <div className='flex items-center justify-between'>
                     <Share />
                 </div>
             </div>
