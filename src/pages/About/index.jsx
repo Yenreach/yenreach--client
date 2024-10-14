@@ -46,7 +46,7 @@ const index = () => {
                         <span className='text-sm md:text-lg text-[#476788] font-arialsans'>Businesses</span>
                     </div>
                     <div className='flex flex-col items-center'>
-                        <span className='text-xl font-semibold md:text-3xl text-green'>2<span className='text-blue'>+</span></span>
+                        <span className='text-xl font-semibold md:text-3xl text-green'>1<span className='text-blue'></span></span>
                         <span className='text-sm md:text-lg text-[#476788] font-arialsans'>Locations</span>
                     </div>
                     <div className='flex flex-col items-center'>
