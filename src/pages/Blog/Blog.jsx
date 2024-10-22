@@ -74,16 +74,6 @@ const index = () => {
             <div dangerouslySetInnerHTML={{ __html: blog?.post }}></div>
         </section>
         <section className='px-4 py-12 md:px-10 lg:px-24 max-w-[750px] mx-auto'>
-            {/* <h2 className='mb-5 text-2xl font-semibold'>Conclusion</h2> */}
-            {/* <p className='mb-4 text-sm'>
-            Morbi sed imperdiet in ipsum, adipiscing elit dui lectus. Tellus id scelerisque est ultricies ultricies. Duis est sit sed leo nisl, blandit elit sagittis. Quisque tristique consequat quam sed. Nisl at scelerisque amet nulla purus habitasse.
-            </p>
-            <p className='mb-4 text-sm'>
-            Eget quis mi enim, leo lacinia pharetra, semper. Eget in volutpat mollis at volutpat lectus velit, sed auctor. Porttitor fames arcu quis fusce augue enim. Quis at habitant diam at. Suscipit tristique risus, at donec. In turpis vel et quam imperdiet. Ipsum molestie aliquet sodales id est ac volutpat.
-            </p>
-            <p className='mb-4 text-sm'>
-            Morbi sed imperdiet in ipsum, adipiscing elit dui lectus. Tellus id scelerisque est ultricies ultricies. Duis est sit sed leo nisl, blandit elit sagittis. Quisque tristique consequat quam sed. Nisl at scelerisque amet nulla purus habitasse.
-            </p> */}
             <div className='pb-10 mb-10 border-b-2 border-gray'>
                 <span className='block mb-2 text-sm font-semibold'>Share this post</span>
                 <div className='flex items-center justify-between'>
