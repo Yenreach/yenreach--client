@@ -175,13 +175,15 @@ const index = () => {
           />
           <div className={`top mb-10 py-16 sm:py-12 px-4 md:px-10 lg:px-20 relative ${business?.cover_img ? "" : 'bg-[url("assets/businesses/business-hero.svg")]'} bg-cover bg-center text-white flex items-center gap-5`}>
              {business?.cover_img && <Image src={business?.profile_img.replace("mediatoken", "media&token")} alt="" className='absolute top-0 left-0 w-full h-full -z-1' />}
-            <Image
-                url={business?.profile_img}
-                name={business?.name}
-                alt={business?.name}
-                className='object-cover w-16 h-16 rounded-full md:w-24 md:h-24'
-                data={business}
-               />
+             <div className='relative w-16 h-16 rounded-full md:w-24 md:h-24 overflow-hidden'>
+              <Image
+                  url={business?.profile_img}
+                  name={business?.name}
+                  alt={business?.name}
+                  className='object-cover'
+                  data={business}
+                />
+             </div>
             <div className=''>
               <h2 className='mb-2 text-lg font-medium sm:text-xl sm:mb-1'>{business.name}</h2>
               {
