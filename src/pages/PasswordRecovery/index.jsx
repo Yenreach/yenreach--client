@@ -4,8 +4,8 @@ import Header from '../../components/Header';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import Button from '../../components/ui/Button';
 import usePost from '/src/hooks/usePost'
-import { apiForgotEmail } from '/src/services/CommonService'
 import Loader from '/src/components/Loader'
+import { apiForgotEmail } from '../../services/AuthService';
 
 
 
@@ -24,6 +24,8 @@ const index = () => {
    const handleSubmit = () => {
     forgotPasswordMutation.mutate(email)
   }
+
+  console.log({forgotPasswordMutation})
   
   return (
     <>
@@ -54,7 +56,7 @@ const index = () => {
             Password Recovery
           </h1>
           <p className='text-center'>
-              Your Password reset link has been sent to your mail - <b>{forgotPasswordMutation?.data?.email}</b>
+              Your Password reset link has been sent to your mail - <b>{email}</b>
           </p>
           <p className='font-semibold text-xs mt-8'>Don't have an account? <Link to='/signup' className='text-[#5441ff]'>Sign Up</Link></p>
       </div>

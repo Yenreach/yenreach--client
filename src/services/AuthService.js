@@ -1,4 +1,5 @@
 import ApiAdapter from "./ApiService"
+import BaseService from "./BaseService"
 
 const servicePrefix = "/auth"
 
@@ -34,10 +35,7 @@ export const apiCheckPassword =  ({ user_string, p_string }) => {
 }
 
 export const apiForgotEmail =  (email) => {
-    return ApiAdapter.fetchData({
-        url: `/forgot_email_api.php?string=${email}`,
-        method: "get",
-    })
+    return BaseService.post('/forgot_email_api.php', { email })
 }
 
 export const apiForgotPasswordTemp =  (data) => {

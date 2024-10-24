@@ -17,7 +17,8 @@ import Blog from './pages/Blog/Blog'
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import ChangePassword from './pages/PasswordRecovery/ChangePassword';
-import ChangePasswordTemp from './pages/PasswordRecovery/ChangePasswordTemp';
+// import ChangePasswordTemp from './pages/PasswordRecovery/ChangePasswordTemp';
+import ForgotPassword from './pages/PasswordRecovery';
 import Contact from './pages/Contact'
 import NotFound from './pages/404'
 import BusinessDash from './pages/users/Home'
@@ -90,7 +91,7 @@ function App() {
             <Route exact path="/terms" element={<Terms />} />
             <Route exact path="/privacy" element={<Privacy />} />
             <Route exact path="/subsidiaries" element={<Subsidiaries />} />
-            <Route exact path="/password-recovery" element={<ChangePasswordTemp />} />
+            <Route exact path="/password-recovery" element={<ForgotPassword />} />
             {/* <Route exact path="/password-recovery" element={<PasswordRecovery />} /> */}
             <Route exact path="/password_reset" element={<ChangePassword />} />
             <Route exact path="/contact" element={<Contact />} />
