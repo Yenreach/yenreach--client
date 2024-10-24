@@ -133,63 +133,63 @@ const ExploreProducts = () => {
         />
         <Header />
         <ExploreNav activeTab={activeTab} setActiveTab={setActiveTab} />
-        <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-5 md:px-5 lg:py-20 lg:px-20">
+        <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-5 md:px-5 lg:py-20 lg:px-20 mt-12 md:mt-20 lg:mt-4">
         <>        
-      {(isLoading || filteredProductsLoading || sortProductsLoading) && <Loader loader={4} />}
-      <div className='flex items-center justify-center w-full gap-10'>
-        <p className='text-xs font-medium text-black/70 md:text-sm'>Currently Exploring products in</p>
-        <div className="flex items-center justify-center gap-2 px-4 py-2 bg-orange-light">
-          <img src={Location} alt="location" />
-          <span className='font-medium text-smm'>Bayelsa, Yenegoa</span>
-        </div>
-      </div>
-      <div className="flex flex-col gap-1 md:gap-4 md:flex-row">
-        <form action="" onSubmit={handleFilter} method="post" className='flex'>
-          <Input onChange={(e) => setSearch(e.target.value)} value={search} variant='product' type="text" name="product" id="product" placeholder='product' className='rounded-tl-md rounded-bl-md' />
-          <Input onChange={(e) => setLocation(e.target.value)} value={location} variant='product' type="text" name="location" id="location" placeholder='location' className='border-l-0 border-r-0' />
-          <Button type="submit" variant='product' className='px-4 py-4 rounded-tr-md rounded-br-md'>
-            <img src={Search} alt="search icon" className='w-12' />
-          </Button>
-        </form>
-        <select className='p-2 text-base border-2 rounded-md cursor-pointer font- border-orange text-black/50' value={filterBy} onChange={(e) => setFilterBy(e.target.value)} name="filter" id="">
-            <option value="" className=''>Filter By</option>
-            {categories.map((category) => (
-              <option key={category.name} value={category.name}>{category.name}</option>
-            ))}
-        </select>
-      </div>
-      {/* <div className="w-full bg-[url('assets/new-job-listing.svg')] text-white rounded-2xl font-semibold text-xl grid place-items-center bg-cover bg-center py-6">
-        New Job Listings available       
-      </div> */}
-      {products?.data?.length ?
-        <>        
-          {(useFilter ? sortedProducts?.data?.length : products?.data?.length) ?
-            <>        
-              <div className="grid w-full grid-cols-2 gap-2 sm:gap-3 md:gap-4 lg:gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
-                {products && paginate({ page, num_per_page, data: useFilter ? sortedProducts?.data : products?.data })?.data?.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+          {(isLoading || filteredProductsLoading || sortProductsLoading) && <Loader loader={4} />}
+          <div className='flex items-center justify-center w-full gap-10'>
+            <p className='text-xs font-medium text-black/70 md:text-sm'>Currently Exploring products in</p>
+            <div className="flex items-center justify-center gap-2 px-4 py-2 bg-orange-light">
+              <img src={Location} alt="location" />
+              <span className='font-medium text-smm'>Bayelsa, Yenegoa</span>
+            </div>
+          </div>
+          <div className="flex flex-col gap-1 md:gap-4 md:flex-row">
+            <form action="" onSubmit={handleFilter} method="post" className='flex'>
+              <Input onChange={(e) => setSearch(e.target.value)} value={search} variant='product' type="text" name="product" id="product" placeholder='product' className='rounded-tl-md rounded-bl-md' />
+              <Input onChange={(e) => setLocation(e.target.value)} value={location} variant='product' type="text" name="location" id="location" placeholder='location' className='border-l-0 border-r-0' />
+              <Button type="submit" variant='product' className='px-4 py-4 rounded-tr-md rounded-br-md'>
+                <img src={Search} alt="search icon" className='w-12' />
+              </Button>
+            </form>
+            <select className='p-2 text-base border-2 rounded-md cursor-pointer font- border-orange text-black/50' value={filterBy} onChange={(e) => setFilterBy(e.target.value)} name="filter" id="">
+                <option value="" className=''>Filter By</option>
+                {categories.map((category) => (
+                  <option key={category.name} value={category.name}>{category.name}</option>
                 ))}
-              </div>
-              <Pagination 
-                page={page} 
-                num_per_page={num_per_page} 
-                data={(useFilter ? sortedProducts?.data : products?.data)} 
-                handlePageChange={handlePageChange} 
-                total={useFilter ? sortedProducts?.total : products?.total} 
-              />
+            </select>
+          </div>
+          {/* <div className="w-full bg-[url('assets/new-job-listing.svg')] text-white rounded-2xl font-semibold text-xl grid place-items-center bg-cover bg-center py-6">
+            New Job Listings available       
+          </div> */}
+          {products?.data?.length ?
+            <>        
+              {(useFilter ? sortedProducts?.data?.length : products?.data?.length) ?
+                <>        
+                  <div className="grid w-full grid-cols-2 gap-2 sm:gap-3 md:gap-4 lg:gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
+                    {products && paginate({ page, num_per_page, data: useFilter ? sortedProducts?.data : products?.data })?.data?.map((product) => (
+                      <ProductCard key={product.id} product={product} />
+                    ))}
+                  </div>
+                  <Pagination 
+                    page={page} 
+                    num_per_page={num_per_page} 
+                    data={(useFilter ? sortedProducts?.data : products?.data)} 
+                    handlePageChange={handlePageChange} 
+                    total={useFilter ? sortedProducts?.total : products?.total} 
+                  />
+                </>
+              : 
+                <div className='flex items-center justify-center h-24 text-black/70'>
+                  No products Available for this search
+                </div>
+              }
             </>
           : 
             <div className='flex items-center justify-center h-24 text-black/70'>
-              No products Available for this search
+              No products Available yet
             </div>
           }
         </>
-      : 
-        <div className='flex items-center justify-center h-24 text-black/70'>
-          No products Available yet
-        </div>
-      }
-    </>
         </div>
         <Footer />
     </div>

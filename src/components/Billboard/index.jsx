@@ -44,13 +44,13 @@ const billboards = [
     //     image: MutualImage,
     //     link: '/business/bfd9cc92264da47e591e505e860f143ef5d69eba'
     // },
-    {
-        id: 4,
-        title: 'Emitex global Enterprise',
-        description: 'Welcome to our Furniture Electronics Shop, where we take pride in providing you with an exceptional shopping experience like no other',
-        image: EmitImg,
-        link: '/business/73457ce1a6750c8949b22309f31cdc75c0952f5c'
-    },
+    // {
+    //     id: 4,
+    //     title: 'Emitex global Enterprise',
+    //     description: 'Welcome to our Furniture Electronics Shop, where we take pride in providing you with an exceptional shopping experience like no other',
+    //     image: EmitImg,
+    //     link: '/business/73457ce1a6750c8949b22309f31cdc75c0952f5c'
+    // },
     {
         id: 4,
         title: 'Yenreach City',
@@ -67,59 +67,24 @@ const billboards = [
     // },
     {
         id: 5,
-        title: 'MK-Series',
-        description: 'Repairs of Android and iPhones laptops and desktops. Sales of phone gadgets and accessories, such as chargers, earpiece, head phones, original data cable, phone pouches, game pads power banks and lots more.',
+        title: 'Mega Surplus Electronics gadget limited',
+        description: 'Electronics, musical, Phone and gadgets',
         image: MkImage,
-        link: '/business/935ed3e931dd3615ced90e0967d6704718387d7b'
+        link: '/business/2ea2ed47f8617293f35870a104133efa98ea7d1b'
     },
     {
         id: 6,
-        title: 'Laptop Center',
-        description: 'Sales of all kinds of laptops, iPhones, phones computer accessories, keyboards, mouse, projectors, game pads, repairs of laptops etc',
-        image: Computer,
-        link: '/business/d19ed3e682a2c00406a269eb9fd60121141a0ef9'
+        title: 'Tubos kitchen',
+        description: 'Tubos kitchen we do sell all kinds of dishes like all kind of perper soup,banga soup,coco yam etc',
+        image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2Fc697cb24-d367-45e4-bb24-a3cc4caf2c4a?alt=media&token=81ec9bd2-9431-4f2b-9c60-a9f144843e40',
+        link: '/business/7a86648cbba5f9c6bb9a386fc69089a018a1e6f8'
     },
     {
         id: 7,
-        title: 'Evidence of Faith Communication',
-        description: 'Dealers in all kinds of phones and accessories',
-        image: EvidenceImage,
-        link: '/business/cf179662382aec37497562bdf1ea18f7078f4696'
-    },
-    {
-        id: 8,
-        title: 'Kristoral Global Concept',
-        description: 'Deals on all kinds of building materials, including Stainless handrail, security doors, wrought irons, car pot, rolling door, aluminum handrails, water collector, stainless pipes and accessories, stainless gates and installations.',
-        image: KristolImage,
-        link: '/business/0900744ae23ddfb612a7f19c52dba220d4cea927'
-    },
-    {
-        id: 9,
-        title: 'Majestic Boutique',
-        description: 'At majestic boutique, we sell both male, female and children wears such as Italian shoes, suits, jeans and so much more with high quality yet at a very affordable prices',
-        image: MajesticImage,
-        link: '/business/d934429bb2383fd358d2144aa14688a298e1c6d4'
-    },
-    {
-        id: 10,
-        title: 'Xzibit Mobile Hub',
-        description: 'Deals on all kinds of Belgium and new phones such as iPhones, Tecno, Infinix, itel, Oppo and vivo phones. Laptops such as HP, Lenovo and Toshiba. Power bank, chargers, headphones, earpiece etc. We also repair all kinds of phones.',
-        image: XhibitImage,
-        link: '/business/b0e1f6f90608b8454312fecb45f474aadaebfe4c'
-    },
-    {
-        id: 11,
-        title: 'iMAX HUB',
-        description: 'Deals on all kinds of Apple phones, gadgets and accessories',
-        image: ImaxImage,
-        link: '/business/39a689be35164c85ca813cb1dc0ba2b052581fde'
-    },
-    {
-        id: 12,
-        title: 'Jovites cakes',
-        description: 'We deal on all kinds of cakes, egg roll, sharwama and pasteries',
-        image: JovitesImage,
-        link: '/business/abd00470118b4ab86184e35eb1aa82424615a2e4'
+        title: 'Hair masters',
+        description: 'Barber shop sales of Cap, walking sticks, shoes Perfumes and Bags',
+        image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2Fd8a2ec05-3b88-4f36-b9e0-79bf163af50e?alt=media&token=0034c9d8-ae3e-47cc-a854-966c96db93a5',
+        link: '/business/ad66d2737c80264e367aa8e53ef828255cc884d6'
     },
     {
         id: 30,

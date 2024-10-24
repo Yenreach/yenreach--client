@@ -42,7 +42,7 @@ const ExploreBusiness = () => {
         />
         <Header />
         <ExploreNav activeTab={activeTab} setActiveTab={setActiveTab} />
-        <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-5 md:px-5 lg:py-20 lg:px-20">
+        <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-5 md:px-5 lg:py-20 lg:px-20 mt-12 md:mt-20 lg:mt-4">
           <Business page={page} num_per_page={num_per_page} /> 
           {/* { activeTab == 'business' ?  <Business page={page} num_per_page={num_per_page} /> 
           : activeTab == 'jobs' ? <Jobs page={page} num_per_page={num_per_page} />
