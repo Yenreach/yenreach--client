@@ -174,7 +174,7 @@ const index = () => {
             // imageUrl={business.image || '/default-image.png'}
           />
           <div className={`top mb-10 py-16 sm:py-12 px-4 md:px-10 lg:px-20 relative ${business?.cover_img ? "" : 'bg-[url("assets/businesses/business-hero.svg")]'} bg-cover bg-center text-white flex items-center gap-5`}>
-             {business?.cover_img && <Image src={business?.profile_img.replace("mediatoken", "media&token")} alt="" className='absolute top-0 left-0 w-full h-full -z-1' />}
+             {business?.cover_img && <Image name={business?.name} src={business?.cover_img.replace("mediatoken", "media&token")} alt="" className='absolute top-0 left-0 w-full h-full -z-1' />}
              <div className='relative w-16 h-16 rounded-full md:w-24 md:h-24 overflow-hidden'>
               <Image
                   url={business?.profile_img}
