@@ -118,7 +118,7 @@ const index = () => {
     enabled: !!businessSubscription?.subscription_string,
   })
 
-  console.log({ branches, workingHours, businessSubscription, businessSubscriptionDetails })
+  // console.log({ branches, workingHours, businessSubscription, businessSubscriptionDetails })
 
 
 
