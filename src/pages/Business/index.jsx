@@ -24,15 +24,17 @@ import { BsGlobe, BsInstagram, BsLinkedin, BsTelephone, BsTwitter, BsWhatsapp } 
 import { AiOutlineMail } from 'react-icons/ai'
 import { CiLocationOn } from 'react-icons/ci'
 import ReactGA from "react-ga4";
-import { MdOutlineLocationOn, MdOutlineMarkEmailUnread } from 'react-icons/md'
+import { MdEdit, MdOutlineLocationOn, MdOutlineMarkEmailUnread } from 'react-icons/md'
 import { TbBrandFacebook } from 'react-icons/tb'
 import SEO from '../../components/SEO'
+import EditBusinessReview from '../../components/ui/BusinessReviewModal/EditReview'
 
 
 
 const index = () => {
   ReactGA.send({ hitType: "pageview", page: "/business", title: "Business Page View" });
   const [modalOpen, setModalOpen] = React.useState(false)
+  const [editReviewModalOpen, setEditReviewModalOpen] = React.useState('')
   const [imageModalOpen, setImageModalOpen] = useState(false)
   const [image, setImage] = useState('')
   const { id } = useParams()
@@ -76,7 +78,7 @@ const index = () => {
   })
 
   
-  const { data: reviews, error: errorReviews } = useFetch({
+  const { data: reviews, error: errorReviews, refetch: refetchReviews } = useFetch({
     api: apiGetBusinessReviews,
     param: id,
     key: ['reviews', id],
@@ -306,9 +308,12 @@ const index = () => {
                   <div ref={reviewsContainerRef} className='flex w-full gap-2 overflow-hidden'>
                     {reviews?.map((review, index) => 
                       <div key={index} className='border-2 border-black/10 rounded-xl p-5 px-5 bg-green2 text-white min-w-[250px] max-w-[300px] overflow-hidden'>
-                        <div className='flex items-center gap-2 mb-3'>
-                          <img src={Star} alt="Star" />
-                          <span className='text-sm'>{review.user}</span>
+                        <div className='flex items-center justify-between gap-5 mb-3'>
+                          <div className='flex items-center gap-2'>
+                            <img src={Star} alt="Star" />
+                            <span className='text-sm'>{review.user}</span>
+                          </div>
+                          {(review.user_string === user.verify_string) && <MdEdit onClick={() => setEditReviewModalOpen(review.verify_string)} className="text-green cursor-pointer" size="1rem" />}
                         </div>
                         <p className='text-white text-xsm'>
                           {review.review}
@@ -327,7 +332,8 @@ const index = () => {
                 </div>
               </div>
               </>}
-              {modalOpen &&  <BusinessReviewModal setModalOpen={setModalOpen} modalOpen={modalOpen} user={user} business_string={id} />} 
+              {modalOpen &&  <BusinessReviewModal setModalOpen={setModalOpen} modalOpen={modalOpen} user={user} business_string={id} onSuccess={() => refetchReviews()} />} 
+              {!!editReviewModalOpen &&  <EditBusinessReview setModalOpen={setEditReviewModalOpen} value={editReviewModalOpen} user={user} business_string={id}  onSuccess={() => refetchReviews()} />} 
               {user ? 
                 <button onClick={() => setModalOpen(true)} className='underline cursor-pointer text-smm text-green opacity-70'>
                   Write a review

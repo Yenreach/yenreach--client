@@ -174,7 +174,7 @@ const index = ({ page: initialPage, num_per_page }) => {
           </>
           :
           <div className='flex w-full items-center justify-center h-24 text-black/70'>
-            No Business Available for this search
+            {search ? 'No Business Available for this search' : 'No business was fetched'}
           </div>
           }
       {/* <div className="grid w-full py-6 text-xl font-extrabold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">

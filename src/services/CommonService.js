@@ -188,6 +188,12 @@ export const apiGetBusinessReviews = (business_token) => {
         method: "get"    
     })
 }
+export const apiGetBusinessReview = (token) => {
+    return ApiAdapter.fetchData({
+        url: `/fetch_review_by_string_api${serviceSuffix}?string=${token}`,
+        method: "get"    
+    })
+}
 export const apiGetBusinessReviewsStats = (business_token) => {
     return ApiAdapter.fetchData({
         url: `/fetch_business_review_summary_api${serviceSuffix}?string=${business_token}`,
@@ -197,6 +203,14 @@ export const apiGetBusinessReviewsStats = (business_token) => {
 export const apiAddBusinessReview = (data) => {
     return ApiAdapter.fetchData({
         url: `add_business_review_api${serviceSuffix}`,
+        method: "post",
+        data
+    })
+}
+
+export const apiUpdateBusinessReview = (data) => {
+    return ApiAdapter.fetchData({
+        url: `update_review_api${serviceSuffix}`,
         method: "post",
         data
     })
