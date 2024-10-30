@@ -194,7 +194,7 @@ const index = () => {
                   <div className='flex items-center gap-0.5'>
                     {
                       [...Array(Math.round(reviewsStats?.average)).keys()].map((el) => (
-                        <img src={StarFilled} alt="Star" className='w-3 xs:w-4 md:w-5' />
+                        <img src={StarFilled} key={el} alt="Star" className='w-3 xs:w-4 md:w-5' />
                       ))
 
                     }
@@ -313,7 +313,7 @@ const index = () => {
                             <img src={Star} alt="Star" />
                             <span className='text-sm'>{review.user}</span>
                           </div>
-                          {(review.user_string === user.verify_string) && <MdEdit onClick={() => setEditReviewModalOpen(review.verify_string)} className="text-green cursor-pointer" size="1rem" />}
+                          {!!user && (review.user_string === user.verify_string) && <MdEdit onClick={() => setEditReviewModalOpen(review.verify_string)} className="text-green cursor-pointer" size="1rem" />}
                         </div>
                         <p className='text-white text-xsm'>
                           {review.review}
