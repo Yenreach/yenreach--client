@@ -16,6 +16,7 @@ import Input from '/src/components/ui/Input'
 import Search from '/src/assets/search.svg'
 import ReactGA from "react-ga4";
 import SEO from '../../../components/SEO'
+import useCreateQueryString from '../../../hooks/useCreateQueryString'
 
 
 const categories = [
@@ -42,6 +43,12 @@ const ExploreProducts = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(searchParams.get('page') || 1)
   const num_per_page = 40
+  const { createQueryString } = useCreateQueryString()
+
+  useEffect(() => {
+    const page = parseInt(searchParams.get('page'), 10) || 1; // Default to page 1
+    setPage(page);
+  }, [searchParams])
 
   const [search, setSearch] = useState("")
   const [filter, setFilter] = useState("")
@@ -82,7 +89,7 @@ const ExploreProducts = () => {
   // };
 
 
-  const { data: products, error: errorProducts, isLoading }  = useFetch({
+  const { data: products, error: errorProducts, isLoading, isFetching, isPreviousData }  = useFetch({
     api: apiGetAllProducts,
     param: { page, num_per_page, search: filter },
     select: (data) => data,
@@ -115,7 +122,9 @@ const ExploreProducts = () => {
   // console.log({ products })
 
   const handlePageChange = (page) => {
-      setPage(page)
+      // setPage(page)
+      createQueryString({ page })
+
       window.scrollTo({
         top: 0,
         behavior: "smooth",
@@ -135,7 +144,7 @@ const ExploreProducts = () => {
         <ExploreNav activeTab={activeTab} setActiveTab={setActiveTab} />
         <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-5 md:px-5 lg:py-20 lg:px-20 mt-12 md:mt-20 lg:mt-4">
         <>        
-          {(isLoading || filteredProductsLoading || sortProductsLoading) && <Loader loader={4} />}
+          {(isLoading || filteredProductsLoading || sortProductsLoading || (isPreviousData && isFetching)) && <Loader loader={4} />}
           <div className='flex items-center justify-center w-full gap-10'>
             <p className='text-xs font-medium text-black/70 md:text-sm'>Currently Exploring products in</p>
             <div className="flex items-center justify-center gap-2 px-4 py-2 bg-orange-light">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams, useLocation } from 'react-router-dom'
 import { apiGetApprovedBusinesses, apiGetFilledCategories, apiGetBusinessStates, apiBusinessSearch, apiSortBusinesses, apiGetAllCategories } from '../../services/CommonService'
 import useFetch from '/src/hooks/useFetch'
 import usePost from '/src/hooks/usePost'
@@ -12,11 +12,11 @@ import BusinessCard, { BusinessCardLoading } from '../ui/BusinessCard'
 import Location from '../../assets/location.svg'
 import Pagination from '../Pagination'
 import SEO from '../SEO'
+import useCreateQueryString from '../../hooks/useCreateQueryString'
 
 const staleTime = 1000 * 60 * 60 * 24
 
-const index = ({ page: initialPage, num_per_page }) => {
-  const [page, setPage] = useState(initialPage || 1)
+const ExploreBusiness = () => {
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState("")
   const [useFilter, setUseFilter] = useState(false)
@@ -25,18 +25,38 @@ const index = ({ page: initialPage, num_per_page }) => {
   const [searchQuery, setSearchQuery] = useState({ search: '', location: '' })
   const [enabled, setEnabled] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState(searchParams.get('page') || 1)
+  const num_per_page = 40
   const searchString = searchParams.get('search')
   const searchLocation = searchParams.get('location')
+  const { createQueryString } = useCreateQueryString()
+
+  useEffect(() => {
+    const page = parseInt(searchParams.get('page'), 10) || 1; // Default to page 1
+    setPage(page);
+  }, [searchParams])
+
+  // useEffect(() => {
+  //   const params = new URLSearchParams(locate.search);
+  //   const page = parseInt(params.get('page'), 10) || 1; // Default to page 1
+  //   setPage(page);
+  // }, [locate]);
+
 
   const handleSearch = (e) => {
     e.preventDefault()
+    setSearchParams({ page: 1 })
     setUseFilter(false)
     setSearchQuery({ search, location })
     if (!enabled) {
       setEnabled(true)
       refetch()
     } else {    
-      refetch()
+      if (!search) {
+        setEnabled(false)
+      } else {
+        refetch()
+      }
     }
     setSearch('')
     setLocation('')
@@ -49,7 +69,7 @@ const index = ({ page: initialPage, num_per_page }) => {
     }
   }, [])
 
-  const { data: aprrovedBusinesses, error: errorApprovedBusinesses, isLoading: aprrovedBusinessesLoading  } = useFetch({
+  const { data: aprrovedBusinesses, error: errorApprovedBusinesses, isPreviousData, isFetching: aprrovedBusinessesFetching  } = useFetch({
     api: apiGetApprovedBusinesses,
     key: ['aprrovedBusinesses', page],
     param: { page, num_per_page },
@@ -57,7 +77,7 @@ const index = ({ page: initialPage, num_per_page }) => {
     select: (data) => data,
     staleTime: staleTime,
   })
-  
+
   
   const { data: sortedBusinesses, error: errorSortedBusinesses, isLoading: sortBusinessesLoading }  = useFetch({
     api: apiSortBusinesses,
@@ -75,8 +95,6 @@ const index = ({ page: initialPage, num_per_page }) => {
     enabled: enabled,
   })
 
-  console.log({ filteredBusinessesLoading, filteredBusiness, aprrovedBusinesses, aprrovedBusinessesLoading, useFilter, sortBusinessesLoading, sortedBusinesses })
-
   const { isLoading, error, data: categories } = useFetch({
     api: apiGetAllCategories,
     key: ['categories'],
@@ -93,10 +111,10 @@ const index = ({ page: initialPage, num_per_page }) => {
     key: 'businessStates',
     staleTime: staleTime,
   })
-
   
   const handlePageChange = (page) => {
-    setPage(page)
+    createQueryString({ page })
+    // setPage(page)
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -121,7 +139,7 @@ const index = ({ page: initialPage, num_per_page }) => {
         name="Yenreach"
         type="businesses"
     />
-      {((enabled && filteredBusinessesLoading) || (useFilter && sortBusinessesLoading)) && <Loader loader={4} />}
+      {((enabled && filteredBusinessesLoading) || (useFilter && sortBusinessesLoading) || (aprrovedBusinessesFetching && isPreviousData)) && <Loader loader={4} />}
 
 
 			<div className='flex items-center justify-center w-full gap-10'>
@@ -196,4 +214,4 @@ const index = ({ page: initialPage, num_per_page }) => {
   )
 }
 
-export default index
+export default ExploreBusiness

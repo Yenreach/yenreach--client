@@ -5,11 +5,12 @@ import getData from '/src/utils/getData'
 
 const useFetch = ({ api, param, key, onSuccess, select, enabled=true, ...rest }) => {
 
-    const { data, error, isLoading, isSuccess, isFetching, remove, refetch, fetchStatus } = useQuery({
+    const { data, error, isLoading, isSuccess, isFetching, remove, refetch, fetchStatus, isPreviousData } = useQuery({
         queryKey: [...key],
         queryFn: () => getData(api, param),
         select: select || ((data) => data?.data),
         enabled,
+        keepPreviousData: true,
         ...rest
     })
 
@@ -26,7 +27,7 @@ const useFetch = ({ api, param, key, onSuccess, select, enabled=true, ...rest })
         }
     }, [data])
 
-    return { data, error, isLoading, isFetching, remove, refetch, fetchStatus }
+    return { data, error, isLoading, isFetching, remove, refetch, fetchStatus, isPreviousData }
 }
 
 export default useFetch

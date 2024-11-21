@@ -4,6 +4,7 @@ import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 
 
 const Pagination = ({ page=1, num_per_page=40, data=[], handlePageChange, total }) => {
+  
   return (
     <>
     {total > 0 &&  
