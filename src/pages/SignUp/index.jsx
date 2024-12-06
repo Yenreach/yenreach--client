@@ -6,7 +6,6 @@ import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import Button from '../../components/ui/Button';
 import useAuth from '../../hooks/useAuth';
 
-
 const index = () => {
   const [showPassword, setShowPassword] = React.useState({password1: false, password2: false});
 
@@ -76,8 +75,11 @@ const index = () => {
             </div>
           </div>
           <div className="flex justify-center items-center gap-2">
-            <input onChange={handleChange} required className='border-2 p-2 border-[#BABFC5] rounded-md w-fit' type="checkbox" name='terms' id='terms' />
-            <label className='text-sm font-semibold w-full' htmlFor="terms">I agree to terms & conditions</label>
+            <input onChange={handleChange} required className='border-2 p-2 border-[#BABFC5] rounded-md w-fit cursor-pointer' type="checkbox" name='terms' id='terms' />
+            <Link to='/terms' className='text-[#5441ff] text-sm font-semibold w-full cursor-pointer'>
+              I agree to terms & conditions
+            </Link>
+            
           </div>
           <Button className='p-3 font-semibold disabled:bg-green/90' type='submit' disabled={isLoading}>
             {isLoading ? "Loading..." : "Sign up for free " }

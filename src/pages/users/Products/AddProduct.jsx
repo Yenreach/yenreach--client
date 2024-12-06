@@ -94,6 +94,15 @@ const index = () => {
         addProductMutation.mutate({...product, business_string: id})
     }
 
+    // const handleUploads = async (files) => {
+    //     const current = product.photos?.length || 0
+    //     const totalAllowed =  Number(subscription?.subscription?.photos) || 5
+    //     const count = (totalAllowed - current) < files.length ? (totalAllowed - current) : files.length
+    //     for (let i=0; i<count; i++) {
+    //         await uploadImage(files[i])
+    //     }
+    // }
+
     return (
         <Dashboard> 
           {(addProductMutation?.isLoading || uploadingImg) && <Loader loader={4} />}
