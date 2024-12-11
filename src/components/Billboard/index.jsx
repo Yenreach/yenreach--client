@@ -5,20 +5,20 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
-import Computer from '/src/assets/computer.svg'
-import DECImg from '/src/assets/DEC_Image.jpg'
-import LogoImg from '/src/assets/LOGO_4491659091525.jpg'
+// import Computer from '/src/assets/computer.svg'
+// import DECImg from '/src/assets/DEC_Image.jpg'
+// import LogoImg from '/src/assets/LOGO_4491659091525.jpg'
 import AdsImg from '/src/assets/adsimage.jpg'
-import EmitImg from '/src/assets/emite.png'
-import TecImg from '/src/assets/tec.jpg'
+// import EmitImg from '/src/assets/emite.png'
+// import TecImg from '/src/assets/tec.jpg'
 import YenCityImg from '/src/assets/yen-city.jpg'
 import MkImage from '/src/assets/mk.png'
-import ImaxImage from '/src/assets/imax.png'
-import EvidenceImage from '/src/assets/evidence.png'
-import MajesticImage from '/src/assets/majestic.png'
-import XhibitImage from '/src/assets/xhibit.png'
-import JovitesImage from '/src/assets/jovites.png'
-import KristolImage from '/src/assets/kristol.png'
+// import ImaxImage from '/src/assets/imax.png'
+// import EvidenceImage from '/src/assets/evidence.png'
+// import MajesticImage from '/src/assets/majestic.png'
+// import XhibitImage from '/src/assets/xhibit.png'
+// import JovitesImage from '/src/assets/jovites.png'
+// import KristolImage from '/src/assets/kristol.png'
 
 
 
@@ -30,27 +30,48 @@ const billboards = [
     //     image: DECImg,
     //     link: 'https://dordorianestate.com'
     // },
-    // {
-    //     id: 2,
-    //     title: 'Globus Bank',
-    //     description: 'A commercial bank with National Authorization. Registered as a limited liability company on March 6, 2019, licensed by the Central Bank of Nigeria on July 10, 2019 and commenced operations on November 6, 2019.',
-    //     image: LogoImg,
-    //     link: '/business/3b103aaa17b1e28da751caa93e1c67aa11515838'
-    // },
-    // {
-    //     id: 3,
-    //     title: 'Mutual Benefits Life Assurance Limited',
-    //     description: 'One of Nigeria\'s leading life Insurance provider with products ranging from, *Children Education Plan *Individual Savings Plan *Group life *General Third Party Liability *Professional Indemnity *Public Liability *Comprehensive Car Insurance *Mutual Term Assurance *Goods -in-transit E.T.C',
-    //     image: MutualImage,
-    //     link: '/business/bfd9cc92264da47e591e505e860f143ef5d69eba'
-    // },
-    // {
-    //     id: 4,
-    //     title: 'Emitex global Enterprise',
-    //     description: 'Welcome to our Furniture Electronics Shop, where we take pride in providing you with an exceptional shopping experience like no other',
-    //     image: EmitImg,
-    //     link: '/business/73457ce1a6750c8949b22309f31cdc75c0952f5c'
-    // },
+    {
+        id: 2,
+        title: 'Bite beauty Enterprise',
+        description: 'Oriflame beauty products, hair and hair accessories, attachment, etc',
+        image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2F61c9cae4-584a-4efd-89f4-22399bf09d20?alt=media&token=96146b01-5393-427c-b5e1-641039004b3e',
+        link: '/business/63d0880bf872141852b8d7f6ede919f514cf37e1'
+    },
+    {
+        id: 3,
+        title: 'LORDSONCHUKS ELECTRONICKS GLOBAL CONCEPT',
+        description: 'Dealers on Electronics Home Appliances such as Air conditioners, Televisions,Gas coolers, Generators,Home Theaters, Fridges/Freezers,water Dispensers etc',
+        image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2F6729854d-fddc-47fe-8fa4-5d502a71609d?alt=media&token=612dc39b-d098-40bf-b698-92c2397ae5c1',
+        link: '/business/9c6dd09a4402f116f5764d9ac8c83233003e51ef'
+    },
+    {
+        id: 3.4,
+        title: 'Inebi celebrity Resources',
+        description: 'We deal on Italian shoes bags Turkey, USA London wears Indian gowns shoes Etibor material Native e.g Namatigbi Feni Indian wrappers George wrappers of all kind Laces of all kind Hollandies double single High Target wax Children wears French lace Plain George Big head Ties of all kind (Gele)',
+        image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2F737cbd15-296c-478d-92a0-1426a6ab30e6?alt=media&token=ffcf287b-dc23-4e2b-b25e-5209682817d4',
+        link: '/business/934d772e8d186eac2218efbec93414715f5f3b4d'
+    },
+    {
+        id: 3.6,
+        title: 'BUNA INVESTMENT AND RESOURCE LIMITED',
+        description: 'Real Estate Developer. We buy and sell land and properties.',
+        image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2F7497f3c5-c4c4-4c1e-a158-a511a9532c2a?alt=media&token=74962efc-4454-41c7-9cd1-a93840bf03ed',
+        link: '/business/858fd3a43275d7b4573eb9666ada3e31280de01e'
+    },
+    {
+        id: 3.8,
+        title: 'Wiz Works',
+        description: 'Sales of all kinds of window blinds, curtains and its accessories. We give the best services.',
+        image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2F7546934e-7be2-4481-9c27-abc2b68c72a3?alt=media&token=66eba931-8ea9-4f41-b78b-32170c96c891',
+        link: '/business/8c34c22e12ef989e776fde47060c9158409883b2'
+    },
+    {
+        id: 3.9,
+        title: 'Everlight Solar And Electrical Ventures',
+        description: 'Your one-stop hub for all things solar and electrical_ ! 🌞 Switch to Solar Today 🌞 Why pay high energy bills when you can harness the power of the sun?',
+        image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2F601a6a3c-6f0c-4539-b9cc-501694760752?alt=media&token=b1205419-3fc4-48c9-806f-29cb23f74659',
+        link: '/business/794a8a6a454b5a2ce4ca8bb2abab2b386b195d28'
+    },
     {
         id: 4,
         title: 'Yenreach City',
