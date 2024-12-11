@@ -86,27 +86,27 @@ const billboards = [
     //     image: TecImg,
     //     link: 'https://www.facebook.com/profile.php?id=61554315148708&mibextid=LQQJ4d'
     // },
-    {
-        id: 5,
-        title: 'Mega Surplus Electronics gadget limited',
-        description: 'Electronics, musical, Phone and gadgets',
-        image: MkImage,
-        link: '/business/2ea2ed47f8617293f35870a104133efa98ea7d1b'
-    },
-    {
-        id: 6,
-        title: 'Tubos kitchen',
-        description: 'Tubos kitchen we do sell all kinds of dishes like all kind of perper soup,banga soup,coco yam etc',
-        image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2Fc697cb24-d367-45e4-bb24-a3cc4caf2c4a?alt=media&token=81ec9bd2-9431-4f2b-9c60-a9f144843e40',
-        link: '/business/7a86648cbba5f9c6bb9a386fc69089a018a1e6f8'
-    },
-    {
-        id: 7,
-        title: 'Hair masters',
-        description: 'Barber shop sales of Cap, walking sticks, shoes Perfumes and Bags',
-        image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2Fd8a2ec05-3b88-4f36-b9e0-79bf163af50e?alt=media&token=0034c9d8-ae3e-47cc-a854-966c96db93a5',
-        link: '/business/ad66d2737c80264e367aa8e53ef828255cc884d6'
-    },
+    // {
+    //     id: 5,
+    //     title: 'Mega Surplus Electronics gadget limited',
+    //     description: 'Electronics, musical, Phone and gadgets',
+    //     image: MkImage,
+    //     link: '/business/2ea2ed47f8617293f35870a104133efa98ea7d1b'
+    // },
+    // {
+    //     id: 6,
+    //     title: 'Tubos kitchen',
+    //     description: 'Tubos kitchen we do sell all kinds of dishes like all kind of perper soup,banga soup,coco yam etc',
+    //     image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2Fc697cb24-d367-45e4-bb24-a3cc4caf2c4a?alt=media&token=81ec9bd2-9431-4f2b-9c60-a9f144843e40',
+    //     link: '/business/7a86648cbba5f9c6bb9a386fc69089a018a1e6f8'
+    // },
+    // {
+    //     id: 7,
+    //     title: 'Hair masters',
+    //     description: 'Barber shop sales of Cap, walking sticks, shoes Perfumes and Bags',
+    //     image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2Fd8a2ec05-3b88-4f36-b9e0-79bf163af50e?alt=media&token=0034c9d8-ae3e-47cc-a854-966c96db93a5',
+    //     link: '/business/ad66d2737c80264e367aa8e53ef828255cc884d6'
+    // },
     {
         id: 30,
         title: 'Advertise your business here',
