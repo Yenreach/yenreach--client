@@ -57,6 +57,9 @@ const Home = () => {
         <Hero businesses={aprrovedBusinesses} />
         {/* <Trustees /> */}
         <Category />
+        <section className='w-screen px-4 mt-32 mb-12 overflow-hidden md:px-10 lg:px-24'>
+            <Billboard />
+        </section>
         <section className='px-4 py-12 md:px-10 lg:px-24'>
             <div className='bg-[url("assets/audience.svg")] h-64 md:h-60 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-28 px-4 sm:px-12 md:px-24'>     
                 <div className='flex flex-col items-center gap-5'>
@@ -132,52 +135,48 @@ const Home = () => {
             </div>
         </section>
         {businessOfTheWeek &&
-
-        <section className='px-4 mt-4 mb-12 md:px-10 lg:px-24 md:mt-12'>
-                <div className='py-12 mb-36'>
-                    <h2 className='mb-2 text-xl font-medium text-center text-green'>Business of the week</h2>
-                    <div className='flex flex-col items-center sm:flex-row gap-14'>
-                        <img className='flex-1 object-cover w-full sm:w-2/5' src={businessOfTheWeek?.profile_img.replace("mediatoken", "media&token")}  alt="Business of The Week"  />
-                        <div className='flex flex-col items-start flex-1 gap-6'>
-                            <h3 className='text-lg'>{businessOfTheWeek?.name}</h3>
-                            <p className='text-sm'>
-                               {businessOfTheWeek?.description.substring(0, 400)}...
-                            </p>
-                            <Link to={`/business/${businessOfTheWeek?.verify_string}`}> 
-                                <Button className='text-sm rounded-md py-2.5 px-10 font-medium'>
-                                    view business
-                                </Button>
-                            </Link>
+            <section className='px-4 mt-4 mb-12 md:px-10 lg:px-24 md:mt-12'>
+                    <div className='py-12 mb-36'>
+                        <h2 className='mb-2 text-xl font-medium text-center text-green'>Business of the week</h2>
+                        <div className='flex flex-col items-center sm:flex-row gap-14'>
+                            <img className='flex-1 object-cover w-full sm:w-2/5' src={businessOfTheWeek?.profile_img.replace("mediatoken", "media&token")}  alt="Business of The Week"  />
+                            <div className='flex flex-col items-start flex-1 gap-6'>
+                                <h3 className='text-lg'>{businessOfTheWeek?.name}</h3>
+                                <p className='text-sm'>
+                                {businessOfTheWeek?.description.substring(0, 400)}...
+                                </p>
+                                <Link to={`/business/${businessOfTheWeek?.verify_string}`}> 
+                                    <Button className='text-sm rounded-md py-2.5 px-10 font-medium'>
+                                        view business
+                                    </Button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {/* <div className=''>
-                <h2 className='mb-3 text-lg font-medium text-center text-green'>keep up with the business world</h2>
-                <div className='flex flex-col grid-cols-3 gap-6 text-white sm:grid'>
-                    <div className="relative bg-[url('assets/businesses/coperate.svg')] bg-cover bg-center h-52 sm:h-104 p-4 min-w\">
-                        <span className='absolute w-2/3 text-xl bottom-12 sm:bottom-24'>The struggle in the  Corperate world</span>
+                {/* <div className=''>
+                    <h2 className='mb-3 text-lg font-medium text-center text-green'>keep up with the business world</h2>
+                    <div className='flex flex-col grid-cols-3 gap-6 text-white sm:grid'>
+                        <div className="relative bg-[url('assets/businesses/coperate.svg')] bg-cover bg-center h-52 sm:h-104 p-4 min-w\">
+                            <span className='absolute w-2/3 text-xl bottom-12 sm:bottom-24'>The struggle in the  Corperate world</span>
+                        </div>
+                        <div className='flex flex-col grid-cols-2 col-span-2 gap-2 sm:grid'>
+                            <div className="relative bg-[url('assets/businesses/sme.svg')] p-5 h-52 bg-cover bg-center">
+                                <span className='absolute w-3/4 text-lg font-semibold bottom-12'>SME gains $30Mil on Seed A</span>
+                            </div>
+                            <div className="relative bg-[url('assets/businesses/tech.svg')] p-5 h-52 bg-cover bg-center">
+                                <span className='absolute w-3/4 text-lg font-semibold bottom-12'>Technology conntributes more  then Oil in Nigeria</span>
+                            </div>
+                            <div className="relative bg-[url('assets/businesses/insure.svg')] p-5 h-52 bg-cover bg-center">
+                                <span className='absolute w-3/4 text-lg font-semibold bottom-11'>The future of Innsurance Companies </span>
+                            </div>
+                            <div className="relative bg-[url('assets/businesses/google.svg')] p-5 h-52 bg-cover bg-center">
+                                <span className='absolute w-3/4 text-lg font-semibold bottom-11'>How Google Harms us</span>
+                            </div>
+                        </div>
                     </div>
-                    <div className='flex flex-col grid-cols-2 col-span-2 gap-2 sm:grid'>
-                        <div className="relative bg-[url('assets/businesses/sme.svg')] p-5 h-52 bg-cover bg-center">
-                            <span className='absolute w-3/4 text-lg font-semibold bottom-12'>SME gains $30Mil on Seed A</span>
-                        </div>
-                        <div className="relative bg-[url('assets/businesses/tech.svg')] p-5 h-52 bg-cover bg-center">
-                            <span className='absolute w-3/4 text-lg font-semibold bottom-12'>Technology conntributes more  then Oil in Nigeria</span>
-                        </div>
-                        <div className="relative bg-[url('assets/businesses/insure.svg')] p-5 h-52 bg-cover bg-center">
-                            <span className='absolute w-3/4 text-lg font-semibold bottom-11'>The future of Innsurance Companies </span>
-                        </div>
-                        <div className="relative bg-[url('assets/businesses/google.svg')] p-5 h-52 bg-cover bg-center">
-                            <span className='absolute w-3/4 text-lg font-semibold bottom-11'>How Google Harms us</span>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
-        </section>
+                </div> */}
+            </section>
         }
-        <section className='w-screen px-4 mt-32 mb-12 overflow-hidden md:px-10 lg:px-24'>
-            <Billboard />
-        </section>
         <section className='px-4 py-12 sm:px-20 md:px-32 lg:px-64 mb-11'>
             <h2 className='text-lg font-medium text-center text-green'>Frequently asked questions</h2>
             <Accordion />
