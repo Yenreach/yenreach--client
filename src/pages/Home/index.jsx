@@ -56,10 +56,10 @@ const Home = () => {
         <Header />
         <Hero businesses={aprrovedBusinesses} />
         {/* <Trustees /> */}
-        <Category />
         <section className='w-screen px-4 mt-32 mb-12 overflow-hidden md:px-10 lg:px-24'>
             <Billboard />
         </section>
+        <Category />
         <section className='px-4 py-12 md:px-10 lg:px-24'>
             <div className='bg-[url("assets/audience.svg")] h-64 md:h-60 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-28 px-4 sm:px-12 md:px-24'>     
                 <div className='flex flex-col items-center gap-5'>
