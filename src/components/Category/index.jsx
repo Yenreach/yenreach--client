@@ -24,7 +24,7 @@ const index = () => {
     })
 
     const { data: products, error: errorProducts } = useFetch({
-        key: ['products', 1],
+        key: ['products home', 1],
         param: { page: 1, num_per_page: 5 },
         api: apiGetAllProducts,
         staleTime: staleTime,

@@ -6,3 +6,8 @@ div.swiper-button-prev,
 div.swiper-button-next {
 	color: #00C885;
 }
+
+span.swiper-button-prev,
+span.swiper-button-next {
+	color: #FF9900;
+}

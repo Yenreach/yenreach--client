@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { App as CapactiorApp } from '@capacitor/app';
 import { useAuthContext } from './hooks/useAuthContext'
 import './App.css'
@@ -46,6 +46,7 @@ import Privacy from './pages/TermsAndPrivacy/Privacy';
 import Subsidiaries from './pages/Subsidiaries';
 // import ReactGA from "react-ga4";
 import WorkingHours from './pages/users/Business/WorkingHours';
+import ProductAdsModal from './components/ProductsAdModal';
 
 
 // CapactiorApp.addListener('appStateChange', ({ isActive }) => {
@@ -55,9 +56,16 @@ import WorkingHours from './pages/users/Business/WorkingHours';
 
 
 function App() { 
-  // ReactGA.initialize("G-ZPNG3YYY5F");
+  const [modalOpen, setModalOpen] = useState(false)
 
-  const { user } = useAuthContext()
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setModalOpen(true)
+    }, 5000)
+
+    return () => clearTimeout(timeout)
+  }, [])
+  // ReactGA.initialize("G-ZPNG3YYY5F");
 
   CapactiorApp.addListener('backButton', (data) => {
     if (window) {
@@ -68,8 +76,6 @@ function App() {
       }
     }
   })
-
-  // console.log("app, capa==", CapactiorApp)
 
   return (
     <Router>
@@ -119,6 +125,10 @@ function App() {
           </Routes>
           {/* <BottomNav /> */}
         </ScrollToTop>
+        {
+          modalOpen &&
+            <ProductAdsModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+        }
       </main>
     </Router>
   )

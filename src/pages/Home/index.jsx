@@ -42,7 +42,7 @@ const Home = () => {
         cacheTime : 1000 * 60 * 60,
       })
     // console.log("businessOfTheWeek", businessOfTheWeek, "error", errorBusinessOfTheWeek)
-    console.log('business', aprrovedBusinesses)
+    // console.log('business', aprrovedBusinesses)
 
   return (
     <div className='w-full overflow-hidden'>
