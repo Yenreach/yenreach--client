@@ -54,7 +54,7 @@ import { Link } from 'react-router-dom';
 //     },
 // ]
 
-const Slide = ({ setModalOpen }) => {
+const Slide = ({ closeModal }) => {
     let [swiper, setSwiper] = useState(null)
     const [randoms, setRandoms] = useState([])
     
@@ -140,7 +140,7 @@ const Slide = ({ setModalOpen }) => {
                                                 <p className="max-w-[400px] text-center mb-6 text-sm lg:text-base text-black/70">
                                                 {products?.data?.[random]?.product_description}
                                                 </p>
-                                                <Link onClick={() => setModalOpen(false)} to={`products/${products?.data?.[random]?.product_string}`} className="px-4 py-2 text-sm text-white rounded cursor-pointer bg-orange">Shop Now</Link>
+                                                <Link onClick={() => closeModal()} to={`products/${products?.data?.[random]?.product_string}`} className="px-4 py-2 text-sm text-white rounded cursor-pointer bg-orange">Shop Now</Link>
                                             </div>
                                         </div>
                                     </div>
