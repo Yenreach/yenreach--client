@@ -4,7 +4,7 @@ import { MdClose } from 'react-icons/md'
 import Promo from './Promo'
 
 const ProductAdsModal = ({ setModalOpen, modalOpen }) => {
-  const [isOPen, setIsOpen] = useState(true)
+  const [isOPen, setIsOpen] = useState(false)
 
     React.useEffect(() => {
         if (modalOpen) {
@@ -21,9 +21,9 @@ const ProductAdsModal = ({ setModalOpen, modalOpen }) => {
     }
 
     const closeModal = () => {
-      if (isOPen) {
-        return setIsOpen(false)
-      }
+      // if (isOPen) {
+      //   return setIsOpen(false)
+      // }
       document.body.style.overflow = 'unset'
       setModalOpen(false)
     }
@@ -37,13 +37,13 @@ const ProductAdsModal = ({ setModalOpen, modalOpen }) => {
             <MdClose className='absolute z-50 text-xl cursor-pointer top-2 right-2 md:top-8 md:right-8' onClick={() => closeModal()} />
               {
                 !isOPen &&
-            <h2 className='mb-6 text-xl font-semibold text-center text-orange'>Products you may like</h2>
+                 <h2 className='mb-6 text-xl font-semibold text-center text-orange'>Products you may like</h2>
               }
             {
               isOPen ? 
               <Promo closeModal={closeModal} />
               : 
-              <Slide closeModal={closeModal} />
+              <Promo closeModal={closeModal} />
             }
         </div>
     </div>
