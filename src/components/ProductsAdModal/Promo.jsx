@@ -94,7 +94,7 @@ const Promo = ({ closeModal }) => {
                                 <div key={index} className="h-full swiper-slide">
                                     <div className='flex items-center justify-center w-full h-full gap-8 md:flex-row'>
                                         <div className="flex-1 w-full h-full">
-                                            <img src={promo?.image} alt="product image" className='object-fill w-full h-full carousel-img' />
+                                            <img src={promo?.image} alt="product image" className='object-contain w-full h-full carousel-img' />
                                         </div>
                                         {/* <div className="flex flex-col items-center justify-center flex-1 w-full h-full gap-4 text-center">
                                             <h2 className="text-xl text-black lg:text-3xl text-capitalize text-bold">{promo?.product_name}</h2>
