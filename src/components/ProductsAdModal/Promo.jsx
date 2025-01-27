@@ -10,6 +10,7 @@ import PromoImg2 from '../../assets/promo2.png'
 import PromoImg3 from '../../assets/promo3.png'
 import PromoImg4 from '../../assets/promo4.png'
 import PromoImg5 from '../../assets/promo5.png'
+import { MdClose } from 'react-icons/md';
 
 const Promo = ({ closeModal }) => {
     let [swiper, setSwiper] = useState(null)
@@ -84,35 +85,38 @@ const Promo = ({ closeModal }) => {
     }, [])
   
   return (
-     <div className='flex w-full h-full overflow-hidden'>
-        <div className="h-fit min-h-[70vh] overflow-hidden flex overflow-x-hidden w-full relative">
-                <div className='absolute top-0 left-0 w-full h-full'>
-                    <div className="h-full swiper">
-                        <div className="h-[90%] swiper-wrapper">
-                            {
-                                promos?.map((promo, index) => 
-                                <div key={index} className="h-full swiper-slide">
-                                    <div className='flex items-center justify-center w-full h-full gap-8 md:flex-row'>
-                                        <div className="flex-1 w-full h-full">
-                                            <img src={promo?.image} alt="product image" className='object-contain w-full h-full carousel-img' />
+    <div className="relative w-full p-3 pb-0 bg-white max-w-sm lg:max-w-lg">
+        <div className='flex w-full h-full overflow-hidden'>
+            <MdClose className='absolute z-50 text-xl cursor-pointer top-2 right-2 md:top-8 md:right-8' onClick={() => closeModal()} />
+            <div className="h-fit min-h-[50vh] overflow-hidden flex overflow-x-hidden w-full relative">
+                    <div className='absolute top-0 left-0 w-full h-full'>
+                        <div className="h-full swiper">
+                            <div className="h-[90%] swiper-wrapper">
+                                {
+                                    promos?.map((promo, index) => 
+                                    <div key={index} className="h-full swiper-slide">
+                                        <div className='flex items-center justify-center w-full h-full gap-8 md:flex-row'>
+                                            <div className="flex-1 w-full h-full">
+                                                <img src={promo?.image} alt="product image" className='object-contain w-full h-full carousel-img' />
+                                            </div>
+                                            {/* <div className="flex flex-col items-center justify-center flex-1 w-full h-full gap-4 text-center">
+                                                <h2 className="text-xl text-black lg:text-3xl text-capitalize text-bold">{promo?.product_name}</h2>
+                                                <p className="max-w-[400px] text-center mb-6 text-sm lg:text-base text-black/70">
+                                                {promo?.product_description}
+                                                </p>
+                                                <Link onClick={() => closeModal()} to={`products/${products?.data?.[random]?.product_string}`} className="px-4 py-2 text-sm text-white rounded cursor-pointer bg-orange">Shop Now</Link>
+                                            </div> */}
                                         </div>
-                                        {/* <div className="flex flex-col items-center justify-center flex-1 w-full h-full gap-4 text-center">
-                                            <h2 className="text-xl text-black lg:text-3xl text-capitalize text-bold">{promo?.product_name}</h2>
-                                            <p className="max-w-[400px] text-center mb-6 text-sm lg:text-base text-black/70">
-                                            {promo?.product_description}
-                                            </p>
-                                            <Link onClick={() => closeModal()} to={`products/${products?.data?.[random]?.product_string}`} className="px-4 py-2 text-sm text-white rounded cursor-pointer bg-orange">Shop Now</Link>
-                                        </div> */}
                                     </div>
-                                </div>
-                                )
-                            }
+                                    )
+                                }
+                            </div>
+                            <div className="swiper-button-prev"></div>
+                            <div className="swiper-button-next"></div>
+                            <div className="swiper-pagination"></div>
                         </div>
-                        <div className="swiper-button-prev"></div>
-                        <div className="swiper-button-next"></div>
-                        <div className="swiper-pagination"></div>
                     </div>
-                </div>
+            </div>
         </div>
     </div>
   )

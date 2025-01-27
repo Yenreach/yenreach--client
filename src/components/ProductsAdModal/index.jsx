@@ -33,8 +33,8 @@ const ProductAdsModal = ({ setModalOpen, modalOpen }) => {
 
   return (
     <div onClick={handleOutsideClick} className='backdrop-blur-[1.5px] bg-black/60 fixed top-0 left-0 w-full max-h-screen min-h-screen z-50 grid place-items-center overflow-hidden p-8 max-w-screen'>
-        <div className="relative w-full p-8 bg-white max-w-sm lg:max-w-3xl">
-            <MdClose className='absolute z-50 text-xl cursor-pointer top-2 right-2 md:top-8 md:right-8' onClick={() => closeModal()} />
+        {/* <div className="relative w-full p-8 bg-white max-w-sm lg:max-w-3xl"> */}
+            {/* <MdClose className='absolute z-50 text-xl cursor-pointer top-2 right-2 md:top-8 md:right-8' onClick={() => closeModal()} /> */}
               {/* {
                 !isOPen &&
                  <h2 className='mb-6 text-xl font-semibold text-center text-orange'>Products you may like</h2>
@@ -45,7 +45,7 @@ const ProductAdsModal = ({ setModalOpen, modalOpen }) => {
               : 
               <Promo closeModal={closeModal} />
             }
-        </div>
+        {/* </div> */}
     </div>
   )
 }
