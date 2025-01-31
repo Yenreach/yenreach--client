@@ -76,9 +76,9 @@ const index = () => {
           </div>
           <div className="flex justify-center items-center gap-2">
             <input onChange={handleChange} required className='border-2 p-2 border-[#BABFC5] rounded-md w-fit cursor-pointer' type="checkbox" name='terms' id='terms' />
-            <Link to='/terms' className='text-[#5441ff] text-sm font-semibold w-full cursor-pointer'>
+            <a href='/terms' target="_blank" className='text-[#5441ff] text-sm font-semibold w-full cursor-pointer'>
               I agree to terms & conditions
-            </Link>
+            </a>
             
           </div>
           <Button className='p-3 font-semibold disabled:bg-green/90' type='submit' disabled={isLoading}>

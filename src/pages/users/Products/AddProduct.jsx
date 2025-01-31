@@ -198,7 +198,7 @@ const index = () => {
                                     <Input  
                                         onChange={(e) => uploadImage(e.target.files[0])}
                                         className='border-gray rounded-lg mt-2 cursor-pointer w-1 h-1 invisible overflow-hidden'
-                                        type="file" name="add_image" id="add_image"
+                                        type="file" name="add_image" id="add_image" accept="image/*"
                                     />
 
                             </>
