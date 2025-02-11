@@ -139,7 +139,7 @@ const Home = () => {
                     <div className='py-12 mb-36'>
                         <h2 className='mb-2 text-xl font-medium text-center text-green'>Business of the week</h2>
                         <div className='flex flex-col items-center sm:flex-row gap-14'>
-                            <img className='flex-1 object-cover w-full sm:w-2/5' src={businessOfTheWeek?.profile_img.replace("mediatoken", "media&token")}  alt="Business of The Week"  />
+                            <img className='flex-1 object-cover w-full sm:w-2/5 h-full max-h-[500px]' src={businessOfTheWeek?.profile_img.replace("mediatoken", "media&token")}  alt="Business of The Week"  />
                             <div className='flex flex-col items-start flex-1 gap-6'>
                                 <h3 className='text-lg'>{businessOfTheWeek?.name}</h3>
                                 <p className='text-sm'>
