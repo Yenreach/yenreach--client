@@ -32,16 +32,16 @@ const index = () => {
 
     return (
         <Dashboard>
-            <div className='flex-1 overflow-y-auto overflow-hidden'>
+            <div className='flex-1 overflow-hidden overflow-y-auto'>
                 {isLoading && <Loader loader={4} />}
                 <Head />
-                <div className='px-7 py-4'>
-                    {!businesses && <h1 className='text-green font-medium text-lg mb-2'>Business</h1>}
+                <div className='py-4 px-7'>
+                    {!businesses && <h1 className='mb-2 text-lg font-medium text-green'>Business</h1>}
                     {businesses && 
                         <>
-                        <div className='flex flex-col md:flex-row gap-2 md:gap-4 justify-between md:items-center mb-6'>
+                        <div className='flex flex-col justify-between gap-2 mb-6 md:flex-row md:gap-4 md:items-center'>
                             <div>
-                                <h1 className='text-green font-medium text-lg mb-2'>Business</h1>
+                                <h1 className='mb-2 text-lg font-medium text-green'>Business</h1>
                                 <p className='text-[#476788] text-sm mb-7'>You have {businesses?.length} {businesses.length > 1 ? "businesses" : "business"} listed to your account.</p>
                             </div>
                             <Link to="/users/add-business">
@@ -51,22 +51,22 @@ const index = () => {
                                 </Button>
                             </Link>
                         </div>
-                            <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-16'>
+                            <div className='grid gap-4 mb-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                                 {businesses?.map(business => (
                                     <Link to={business?.reg_stage == 0 ? `/users/edit-business/${business.verify_string}`
                                     : business?.reg_stage < 3 ? `/users/edit-business/${business.verify_string}`
                                     : business?.reg_stage == 3 ? `/users/business/${business.verify_string}`
                                     : `/users/business/${business.verify_string}`
-                                    } key={business?.verify_string} className='bg-white rounded overflow-hidden flex text-sm w-full shadow p-2'>
+                                    } key={business?.verify_string} className='flex w-full p-2 overflow-hidden text-sm bg-white rounded shadow'>
                                             <div>
-                                                <Image url={business?.profile_img} name={business?.name} className="w-20 object-cover h-20" />
+                                                <Image url={business?.profile_img} name={business?.name} className="object-cover w-20 h-20" />
                                             </div>
-                                            <div className='p-4 px-6 relative w-full'>
-                                                <p className='font-semibold mb-1'>{business.name}</p>
+                                            <div className='relative w-full p-4 px-6'>
+                                                <p className='mb-1 font-semibold'>{business.name}</p>
                                                 <div className='flex gap-2 items-center text-[#777777] text-xsm'>
                                                     <span>{formatDate2(business?.created)}</span>
                                                     <img src={Elipse} alt=""  />
-                                                    <span className='text-green font-medium'>{business?.pagevisits || 0} visits</span>
+                                                    <span className='font-medium text-green'>{business?.pagevisits || 0} visits</span>
                                                 </div>
                                                 <div className='absolute bottom-0 right-0 px-1 py-0.5 pt-1 flex text-xsm bg-green text-white'>
                                                     {
@@ -86,12 +86,12 @@ const index = () => {
                     }
                 </div>
                 {/* {businesses && 
-                    <Link to="/users/add-business" className='flex justify-center items-center mb-8'>
+                    <Link to="/users/add-business" className='flex items-center justify-center mb-8'>
                         <div className='flex flex-col justify-center items-center p-14 bg-[#F1F1F1] rounded-lg'>
                         <span className='w-14 h-14 mb-4 rounded-full bg-[#CCCCCC] flex items-center justify-center'>
                             <img src={Add} alt="" />
                         </span>
-                        <span className='text-sm w-2/3 text-center'>
+                        <span className='w-2/3 text-sm text-center'>
                             Click here to add a new business
                         </span>
                         </div>
@@ -104,7 +104,7 @@ const index = () => {
                             You do not have any business listed yet
                             </span>
                         <Link to="/users/add-business">   
-                            <span href=""className='text-green underline underline-offset-2'>Click here to add a new business</span>
+                            <span href=""className='underline text-green underline-offset-2'>Click here to add a new business</span>
                         </Link>
                     </div>
                 }
@@ -120,11 +120,11 @@ export default index
 // old business card
 //     <Link to={`/users/business/${business.verify_string}`} key={business?.verify_string} className='bg-[#F1F1F1] rounded-xl overflow-hidden'>
 //         <div>
-//             <img src={Business} alt="" className="w-full object-cover h-40" />
+//             <img src={Business} alt="" className="object-cover w-full h-40" />
 //             <div className='p-4 px-6'>
-//                 <p className='font-semibold mb-1'>{business.name}</p>
+//                 <p className='mb-1 font-semibold'>{business.name}</p>
 //                 <div className='flex gap-2 items-center text-[#777777] text-xsm'>
-//                     <span>20-10-2022</span>
+//                     <span>20-10-2025</span>
 //                     <img src={Elipse} alt=""  />
 //                     <span>234 visits</span>
 //                 </div>

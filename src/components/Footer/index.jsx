@@ -30,7 +30,7 @@ const Footer = () => {
       <footer className='bg-footer-bg pb-14'>
         {loading && <Loader loader={4} />}
         <div className='flex items-center justify-between gap-8 py-2 border-y-2 border-[#D3DAE6] px-8 md:px-10 lg:px-24 mb-12 sm:mb-28'>
-          <h3 className='text-center'>Yenreach.com 2022</h3>
+          <h3 className='text-center'>Yenreach.com 2025</h3>
           <nav className="items-center hidden sm:flex gap-x-14 md:gap-4 lg:gap-7">
             <ul className='flex items-center gap-3 text-sm md:gap-4 lg:gap-7 opacity-80'>
               <li><Link to="/" className={`${pathname==="/" && "text-green font-medium"}`}>Home</Link></li>
