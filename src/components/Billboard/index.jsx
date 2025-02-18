@@ -112,7 +112,7 @@ const billboards = [
         id: 8,
         title: 'Bite beauty Enterprise',
         description: 'Oriflame beauty products, hair and hair accessories, attachment etc',
-        image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2F7497f3c5-c4c4-4c1e-a158-a511a9532c2a?alt=media&token=74962efc-4454-41c7-9cd1-a93840bf03ed',
+        image: 'https://firebasestorage.googleapis.com/v0/b/yenreach-49357.appspot.com/o/images%2F61c9cae4-584a-4efd-89f4-22399bf09d20?alt=media&token=96146b01-5393-427c-b5e1-641039004b3e',
         link: "/business/63d0880bf872141852b8d7f6ede919f514cf37e1"
     },
     {
