@@ -10,8 +10,8 @@ import CIA from '../../assets/Us/CIA.svg'
 import NIMN from '../../assets/Us/NIMN.svg'
 import BossImg from '../../assets/Us/dordor.png'
 import GloriaImg from '../../assets/Us/gloriasec.png'
-import EmannuelImg from '../../assets/Us/emma.png'
-import ManagerImg from '../../assets/Us/manager.png'
+import BlessingImg from '../../assets/Us/blessing-p.jpg'
+import TeddyImg from '../../assets/Us/teddy.png'
 import SMS from '../../assets/sms.svg'
 import Linkedin from '../../assets/linkedin.svg'
 import AboutBlob from '../../assets/about-blob.svg'
@@ -121,45 +121,11 @@ const index = () => {
                         </div>
                         <img src={BossImg} alt="" className='object-cover object-center w-20 h-20 overflow-hidden rounded-full' />
                     </div>
-                    {/* <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
-                        <div className='flex flex-col items-start gap-6'>
-                            <div className=''>
-                                <h5 className='text-[#282F38] text-base font-medium'>Ogbonna Chinedu</h5>
-                                <p className='text-[#838282] text-sm capitalize'>Operations Manager</p>
-                            </div>
-                            <span className='flex items-center gap-3'>
-                                <a target='_blank' href="https://www.linkedin.com/in/duadei-nicholas-05957b18b/">
-                                    <img src={Linkedin} alt="" />
-                                </a>
-                                <a target='_blank' href="https://wa.me/2349033398824">
-                                    <img src={SMS} alt="" />
-                                </a>
-                            </span>
-                        </div>
-                        <img src={ManagerImg} alt="" className='object-cover object-center w-20 h-20 overflow-hidden rounded-full' />
-                    </div> */}
-                    <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
-                        <div className='flex flex-col items-start gap-6'>
-                            <div className=''>
-                                <h5 className='text-[#282F38] text-base font-medium'>Emmanuel Nwachukwu</h5>
-                                <p className='text-[#838282] text-sm capitalize'>Business Development Executive</p>
-                            </div>
-                            <span className='flex items-center gap-3'>
-                                <a target='_blank' href="https://www.linkedin.com/in/emmanuel-c-nwachukwu-3551b4273?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">
-                                    <img src={Linkedin} alt="" />
-                                </a>
-                                <a target='_blank' href="https://wa.me/2348136213565">
-                                    <img src={SMS} alt="" />
-                                </a>
-                            </span>
-                        </div>
-                        <img src={EmannuelImg} alt="" className='object-cover object-center w-20 h-20 overflow-hidden rounded-full' />
-                    </div>
                     <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
                         <div className='flex flex-col items-start gap-6'>
                             <div className=''>
                                 <h5 className='text-[#282F38] text-base font-medium'>George Gloria</h5>
-                                <p className='text-[#838282] text-sm capitalize'>Administrative Secretary</p>
+                                <p className='text-[#838282] text-sm capitalize'>HR Manager</p>
                             </div>
                             <span className='flex items-center gap-3'>
                                 <a target='_blank' href="https://www.linkedin.com/in/george-gloria-575644244/">
@@ -172,6 +138,41 @@ const index = () => {
                         </div>
                         <img src={GloriaImg} alt="" className='object-cover object-center w-20 h-20 overflow-hidden rounded-full' />
                     </div>
+                    <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
+                        <div className='flex flex-col items-start gap-6'>
+                            <div className=''>
+                                <h5 className='text-[#282F38] text-base font-medium'>Blessing Patrick</h5>
+                                <p className='text-[#838282] text-sm capitalize'>Head, Sales</p>
+                            </div>
+                            <span className='flex items-center gap-3'>
+                                <a target='_blank' href="https://www.linkedin.com/in/george-gloria-575644244/">
+                                    <img src={Linkedin} alt="" />
+                                </a>
+                                <a target='_blank' href="https://wa.me/2349076106240">
+                                    <img src={SMS} alt="" />
+                                </a>
+                            </span>
+                        </div>
+                        <img src={BlessingImg} alt="" className='object-cover object-center w-20 h-20 overflow-hidden rounded-full' />
+                    </div>
+                    <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
+                        <div className='flex flex-col items-start gap-6'>
+                            <div className=''>
+                                <h5 className='text-[#282F38] text-base font-medium'>Blessing Teddy</h5>
+                                <p className='text-[#838282] text-sm capitalize'>Executive director, strategy and brand awareness</p>
+                            </div>
+                            <span className='flex items-center gap-3'>
+                                <a target='_blank' href="https://www.linkedin.com/in/blessing-teddy-seo-specialist">
+                                    <img src={Linkedin} alt="" />
+                                </a>
+                                <a target='_blank' href="https://wa.me/2348100665660">
+                                    <img src={SMS} alt="" />
+                                </a>
+                            </span>
+                        </div>
+                        <img src={TeddyImg} alt="" className='object-cover object-center w-20 h-20 overflow-hidden rounded-full' />
+                    </div>
+                    
                     {/* <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
                         <div className='flex flex-col items-start gap-6'>
                             <div className=''>
