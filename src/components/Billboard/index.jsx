@@ -162,7 +162,6 @@ const Billboard = () => {
         }
     }, [billboards?.length])
   
-  
 
     // const [active, setActive] = useState(0)
     // const carouselRef = useRef(null)

@@ -136,11 +136,11 @@ const Slide = ({ closeModal }) => {
                                                 <img src={products?.data?.[random]?.photos?.[0]?.filename} alt="product image" className='w-full h-[250px] md:h-full object-fill carousel-img' />
                                             </div>
                                             <div className="flex flex-col items-center justify-center flex-1 w-full h-full gap-4 text-center">
-                                                <h2 className="text-xl text-black lg:text-3xl text-capitalize text-bold">{products?.data?.[random]?.product_name}</h2>
+                                                <h2 className="text-xl text-black lg:text-3xl text-capitalize text-bold">{products?.data?.[random]?.name}</h2>
                                                 <p className="max-w-[400px] text-center mb-6 text-sm lg:text-base text-black/70">
-                                                {products?.data?.[random]?.product_description}
+                                                {products?.data?.[random]?.description}
                                                 </p>
-                                                <Link onClick={() => closeModal()} to={`products/${products?.data?.[random]?.product_string}`} className="px-4 py-2 text-sm text-white rounded cursor-pointer bg-orange">Shop Now</Link>
+                                                <Link onClick={() => closeModal()} to={`products/${products?.data?.[random]?.id}`} className="px-4 py-2 text-sm text-white rounded cursor-pointer bg-orange">Shop Now</Link>
                                             </div>
                                         </div>
                                     </div>

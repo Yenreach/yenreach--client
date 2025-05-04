@@ -87,7 +87,7 @@ const JobDescription = ({ job }) => {
 					<h2 className='text-xl font-medium'>{ job?.job_title }</h2>
 					<div className='flex gap-2'>
 						{
-							job?.job_tags?.map((tag, index) => (
+							job?.tags?.map((tag, index) => (
 								<span key={tag.id} className="p-1 font-normal text-white text-xsm bg-black/40 w-fit">{ tag.tag }</span>
 							))
 						}

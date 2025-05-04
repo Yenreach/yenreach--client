@@ -59,7 +59,7 @@ const index = () => {
                                     : `/users/business/${business.verify_string}`
                                     } key={business?.verify_string} className='flex w-full p-2 overflow-hidden text-sm bg-white rounded shadow'>
                                             <div>
-                                                <Image url={business?.profile_img} name={business?.name} className="object-cover w-20 h-20" />
+                                                <Image url={business?.profileImg} name={business?.name} className="object-cover w-20 h-20" />
                                             </div>
                                             <div className='relative w-full p-4 px-6'>
                                                 <p className='mb-1 font-semibold'>{business.name}</p>

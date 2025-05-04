@@ -1,6 +1,7 @@
 import ApiAdapter from "./ApiService"
 
 const servicePrefix = "/products"
+const serviceSuffix = ".php"
 
 const token = JSON.parse(sessionStorage.getItem("user"))?.verify_string
 
@@ -8,7 +9,7 @@ const token = JSON.parse(sessionStorage.getItem("user"))?.verify_string
 /* Get user */
 export const apiGetUser = () => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/${token}`,
+        url: `${servicePrefix}/fetch_user_by_string_api${serviceSuffix}?string=${token}`,
         method: "get"    
     })
 }
@@ -17,7 +18,7 @@ export const apiGetUser = () => {
 /* Add Product */
 export const apiAddProduct = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/add_product_api${serviceSuffix}`,
         method: "post",
         data    
     })
@@ -26,7 +27,7 @@ export const apiAddProduct = (data) => {
 /* Add Product Category */
 export const apiAddProductCategory = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/add_product_category_api${serviceSuffix}`,
         method: "post",
         data    
     })
@@ -35,7 +36,7 @@ export const apiAddProductCategory = (data) => {
 /* Add Product Category List */
 export const apiAddProductCategoryList = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/add_product_category_list_api${serviceSuffix}`,
         method: "post",
         data    
     })
@@ -44,7 +45,7 @@ export const apiAddProductCategoryList = (data) => {
 /* Add Product Photo */
 export const apiAddProductPhoto = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/add_product_photo_api${serviceSuffix}`,
         method: "post",
         data    
     })
@@ -53,7 +54,7 @@ export const apiAddProductPhoto = (data) => {
 /* Delete Product */
 export const apiDeleteProduct = ({business_string, product_string}) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?business_string=${business_string}&product_string=${product_string}`,
+        url: `${servicePrefix}/delete_product_api${serviceSuffix}?business_string=${business_string}&product_string=${product_string}`,
         method: "get",
     })
 }
@@ -61,7 +62,7 @@ export const apiDeleteProduct = ({business_string, product_string}) => {
 /* Delete Product Category */
 export const apiDeleteProductCategory = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/delete_product_category_api${serviceSuffix}`,
         method: "delete",
         data    
     })
@@ -70,7 +71,7 @@ export const apiDeleteProductCategory = (data) => {
 /* Delete Product Photo */
 export const apiDeleteProductPhoto = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/delete_product_photo_api${serviceSuffix}`,
         method: "delete",
         data    
     })
@@ -79,7 +80,7 @@ export const apiDeleteProductPhoto = (data) => {
 /* Get Products */
 export const apiGetAllProducts = (query) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?limit=${query?.num_per_page || 40}&page=${query?.page || 1}&search=${query?.search || ''}`,
+        url: `${servicePrefix}/fetch_active_product_api${serviceSuffix}?per_page=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}&search=${query?.search || ''}`,
         method: "get",  
     })
 }
@@ -87,7 +88,7 @@ export const apiGetAllProducts = (query) => {
 /* Sort Products */
 export const apiSortProducts = (query) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?sort=${query?.sort || ''}&per_page=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}`,
+        url: `${servicePrefix}/sort_active_product_api${serviceSuffix}?sort=${query?.sort || ''}&per_page=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}`,
         method: "get",  
     })
 }
@@ -95,7 +96,7 @@ export const apiSortProducts = (query) => {
 /* Get Products */
 export const apiGetAllProductsAdmin = () => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/fetch_all_product_api${serviceSuffix}`,
         method: "get",  
     })
 }
@@ -103,7 +104,7 @@ export const apiGetAllProductsAdmin = () => {
 /* Get Products by Business string */
 export const apiGetAllBusinessProducts = (business_string) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/${business_string}/products`,
+        url: `${servicePrefix}/fetch_product_by_business_api${serviceSuffix}?string=${business_string}`,
         method: "get",  
     })
 }
@@ -111,7 +112,7 @@ export const apiGetAllBusinessProducts = (business_string) => {
 /* Get One Product */
 export const apiGetProduct = (id) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/${id}`,
+        url: `${servicePrefix}/fetch_one_product_api${serviceSuffix}?string=${id}`,
         method: "get",  
     })
 }
@@ -119,7 +120,7 @@ export const apiGetProduct = (id) => {
 /* Get One Product */
 export const apiGetRelatedProducts = (id) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/${id}/related`,
+        url: `${servicePrefix}/fetch_related_product_api${serviceSuffix}?string=${id}`,
         method: "get",  
     })
 }
@@ -127,7 +128,7 @@ export const apiGetRelatedProducts = (id) => {
 /* Get Product Category */
 export const apiGetProductCategory = () => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/categories`,
+        url: `${servicePrefix}/fetch_product_category_api${serviceSuffix}`,
         method: "get",  
     })
 }
@@ -135,7 +136,7 @@ export const apiGetProductCategory = () => {
 /* Update Product */
 export const apiUpdateProduct = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/update_product_api${serviceSuffix}`,
         method: "post",
         data
     })
@@ -144,7 +145,7 @@ export const apiUpdateProduct = (data) => {
 /* Update Product Status */
 export const apiUpdateProductStatus = (data) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/update_product_status_api${serviceSuffix}`,
         method: "post",
         data
     })

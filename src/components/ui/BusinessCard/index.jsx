@@ -14,12 +14,12 @@ const BusinessCard = ({ className, business }) => {
   )
   // console.log(className)
   return (
-    <Link to={`/business/${business.verify_string}`}>
+    <Link to={`/business/${business.id}`}>
       <div className={styles(className)}>
           <div className='flex flex-col'>       
               {/* <img src={Computer} alt="" className='object-cover object-center rounded-xl h-28' /> */}
               <Image
-                url={business?.profile_img}
+                url={business?.profileImg}
                 name={business?.name}
                 alt={business?.name}
                 className='object-cover object-center rounded-xl h-28'
@@ -28,7 +28,7 @@ const BusinessCard = ({ className, business }) => {
               <h6 className='text-sm font-medium h-[42px] my-2 overflow-hidden'>{business?.name}</h6>
               <ul className='flex items-center flex-wrap text-xsm list-disc pl-4 gap-x-4 gap-2 h-[51px] overflow-hidden pb-12'>
                   {business?.categories?.map((category) => ( 
-                      <li key={category.id}><span className='relative -left-1.5'>{category.category}</span></li>
+                      <li key={category}><span className='relative -left-1.5'>{category}</span></li>
                   ))}
               </ul>
           </div>

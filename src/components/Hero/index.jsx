@@ -113,13 +113,13 @@ const index = ({ businesses }) => {
         <form action="" method="post" onSubmit={handleSearch} className="flex text-base">
           <Input variant="plain" onChange={(e) => setSearch(e.target.value)} value={search} list="categories" name="category" id="category" placeholder='Search for business' className='rounded-tl-md rounded-bl-md placeholder:text-xs' />
           <datalist className='' name="categories" id="categories" placeholder='Enter state'>
-              {filledCategories?.map((category) => (
+              {filledCategories?.data?.map((category) => (
                   <option key={category.id} value={category.name}>{category.name}</option>
               ))}
           </datalist>
           <Input variant="plain" onChange={(e) => setLocation(e.target.value)} value={location} list="location" name="locate" id="locate" placeholder='Enter Location' className='border-l-0 border-r-0 placeholder:text-xs' />
           <datalist className='' name="location" id="location" placeholder='Enter Location'>
-              {businessStates?.map((state) => (
+              {businessStates?.data?.map((state) => (
                   <option key={state.id} value={state.name}>{state.name}</option>
               ))}
           </datalist>

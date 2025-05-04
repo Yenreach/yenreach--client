@@ -14,11 +14,11 @@ const Image = ({ url, name, alt, className, data }) => {
   // const imgName = business?.photos?.length > 0 ? business.photos[0]?.filepath?.split("/")[4] : name+".jpg"
 
   // useEffect(() => {
-  //   if (!business?.profile_img && !url) {
+  //   if (!business?.profileImg && !url) {
   //     downloadImage(imgName)
-  //   } else if (!business?.profile_img && url) {
-  //     mutate({ verify_string: business?.verify_string, profile_img: url })
-  //     console.log("business?.profile_img", url, business?.profile_img)
+  //   } else if (!business?.profileImg && url) {
+  //     mutate({ verify_string: business?.verify_string, profileImg: url })
+  //     console.log("business?.profileImg", url, business?.profileImg)
   //   } else {
   //     console.log("not responding")
   //   }

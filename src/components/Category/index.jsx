@@ -13,7 +13,7 @@ import JobCard from '../ui/JobCard'
 
 const staleTime = 1000 * 60 * 60 * 24
 
-const index = () => {
+const Category = () => {
     const [activeTab, setActiveTab] = useState('business');
     
     const { data: aprrovedBusinesses, error: errorApprovedBusinesses, isLoading: approvedBusinessLoading } = useFetch({
@@ -38,9 +38,6 @@ const index = () => {
         staleTime: staleTime,
     })
   
-          // console.log("aprrovedBusinesses", aprrovedBusinesses, "error", errorApprovedBusinesses)
-
-
   return (
     <section className='flex flex-col gap-8 px-4 py-8 md:px-10 lg:px-24 md:gap-20'>
         <div className='flex flex-col gap-4 xs:items-center'>
@@ -66,7 +63,7 @@ const index = () => {
             <div className='grid gap-6 grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
                 {activeTab === 'business' && (
                     (!approvedBusinessLoading && !errorApprovedBusinesses) ?  (
-                        aprrovedBusinesses?.slice(0,5).map((business) => ( 
+                        aprrovedBusinesses?.data?.slice(0,5).map((business) => ( 
                             <BusinessCard key={business.id} business={business} />
                         ))
                     ) :
@@ -77,10 +74,10 @@ const index = () => {
                     )
                 )}
                 {activeTab === 'marketplace' && products &&  (
-                    products?.slice(0,5).map((product) => <ProductCard key={product.id} product={product} />)
+                    products?.data?.slice(0,5).map((product) => <ProductCard key={product.id} product={product} />)
                 )}
                 {activeTab === 'jobs' && (
-                     jobs?.slice(0,5).map((job) =>  <JobCard key={job.id} job={job} /> )
+                     jobs?.data?.slice(0,5).map((job) =>  <JobCard key={job.id} job={job} /> )
                 )}
             </div>
             <Link to={activeTab === 'jobs' ? '/explore/jobs' : activeTab === 'marketplace' ? '/explore/products' : '/explore'} state={activeTab === 'marketplace' ? { data: "marketplace" } : activeTab === 'jobs' ? { data: "jobs" } : {}} >
@@ -93,4 +90,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Category

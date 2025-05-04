@@ -13,7 +13,7 @@ import Loader from '/src/components/Loader'
 import useFetch from '/src/hooks/useFetch'
 
 const initialProductState = { 
-    business_string : "",
+    businessId : "",
     name : "",
     description : "",
     categories : [],
@@ -22,7 +22,7 @@ const initialProductState = {
     color : "",
     safety_tip : "",
     photos : [],
-    // product_tags : [],
+    // tags : [],
 }
 
 
@@ -57,15 +57,15 @@ const EditProduct = () => {
     useEffect(() => {
         if (data) {
             setProduct({
-                business_string : data?.business_string,
-                product_string : data?.product_string,
-                name : data?.product_name,
-                description : data?.product_description,
+                businessId : data?.businessId,
+                id : data?.id,
+                name : data?.name,
+                description : data?.description,
                 categories : data?.categories,
-                price : data?.product_price,
-                quantity : data?.product_quantity,
-                color : data?.product_color,
-                safety_tip : data?.product_safety_tip,
+                price : data?.price,
+                quantity : data?.quantity,
+                color : data?.color,
+                safety_tip : data?.safety_tip,
                 photos : data?.photos,
             })
         }
@@ -103,7 +103,7 @@ const EditProduct = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         // console.log("data", product)
-        updateProductMutation.mutate({...product, business_string: id})
+        updateProductMutation.mutate({...product, businessId: id})
     }
 
 
@@ -111,7 +111,7 @@ const EditProduct = () => {
         <Dashboard> 
           {(updateProductMutation?.isLoading || uploadingImg) && <Loader loader={4} />}
             <div className='flex-1 overflow-y-auto overflow-hidden'>
-                <Header business_string={id} type="product" />
+                <Header businessId={id} type="product" />
             <section className='p-8 px-4 sm:px-8'>
                 <form className='p-8 px-4 sm:px-8 bg-white rounded-2xl' onSubmit={handleSubmit}>
                     <div className='mb-8'>

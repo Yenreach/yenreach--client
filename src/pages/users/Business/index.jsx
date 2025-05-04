@@ -63,7 +63,7 @@ const WorkingHours = () => {
       profileImageMutation.mutate({
         user_string: user?.verify_string,
         business_string: id,
-        profile_img: profilePhoto
+        profileImg: profilePhoto
       })
     }
     if (profilePhoto) {
@@ -226,7 +226,7 @@ const WorkingHours = () => {
                         <CiEdit size="" color="white" className="" />
                     </span>
                     <input type="file" name="image" id="image" className="hidden" onChange={(e)=> uploadProfilePhoto(e.target.files[0])}  />
-                    <Image url={business?.profile_img} name={business?.name} className='object-cover w-full h-full rounded-full' />
+                    <Image url={business?.profileImg} name={business?.name} className='object-cover w-full h-full rounded-full' />
                 </label>
               </div>
             </div>

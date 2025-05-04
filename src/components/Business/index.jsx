@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate, useSearchParams, useLocation } from 'react-router-dom'
 import { apiGetApprovedBusinesses, apiGetFilledCategories, apiGetBusinessStates, apiBusinessSearch, apiSortBusinesses, apiGetAllCategories } from '../../services/CommonService'
 import useFetch from '/src/hooks/useFetch'
@@ -22,19 +22,45 @@ const ExploreBusiness = () => {
   const [useFilter, setUseFilter] = useState(false)
   const [filterBy, setFilterBy] = useState('')
   const [location, setLocation] = useState('')
-  const [searchQuery, setSearchQuery] = useState({ search: '', location: '' })
+  const [searchQuery, setSearchQuery] = useState('')
   const [enabled, setEnabled] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(searchParams.get('page') || 1)
   const num_per_page = 40
-  const searchString = searchParams.get('search')
-  const searchLocation = searchParams.get('location')
+  // const searchString = searchParams.get('search')
+  // const searchLocation = searchParams.get('location')
   const { createQueryString } = useCreateQueryString()
 
   useEffect(() => {
     const page = parseInt(searchParams.get('page'), 10) || 1; // Default to page 1
     setPage(page);
   }, [searchParams])
+
+  const searchRef = useRef()
+
+  useEffect(() => {
+    // debounce search
+    if (searchRef.current) {
+      clearTimeout(searchRef?.current)
+    }
+    const timer = setTimeout(() => {
+      setSearchQuery(search)
+    }, 500)
+
+    searchRef.current = timer
+  }, [search])
+
+  useEffect(() => {
+    // debounce search
+    if (searchRef.current) {
+      clearTimeout(searchRef?.current)
+    }
+    const timer = setTimeout(() => {
+      setSearchQuery(filterBy)
+    }, 500)
+
+    searchRef.current = timer
+  }, [filterBy])
 
   // useEffect(() => {
   //   const params = new URLSearchParams(locate.search);
@@ -45,66 +71,51 @@ const ExploreBusiness = () => {
 
   const handleSearch = (e) => {
     e.preventDefault()
-    setSearchParams({ page: 1 })
-    setUseFilter(false)
-    setSearchQuery({ search, location })
-    if (!enabled) {
-      setEnabled(true)
-      refetch()
-    } else {    
-      if (!search) {
-        setEnabled(false)
-      } else {
-        refetch()
-      }
-    }
-    setSearch('')
-    setLocation('')
+    // setSearchParams({ page: 1 })
+    // setUseFilter(false)
+    // setSearchQuery({ search, location })
+    // if (!enabled) {
+    //   setEnabled(true)
+    //   refetch()
+    // } else {    
+    //   if (!search) {
+    //     setEnabled(false)
+    //   } else {
+    //     refetch()
+    //   }
+    // }
+    // setSearch('')
+    // setLocation('')
   }
 
-  useEffect(() => {
-    if (!!searchString) {
-      setSearchQuery({ search: searchString, location: searchLocation })
-      setEnabled(true)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (!!searchString) {
+  //     setSearchQuery({ search: searchString, location: searchLocation })
+  //     setEnabled(true)
+  //   }
+  // }, [])
 
-  const { data: aprrovedBusinesses, error: errorApprovedBusinesses, isPreviousData, isFetching: aprrovedBusinessesFetching  } = useFetch({
+  const { data: aprrovedBusinesses, isLoading: aprrovedBusinessesLoading, error: errorApprovedBusinesses, isPreviousData, isFetching: aprrovedBusinessesFetching  } = useFetch({
     api: apiGetApprovedBusinesses,
-    key: ['aprrovedBusinesses', page],
-    param: { page, num_per_page },
+    key: ['aprrovedBusinesses', page, searchQuery],
+    param: { page, num_per_page, search: searchQuery },
     // select: (data) => paginate(data?.data, page, num_per_page),
-    select: (data) => data,
     staleTime: staleTime,
   })
 
-  
-  const { data: sortedBusinesses, error: errorSortedBusinesses, isLoading: sortBusinessesLoading }  = useFetch({
-    api: apiSortBusinesses,
-    param: { page, num_per_page, sort: filterBy },
-    select: (data) => data,
-    key: ['sortedBusinesses', page, filterBy],
-    enabled: !!filterBy,
-  })
 
-  const { data: filteredBusiness, error: errorFilteredBusinesses, refetch, isLoading: filteredBusinessesLoading } = useFetch({
-    api: apiBusinessSearch,
-    param: searchQuery,
-    key: ['filteredBusiness', searchQuery],
-    select: (data) => data,
-    enabled: enabled,
-  })
-
-  const { isLoading, error, data: categories } = useFetch({
+  const { data: categories } = useFetch({
     api: apiGetAllCategories,
     key: ['categories'],
   })
   
-  const { data: filledCategories, error: errorFilledCategories } = useFetch({
-    api: apiGetFilledCategories,
-    key: 'filledCategories',
-    staleTime: staleTime,
-  })
+  // const { data: filledCategories, error: errorFilledCategories } = useFetch({
+  //   api: apiGetFilledCategories,
+  //   key: 'filledCategories',
+  //   staleTime: staleTime,
+  // })
+
+  // console.log({ filledCategories })
   
   const { data: businessStates, error: errorBusinessStates } = useFetch({
     api: apiGetBusinessStates,
@@ -122,13 +133,13 @@ const ExploreBusiness = () => {
   }
 
   
-  useEffect(() => {
-    if (filterBy) {
-      setUseFilter(true)
-    } else {
-      setUseFilter(false)
-    }
-  }, [filterBy])
+  // useEffect(() => {
+  //   if (filterBy) {
+  //     setUseFilter(true)
+  //   } else {
+  //     setUseFilter(false)
+  //   }
+  // }, [filterBy])
 
 
   return (
@@ -139,7 +150,7 @@ const ExploreBusiness = () => {
         name="Yenreach"
         type="businesses"
     />
-      {((enabled && filteredBusinessesLoading) || (useFilter && sortBusinessesLoading) || (aprrovedBusinessesFetching && isPreviousData)) && <Loader loader={4} />}
+      {(aprrovedBusinessesFetching && isPreviousData) && <Loader loader={4} />}
 
 
 			<div className='flex items-center justify-center w-full gap-10'>
@@ -152,14 +163,14 @@ const ExploreBusiness = () => {
       <div className="flex flex-col gap-1 md:gap-4 md:flex-row">
         <form action="" method="post" onSubmit={handleSearch} className="text-xs sm:text-sm md:text-base flex">
           <Input onChange={(e) => setSearch(e.target.value)} value={search} list="categories" name="category" id="category" placeholder='business' className='rounded-tl-md rounded-bl-md' />
-          <datalist className='' name="categories" id="categories" placeholder='Enter state'>
-              {filledCategories?.map((category) => (
+          {/* <datalist className='' name="categories" id="categories" placeholder='Enter state'>
+              {filledCategories?.data?.map((category) => (
                   <option key={category.id} value={category.name}>{category.name}</option>
               ))}
-          </datalist>
+          </datalist> */}
           <Input onChange={(e) => setLocation(e.target.value)} value={location} list="location" name="locate" id="locate" placeholder='location' className='border-l-0 border-r-0' />
           <datalist className='' name="location" id="location" placeholder='Enter Loac'>
-              {businessStates?.map((state) => (
+              {businessStates?.data?.map((state) => (
                   <option key={state.id} value={state.name}>{state.name}</option>
               ))}
           </datalist>
@@ -174,27 +185,29 @@ const ExploreBusiness = () => {
             ))}
         </select>
       </div>
+
 			{/* <SearchBar variant='business' /> */}
-      {(useFilter ? sortedBusinesses?.data?.length : enabled ? filteredBusiness?.data.length : aprrovedBusinesses?.data?.length) ?
-          <>
+      {aprrovedBusinessesLoading ? 
           <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {((aprrovedBusinesses || filteredBusiness)) ? paginate({ page, num_per_page, data: useFilter ? sortedBusinesses?.data : enabled ? filteredBusiness?.data?.slice((page-1) * num_per_page, page * num_per_page) : aprrovedBusinesses?.data })?.data?.map((business) => (
+            {
+            [...Array(40)].map((_, index) => (
+                  <BusinessCardLoading key={index} />
+              ))
+            }
+          </div>
+        :
+         aprrovedBusinesses?.data?.length ?
+          <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {aprrovedBusinesses?.data.map((business) => (
                   <BusinessCard key={business.id} business={business} />
                 ))
-                :
-                (
-                  [...Array(40)].map((business, index) => (
-                      <BusinessCardLoading key={index} />
-                  ))
-                )
               }
           </div>
-          </>
           :
           <div className='flex w-full items-center justify-center h-24 text-black/70'>
             {search ? 'No Business Available for this search' : 'No business was fetched'}
           </div>
-          }
+        }
       {/* <div className="grid w-full py-6 text-xl font-extrabold text-white bg-center bg-cover bg-new-job-listing rounded-2xl place-items-center">
         New Job Listings available       
       </div> */}
@@ -206,9 +219,10 @@ const ExploreBusiness = () => {
       <Pagination 
         page={page} 
         num_per_page={num_per_page} 
-        data={useFilter ? sortedBusinesses?.data : enabled ? filteredBusiness?.data : aprrovedBusinesses?.data} 
+        data={aprrovedBusinesses?.data} 
         handlePageChange={handlePageChange} 
-        total={useFilter ? sortedBusinesses?.data : enabled ? filteredBusiness?.data?.length : aprrovedBusinesses?.total} 
+        total={aprrovedBusinesses?.total} 
+        totalPages={aprrovedBusinesses?.totalPages}
       />
     </>
   )

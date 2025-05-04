@@ -33,7 +33,7 @@ const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) =
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        const data = { ...businessData, user_string: user?.verify_string, profile_img: profileImg, cover_img: coverImg }
+        const data = { ...businessData, user_string: user?.verify_string, profileImg: profileImg, cover_img: coverImg }
         // console.log("data", data)
         addBusinessMutation.mutate(data)
     }
@@ -51,7 +51,7 @@ const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) =
         
         <div className='mb-32 mt-9 md:flex gap-9'>
             <div className='mb-4'>
-                <label htmlFor="profile_img" className='font-medium text-sm bg-[#E5E5E5] p-16 py-20 flex flex-col items-center justify-center max-w-[25rem] rounded-2xl relative cursor-pointer'>
+                <label htmlFor="profileImg" className='font-medium text-sm bg-[#E5E5E5] p-16 py-20 flex flex-col items-center justify-center max-w-[25rem] rounded-2xl relative cursor-pointer'>
                         <>
                             <img src={Add} alt="" className='mb-4 border-2 rounded-full' />
                             <span className='text-center'>Select profile Image for your business</span>
@@ -61,7 +61,7 @@ const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) =
                     }        
                     
                 </label>
-                <Input onChange={(e) => uploadProfileImg(e.target.files[0])} className='border-[#E5E5E5] rounded-lg hidden' type="file" name="profile_img" id="profile_img" />
+                <Input onChange={(e) => uploadProfileImg(e.target.files[0])} className='border-[#E5E5E5] rounded-lg hidden' type="file" name="profileImg" id="profileImg" />
             </div>
             <div className=''>
                 <label htmlFor="cover_img" className='font-medium text-sm bg-[#E5E5E5] p-16 py-20 flex flex-col items-center justify-center max-w-[25rem] rounded-2xl relative cursor-pointer'>

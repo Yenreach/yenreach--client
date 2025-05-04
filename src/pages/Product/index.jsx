@@ -48,12 +48,6 @@ const Product = () => {
 
   // console.log({ relatedProducts })
   
-  const { data: business, error: errorBusiness, isLoading: businessLoading } = useFetch({
-    api: apiGetOneBusiness,
-    param: product?.business_string,
-    key: ['business', product?.business_string],
-    enabled: !!product?.business_string,
-  })
   // console.log("relatedProducts", relatedProducts)
   // console.log("pro", business)
 
@@ -70,8 +64,8 @@ const Product = () => {
           )}
         <div className='mt-24 mb-10'>
             <section className='px-4 py-4 mb-8 md:pt-8 sm:py-6 md:px-10 lg:px-20'>
-                <h1 className='mb-2 text-2xl font-medium'>{product?.product_name}</h1>
-                <p className='mb-6 text-xl font-light text-black/80'>₦{product?.product_price}</p>
+                <h1 className='mb-2 text-2xl font-medium'>{product?.name}</h1>
+                <p className='mb-6 text-xl font-light text-black/80'>₦{product?.price}</p>
                 {/* <div className='flex items-center gap-1'>
                   <span >******</span>
                     <span>stars</span>
@@ -80,10 +74,10 @@ const Product = () => {
             </section>
             <section className='py-4 sm:py-6 px-4 md:px-10 lg:px-20 mb-8 flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-12 h-[400px] overflow-hidden'>
                 <div className='relative flex-1 w-full h-full overflow-hidden bg-gray-light'>
-                    <img onClick={() => handleImageClick(product?.photos[0]?.filename)} src={product?.photos[0]?.filename} alt="Product" className='object-cover w-full h-full cursor-pointer' />
+                    <img onClick={() => handleImageClick(product?.photos?.[0]?.mediaPath)} src={product?.photos?.[0]?.mediaPath} alt="Product" className='object-cover w-full h-full cursor-pointer' />
                     {`click to view image`}
                     <span
-                      onClick={() => handleImageClick(product?.photos[0]?.filename)}
+                      onClick={() => handleImageClick(product?.photos?.[0]?.mediaPath)}
                       className='absolute bottom-0 left-0 flex items-center justify-center w-full h-12 text-sm text-white cursor-pointer bg-black/50'
                      >
                       View Full Image
@@ -93,12 +87,12 @@ const Product = () => {
                   <div>
                       <h2 className='mb-3 text-base font-medium'>Product Description</h2>
                       <p className='mb-12 text-sm'>
-                      {product?.product_description}
+                      {product?.description}
                       </p>
                   </div>
                   <div className='flex flex-col mb-12 text-xs'>
                       <span className='font-medium'>Listed By</span>
-                      <span className='text-sm text-gray'>{business?.name}</span>
+                      <span className='text-sm text-gray'>{product?.business?.name}</span>
                   </div>
                     <Button variant='product' className='w-full py-2 text-xs px-28' onClickFunc={focus}>
                       Contact Us
@@ -110,41 +104,41 @@ const Product = () => {
               <div className='flex flex-col flex-wrap gap-4 md:flex-row md:gap-x-12'>
                 <div ref={nameRef} tabIndex="0">
                     <p className='text-xs text-black/60'>Name</p>
-                    <p className='text-sm font-semibold'>{business?.name}</p>
+                    <p className='text-sm font-semibold'>{product?.business?.name}</p>
                 </div>
                 <div>
                     {/* <p className='text-xs text-black/60'>Email</p> */}
                     <p className='text-sm'>
-                      <a target='_blank' className='flex items-center gap-2 w-fit bg-orange p-2 rounded-md text-white pr-2.5' href={`mailto:${business?.email}`}>
+                      <a target='_blank' className='flex items-center gap-2 w-fit bg-orange p-2 rounded-md text-white pr-2.5' href={`mailto:${product?.business?.email}`}>
                         <AiOutlineMail />
                         Send Mail
-                        {/* {business?.email} */}
+                        {/* {product?.business?.email} */}
                       </a>
                     </p>
                 </div>
                 <div>
                     {/* <p className='text-xs text-black/60'>Phone Number</p> */}
                     <p className='text-sm'>
-                      <a target='_blank' className='flex items-center gap-2 w-fit bg-orange p-2 rounded-md text-white pr-2.5' href={`tel:${business?.phonenumber}`}>
+                      <a target='_blank' className='flex items-center gap-2 w-fit bg-orange p-2 rounded-md text-white pr-2.5' href={`tel:${product?.business?.phoneNumber}`}>
                         <BsTelephone className='text-xs' />
                         Call
-                        {/* {business?.phonenumber} */}
+                        {/* {product?.business?.phoneNumber} */}
                       </a>
                     </p>
                 </div>
                 <div>
                     {/* <p className='text-xs text-black/60'>Whatsapp</p> */}
                     <p className='text-sm'>
-                      <a target='_blank' className='flex items-center gap-2 w-fit bg-orange p-2 rounded-md text-white pr-2.5' href={`https://wa.me/${business?.phonenumber?.slice(1, -1)}`}>
+                      <a target='_blank' className='flex items-center gap-2 w-fit bg-orange p-2 rounded-md text-white pr-2.5' href={`https://wa.me/${product?.business?.phoneNumber?.slice(1, -1)}`}>
                         <BsWhatsapp />
                         Chat on Whatsapp
-                        {/* +234{business?.phonenumber?.slice(1, -1)} */}
+                        {/* +234{product?.business?.phoneNumber?.slice(1, -1)} */}
                       </a>
                     </p>
                 </div>
                 <div>
                     <p className='text-xs text-black/60'>Address</p>
-                    <p className='text-sm font-semibold'>{business?.address} {business?.state}</p>
+                    <p className='text-sm font-semibold'>{product?.business?.address} {product?.business?.state}</p>
                 </div>
               </div>
             </section>
@@ -153,10 +147,10 @@ const Product = () => {
                   <h2 className='mb-3 text-base font-medium text-orange'>More Photos</h2>
                   <div className='flex flex-wrap gap-4 md:flex-row md:gap-8 lg:gap-12'>
                   {product?.photos.slice(1)?.map((photo) => (
-                      <div key={photo?.filename} className='relative overflow-hidden rounded-lg bg-gray w-36 h-36'>
-                          <img src={photo?.filename} alt="Products" className='object-cover w-full h-full' />
+                      <div key={photo?.mediaPath} className='relative overflow-hidden rounded-lg bg-gray w-36 h-36'>
+                          <img src={photo?.mediaPath} alt="Products" className='object-cover w-full h-full' />
                           <span
-                            onClick={() => handleImageClick(photo?.filename)}
+                            onClick={() => handleImageClick(photo?.mediaPath)}
                             className='absolute bottom-0 left-0 flex items-center justify-center w-full h-8 text-xs text-white cursor-pointer bg-black/50'
                           >
                             View Full Image
@@ -178,7 +172,7 @@ const Product = () => {
             }
         </div>
         <Footer />
-        {modalOpen && <SellerDetailsModal data={business} modalOpen={modalOpen} setModalOpen={setModalOpen} />}
+        {/* {modalOpen && <SellerDetailsModal data={business} modalOpen={modalOpen} setModalOpen={setModalOpen} />} */}
       </>
   )
 }

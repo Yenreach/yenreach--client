@@ -27,7 +27,7 @@ const JobCardVariation = ({ job, className, setSelectedJobIndex, index, selected
         <h2 className='font-bold'>{ job.job_title }</h2>
         <div className="flex gap-2">
           {
-            job.job_tags?.map((tag, index) => (
+            job.tags?.map((tag, index) => (
               <span key={tag.id} className="p-1 text-xsm bg-[#E0E5EE] text-[#69707D]">{ tag.tag }</span>
             ))
           }
