@@ -7,44 +7,62 @@ const token = JSON.parse(sessionStorage.getItem("user"))?.verify_string
 
 /* Home/index */
 
-export const apiHomeBusiness =  () => {
+export const apiHomeBusiness =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
-export const apiBusinessCategories =  () => {
+export const apiBusinessCategories =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}/categories`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
-export const apiBusinessOfTheWeek =  () => {
+export const apiBusinessOfTheWeek =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
-export const apiBusinessAnalytics =  () => {
+export const apiBusinessAnalytics =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
-export const apiBusinessStates =  () => {
+export const apiBusinessStates =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
-export const apiBillboards =  () => {
+export const apiBillboards =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
@@ -53,7 +71,10 @@ export const apiGetApprovedBusinesses =  (query = {}) => {
     // console.log({ query })
     return ApiAdapter.fetchData({
         url: `${servicePrefix}?page=${query?.page || '1'}&limit=${query?.num_per_page || '40'}&search=${query.search || ''}&category=${query.category || ''}&state=${query.state || ''}&lga=${query.lga || ''}&sort=${query.sort || ''}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
@@ -61,23 +82,32 @@ export const apiGetApprovedBusinesses =  (query = {}) => {
 export const apiSortBusinesses = (query) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get",  
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }  
     })
 }
 
 
-export const apiGetFilledCategories =  () => {
+export const apiGetFilledCategories =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
-export const apiGetBusinessStates =  () => {
+export const apiGetBusinessStates =  ({ token }) => {
     // business states
     return ApiAdapter.fetchData({
         url: `/states`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 export const apiBusinessSearch =  ({ search, location }) => {
@@ -87,24 +117,33 @@ export const apiBusinessSearch =  ({ search, location }) => {
     // business search
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 
 /* Get states */
-export const apiGetStates = () => {
+export const apiGetStates = ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
         method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
 }
 
 /* Get lgas */
-export const apiGetLGAs = () => {
+export const apiGetLGAs = ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
         method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
 }
 
@@ -113,71 +152,104 @@ export const apiGetLGAs = () => {
 export const apiGetOneBusiness = (business_token) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}/${business_token}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 export const apiGetBusinessCategories = (business_token) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 export const apiGetBusinessWorkingHours = (business_token) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 export const apiGetBusinessBranches = (business_token) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 export const apiGetBusinessSubscription = (business_token) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 export const apiGetBusinessSubscriptionByString = (subscription_string) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 export const apiGetRelatedBusinesses = (business_token) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 export const apiGetBusinessFacilities = (business_token) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 export const apiGetBusinessReviews = (business_token) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 export const apiGetBusinessReview = (token) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 export const apiGetBusinessReviewsStats = (business_token) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 export const apiAddBusinessReview = (data) => {
@@ -200,35 +272,50 @@ export const apiSaveBusiness = ({buisnes_string}) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
         method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
 }
 
 /* Blogs */
 
-export const apiGetAllBlogs =  () => {
+export const apiGetAllBlogs =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `/blogs`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 export const apiGetBlog =  (id) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 export const apiGetBlogComments =  (id) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
-export const apiGetComments =  () => {
+export const apiGetComments =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
@@ -258,36 +345,51 @@ export const updateBusinessPhoto =  (data) => {
 
 /* User Activities */
 
-export const apiRegister =  () => {
+export const apiRegister =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
-export const apiLogin =  () => {
+export const apiLogin =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 export const apiForgotEmail =  (email) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
-export const apiGetCookie =  () => {
+export const apiGetCookie =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
-export const apiPageVisits =  () => {
+export const apiPageVisits =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 export const apiAddPageVisit =  (data) => {
@@ -299,17 +401,23 @@ export const apiAddPageVisit =  (data) => {
 }
 
 
-export const apiActivityLog =  () => {
+export const apiActivityLog =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
-export const apiGetAllCategories =  () => {
+export const apiGetAllCategories =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}/categories`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 

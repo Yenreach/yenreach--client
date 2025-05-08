@@ -1,13 +1,14 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import getData from '/src/utils/getData'
+import { useAuthContext } from './useAuthContext'
 
 
-const useFetch = ({ api, param, key, onSuccess, select, enabled=true, ...rest }) => {
-
+const useFetch = ({ api, param={}, key, onSuccess, select, enabled=true, ...rest }) => {
+    const { token } = useAuthContext()
     const { data, error, isLoading, isSuccess, isFetching, remove, refetch, fetchStatus, isPreviousData } = useQuery({
         queryKey: [...key],
-        queryFn: () => getData(api, param),
+        queryFn: () => getData(api, { ...param, token }),
         select: select || ((data) => data?.data),
         enabled,
         keepPreviousData: true,

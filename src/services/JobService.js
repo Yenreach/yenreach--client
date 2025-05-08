@@ -1,16 +1,18 @@
 import ApiAdapter from "./ApiService"
 
 const servicePrefix = "/jobs"
-const serviceSuffix = ""
 
 const token = JSON.parse(sessionStorage.getItem("user"))?.verify_string
 
 
 /* Get user */
-export const apiGetUser = () => {
+export const apiGetUser = ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}?string=${token}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
@@ -29,15 +31,21 @@ export const apiAddJob = (data) => {
 export const apiGetAllJobs = (query) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}?per_page=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}&search=${query?.search || ''}`,
-        method: "get",  
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }   
     })
 }
 
 /* Get Jobs */
-export const apiGetAllJobsAdmin = () => {
+export const apiGetAllJobsAdmin = ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
-        method: "get",  
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }   
     })
 }
 
@@ -45,7 +53,10 @@ export const apiGetAllJobsAdmin = () => {
 export const apiGetAllBusinessJobs = (business_string) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}?string=${business_string}`,
-        method: "get",  
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }   
     })
 }
 
@@ -53,7 +64,10 @@ export const apiGetAllBusinessJobs = (business_string) => {
 export const apiGetJob = (job_string) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}?string=${job_string}`,
-        method: "get",  
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }   
     })
 }
 
@@ -61,7 +75,10 @@ export const apiGetJob = (job_string) => {
 export const apiGetApplication = (application_string) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}?string=${application_string}`,
-        method: "get",  
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }   
     })
 }
 
@@ -69,7 +86,10 @@ export const apiGetApplication = (application_string) => {
 export const apiGetApplicationsByJob = (job_string) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}?string=${job_string}`,
-        method: "get",  
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }   
     })
 }
 
@@ -77,7 +97,10 @@ export const apiGetApplicationsByJob = (job_string) => {
 export const apiGetApplicationsByUser = (user_string) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}?string=${user_string}`,
-        method: "get",  
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }   
     })
 }
 
@@ -95,6 +118,9 @@ export const apiDeleteJob = ({business_string, job_string }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}?job_string=${job_string}&business_string=${business_string}`,
         method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        } 
     })
 }
 

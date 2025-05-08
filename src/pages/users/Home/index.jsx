@@ -24,8 +24,8 @@ const index = () => {
   
     const { isLoading, error, data: businesses } = useFetch({
         api: apiGetAllBusinesses,
-        key: ['userBusinesses', user?.verify_string],
-        param: user?.verify_string,
+        key: ['userBusinesses', user?.id],
+        param: { id: user?.id }
       })
 
     //   console.log("businesses", businesses)
@@ -37,12 +37,12 @@ const index = () => {
                 <Head />
                 <div className='py-4 px-7'>
                     {!businesses && <h1 className='mb-2 text-lg font-medium text-green'>Business</h1>}
-                    {businesses && 
+                    {!!businesses?.data?.length && 
                         <>
                         <div className='flex flex-col justify-between gap-2 mb-6 md:flex-row md:gap-4 md:items-center'>
                             <div>
                                 <h1 className='mb-2 text-lg font-medium text-green'>Business</h1>
-                                <p className='text-[#476788] text-sm mb-7'>You have {businesses?.length} {businesses.length > 1 ? "businesses" : "business"} listed to your account.</p>
+                                <p className='text-[#476788] text-sm mb-7'>You have {businesses?.data?.length} {businesses.length > 1 ? "businesses" : "business"} listed to your account.</p>
                             </div>
                             <Link to="/users/add-business">
                                 <Button className='py-1.5 px-2 pr-3 rounded-sm flex items-center'>
@@ -52,12 +52,12 @@ const index = () => {
                             </Link>
                         </div>
                             <div className='grid gap-4 mb-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-                                {businesses?.map(business => (
-                                    <Link to={business?.reg_stage == 0 ? `/users/edit-business/${business.verify_string}`
-                                    : business?.reg_stage < 3 ? `/users/edit-business/${business.verify_string}`
-                                    : business?.reg_stage == 3 ? `/users/business/${business.verify_string}`
-                                    : `/users/business/${business.verify_string}`
-                                    } key={business?.verify_string} className='flex w-full p-2 overflow-hidden text-sm bg-white rounded shadow'>
+                                {businesses?.data?.map(business => (
+                                    <Link to={business?.reg_stage == 0 ? `/users/edit-business/${business.id}`
+                                    : business?.reg_stage < 3 ? `/users/edit-business/${business.id}`
+                                    : business?.reg_stage == 3 ? `/users/business/${business.id}`
+                                    : `/users/business/${business.id}`
+                                    } key={business?.id} className='flex w-full p-2 overflow-hidden text-sm bg-white rounded shadow'>
                                             <div>
                                                 <Image url={business?.profileImg} name={business?.name} className="object-cover w-20 h-20" />
                                             </div>
@@ -118,7 +118,7 @@ export default index
 
 
 // old business card
-//     <Link to={`/users/business/${business.verify_string}`} key={business?.verify_string} className='bg-[#F1F1F1] rounded-xl overflow-hidden'>
+//     <Link to={`/users/business/${business.id}`} key={business?.id} className='bg-[#F1F1F1] rounded-xl overflow-hidden'>
 //         <div>
 //             <img src={Business} alt="" className="object-cover w-full h-40" />
 //             <div className='p-4 px-6'>

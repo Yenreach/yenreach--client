@@ -33,7 +33,7 @@ const useAuth = ({from}) => {
             } else {
                 data = data.data
                 // console.log("success", data, "FROM", from)
-                dispatch({type: "LOGIN", payload: data})
+                dispatch({type: "LOGIN", payload: data })
                 setError(null)
                 setIsLoading(false)
                 navigate(from?.pathname || '/users', {replace: true})

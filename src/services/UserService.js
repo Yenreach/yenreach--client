@@ -1,24 +1,22 @@
 import ApiAdapter from "./ApiService"
 
 const servicePrefix = "/users"
-const serviceSuffix = ".php"
-
-const token = JSON.parse(sessionStorage.getItem("user"))?.verify_string
-
-
 /* Get user */
-export const apiGetUser = (user_string) => {
+export const apiGetUser = ({ token }) => {
     // console.log("user", user_string, "token", token)
     return ApiAdapter.fetchData({
-        url: `fetch_user_by_string_api${serviceSuffix}?string=${user_string || token}`,
-        method: "get"    
+        url: `${servicePrefix}/me`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Update user */
 export const apiUpdateUser = (data) => {
     return ApiAdapter.fetchData({
-        url: `edit_user_profile_api${serviceSuffix}`,
+        url: `edit_user_profile_api`,
         method: "post",
         data
     })
@@ -26,7 +24,7 @@ export const apiUpdateUser = (data) => {
 /* Update user */
 export const apiUpdateUserCv = (data) => {
     return ApiAdapter.fetchData({
-        url: `update_user_cv_api${serviceSuffix}`,
+        url: `update_user_cv_api`,
         method: "post",
         data
     })
@@ -34,7 +32,7 @@ export const apiUpdateUserCv = (data) => {
 /* Update Password */
 export const apiUpdatePassword = (data) => {
     return ApiAdapter.fetchData({
-        url: `change_user_password_api${serviceSuffix}`,
+        url: `change_user_password_api`,
         method: "post",
         data
     })
@@ -43,145 +41,193 @@ export const apiUpdatePassword = (data) => {
 /* Activity Log */
 export const apiAddActivityLog = (data) => {
     return ApiAdapter.fetchData({
-        url: `add_activity_log_api${serviceSuffix}`,
+        url: `add_activity_log_api`,
         method: "post",
         data
     })
 }
 
 /* Get user businesses */
-export const apiGetAllBusinesses = (id) => {
+export const apiGetAllBusinesses = ({ token }) => {
     // console.log("token", token)
     return ApiAdapter.fetchData({
-        url: `fetch_business_by_user_string_api${serviceSuffix}?string=${id || token}`,
-        method: "get"    
+        url: `/user/business`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get user business */
-export const apiGetOneBusiness = (business_token) => {
+export const apiGetOneBusiness = ({ id, token }) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_by_string_api${serviceSuffix}?string=${business_token}`,
-        method: "get"    
+        url: `/business/${id}`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get user business */
-export const apiGetBusinessPageVisits = (business_token) => {
+export const apiGetBusinessPageVisits = ({ id, token }) => {
     return ApiAdapter.fetchData({
-        url: `fetch_pagevisits_by_business_api${serviceSuffix}?string=${business_token}`,
-        method: "get"    
+        url: `fetch_pagevisits_by_business_api/${id}`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get business categories */
-export const apiGetBusinessCategories = (business_token) => {
+export const apiGetBusinessCategories = ({ id, token }) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_categories_api${serviceSuffix}?string=${business_token}`,
-        method: "get"    
+        url: `/business/categories/${id}`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get business photos */
-export const apiGetBusinessPhotos = (business_token) => {
+export const apiGetBusinessPhotos = ({ id, token }) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_public_photos_api${serviceSuffix}?string=${business_token}`,
-        method: "get"    
+        url: `/business/photos/${id}`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 export const apiAddBusinessPhoto = (data) => {
     return ApiAdapter.fetchData({
-        url: `add_business_photo_api${serviceSuffix}`,
+        url: `/business/${id}/photos`,
         method: "post",
         data
     })
 }
 
 /* Get business videos */
-export const apiGetBusinessVideos = (business_token) => {
+export const apiGetBusinessVideos = ({ id, token }) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_public_videolinks_api${serviceSuffix}?string=${business_token}`,
-        method: "get"    
+        url: `/business/${id}/videos`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get business working hours */
-export const apiGetBusinessWorkingHours = (business_token) => {
+export const apiGetBusinessWorkingHours = ({ id, token }) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_working_hours_api${serviceSuffix}?string=${business_token}`,
-        method: "get"    
+        url: `/business/${id}/working-hours`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get business branches */
-export const apiGetBusinessBranches = (business_token) => {
+export const apiGetBusinessBranches = ({ id, token }) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_public_branches_api${serviceSuffix}?string=${business_token}`,
-        method: "get"    
+        url: `/business/${id}/working-hours`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get business Subscription */
-export const apiGetBusinessSubscription = (business_token) => {
+export const apiGetBusinessSubscription = ({ id, token }) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_latest_subscription_api${serviceSuffix}?string=${business_token}`,
-        method: "get"    
+        url: `/business/${id}/subscriptions`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get Related Businesses */
-export const apiGetRelatedBusinesses = (business_token) => {
+export const apiGetRelatedBusinesses = ({ id, token }) => {
     return ApiAdapter.fetchData({
-        url: `fetch_related_businesses_api${serviceSuffix}?string=${business_token}`,
-        method: "get"    
+        url: `/business/${id}/related`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get Related Businesses */
-export const apiGetBusinessReviews = (business_token) => {
+export const apiGetBusinessReviews = ({ id, token }) => {
     return ApiAdapter.fetchData({
-        url: `fetch_user_reviews_api${serviceSuffix}?string=${business_token}`,
-        method: "get"    
+        url: `/business/${id}/reviews`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get Billboard Payment */
 export const apiGetBillboardPaymentTypes = () => {
     return ApiAdapter.fetchData({
-        url: `fetch_all_advert_payment_types_api${serviceSuffix}`,
-        method: "get"    
+        url: `fetch_all_advert_payment_types_api`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get Billboard Payment */
 export const apiGetUserBillboardApplications = (user_string) => {
     return ApiAdapter.fetchData({
-        url: `fetch_billboard_applications_by_user_api${serviceSuffix}?user_string=${user_string || token}`,
-        method: "get"    
+        url: `fetch_billboard_applications_by_user_api?user/${user_string || token}`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get Subscriptions */
 export const apiGetAllSubscriptions = () => {
     return ApiAdapter.fetchData({
-        url: `fetch_all_business_subscriptions_api${serviceSuffix}`,
-        method: "get"    
+        url: `fetch_all_business_subscriptions_api`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 /* Get Business Subscriptions */
 export const apiGetBusinessSubscriptions = (string) => {
     return ApiAdapter.fetchData({
-        url: `fetch_business_subscriptions_api${serviceSuffix}?string=${string}`,
-        method: "get"    
+        url: `fetch_business_subscriptions_api/${string}`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get Billboard Payment */
 export const apiGetAllSubscriptionPlans = (package_string) => {
     return ApiAdapter.fetchData({
-        url: `fetch_subscription_plans_api${serviceSuffix}?string=${package_string}`,
-        method: "get"    
+        url: `fetch_subscription_plans_api/${package_string}`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
@@ -189,15 +235,18 @@ export const apiGetAllSubscriptionPlans = (package_string) => {
 export const apiGetSavedBusinesses = () => {
     // console.log("token", token)
     return ApiAdapter.fetchData({
-        url: `fetch_saved_businesses_api${serviceSuffix}?string=${token}`,
-        method: "get"    
+        url: `fetch_saved_businesses_api/${token}`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Add business */
 export const apiAddBusiness = (data) => {
     return ApiAdapter.fetchData({
-        url: `add_business_api${serviceSuffix}`,
+        url: `/business`,
         method: "post",
         data: {...data, user_string: data?.user_string || token}
     })
@@ -206,7 +255,8 @@ export const apiAddBusiness = (data) => {
 /* Add business working hour */
 export const apiAddBusinessWorkingHours = (data) => {
     return ApiAdapter.fetchData({
-        url: `add_business_working_hours_api${serviceSuffix}`,
+
+        url: `/business`,
         method: "post",
         data: {...data, user_string: data?.user_string || token}
     })
@@ -215,7 +265,7 @@ export const apiAddBusinessWorkingHours = (data) => {
 /* Delete working hour */
 export const apiDeleteBusinessWorkingHour = ({string}) => {
     return ApiAdapter.fetchData({
-        url: `delete_business_working_hours_api${serviceSuffix}?string=${string}`,
+        url: `/business/working-hours/${string}`,
         method: "get",
     })
 }
@@ -224,7 +274,8 @@ export const apiDeleteBusinessWorkingHour = ({string}) => {
 /* Edit business */
 export const apiEditBusiness = (data) => {
     return ApiAdapter.fetchData({
-        url: `edit_business_profile_api${serviceSuffix}`,
+        url: `/business`,
+        url: `edit_business_profile_api`,
         method: "post",
         data: {...data, user_string: data?.user_string || token}
     })
@@ -232,7 +283,7 @@ export const apiEditBusiness = (data) => {
 /* Edit business Profile Image */
 export const apiEditBusinessProfileImage = (data) => {
     return ApiAdapter.fetchData({
-        url: `update_profile_image_api${serviceSuffix}`,
+        url: `update_profile_image_api`,
         method: "post",
         data
     })
@@ -241,7 +292,7 @@ export const apiEditBusinessProfileImage = (data) => {
 /* Edit business Profile Image */
 export const apiEditBusinessCoverImage = (data) => {
     return ApiAdapter.fetchData({
-        url: `update_cover_image_api${serviceSuffix}`,
+        url: `update_cover_image_api`,
         method: "post",
         data
     })
@@ -250,7 +301,7 @@ export const apiEditBusinessCoverImage = (data) => {
 /* Get states */
 export const apiGetStates = () => {
     return ApiAdapter.fetchData({
-        url: `fetch_all_states_api${serviceSuffix}`,
+        url: `/states`,
         method: "get",
     })
 }
@@ -258,7 +309,7 @@ export const apiGetStates = () => {
 /* Get lgas */
 export const apiGetLGAs = () => {
     return ApiAdapter.fetchData({
-        url: `fetch_all_lgas_api${serviceSuffix}`,
+        url: `/sta`,
         method: "get",
     })
 }
@@ -267,7 +318,7 @@ export const apiGetLGAs = () => {
 /* Add business page visits */
 export const apiAddPageVisits = (data) => {
     return ApiAdapter.fetchData({
-        url: `create_page_visit_api${serviceSuffix}`,
+        url: `create_page_visit_api`,
         method: "post",
         data: {...data, user_string: data?.user_string || token}   
     })

@@ -7,7 +7,7 @@ import Header from '../../components/Header';
 import useAuth from '../../hooks/useAuth';
 
 const index = () => {
-  const [username, setUsername] = React.useState('');
+  const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -33,11 +33,11 @@ const index = () => {
         </h1>
         <form className='flex flex-col w-full gap-10 relative' action="" onSubmit={(e) =>{ 
             e.preventDefault()
-            auth({username, password})
+            auth({email, password})
           }}>
           <div className="flex flex-col gap-1">
             <label className='text-sm font-medium text-black/80' htmlFor="name">Full Name / Email Address</label>
-            <input required onChange={(event) => setUsername(event.target.value)} className='border-2 p-2 border-[#BABFC5] bg-[#f5f5f791] rounded-md' type="text" name='name' id='name' />
+            <input required onChange={(event) => setEmail(event.target.value)} className='border-2 p-2 border-[#BABFC5] bg-[#f5f5f791] rounded-md' type="email" name='name' id='name' />
           </div>
           <div className="flex flex-col gap-1">
             <label className='text-sm font-medium text-black/80'htmlFor="name">Password</label>

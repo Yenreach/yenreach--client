@@ -7,10 +7,13 @@ const token = JSON.parse(sessionStorage.getItem("user"))?.verify_string
 
 
 /* Get user */
-export const apiGetUser = () => {
+export const apiGetUser = ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}/fetch_user_by_string_api${serviceSuffix}?string=${token}`,
-        method: "get"    
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }     
     })
 }
 

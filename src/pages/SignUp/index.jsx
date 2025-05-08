@@ -7,14 +7,14 @@ import Button from '../../components/ui/Button';
 import useAuth from '../../hooks/useAuth';
 
 const index = () => {
-  const [showPassword, setShowPassword] = React.useState({password1: false, password2: false});
+  const [showPassword, setShowPassword] = React.useState({password: false, password2: false});
 
   const [data, setData] = useState({
     name: '',
     email: '',
-    password1: '',
+    password: '',
     password2: '',
-    referer: ''
+    referral: ''
   });
   const location = useLocation()
 
@@ -54,10 +54,10 @@ const index = () => {
             </div>
           </div>
           <div className="flex flex-col gap-1">
-            <label className='text-sm font-medium text-black/80' htmlFor="password1">Password</label>
+            <label className='text-sm font-medium text-black/80' htmlFor="password">Password</label>
             <div className="relative w-full">
-              <input onChange={handleChange} required className='border-2 p-2 w-full border-[#BABFC5] bg-[#f5f5f791] rounded-md' type={showPassword?.password1 ? "text" : "password"} name='password1' id='password1' />
-              {!showPassword?.password1 ? <BsEye onClick={() => setShowPassword(prev => ({...prev, password1: true }))} className='absolute top-0 bottom-0 m-auto right-3 z-20 scale-110 cursor-pointer' /> : <BsEyeSlash onClick={() => setShowPassword(prev => ({...prev, password1: false }))} className='absolute top-0 bottom-0 m-auto right-3 z-20 scale-110 cursor-pointer' />}      
+              <input onChange={handleChange} required className='border-2 p-2 w-full border-[#BABFC5] bg-[#f5f5f791] rounded-md' type={showPassword?.password ? "text" : "password"} name='password' id='password' />
+              {!showPassword?.password ? <BsEye onClick={() => setShowPassword(prev => ({...prev, password: true }))} className='absolute top-0 bottom-0 m-auto right-3 z-20 scale-110 cursor-pointer' /> : <BsEyeSlash onClick={() => setShowPassword(prev => ({...prev, password: false }))} className='absolute top-0 bottom-0 m-auto right-3 z-20 scale-110 cursor-pointer' />}      
             </div>
           </div>
           <div className="flex flex-col gap-1">
