@@ -6,9 +6,8 @@ import BusinessPhotos from './BusinessPhotos'
 import BusinessCreatedSuccess from './BusinessCreatedSuccess'
 
 const initialBusinessState = { 
-  user_string: "", 
   name: "", 
-  description: "", categories: [], phone: "", email: "", state_id: "", lga: "", town: "", address: "", month_started: "", year_started: "", profileImg: "", cover_img: ""}
+  description: "", categories: [], phoneNumber: "", email: "", stateId: "", lgaId: "", town: "", address: "", monthStarted: "", yearStarted: "", profileImg: "", coverImg: ""}
 
 const index = () => {
   const [step, setStep] = React.useState(1)

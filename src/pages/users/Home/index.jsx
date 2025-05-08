@@ -32,25 +32,39 @@ const index = () => {
 
     return (
         <Dashboard>
-            <div className='flex-1 overflow-hidden overflow-y-auto'>
-                {isLoading && <Loader loader={4} />}
+            {isLoading && <Loader loader={4} />}
+            <div className='flex-1 overflow-hidden overflow-y-auto min-h-[calc(100vh-400px)]'>
                 <Head />
-                <div className='py-4 px-7'>
-                    {!businesses && <h1 className='mb-2 text-lg font-medium text-green'>Business</h1>}
-                    {!!businesses?.data?.length && 
-                        <>
-                        <div className='flex flex-col justify-between gap-2 mb-6 md:flex-row md:gap-4 md:items-center'>
-                            <div>
-                                <h1 className='mb-2 text-lg font-medium text-green'>Business</h1>
-                                <p className='text-[#476788] text-sm mb-7'>You have {businesses?.data?.length} {businesses.length > 1 ? "businesses" : "business"} listed to your account.</p>
+                <div className='py-4 px-7 h-full flex flex-col'>
+                    {!businesses?.data?.length ? 
+                    <>
+                        <h1 className='mb-2 text-lg font-medium text-green'>Business</h1>
+                        {!isLoading && !businesses?.data?.length  && 
+                            <div className='flex flex-col justify-center items-center rounded-lg font-arialsans min-h-[550px] sm:h-auto flex-1'>
+                                <img src={NoBusiness} alt="" className='mb-7' />
+                                    <span className='text-center text-[#476788] mb-9'>
+                                    You do not have any business listed yet
+                                    </span>
+                                <Link to="/users/add-business">   
+                                    <span href=""className='underline text-green underline-offset-2'>Click here to add a new business</span>
+                                </Link>
                             </div>
-                            <Link to="/users/add-business">
-                                <Button className='py-1.5 px-2 pr-3 rounded-sm flex items-center'>
-                                    <MdAdd size="1.3rem" color="#fff" className='mr-2' />
-                                    Add new Business
-                                </Button>
-                            </Link>
-                        </div>
+                        }
+                    </>
+                        :
+                        <>
+                            <div className='flex flex-col justify-between gap-2 mb-6 md:flex-row md:gap-4 md:items-center'>
+                                <div>
+                                    <h1 className='mb-2 text-lg font-medium text-green'>Business</h1>
+                                    <p className='text-[#476788] text-sm mb-7'>You have {businesses?.data?.length} {businesses.length > 1 ? "businesses" : "business"} listed to your account.</p>
+                                </div>
+                                <Link to="/users/add-business">
+                                    <Button className='py-1.5 px-2 pr-3 rounded-sm flex items-center'>
+                                        <MdAdd size="1.3rem" color="#fff" className='mr-2' />
+                                        Add new Business
+                                    </Button>
+                                </Link>
+                            </div>
                             <div className='grid gap-4 mb-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                                 {businesses?.data?.map(business => (
                                     <Link to={business?.reg_stage == 0 ? `/users/edit-business/${business.id}`
@@ -85,29 +99,7 @@ const index = () => {
                         </>
                     }
                 </div>
-                {/* {businesses && 
-                    <Link to="/users/add-business" className='flex items-center justify-center mb-8'>
-                        <div className='flex flex-col justify-center items-center p-14 bg-[#F1F1F1] rounded-lg'>
-                        <span className='w-14 h-14 mb-4 rounded-full bg-[#CCCCCC] flex items-center justify-center'>
-                            <img src={Add} alt="" />
-                        </span>
-                        <span className='w-2/3 text-sm text-center'>
-                            Click here to add a new business
-                        </span>
-                        </div>
-                    </Link>
-                } */}
-                {!isLoading && !businesses  && 
-                    <div className='flex flex-col justify-center items-center rounded-lg font-arialsans h-[550px] sm:h-auto'>
-                        <img src={NoBusiness} alt="" className='mb-7' />
-                            <span className='text-center text-[#476788] mb-9'>
-                            You do not have any business listed yet
-                            </span>
-                        <Link to="/users/add-business">   
-                            <span href=""className='underline text-green underline-offset-2'>Click here to add a new business</span>
-                        </Link>
-                    </div>
-                }
+           
             </div>
         </Dashboard>
     )

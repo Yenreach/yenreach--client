@@ -14,7 +14,7 @@ export const apiGetUser = ({ token }) => {
 }
 
 /* Update user */
-export const apiUpdateUser = (data) => {
+export const apiUpdateUser = (data, { token }) => {
     return ApiAdapter.fetchData({
         url: `edit_user_profile_api`,
         method: "post",
@@ -22,7 +22,7 @@ export const apiUpdateUser = (data) => {
     })
 }
 /* Update user */
-export const apiUpdateUserCv = (data) => {
+export const apiUpdateUserCv = (data, { token }) => {
     return ApiAdapter.fetchData({
         url: `update_user_cv_api`,
         method: "post",
@@ -30,7 +30,7 @@ export const apiUpdateUserCv = (data) => {
     })
 }
 /* Update Password */
-export const apiUpdatePassword = (data) => {
+export const apiUpdatePassword = (data, { token }) => {
     return ApiAdapter.fetchData({
         url: `change_user_password_api`,
         method: "post",
@@ -39,7 +39,7 @@ export const apiUpdatePassword = (data) => {
 }
 
 /* Activity Log */
-export const apiAddActivityLog = (data) => {
+export const apiAddActivityLog = (data, { token }) => {
     return ApiAdapter.fetchData({
         url: `add_activity_log_api`,
         method: "post",
@@ -103,7 +103,7 @@ export const apiGetBusinessPhotos = ({ id, token }) => {
     })
 }
 
-export const apiAddBusinessPhoto = (data) => {
+export const apiAddBusinessPhoto = (data, { token }) => {
     return ApiAdapter.fetchData({
         url: `/business/${id}/photos`,
         method: "post",
@@ -244,16 +244,19 @@ export const apiGetSavedBusinesses = () => {
 }
 
 /* Add business */
-export const apiAddBusiness = (data) => {
+export const apiAddBusiness = (data, { token }) => {
     return ApiAdapter.fetchData({
         url: `/business`,
         method: "post",
-        data: {...data, user_string: data?.user_string || token}
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        data: data
     })
 }
 
 /* Add business working hour */
-export const apiAddBusinessWorkingHours = (data) => {
+export const apiAddBusinessWorkingHours = (data, { token }) => {
     return ApiAdapter.fetchData({
 
         url: `/business`,
@@ -272,7 +275,7 @@ export const apiDeleteBusinessWorkingHour = ({string}) => {
 
 
 /* Edit business */
-export const apiEditBusiness = (data) => {
+export const apiEditBusiness = (data, { token }) => {
     return ApiAdapter.fetchData({
         url: `/business`,
         url: `edit_business_profile_api`,
@@ -281,7 +284,7 @@ export const apiEditBusiness = (data) => {
     })
 }
 /* Edit business Profile Image */
-export const apiEditBusinessProfileImage = (data) => {
+export const apiEditBusinessProfileImage = (data, { token }) => {
     return ApiAdapter.fetchData({
         url: `update_profile_image_api`,
         method: "post",
@@ -290,7 +293,7 @@ export const apiEditBusinessProfileImage = (data) => {
 }
 
 /* Edit business Profile Image */
-export const apiEditBusinessCoverImage = (data) => {
+export const apiEditBusinessCoverImage = (data, { token }) => {
     return ApiAdapter.fetchData({
         url: `update_cover_image_api`,
         method: "post",
@@ -316,7 +319,7 @@ export const apiGetLGAs = () => {
 
 
 /* Add business page visits */
-export const apiAddPageVisits = (data) => {
+export const apiAddPageVisits = (data, { token }) => {
     return ApiAdapter.fetchData({
         url: `create_page_visit_api`,
         method: "post",

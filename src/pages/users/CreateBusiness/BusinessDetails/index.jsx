@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import getData from '/src/utils/getData'
 import { apiGetAllCategories } from '/src/services/CommonService'
-import { apiGetStates, apiGetLGAs } from '/src/services/UserService'
 import Input from '../../../../components/ui/Input'
 import Button from '../../../../components/ui/Button'
 import useFetch from '/src/hooks/useFetch'
@@ -58,7 +55,7 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
     
     useEffect(() => {
         if(stateId) {
-            handleBusinessData({target: {name: "state_id", value: stateId}})
+            handleBusinessData({target: {name: "stateId", value: stateId}})
             if (lgas) {
                 const values = lgas.filter(lga => lga.state_id === stateId)
                 setfilteredLgas(values)
@@ -114,8 +111,8 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
         </div>
         <div className='justify-between mb-8 md:flex gap-9'>
             <div className='w-full mb-8'>
-                <label htmlFor="phonenumber" className='text-sm font-medium'>Phone Number</label>
-                <Input required={true} value={businessData?.phone} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="phone" id="phone" placeholder='Enter your business Phone number' />
+                <label htmlFor="phoneNumber" className='text-sm font-medium'>Phone Number</label>
+                <Input required={true} value={businessData?.phoneNumber} onChange={handleBusinessData} className='rounded-lg border-gray' type="text" name="phoneNumber" id="phoneNumber" placeholder='Enter your business Phone number' />
             </div>
             <div className='w-full'>
                 <label htmlFor="email" className='text-sm font-medium'>Email Address</label>
@@ -124,8 +121,8 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
         </div>
         <div className='justify-between mb-8 md:flex gap-9'>
             <div className='w-full mb-8'>
-                <label htmlFor="state_id" className='text-sm font-medium'>State</label>
-                <select onChange={(e) => setStateId(e.target.value)} required className='w-full px-4 py-3 border-2 rounded-sm rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="state_id" id="state_id" placeholder='Enter state'>
+                <label htmlFor="stateId" className='text-sm font-medium'>State</label>
+                <select onChange={(e) => setStateId(e.target.value)} required className='w-full px-4 py-3 border-2 rounded-sm rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="stateId" id="stateId" placeholder='Enter state'>
                     <option value="">Enter State</option>
                     {states?.map((state) => (
                         <option key={state.id} value={state.id}>{state.name}</option>
@@ -133,8 +130,8 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
                 </select>
             </div>
             <div className='w-full mb-8'>
-                <label htmlFor="lga" className='text-sm font-medium'>LGA</label>
-                <select value={businessData?.lga} onChange={handleBusinessData} className='w-full px-4 py-3 border-2 rounded-sm rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="lga" id="lga" placeholder='Enter LGA'>
+                <label htmlFor="lgaId" className='text-sm font-medium'>LGA</label>
+                <select value={businessData?.lgaId} onChange={handleBusinessData} className='w-full px-4 py-3 border-2 rounded-sm rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="lgaId" id="lgaId" placeholder='Enter LGA'>
                     <option value="">Enter LGA</option>
                     {filteredLgas?.map((lga) => (
                         <option key={lga.id} value={lga.name}>{lga.name}</option>
@@ -152,8 +149,8 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
         </div>
         <div className='justify-between mb-8 md:flex gap-9'>
             <div className='w-full mb-8'>
-                <label htmlFor="month_started" className='text-sm font-medium'>Business start month</label>
-                <select value={businessData?.month_started} onChange={handleBusinessData} className='w-full px-4 py-3 border-2 rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="month_started" id="month_started" placeholder='Enter your business start Month'>
+                <label htmlFor="monthStarted" className='text-sm font-medium'>Business start month</label>
+                <select value={businessData?.monthStarted} onChange={handleBusinessData} className='w-full px-4 py-3 border-2 rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="monthStarted" id="monthStarted" placeholder='Enter your business start Month'>
                     <option value="">Enter your business start Month</option>
                     {months?.map((month) => (
                         <option key={month.id} value={month.id}>{month.name}</option>
@@ -161,8 +158,8 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
                 </select>
             </div>
             <div className='w-full '>
-                <label htmlFor="year_started" className='text-sm font-medium'>Business start year</label>
-                <Input value={businessData?.year_started} onChange={handleBusinessData} className='rounded-lg border-gray' type="number" name="year_started" id="year_started" placeholder='Enter your business start Year' />
+                <label htmlFor="yearStarted" className='text-sm font-medium'>Business start year</label>
+                <Input value={businessData?.yearStarted} onChange={handleBusinessData} className='rounded-lg border-gray' type="number" name="yearStarted" id="yearStarted" placeholder='Enter your business start Year' />
             </div>
         </div>
         <Button type='submit' className='flex justify-center w-full p-3'>

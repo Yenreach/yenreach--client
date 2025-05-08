@@ -1,11 +1,15 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from 'react-toastify';
+import { useAuthContext } from "./useAuthContext";
 
-const usePost = ({ api, success, failure, showSuccessMessage=true, showErrorMessage=true, ...rest }) => {
+const usePost = ({ api, success, failure, showSuccessMessage=true, showErrorMessage=true, id='', ...rest }) => {
+  const { token } = useAuthContext()
+
+  console.log({ token })
 
     const Mutation = useMutation({
         mutationFn: async (data) => {
-          const response =  await api(data)
+          const response =  await api(data, { token, id })
           // console.log("response from usePost", response)
           if (response?.data?.status === "success") {
             return response?.data?.data

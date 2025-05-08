@@ -7,6 +7,7 @@ import usePost from '/src/hooks/usePost'
 import { apiAddBusiness } from '/src/services/UserService'
 import Loader from '/src/components/Loader'
 import { useAuthContext } from '/src/hooks/useAuthContext'
+import { toast } from 'react-toastify'
 
 
 
@@ -33,7 +34,10 @@ const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) =
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        const data = { ...businessData, user_string: user?.verify_string, profileImg: profileImg, cover_img: coverImg }
+        if (!profileImg || !coverImg) {
+            return toast.info("Please select both cover and profile image for your business")
+        }
+        const data = { ...businessData, profileImg, coverImg }
         // console.log("data", data)
         addBusinessMutation.mutate(data)
     }
