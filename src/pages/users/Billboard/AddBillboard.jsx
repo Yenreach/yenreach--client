@@ -47,9 +47,9 @@ const Billboard = () => {
             paymentMutation.mutate({
                 platform: "Flutterwave",
                 user_type: user?.user_type,
-                user_string: user?.verify_string,
+                user_string: user?.id,
                 reason: "billboard_payment",
-                subject: data?.verify_string
+                subject: data?.id
             })
         }
       })
@@ -67,7 +67,7 @@ const Billboard = () => {
         
     const handleSubmit = (e) => {
         e.preventDefault()
-        const data = { ...application, user_string: user?.verify_string, advert_type: billboard_id }
+        const data = { ...application, user_string: user?.id, advert_type: billboard_id }
         console.log("data", data)
         subscribeMutation.mutate(data)
     }

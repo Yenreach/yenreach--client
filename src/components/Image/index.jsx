@@ -17,7 +17,7 @@ const Image = ({ url, name, alt, className, data }) => {
   //   if (!business?.profileImg && !url) {
   //     downloadImage(imgName)
   //   } else if (!business?.profileImg && url) {
-  //     mutate({ verify_string: business?.verify_string, profileImg: url })
+  //     mutate({ id: business?.id, profileImg: url })
   //     console.log("business?.profileImg", url, business?.profileImg)
   //   } else {
   //     console.log("not responding")

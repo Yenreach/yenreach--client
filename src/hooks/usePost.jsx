@@ -5,7 +5,7 @@ import { useAuthContext } from "./useAuthContext";
 const usePost = ({ api, success, failure, showSuccessMessage=true, showErrorMessage=true, id='', ...rest }) => {
   const { token } = useAuthContext()
 
-  console.log({ token })
+  // console.log({ token })
 
     const Mutation = useMutation({
         mutationFn: async (data) => {

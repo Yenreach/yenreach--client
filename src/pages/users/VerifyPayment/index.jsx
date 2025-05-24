@@ -30,14 +30,14 @@ const VerifyPayment = () => {
         success: (data) => {
             // console.log("success", data)
             if(data?.reason == "business_subscription"){
-                setTxnString(data?.verify_string)
-                // return navigate(`/users/subscription/${data?.verify_string}?string=${data?.verify_string}&method=online_payment`);
+                setTxnString(data?.id)
+                // return navigate(`/users/subscription/${data?.id}?string=${data?.id}&method=online_payment`);
             } else if(data?.reason == "business_subscription_renewal"){
-                setTxnString(data?.verify_string)
-                // return navigate(`/users/subscription/${data?.verify_string}_renewal?string=${data?.verify_string}&method=online_payment`);
+                setTxnString(data?.id)
+                // return navigate(`/users/subscription/${data?.id}_renewal?string=${data?.id}&method=online_payment`);
             } else if(data?.reason == "billboard_payment"){
-                setTxnString(data?.verify_string)
-                // return navigate(`/users/billboard_apply?string=${data?.verify_string}&method=online_payment`);
+                setTxnString(data?.id)
+                // return navigate(`/users/billboard_apply?string=${data?.id}&method=online_payment`);
             } else {
                 return navigate("/users");
             }
@@ -76,14 +76,14 @@ const VerifyPayment = () => {
         if(transaction){
             const subscribe = async () => {
                 await subscribeBussiness.mutate({
-                    verify_string: transaction?.subject,
+                    id: transaction?.subject,
                     payment_method: "online_payment",
                     amount_paid: transaction?.amount,
                })
             }
             const billboard = async () => {
                 await markBillboardAsPaid.mutate({
-                    verify_string: transaction?.subject,
+                    id: transaction?.subject,
                     payment_method: "online_payment",
                     amount_paid: transaction?.amount,
                })
@@ -108,11 +108,11 @@ const VerifyPayment = () => {
     //         console.log("redirecting function", data)
     //         const redirectFunc = () => {
     //             if(data?.reason == "business_subscription"){
-    //                 return navigate(`/users/subscription/${data?.verify_string}?string=${data?.verify_string}&method=online_payment`);
+    //                 return navigate(`/users/subscription/${data?.id}?string=${data?.id}&method=online_payment`);
     //             } else if(data?.reason == "business_subscription_renewal"){
-    //                 return navigate(`/users/subscription/${data?.verify_string}_renewal?string=${data?.verify_string}&method=online_payment`);
+    //                 return navigate(`/users/subscription/${data?.id}_renewal?string=${data?.id}&method=online_payment`);
     //             } else if(data?.reason == "billboard_payment"){
-    //                 return navigate(`/users/billboard_apply?string=${data?.verify_string}&method=online_payment`);
+    //                 return navigate(`/users/billboard_apply?string=${data?.id}&method=online_payment`);
     //             } else {
     //                 $session?.message("No Payment Reason was provided");
     //                 return navigate("failure.php");

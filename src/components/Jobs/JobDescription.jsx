@@ -58,7 +58,7 @@ const JobDescription = ({ job }) => {
 	//   console.log({job})
     
     const handleSubmit = () => {
-        const data = { ...application, job_string: job?.job_string, document: url, user_string: user?.verify_string }
+        const data = { ...application, job_string: job?.job_string, document: url, user_string: user?.id }
         console.log("data", data)
         submitJobApplication.mutate(data)
     }

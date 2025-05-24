@@ -71,7 +71,7 @@ const Billboard = () => {
     const { data: userBillboards } = useFetch({
         api: apiGetUserBillboardApplications,
         key:  ['userBillboards'],
-        param: profile?.verify_string,
+        param: profile?.id,
       })
 
     //   console.log("userBillboards", userBillboards)
@@ -125,7 +125,7 @@ const Billboard = () => {
                                 <div>
                                     <span className='text-lg font-medium text-green'>₦{billboard?.amount}</span><span className=''>/{billboard?.duration} {billboard?.duration_type == "3"? "Month(s)" : "Week(s)"}</span>
                                 </div>
-                                <Link to={`/users/billboard/${billboard?.verify_string}`}>
+                                <Link to={`/users/billboard/${billboard?.id}`}>
                                     <Button className='py-1.5 px-3 rounded-sm'>
                                         Subscribe
                                     </Button>

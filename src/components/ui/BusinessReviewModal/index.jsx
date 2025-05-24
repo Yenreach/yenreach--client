@@ -43,9 +43,9 @@ const BusinessReview = ({ setModalOpen, modalOpen, user, business_string, onSucc
     }
     
     const handleSubmit = () => {
-      // console.log("submit", user?.verify_string, review, rating, business_string)
+      // console.log("submit", user?.id, review, rating, business_string)
         submitReview.mutate({ 
-          user_string: user?.verify_string,
+          user_string: user?.id,
           business_string,
           review, 
           star: rating 

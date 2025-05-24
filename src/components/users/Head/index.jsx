@@ -15,8 +15,8 @@ const index = () => {
 
   const { data: profile} = useFetch({
     api: apiGetUser,
-    key: ['profile', user?.verify_string],
-    param: user?.verify_string
+    key: ['profile', user?.id],
+    param: user?.id
   })
 
 

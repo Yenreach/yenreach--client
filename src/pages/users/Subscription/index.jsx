@@ -130,9 +130,9 @@ const Subscription = () => {
             paymentMutation.mutate({
                 platform: "Flutterwave",
                 user_type: user?.user_type,
-                user_string: user?.verify_string,
+                user_string: user?.id,
                 reason: "business_subscription",
-                subject: data?.verify_string
+                subject: data?.id
             })
         }
       })
@@ -150,7 +150,7 @@ const Subscription = () => {
         console.log("vsurf", v_string)
         const data = { 
             'user_type': user?.user_type,
-            'user_string': user?.verify_string,
+            'user_string': user?.id,
             'business_string': id,
             'paymentplan_string': v_string
          }
@@ -198,7 +198,7 @@ const Subscription = () => {
                                 <select onChange={ (e) => setPlan(prev =>( {...prev, [e.target.name]: e.target.value})) } name={subscription?.package} id={subscription?.package} className='appearance-none max-w-[160px] mx-auto border border-green rounded-md outline-none cursor-pointer px-4 py-3 pr-8 bg-inherit'>
                                     <option value="">Change Duration</option>
                                     {subscription.plans?.map(plan => (
-                                        <option key={plan?.verify_string} value={[plan?.verify_string, plan?.duration, plan?.duration_type, plan?.price]}>{plan?.duration} {plan?.duration_type==="3" ? "Month(s)" : "Year" }</option>
+                                        <option key={plan?.id} value={[plan?.id, plan?.duration, plan?.duration_type, plan?.price]}>{plan?.duration} {plan?.duration_type==="3" ? "Month(s)" : "Year" }</option>
                                     ))}
                                 </select>
                                 <MdArrowDropDown className='absolute -translate-y-1/2 right-2 top-1/2' size="1.5rem" color="00C885" />

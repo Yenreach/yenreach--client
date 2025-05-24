@@ -64,8 +64,8 @@ const Profile = () => {
 
   const { isLoading, error, data: profile} = useFetch({
     api: apiGetUser,
-    key: ['profile', user?.verify_string],
-    param: user?.verify_string
+    key: ['profile', user?.id],
+    param: user?.id
   })
 
   const { data: savedBusinesses }  = useFetch({
@@ -83,7 +83,7 @@ const Profile = () => {
   useEffect(() => {
     const updateCV = () => {
       cvMutation.mutate({
-        user_string: profile?.verify_string,
+        user_string: profile?.id,
         cv: cvUrl
       })
     }
@@ -102,12 +102,12 @@ const Profile = () => {
   }
 
   const handleChangePassword = () => {
-    const data = { ...passwordData, verify_string: profile?.verify_string }
+    const data = { ...passwordData, id: profile?.id }
     updatePasswordMutation.mutate(data);
   };
 
   const handleSaveChanges = () => {
-    const data = {...profileDetails, image: profilePhoto || profileDetails?.image, user_string: profile?.verify_string}
+    const data = {...profileDetails, image: profilePhoto || profileDetails?.image, user_string: profile?.id}
     console.log("data newwww", data)
     updateUserMutation.mutate(data)
   }

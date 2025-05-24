@@ -146,7 +146,7 @@ const Home = () => {
                                 <p className='text-sm'>
                                 {businessOfTheWeek?.description.substring(0, 400)}...
                                 </p>
-                                <Link to={`/business/${businessOfTheWeek?.verify_string}`}> 
+                                <Link to={`/business/${businessOfTheWeek?.id}`}> 
                                     <Button className='text-sm rounded-md py-2.5 px-10 font-medium'>
                                         view business
                                     </Button>

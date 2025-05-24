@@ -3,7 +3,7 @@ import ApiAdapter from "./ApiService"
 const servicePrefix = "/business"
 const serviceSuffix = ""
 
-const token = JSON.parse(sessionStorage.getItem("user"))?.verify_string
+const token = JSON.parse(sessionStorage.getItem("user"))?.id
 
 /* Home/index */
 

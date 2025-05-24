@@ -46,9 +46,9 @@ const EditBusinessReview = ({ setModalOpen, value, user, business_string, onSucc
     }
     
     const handleSubmit = () => {
-      // console.log("submit", user?.verify_string, review, rating, business_string)
+      // console.log("submit", user?.id, review, rating, business_string)
         updateReview.mutate({ 
-          verify_string: value,
+          id: value,
           business_string,
           review, 
           star: rating 

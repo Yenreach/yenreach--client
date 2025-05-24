@@ -31,7 +31,7 @@ const ChangePassword = () => {
   
 
   console.log({ searchParams: searchParams.get('hash') })
-  console.log({ searchParams: searchParams.get('verify_string') })
+  console.log({ searchParams: searchParams.get('id') })
   console.log({ searchParams: searchParams.get('time') })
 
 
@@ -53,8 +53,8 @@ const ChangePassword = () => {
   //   onSuccess: async (data) => {
   //     console.log("user data", data, "location data", locationData)
   //     setCheckingPassword(true)
-  //     if (userData?.verify_string) {
-  //       const { data } = await apiCheckPassword({user_string: userData?.verify_string, p_string: locationData?.length && locationData[1]})
+  //     if (userData?.id) {
+  //       const { data } = await apiCheckPassword({user_string: userData?.id, p_string: locationData?.length && locationData[1]})
   //       console.log("data", data)
   //       if (data?.status === 'success') {
   //         setPasswordCheck(true)
@@ -85,7 +85,7 @@ const ChangePassword = () => {
         return
     } else {
         resetPasswordMutation.mutate({
-          verify_string: searchParams.get('verify_string'),
+          id: searchParams.get('id'),
           hash: searchParams.get('hash'),
           time: searchParams.get('time'),
           password, 

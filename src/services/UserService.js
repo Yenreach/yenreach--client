@@ -261,7 +261,10 @@ export const apiAddBusinessWorkingHours = (data, { token }) => {
 
         url: `/business`,
         method: "post",
-        data: {...data, user_string: data?.user_string || token}
+        data: data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
 }
 
@@ -275,12 +278,14 @@ export const apiDeleteBusinessWorkingHour = ({string}) => {
 
 
 /* Edit business */
-export const apiEditBusiness = (data, { token }) => {
+export const apiEditBusiness = (data, { token, id }) => {
     return ApiAdapter.fetchData({
-        url: `/business`,
-        url: `edit_business_profile_api`,
-        method: "post",
-        data: {...data, user_string: data?.user_string || token}
+        url: `/business/${id}`,
+        method: "put",
+        data: data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
 }
 /* Edit business Profile Image */
@@ -323,7 +328,10 @@ export const apiAddPageVisits = (data, { token }) => {
     return ApiAdapter.fetchData({
         url: `create_page_visit_api`,
         method: "post",
-        data: {...data, user_string: data?.user_string || token}   
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }   
     })
 }
 

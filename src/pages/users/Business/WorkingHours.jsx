@@ -111,7 +111,7 @@ console.log({data})
                                     <span className="font-medium text-gray-600">{hour.day}</span>
                                     <div className='flex items-center gap-3'>
                                         <span className="text-gray-800">{hour.opening_time} - {hour.closing_time}</span>
-                                        <Button onClickFunc={() => deleteHoursMutation?.mutate({ string: hour?.verify_string})} className='p-1 text-xs rounded'>
+                                        <Button onClickFunc={() => deleteHoursMutation?.mutate({ string: hour?.id})} className='p-1 text-xs rounded'>
                                            Delete
                                         </Button>
                                     </div>

@@ -6,7 +6,7 @@ import { MdOutlineMarkEmailUnread, MdOutlineLocationOn } from 'react-icons/md'
 import { TbBrandFacebook } from 'react-icons/tb'
 import useFetch from '/src/hooks/useFetch'
 import usePost from '/src/hooks/usePost'
-import { apiGetOneBusiness, apiEditBusinessProfileImage, apiEditBusinessCoverImage, apiAddBusinessPhoto } from '/src/services/UserService'
+import { apiGetOneBusiness, apiEditBusinessProfileImage, apiEditBusinessCoverImage, apiAddBusinessPhoto, apiEditBusiness } from '/src/services/UserService'
 import Header from "/src/components/users/Header"
 import Dashboard from "../../../components/layout/Dashboard"
 import { MdChevronRight, MdChevronLeft } from 'react-icons/md'
@@ -32,12 +32,23 @@ const Business = () => {
   const coverImageRef = useRef(null)
   const { url: profilePhoto, uploadImage: uploadProfilePhoto, loading: uploadingProfileImage } = useImage()
   const { url: CoverPhoto, uploadImage: uploadCoverPhoto, loading: uploadingCoverPhoto } = useImage()
-  const { url: a, uploadImage: addBusinessPhoto, loading: uploadingBusinessPhoto } = useImage()
+  const { url: businessPhoto, uploadImage: addBusinessPhoto, loading: uploadingBusinessPhoto } = useImage()
 
   const { data: business, error: errorBusiness, isLoading, refetch: refetchBusiness  } = useFetch({
     api: apiGetOneBusiness,
     param: { id },
     key: ['business', id],
+  })
+
+
+
+  const editBusinessMutation = usePost({ 
+    api: apiEditBusiness,
+    success: (data) => {
+      refetchBusiness()
+      // console.log("data")
+    },
+    id,
   })
 
   const profileImageMutation = usePost({ 
@@ -62,11 +73,15 @@ const Business = () => {
 
   useEffect(() => {
     const updateProfileImg = () => {
-      profileImageMutation.mutate({
-        user_string: user?.verify_string,
+      editBusinessMutation.mutate({
         id: id,
         profileImg: profilePhoto
       })
+      // profileImageMutation.mutate({
+      //   user_string: user?.id,
+      //   id: id,
+      //   profileImg: profilePhoto
+      // })
     }
     if (profilePhoto) {
       updateProfileImg()
@@ -75,8 +90,12 @@ const Business = () => {
 
   useEffect(() => {
     const updateCoverImg = () => {
-      coverImageMutation.mutate({
-        user_string: user?.verify_string,
+      // coverImageMutation.mutate({
+      //   user_string: user?.id,
+      //   id: id,
+      //   coverImg: CoverPhoto
+      // })
+      editBusinessMutation.mutate({
         id: id,
         coverImg: CoverPhoto
       })
@@ -88,10 +107,14 @@ const Business = () => {
 
   useEffect(() => {
     const updateCoverImg = () => {
-      businessImageMutation.mutate({
-        user_string: user?.verify_string,
+      // businessImageMutation.mutate({
+      //   user_string: user?.id,
+      //   id: id,
+      //   filepath: a
+      // })
+      editBusinessMutation.mutate({
         id: id,
-        filepath: a
+        photos: [businessPhoto]
       })
     }
     if (businessPhoto) {
@@ -217,7 +240,7 @@ const Business = () => {
   return (
     <Dashboard>
       <div className='flex-1 overflow-hidden overflow-y-auto'>
-        {isLoading && <Loader loader={4} />}
+        {(isLoading || editBusinessMutation?.isLoading) && <Loader loader={4} />}
           <Header business_string={id} type="business" />
           {business && (
           <>

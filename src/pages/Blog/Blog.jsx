@@ -37,7 +37,7 @@ const index = () => {
             description={`${blog?.description}. Find out more about this blog? on Yenreach.`}
             name={blog?.title}
             type="blog"
-            url={`https://www.yenreach.com/blog?/${blog?.verify_string}`}
+            url={`https://www.yenreach.com/blog?/${blog?.id}`}
             // imageUrl={blog?.image || '/default-image.png'}
         />
       <Header />
