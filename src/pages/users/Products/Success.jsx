@@ -11,8 +11,9 @@ import { apiGetOneBusiness } from '/src/services/UserService'
 const index = () => {
     const { id } = useParams()
     const { isLoading, error, data: business } = useQuery({
-        queryKey: ['userBusiness'],
-        queryFn: () => getData(apiGetOneBusiness, id),
+        queryKey: ['business', id],
+        queryFn: () => getData(apiGetOneBusiness, { id }),
+        api: apiGetOneBusiness,
       })
 
   return (

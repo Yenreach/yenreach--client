@@ -32,7 +32,7 @@ const Business = () => {
   const coverImageRef = useRef(null)
   const { url: profilePhoto, uploadImage: uploadProfilePhoto, loading: uploadingProfileImage } = useImage()
   const { url: CoverPhoto, uploadImage: uploadCoverPhoto, loading: uploadingCoverPhoto } = useImage()
-  const { url: businessPhoto, uploadImage: addBusinessPhoto, loading: uploadingBusinessPhoto } = useImage()
+  const { url: a, uploadImage: addBusinessPhoto, loading: uploadingBusinessPhoto } = useImage()
 
   const { data: business, error: errorBusiness, isLoading, refetch: refetchBusiness  } = useFetch({
     api: apiGetOneBusiness,
@@ -64,7 +64,7 @@ const Business = () => {
     const updateProfileImg = () => {
       profileImageMutation.mutate({
         user_string: user?.verify_string,
-        business_string: id,
+        id: id,
         profileImg: profilePhoto
       })
     }
@@ -77,8 +77,8 @@ const Business = () => {
     const updateCoverImg = () => {
       coverImageMutation.mutate({
         user_string: user?.verify_string,
-        business_string: id,
-        cover_img: CoverPhoto
+        id: id,
+        coverImg: CoverPhoto
       })
     }
     if (CoverPhoto) {
@@ -90,8 +90,8 @@ const Business = () => {
     const updateCoverImg = () => {
       businessImageMutation.mutate({
         user_string: user?.verify_string,
-        business_string: id,
-        filepath: businessPhoto
+        id: id,
+        filepath: a
       })
     }
     if (businessPhoto) {
@@ -214,7 +214,6 @@ const Business = () => {
   }
 
 
-
   return (
     <Dashboard>
       <div className='flex-1 overflow-hidden overflow-y-auto'>
@@ -225,7 +224,7 @@ const Business = () => {
             <div onClick={handle} className='h-36 -z-0 relative bg-[url("assets/businesses/business-hero.svg")] bg-cover bg-center bg-gray cursor-pointer'>
             <input ref={coverImageRef} type="file" name="cover_image" id="cover_image" className="hidden" onChange={(e)=> uploadCoverPhoto(e.target.files[0])}  />
 
-              <img src={business?.cover_img.replace("mediatoken", "media&token")} name={business?.name} className='absolute object-cover w-full h-full' />
+              <img src={business?.coverImg.replace("mediatoken", "media&token")} name={business?.name} className='absolute object-cover w-full h-full' />
               <Link to={`/users/edit-business/${id}`} className='p-1.5 px-3 text-xs font-arialsans absolute bottom-2 right-2 sm:right-4 lg:right-16 bg-green text-white'>
                 Edit Profile
               </Link>
@@ -246,7 +245,7 @@ const Business = () => {
                   {business?.description}
                 </p>
                 <div className='flex flex-wrap items-center gap-3 mb-16 text-xsm text-green md:w-7/8'>
-                  {businessCategories?.map(category =><span key={category.id} className='bg-[#E0E5EE] px-4 py-2 font-medium whitespace-nowrap'>{category.category}</span>)}
+                  {business?.categories?.map(category =><span key={category.id} className='bg-[#E0E5EE] px-4 py-2 font-medium whitespace-nowrap'>{category.category}</span>)}
                   </div>
               </div>
               <div className='mb-11'>
@@ -362,7 +361,7 @@ const Business = () => {
                   {business?.photos?.length ? business?.photos?.map((photo, index) => <img key={index} src={photo?.filepath} alt=""  className='object-cover object-center sm:w-32 sm:h-40 bg-black/30' />) 
                   : <span className='text-[#476788] text-xs sm:text-sm'>No photos</span>
                   }
-                  {(business?.photos?.length < 2 || (business?.photos?.length < Number(subscription?.subscription?.photos))) ? 
+                  {(business?.photos?.length < 2 || (business?.photos?.length < Number(business?.subscription?.photos))) ? 
                     <div className='mb-4'>
                       <label htmlFor="business_photo" className='font-medium text-xs bg-[#E5E5E5] p-4 flex flex-col items-center justify-center relative cursor-pointer sm:w-32 sm:h-40'>
                               <>
@@ -376,7 +375,7 @@ const Business = () => {
                     <>
                     <div className='mb-4'>
                       <label htmlFor="business_photo" className='font-medium text-xs bg-[#E5E5E5] p-4 flex flex-col items-center justify-center relative cursor-pointer sm:w-32 sm:h-40 text-center'>
-                        {subscription?.subscription?.photos ? <span className='text-[#476788] text-xs sm:text-sm'>
+                        {business?.subscription?.photos ? <span className='text-[#476788] text-xs sm:text-sm'>
                           You have reached the maximum number of photos for your subscription
                           </span>
                         : <Link to={`/users/subscriptions/${id}`} className='text-[#476788] text-xs sm:text-sm'>
@@ -394,7 +393,14 @@ const Business = () => {
                 <h2 className='mb-3 text-lg font-medium text-green'>Business Features</h2>
                 <div className='bg-white text-[#476788] p-12 rounded-2xl'>
                   <div className='grid grid-cols-1 gap-6 text-sm sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:max-w-3xl'>
-                    {facilities?.map(facility => <div key={facility.id} className='flex items-center'>
+                    {
+                    !business?.facilities?.length ? 
+                    <div className='flex items-center'>
+                      {/* <img src={Bad} alt="" className='object-cover object-center mr-3' /> */}
+                      <span>No Facilities added yet</span>
+                    </div>
+                    :
+                    business?.facilities?.map(facility => <div key={facility.id} className='flex items-center'>
                       <img src={Good} alt="" className='object-cover object-center mr-3' />
                       <span>{facility.facility}</span>
                     </div>)}
@@ -414,15 +420,15 @@ const Business = () => {
               <div className='mb-16'>
                 <h2 className='mb-3 text-lg font-medium text-green'>Subscription</h2>
                 <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
-                  <p className='mb-4'>{!expired(subscription?.true_expiry) ? `You are currently on the ${subscription?.subscription} package subscription plan` : "You do not have any active subscription"}</p>
-                  <Link to={`/users/subscription/${id}`} className='text-sm underline text-green'>{subscription && "Click here to check out your subscription plan"}</Link>
+                  <p className='mb-4'>{!expired(business?.trueExpiry) ? `You are currently on the ${business?.subscription} package subscription plan` : "You do not have any active subscription"}</p>
+                  <Link to={`/users/subscription/${id}`} className='text-sm underline text-green'>{business?.subscription && "Click here to check out your subscription plan"}</Link>
                 </div>
               </div>
               <div className='mb-16'>
                 <h2 className='mb-3 text-lg font-medium text-green'>Reviews</h2>
                 <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
                   {
-                    (reviews?.length > 0) && (!!reviewStats?.average) ? 
+                    (business?.review?.length > 0) && (!!rating) ? 
                       <>
                       {
                         business?.reviews && business?.reviews?.length > 0 &&

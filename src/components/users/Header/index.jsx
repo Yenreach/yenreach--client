@@ -29,8 +29,8 @@ const index = ({ business_string, type }) => {
 
   const { isLoading, error, data: business  } = useFetch({
     api: apiGetOneBusiness,
-    param: business_string,
-    key: ['userBusiness', business_string],
+    param: { id: business_string },
+    key: ['business', business_string],
   })
 
 

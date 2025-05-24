@@ -50,7 +50,7 @@ const BusinessPage = () => {
 
   const { data: business, error: errorBusiness, isLoading } = useFetch({
     api: apiGetOneBusiness,
-    param: id,
+    param: { id },
     key: ['business', id],
   })
 // console.log({ business })

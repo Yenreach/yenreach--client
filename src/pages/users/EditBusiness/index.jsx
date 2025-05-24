@@ -53,8 +53,8 @@ const index = () => {
 
   const { isLoading, error, data: business  } = useFetch({
     api: apiGetOneBusiness,
-    param: id,
-    key: ['userBusiness', id],
+    param: { id },
+    key: ['business', id],
   })
 
 //   console.log("bua", business)
