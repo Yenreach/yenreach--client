@@ -8,7 +8,7 @@ const token = JSON.parse(sessionStorage.getItem("user"))?.id
 /* Get user */
 export const apiGetUser = ({ token }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?string=${token}`,
+        url: `${servicePrefix}`,
         method: "get",
         headers: {
             Authorization: `Bearer ${token}`
@@ -18,22 +18,25 @@ export const apiGetUser = ({ token }) => {
 
 
 /* Add Job */
-export const apiAddJob = (data) => {
+export const apiAddJob = (data, { token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
         method: "post",
-        data    
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }   
     })
 }
 
 
 /* Get Jobs */
-export const apiGetAllJobs = (query) => {
+export const apiGetAllJobs = (query={}) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?per_page=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}&search=${query?.search || ''}`,
+        url: `${servicePrefix}?limit=${query?.limit || 40}&page=${query?.page}&search=${query?.search || ''}`,
         method: "get",
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${query?.token}`
         }   
     })
 }
@@ -41,7 +44,7 @@ export const apiGetAllJobs = (query) => {
 /* Get Jobs */
 export const apiGetAllJobsAdmin = ({ token }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/all`,
         method: "get",
         headers: {
             Authorization: `Bearer ${token}`
@@ -50,9 +53,9 @@ export const apiGetAllJobsAdmin = ({ token }) => {
 }
 
 /* Get Jobs by business */
-export const apiGetAllBusinessJobs = (business_string) => {
+export const apiGetAllBusinessJobs = ({ token, id }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?string=${business_string}`,
+        url: `${servicePrefix}/${id}/jobs`,
         method: "get",
         headers: {
             Authorization: `Bearer ${token}`
@@ -61,9 +64,9 @@ export const apiGetAllBusinessJobs = (business_string) => {
 }
 
 /* Get One Job */
-export const apiGetJob = (job_string) => {
+export const apiGetJob = ({ token, id }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?string=${job_string}`,
+        url: `${servicePrefix}/${id}`,
         method: "get",
         headers: {
             Authorization: `Bearer ${token}`
@@ -72,9 +75,9 @@ export const apiGetJob = (job_string) => {
 }
 
 /* Get One Application */
-export const apiGetApplication = (application_string) => {
+export const apiGetApplication = ({ id, applicationId }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?string=${application_string}`,
+        url: `${servicePrefix}/${id}/applications/${applicationId}`,
         method: "get",
         headers: {
             Authorization: `Bearer ${token}`
@@ -83,9 +86,9 @@ export const apiGetApplication = (application_string) => {
 }
 
 /* Get All Applications by Job string */
-export const apiGetApplicationsByJob = (job_string) => {
+export const apiGetApplicationsByJob = ({ token, id }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?string=${job_string}`,
+        url: `${servicePrefix}/${id}/applications`,
         method: "get",
         headers: {
             Authorization: `Bearer ${token}`
@@ -94,9 +97,9 @@ export const apiGetApplicationsByJob = (job_string) => {
 }
 
 /* Get All Applications by User string */
-export const apiGetApplicationsByUser = (user_string) => {
+export const apiGetApplicationsByUser = ({ id, token }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?string=${user_string}`,
+        url: `${servicePrefix}/${id}`,
         method: "get",
         headers: {
             Authorization: `Bearer ${token}`
@@ -105,19 +108,22 @@ export const apiGetApplicationsByUser = (user_string) => {
 }
 
 /* Delete Application */
-export const apiDeleteApplication = ({application_string, job_string }) => {
+export const apiDeleteApplication = ({ applicationId, id, token }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?application_string=${application_string}&job_string=${job_string}`,
+        url: `${servicePrefix}/${id}/application/$${applicationId}`,
         method: "delete",
-        data  
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        } 
     })
 }
 
 /* Delete Job */
-export const apiDeleteJob = ({business_string, job_string }) => {
+export const apiDeleteJob = ({ id, token }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?job_string=${job_string}&business_string=${business_string}`,
-        method: "get",
+        url: `${servicePrefix}/${id}`,
+        method: "delete",
         headers: {
             Authorization: `Bearer ${token}`
         } 
@@ -127,28 +133,37 @@ export const apiDeleteJob = ({business_string, job_string }) => {
 
 
 /* Submit Job Application */
-export const apiSubmitApplication = (data) => {
+export const apiSubmitApplication = (data, { token, id }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/${id}/applications`,
         method: "post",
-        data
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
 }
 /* Update Job */
-export const apiUpdateJob = (data) => {
+export const apiUpdateJob = (data, { token, id }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
-        method: "post",
-        data
+        url: `${servicePrefix}/${id}`,
+        method: "put",
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
 }
 
 /* Update Job status */
-export const apiUpdateJobStatus = (data) => {
+export const apiUpdateJobStatus = (data, { token, id }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
-        method: "post",
-        data
+        url: `${servicePrefix}/${id}`,
+        method: "put",
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
 }
 

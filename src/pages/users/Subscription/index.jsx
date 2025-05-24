@@ -118,7 +118,7 @@ const Subscription = () => {
       const { data: userSubscriptions } = useFetch({
         api: apiGetBusinessSubscriptions,
         key:  ['userSubscriptions', id],
-        param: id,
+        param: {id},
       })
 
       // console.log("subscriptions", subscriptions)

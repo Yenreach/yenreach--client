@@ -24,7 +24,7 @@ const Products = () => {
   const { isLoading, error: errorProducts, data: products, refetch: refetchProducts, remove: removeProductsCache } = useFetch({
     key: ['userProducts', id],
     api: apiGetAllBusinessProducts,
-    param: id,
+    param: { id },
   })
 
 
@@ -33,7 +33,7 @@ const Products = () => {
 
   const columns = [
     {
-      name: "product_name",
+      name: "name",
       label: "Product Name",
       options: {
         filter: true,
@@ -41,7 +41,7 @@ const Products = () => {
       },
     },
     {
-      name: "product_price",
+      name: "price",
       label: "Product Price",
       options: {
         filter: true,
@@ -60,17 +60,17 @@ const Products = () => {
         // console.log("meta", meta)
         return  (
           <div className="underline text-orange cursor-pointer" onClick={() => {
-            setImage(value[0].filename)
+            setImage(value[0].mediaPath)
             setImageModalOpen(true)
           }}>
-            {/* <a target='_blank' href={`${value[0].filename}`}>view photo</a> */}
+            {/* <a target='_blank' href={`${value[0].mediaPath}`}>view photo</a> */}
             view photo
           </div>
         )
       },
     },
     {
-      name: "updated_at",
+      name: "updatedAt",
       label: "Modified date",
       options: {
         filter: true,
@@ -78,7 +78,7 @@ const Products = () => {
       },
     },
     {
-      name: "created_at",
+      name: "createdAt",
       label: "Created at",
       options: {
         filter: true,
@@ -86,14 +86,14 @@ const Products = () => {
       },
     },
     {
-      name: "product_color",
+      name: "color",
       label: "Action",
       extra: true,
       custom: (value, meta) => {
         // console.log("meta", meta)
         return  (
           <div className="flex items-center gap-3 justify-cente">
-            <Link to={`/users/products/${meta?.business_string}/edit-product/${meta?.product_string}`}>
+            <Link to={`/users/products/${id}/edit-product/${meta?.id}`}>
               <BiEdit size="1.2rem" className="text-orange" />
             </Link>
             <MdOutlineDelete size="1.2rem" className="text-red-400 cursor-pointer" onClick={() => delteteProduct(meta)} />
@@ -106,7 +106,7 @@ const Products = () => {
       },
     },
     {
-      name: "product_status",
+      name: "status",
       label: "In - Stock",
       extra: true,
       custom: (value, meta) => {
@@ -116,14 +116,13 @@ const Products = () => {
             <div className="relative">
               <input id={`status${meta?.id}`} type="checkbox" className="sr-only peer" onChange={() => 
               updateProductStatus({
-                  "product_string": meta?.product_string,
-                  "business_string": meta?.business_string,
-                  "status": value==="1" ? false : true
-                })} checked={value==="1"} />
+                  "id": meta?.id,
+                  "status": value==="Available" ? false : true
+                })} checked={value==="Available"} />
               <div
                 className="dot shadow-switch-1 absolute left-0.5 top-1/2 -translate-y-1/2 h-4 w-4 rounded-full shadow-lg bg-white transition peer-checked:translate-x-4"
               ></div>
-              <div className={`h-5 w-9 rounded-full ${value==="1" ? "bg-orange" : "bg-orange/40"} shadow-inner`}></div>
+              <div className={`h-5 w-9 rounded-full ${value==="Available" ? "bg-orange" : "bg-orange/40"} shadow-inner`}></div>
             </div>
           </label>
         )
@@ -186,7 +185,7 @@ const Products = () => {
           )}
           <Header business_string={id} type="product" />
           <section className='p-8 px-4 sm:px-8'>
-           {products &&
+           {!!products?.data?.length &&
             <div className='flex items-center justify-between mb-4'>
               <h2 className='text-lg text-orange font-medium'>Listed Products</h2>
               <Link to={`/users/products/${id}/add-product`}>
@@ -196,10 +195,10 @@ const Products = () => {
                 </Button>
               </Link>
             </div>}
-            {products && <Table data={products} columns={columns} />}
+            {!!products?.data?.length && <Table data={products?.data} columns={columns} />}
           </section>
           {!isLoading &&
-              !products && 
+              !products?.data?.length && 
                 <div className='flex flex-col justify-center items-center rounded-lg font-arialsans h-[550px] sm:h-auto md:mt-14'>
                     <img src={NoBusiness} alt="" className='mb-7' />
                     <span className='text-center text-orange mb-9'>

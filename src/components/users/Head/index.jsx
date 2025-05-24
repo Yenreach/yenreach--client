@@ -6,7 +6,7 @@ import { useAuthContext } from "/src/hooks/useAuthContext"
 import ArrowDown from '/src/assets/arrow-down.svg'
 import DP from '/src/assets/dashboard/img.svg'
 import useFetch from '/src/hooks/useFetch'
-import { apiGetOneBusiness } from '/src/services/UserService'
+// import { apiGetOneBusiness } from '/src/services/UserService'
 import { apiGetUser, apiGetSavedBusinesses } from '/src/services/UserService'
 
 const index = () => {

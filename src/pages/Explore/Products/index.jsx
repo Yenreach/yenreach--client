@@ -8,7 +8,7 @@ import Loader from '/src/components/Loader'
 import useFetch from '/src/hooks/useFetch'
 import Location from '/src/assets/location.svg'
 import Pagination from '/src/components/Pagination'
-import { apiGetAllProducts, apiGetProductCategory } from '/src/services/ProductService'
+import { apiGetAllProducts, apiGetProductCategories } from '/src/services/ProductService'
 import Button from '/src/components/ui/Button'
 import Input from '/src/components/ui/Input'
 import Search from '/src/assets/search.svg'
@@ -17,19 +17,19 @@ import SEO from '../../../components/SEO'
 import useCreateQueryString from '../../../hooks/useCreateQueryString'
 
 
-const categories = [
-  {id: 1, name: "Electronics"},
-  {id: 2, name: "Fashion"},
-  {id: 3, name: "Home"},
-  {id: 4, name: "Beauty"},
-  {id: 5, name: "Health"},
-  {id: 6, name: "Sports"},
-  {id: 7, name: "Automobile"},
-  {id: 8, name: "Food"},
-  {id: 9, name: "Toys"},
-  {id: 10, name: "Books"},
-  {id: 11, name: "Others"},
-]
+// const categories = [
+//   {id: 1, name: "Electronics"},
+//   {id: 2, name: "Fashion"},
+//   {id: 3, name: "Home"},
+//   {id: 4, name: "Beauty"},
+//   {id: 5, name: "Health"},
+//   {id: 6, name: "Sports"},
+//   {id: 7, name: "Automobile"},
+//   {id: 8, name: "Food"},
+//   {id: 9, name: "Toys"},
+//   {id: 10, name: "Books"},
+//   {id: 11, name: "Others"},
+// ]
 
 const ExploreProducts = () => {
   ReactGA.send({ hitType: "pageview", page: "/explore/products", title: "Explore Products View" });
@@ -70,8 +70,8 @@ const ExploreProducts = () => {
     key: ['products', page, filter],
   })
 
-  const { data: category }  = useFetch({
-    api: apiGetProductCategory,
+  const { data: categories }  = useFetch({
+    api: apiGetProductCategories,
     select: (data) => data,
     key: ['products', 'categoryapi'],
   })
@@ -118,8 +118,8 @@ const ExploreProducts = () => {
             </form>
             <select className='p-2 text-base border-2 rounded-md cursor-pointer font- border-orange text-black/50' value={filterBy} onChange={(e) => setFilterBy(e.target.value)} name="filter" id="">
                 <option value="" className=''>Filter By</option>
-                {categories.map((category) => (
-                  <option key={category.name} value={category.name}>{category.name}</option>
+                {categories.map((category, idx) => (
+                  <option key={idx} value={category.id}>{category.category}</option>
                 ))}
             </select>
           </div>

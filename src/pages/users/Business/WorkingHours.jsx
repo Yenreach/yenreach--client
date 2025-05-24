@@ -41,7 +41,7 @@ console.log({data})
 
     const { data: workingHours, error: errorWorkingHours, refetch } = useFetch({
         api: apiGetBusinessWorkingHours,
-        param: id,
+        param: {id},
         key: ['workingHours', id],
     })
 

@@ -12,7 +12,7 @@ import useFetch from '../../../../hooks/useFetch';
 import { apiGetApplicationsByJob } from '../../../../services/JobService';
 
 
-const index = ({ job, refetchJobs, removeJobsCache, business_id }) => {
+const index = ({ job, refetchJobs, removeJobsCache, businessId }) => {
   const statusRef = useRef(null)
 
   const updateJobStatus = useMutation({
@@ -48,26 +48,26 @@ const index = ({ job, refetchJobs, removeJobsCache, business_id }) => {
    
   const handleSubmit = (e) => {
     e.preventDefault()
-      console.log(e.target.checked, statusRef.current.checked, job?.status!=="1")
+      console.log(e.target.checked, statusRef.current.checked, job?.status!=="open")
       updateJobStatus.mutate({ 
-        "job_string": job?.job_string,
-        "business_string": job?.business_string,
-        "status": job?.status!=="1"
+        "id": job?.id,
+        "businessId": job?.businessId,
+        "status": job?.status!=="open"
       })
   }
 
   const deleteJob = (e) => {
     e.preventDefault()
       deleteJobMutation.mutate({ 
-        "job_string": job?.job_string,
-        "business_string": job?.business_string
+        "id": job?.id,
+        "businessId": job?.businessId
       })
   }
 
   const { isLoading, error, data: applicants } = useFetch({
-    key: ['userJobApplicants', job?.job_string],
+    key: ['userJobApplicants', job?.id],
     api: apiGetApplicationsByJob,
-    param: job?.job_string,
+    param: { id: job?.id },
   })
 
   
@@ -77,15 +77,15 @@ const index = ({ job, refetchJobs, removeJobsCache, business_id }) => {
       <div className="flex justify-between items-center w-full">
         <label htmlFor={`status${job?.id}`} className="flex cursor-pointer select-none items-center">
           <div className="relative">
-            <input ref={statusRef} id={`status${job?.id}`} type="checkbox" className="sr-only peer" onChange={handleSubmit} checked={job?.status==="1"} />
+            <input ref={statusRef} id={`status${job?.id}`} type="checkbox" className="sr-only peer" onChange={handleSubmit} checked={job?.status==="open"} />
             <div
               className="dot shadow-switch-1 absolute left-0.5 top-1/2 -translate-y-1/2 h-4 w-4 rounded-full shadow-lg bg-white transition peer-checked:translate-x-4"
             ></div>
-            <div className={`h-5 w-9 rounded-full  ${job?.status==="1" ? "bg-blue" : "bg-blue/40"} shadow-inner`}></div>
+            <div className={`h-5 w-9 rounded-full  ${job?.status==="open" ? "bg-blue" : "bg-blue/40"} shadow-inner`}></div>
           </div>
         </label>
         <div className='flex items-center gap-2'>
-            <Link to={`/users/jobs/${job?.business_string}/edit-job/${job?.job_string}`}>
+            <Link to={`/users/jobs/${job?.businessId}/edit-job/${job?.id}`}>
               <BiEdit size="1.3rem" className='cursor-pointer opacity-80' />
             </Link>
             <RiDeleteBin6Line size="1.3rem" className='cursor-pointer opacity-60' color='red' onClick={deleteJob} />
@@ -105,8 +105,8 @@ const index = ({ job, refetchJobs, removeJobsCache, business_id }) => {
           <p className='text-xs text-grey'>{applicants?.length || 0} Appliacants</p>
         </div>
       </div>
-      <span className='w-fit bg-green-light rounded-full px-3 py-1 text-green text-xs'>{ job?.status === "1" ? "Active" : "Inactive" }</span>
-      <Link to={`/users/jobs/${business_id}/applicants/${job?.job_string}`} className="w-full">
+      <span className='w-fit bg-green-light rounded-full px-3 py-1 text-green text-xs'>{ job?.status === "open" ? "Active" : "Inactive" }</span>
+      <Link to={`/users/jobs/${businessId}/applicants/${job?.id}`} className="w-full">
         <Button variant='job'  className='w-full py-1 text-xs' onClickFunc={ () => ""}>View Applicants</Button>
       </Link>
     </div>

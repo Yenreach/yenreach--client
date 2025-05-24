@@ -18,38 +18,50 @@ export const apiGetUser = ({ token }) => {
 
 
 /* Add Product */
-export const apiAddProduct = (data) => {
+export const apiAddProduct = (data, { token, id }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
         method: "post",
-        data    
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Add Product Category */
-export const apiAddProductCategory = (data) => {
+export const apiAddProductCategory = (data, { token, id }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/${id}`,
         method: "post",
-        data    
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Add Product Category List */
-export const apiAddProductCategoryList = (data) => {
+export const apiAddProductCategoryList = (data, { token, id }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
         method: "post",
-        data    
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Add Product Photo */
-export const apiAddProductPhoto = (data) => {
+export const apiAddProductPhoto = (data, { token, id }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/${id}`,
         method: "post",
-        data    
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
@@ -65,41 +77,47 @@ export const apiDeleteProduct = ({business_string, product_string}) => {
 }
 
 /* Delete Product Category */
-export const apiDeleteProductCategory = (data) => {
+export const apiDeleteProductCategory = (data, { token, id }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/${id}`,
         method: "delete",
-        data    
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Delete Product Photo */
-export const apiDeleteProductPhoto = (data) => {
+export const apiDeleteProductPhoto = (data, { token, id }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/${id}`,
         method: "delete",
-        data    
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
     })
 }
 
 /* Get Products */
-export const apiGetAllProducts = (query) => {
+export const apiGetAllProducts = (query={}) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}?limit=${query?.num_per_page || 40}&page=${query?.page || 1}&search=${query?.search || ''}`,
         method: "get",
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${query?.token}`
         }   
     })
 }
 
 /* Sort Products */
-export const apiSortProducts = (query) => {
+export const apiSortProducts = (query={}) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}?sort=${query?.sort || ''}&per_page=${query?.num_per_page || 40}&skip=${query?.page ? (query.page - 1) * (query?.num_per_page || 40) : 0}`,
         method: "get",
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${query?.token}`
         }   
     })
 }
@@ -116,9 +134,9 @@ export const apiGetAllProductsAdmin = ({ token }) => {
 }
 
 /* Get Products by Business string */
-export const apiGetAllBusinessProducts = (business_string) => {
+export const apiGetAllBusinessProducts = ({ id }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}/${business_string}/products`,
+        url: `${servicePrefix}/${id}/products`,
         method: "get",
         headers: {
             Authorization: `Bearer ${token}`
@@ -127,7 +145,7 @@ export const apiGetAllBusinessProducts = (business_string) => {
 }
 
 /* Get One Product */
-export const apiGetProduct = (id) => {
+export const apiGetProduct = ({ id }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}/${id}`,
         method: "get",
@@ -138,7 +156,7 @@ export const apiGetProduct = (id) => {
 }
 
 /* Get One Product */
-export const apiGetRelatedProducts = (id) => {
+export const apiGetRelatedProducts = ({ id }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}/${id}/related`,
         method: "get",
@@ -149,7 +167,7 @@ export const apiGetRelatedProducts = (id) => {
 }
 
 /* Get Product Category */
-export const apiGetProductCategory = ({ token }) => {
+export const apiGetProductCategories = ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}/categories`,
         method: "get",
@@ -159,21 +177,28 @@ export const apiGetProductCategory = ({ token }) => {
     })
 }
 
+
 /* Update Product */
-export const apiUpdateProduct = (data) => {
+export const apiUpdateProduct = (data, { token, id }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
-        method: "post",
-        data
+        url: `${servicePrefix}/${id}`,
+        method: "put",
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
 }
 
 /* Update Product Status */
-export const apiUpdateProductStatus = (data) => {
+export const apiUpdateProductStatus = (data, { token, id }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/${id}`,
         method: "post",
-        data
+        data,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
 }
 

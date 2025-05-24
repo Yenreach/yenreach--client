@@ -117,12 +117,12 @@ export const apiGetLGAs = () => {
 
 
 /* Business */
-export const apiGetOneBusiness = (business_token) => {
-    return ApiAdapter.fetchData({
-        url: `/fetch_business_by_string_api${serviceSuffix}?string=${business_token}`,
-        method: "get"    
-    })
-}
+// export const apiGetOneBusiness = (business_token) => {
+//     return ApiAdapter.fetchData({
+//         url: `/fetch_business_by_string_api${serviceSuffix}?string=${business_token}`,
+//         method: "get"    
+//     })
+// }
 
 export const apiGetBusinessCategories = (business_token) => {
     return ApiAdapter.fetchData({

@@ -3,7 +3,7 @@ import useFetch from '/src/hooks/useFetch'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import usePost from '/src/hooks/usePost'
 import useImage from '/src/hooks/useImage'
-import { apiAddProduct } from '../../../services/ProductService'
+import { apiAddProduct, apiGetProductCategories } from '../../../services/ProductService'
 import Header from "/src/components/users/Header"
 import { RiAddFill } from 'react-icons/ri'
 import { AiOutlineClose } from 'react-icons/ai'
@@ -12,60 +12,58 @@ import Input from '../../../components/ui/Input'
 import Button from '../../../components/ui/Button'
 import Dashboard from "../../../components/layout/Dashboard"
 import Loader from '/src/components/Loader'
-import { apiGetBusinessSubscription } from '/src/services/UserService'
+import { apiGetOneBusiness } from '../../../services/UserService'
 
 
 const initialProductState = { 
-    business_string : "",
+    quantity: 0,
+    price: 0,
+    safetyTip: '',
     name : "",
+    businessId: '',
     description : "",
     categories : [],
-    price : "",
-    quantity : "",
-    color : "",
-    safety_tip : "",
     photos : [],
+    color : "",
     // product_tags : [],
 }
 
-const categories = [
-    {id: 1, name: "Electronics"},
-    {id: 2, name: "Fashion"},
-    {id: 3, name: "Home"},
-    {id: 4, name: "Beauty"},
-    {id: 5, name: "Health"},
-    {id: 6, name: "Sports"},
-    {id: 7, name: "Automobile"},
-    {id: 8, name: "Food"},
-    {id: 9, name: "Toys"},
-    {id: 10, name: "Books"},
-    {id: 11, name: "Others"},
-]
+// const categories = [
+//     {id: 1, name: "Electronics"},
+//     {id: 2, name: "Fashion"},
+//     {id: 3, name: "Home"},
+//     {id: 4, name: "Beauty"},
+//     {id: 5, name: "Health"},
+//     {id: 6, name: "Sports"},
+//     {id: 7, name: "Automobile"},
+//     {id: 8, name: "Food"},
+//     {id: 9, name: "Toys"},
+//     {id: 10, name: "Books"},
+//     {id: 11, name: "Others"},
+// ]
 
 const index = () => {
     const [product, setProduct] = React.useState(initialProductState)
     const { id } = useParams()
     const navigate = useNavigate()
 
+    const { data: categories } = useFetch({
+        api: apiGetProductCategories,
+        key: ['product-categories'],
+      })
     
     const { url, uploadImage, error, progress, loading: uploadingImg } = useImage()
     
-    const { error: subscriptionError, data: subscription } = useFetch({
-        api: apiGetBusinessSubscription,
-        param: id,
-        key: ['subscription', id],
-    })
     // console.log(subscription?.subscription?.photos)
     
    useEffect(() => {
          if(url) {
-                setProduct(prev => ({...prev, photos: [...product.photos,  { filename: url }] }))
+                setProduct(prev => ({...prev, photos: [...product.photos, url] }))
             }
     }, [url])
 
     const removePhoto = (url) => {
-
-        setProduct(prev => ({...prev, photos: product.photos.filter(photo => photo.filename != url) }))
+        setProduct(prev => ({...prev, photos: product.photos.filter(photo => photo != url) }))
     }
 
 
@@ -73,11 +71,25 @@ const index = () => {
         setProduct(prev => ({...prev, [event.target.name]: event.target.value }))
     }
 
-
-    const handleCategory = (event) => {
-        setProduct(prev => ({...prev, [event.target.name]: [...product.categories, {category: event.target.value}] }))
+    const handleProductNum = (event) => {
+        setProduct(prev => ({...prev, [event.target.name]: Number(event.target.value) }))
     }
 
+
+    const handleCategory = (event) => {
+        setProduct(prev => ({...prev, [event.target.name]: [
+            ...product.categories, { 
+                id: event.target.value,
+                category: categories?.find(cat => cat.id == event.target.value)?.category,
+            },
+        ] }))
+    }
+    const { data: business  } = useFetch({
+        api: apiGetOneBusiness,
+        param: { id },
+        key: ['business', id],
+      })
+    
 
     const addProductMutation = usePost({ 
         api: apiAddProduct,
@@ -91,7 +103,7 @@ const index = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         // console.log("data", product)
-        addProductMutation.mutate({...product, business_string: id})
+        addProductMutation.mutate({...product, businessId: id, categories: product.categories.map(category => category.id )})
     }
 
     // const handleUploads = async (files) => {
@@ -121,10 +133,10 @@ const index = () => {
                     <div className='mb-8 md:flex justify-between gap-9'>
                          <div className='mb-8 w-full'>
                             <label htmlFor="categories" className='font-medium text-sm'>Categories</label>
-                            <select onChange={handleCategory} required className='w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-orange cursor-pointer rounded-lg' name="categories" id="categories" placeholder='Enter Categoies'>
+                            <select onChange={handleCategory} required className='w-full border-2 outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-orange cursor-pointer rounded-lg' name="categories" id="categories" placeholder='Enter Categoies'>
                                 <option value="">Select Product Categories</option>
                                 {categories?.map((category) => (
-                                    <option key={category.id} value={category.name}>{category.name}</option>
+                                    <option key={category.id} value={category.id}>{category.category}</option>
                                 ))}
                             </select>
                             <div>
@@ -141,11 +153,11 @@ const index = () => {
                     <div className='mb-8 md:flex justify-between gap-9'>
                         <div className='mb-8 w-full'>
                             <label htmlFor="price" className='font-medium text-sm'>Price</label>
-                            <Input required value={product?.price} onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="price" id="price" placeholder='Enter Price' />
+                            <Input required value={product?.price ? product?.price : ''} onChange={handleProductNum} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="price" id="price" placeholder='Enter Price' />
                         </div>
                         <div className='mb-8 w-full'>
                             <label htmlFor="quantity" className='font-medium text-sm'>Quantity</label>
-                            <Input required value={product?.quantity} onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="quantity" id="quantity" placeholder='Enter Available Quantity' />
+                            <Input required value={product?.quantity ? product?.quantity : ''} onChange={handleProductNum} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="quantity" id="quantity" placeholder='Enter Available Quantity' />
                         </div>
                         <div className='mb-8 w-full'>
                             <label htmlFor="color" className='font-medium text-sm'>Color</label>
@@ -153,22 +165,22 @@ const index = () => {
                         </div>
                     </div>
                     <div className='mb-8'>
-                        <label htmlFor="safety_tip" className='font-medium text-sm'>Safety Tip</label>
-                        <Input value={product?.safety_tip} onChange={handleProduct} variant={"product"} textarea name="safety_tip" id="safety_tip" cols="30" rows="4" className='border-gray rounded-lg' placeholder='Enter safety measures for product use if any' />
+                        <label htmlFor="safetyTip" className='font-medium text-sm'>Safety Tip</label>
+                        <Input value={product?.safetyTip} onChange={handleProduct} variant={"product"} textarea name="safetyTip" id="safetyTip" cols="30" rows="4" className='border-gray rounded-lg' placeholder='Enter safety measures for product use if any' />
                     </div>
                     <div className='mb-8'>
                         <h6 className='font-medium text-sm'>Product Images</h6>
                         <div className='flex items-center flex-wrap gap-4 mt-2'>
                             {product.photos?.map((photo) => (
-                                <div key={photo?.filename} className='bg-gray rounded-lg w-36 h-36 overflow-hidden relative'>
-                                    <img src={photo?.filename} alt="" className='object-cover w-full h-full' />
-                                    <div onClick={() => removePhoto(photo?.filename)} className='absolute top-0 left-0 bg-black/30 w-full h-full p-4 cursor-pointer hover:cursor-pointer md:opacity-0 md:hover:opacity-100'>
+                                <div key={photo} className='bg-gray rounded-lg w-36 h-36 overflow-hidden relative'>
+                                    <img src={photo} alt="" className='object-cover w-full h-full' />
+                                    <div onClick={() => removePhoto(photo)} className='absolute top-0 left-0 bg-black/30 w-full h-full p-4 cursor-pointer hover:cursor-pointer md:opacity-0 md:hover:opacity-100'>
                                         <AiOutlineClose size="24px" color='gray' className='float-right' />
                                     </div>
                                 </div>
                             ))}
                             <>
-                            {(product.photos?.length < 5 || (product.photos?.length < Number(subscription?.subscription?.photos))) ? 
+                            {(product.photos?.length < 5 || (product.photos?.length < Number(business?.subscription?.photos || 0))) ? 
                                 <div className=''>
                                     <label htmlFor="add_image" className='font-medium text-sm bg-gray rounded-lg w-36 h-36 flex flex-col gap-2 justify-center items-center px-4 cursor-pointer'>
                                         <RiAddFill size="24px" color='gray' />

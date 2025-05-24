@@ -100,7 +100,7 @@ const Promo = ({ closeModal }) => {
                                                 <img src={promo?.image} alt="product image" className='object-contain w-full h-full carousel-img' />
                                             </div>
                                             {/* <div className="flex flex-col items-center justify-center flex-1 w-full h-full gap-4 text-center">
-                                                <h2 className="text-xl text-black lg:text-3xl text-capitalize text-bold">{promo?.product_name}</h2>
+                                                <h2 className="text-xl text-black lg:text-3xl text-capitalize text-bold">{promo?.name}</h2>
                                                 <p className="max-w-[400px] text-center mb-6 text-sm lg:text-base text-black/70">
                                                 {promo?.product_description}
                                                 </p>

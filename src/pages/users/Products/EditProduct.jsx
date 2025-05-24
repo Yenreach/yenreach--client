@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import usePost from '/src/hooks/usePost'
 import useImage from '/src/hooks/useImage'
-import { apiAddProduct, apiGetProduct, apiUpdateProduct } from '../../../services/ProductService'
+import { apiGetProduct, apiGetProductCategories, apiUpdateProduct } from '../../../services/ProductService'
 import Header from "/src/components/users/Header"
 import { RiAddFill } from 'react-icons/ri'
-import Head from '../../../components/users/Head'
 import Input from '../../../components/ui/Input'
 import Button from '../../../components/ui/Button'
 import Dashboard from "../../../components/layout/Dashboard"
 import Loader from '/src/components/Loader'
 import useFetch from '/src/hooks/useFetch'
+import { AiOutlineClose } from 'react-icons/ai'
 
 const initialProductState = { 
     businessId : "",
@@ -20,26 +20,26 @@ const initialProductState = {
     price : "",
     quantity : "",
     color : "",
-    safety_tip : "",
+    safetyTip : "",
     photos : [],
     // tags : [],
 }
 
 
 
-const categories = [
-    {id: 1, name: "Electronics"},
-    {id: 2, name: "Fashion"},
-    {id: 3, name: "Home"},
-    {id: 4, name: "Beauty"},
-    {id: 5, name: "Health"},
-    {id: 6, name: "Sports"},
-    {id: 7, name: "Automobile"},
-    {id: 8, name: "Food"},
-    {id: 9, name: "Toys"},
-    {id: 10, name: "Books"},
-    {id: 11, name: "Others"},
-]
+// const categories = [
+//     {id: 1, name: "Electronics"},
+//     {id: 2, name: "Fashion"},
+//     {id: 3, name: "Home"},
+//     {id: 4, name: "Beauty"},
+//     {id: 5, name: "Health"},
+//     {id: 6, name: "Sports"},
+//     {id: 7, name: "Automobile"},
+//     {id: 8, name: "Food"},
+//     {id: 9, name: "Toys"},
+//     {id: 10, name: "Books"},
+//     {id: 11, name: "Others"},
+// ]
 
 const EditProduct = () => {
     const [product, setProduct] = React.useState(initialProductState)
@@ -48,9 +48,14 @@ const EditProduct = () => {
 
     const { data, error: errorProduct, isLoading } = useFetch({
         api: apiGetProduct,
-        param: productId,
+        param: { id: productId },
         key: ['product', productId],
     })
+
+    const { data: categories } = useFetch({
+        api: apiGetProductCategories,
+        key: ['product-categories'],
+      })
 
     // console.log("data", product)
 
@@ -61,12 +66,12 @@ const EditProduct = () => {
                 id : data?.id,
                 name : data?.name,
                 description : data?.description,
-                categories : data?.categories,
+                categories : data?.categories?.map(category => category.id) || [],
                 price : data?.price,
                 quantity : data?.quantity,
                 color : data?.color,
-                safety_tip : data?.safety_tip,
-                photos : data?.photos,
+                safetyTip : data?.safetyTip,
+                photos : data?.photos?.map(photo => photo?.mediaPath) || [],
             })
         }
     }, [data])
@@ -74,20 +79,31 @@ const EditProduct = () => {
 
     const { url, uploadImage, error, progress, loading: uploadingImg } = useImage()
 
-   useEffect(() => {
-         if(url) {
-                setProduct(prev => ({...prev, photos: [...product.photos,  { filename: url }] }))
-            }
-    }, [url])
+    useEffect(() => {
+        if(url) {
+               setProduct(prev => ({...prev, photos: [...product.photos, url] }))
+           }
+   }, [url])
 
+   const removePhoto = (url) => {
+       setProduct(prev => ({...prev, photos: product.photos.filter(photo => photo != url) }))
+   }
 
+   const handleProductNum = (event) => {
+     setProduct(prev => ({...prev, [event.target.name]: Number(event.target.value) }))
+    }
 
     const handleProduct = (event) => {
         setProduct(prev => ({...prev, [event.target.name]: event.target.value }))
     }
 
     const handleCategory = (event) => {
-        setProduct(prev => ({...prev, [event.target.name]: [...product.categories, {category: event.target.value}] }))
+        setProduct(prev => ({...prev, [event.target.name]: [
+            ...product.categories, { 
+                id: event.target.value,
+                category: categories?.find(cat => cat.id == event.target.value)?.category,
+            },
+        ] }))
     }
 
 
@@ -98,12 +114,13 @@ const EditProduct = () => {
             setProduct(initialProductState)
             navigate(`/users/products/${id}`)
         },
+        id: productId,
     })
 
     const handleSubmit = (e) => {
         e.preventDefault()
         // console.log("data", product)
-        updateProductMutation.mutate({...product, businessId: id})
+        updateProductMutation.mutate({...product, businessId: id, categories: product.categories.map(category => category.id ) })
     }
 
 
@@ -111,7 +128,7 @@ const EditProduct = () => {
         <Dashboard> 
           {(updateProductMutation?.isLoading || uploadingImg) && <Loader loader={4} />}
             <div className='flex-1 overflow-y-auto overflow-hidden'>
-                <Header businessId={id} type="product" />
+                <Header business_string={id} type="product" />
             <section className='p-8 px-4 sm:px-8'>
                 <form className='p-8 px-4 sm:px-8 bg-white rounded-2xl' onSubmit={handleSubmit}>
                     <div className='mb-8'>
@@ -125,10 +142,10 @@ const EditProduct = () => {
                     <div className='mb-8 md:flex justify-between gap-9'>
                         <div className='mb-8 w-full'>
                             <label htmlFor="categories" className='font-medium text-sm'>Categories</label>
-                            <select value={product?.categories?.slice(-1)[0]?.category} onChange={handleCategory} required className='w-full border-2 rounded-sm outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-orange cursor-pointer rounded-lg' name="categories" id="categories" placeholder='Enter Categoies'>
+                            <select onChange={handleCategory} className='w-full border-2 outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-orange cursor-pointer rounded-lg' name="categories" id="categories" placeholder='Enter Categoies'>
                                 <option value="">Select Product Categories</option>
                                 {categories?.map((category) => (
-                                    <option key={category.id} value={category.name}>{category.name}</option>
+                                    <option  key={category.id} value={category.id}>{category.category}</option>
                                 ))}
                             </select>
                             <div>
@@ -145,11 +162,11 @@ const EditProduct = () => {
                     <div className='mb-8 md:flex justify-between gap-9'>
                         <div className='mb-8 w-full'>
                             <label htmlFor="price" className='font-medium text-sm'>Price</label>
-                            <Input required value={product?.price} onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="price" id="price" placeholder='Enter Price' />
+                            <Input required value={product?.price ? String(product?.price) : ''} onChange={handleProductNum} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="price" id="price" placeholder='Enter Price' />
                         </div>
                         <div className='mb-8 w-full'>
                             <label htmlFor="quantity" className='font-medium text-sm'>Quantity</label>
-                            <Input required value={product?.quantity} onChange={handleProduct} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="quantity" id="quantity" placeholder='Enter Available Quantity' />
+                            <Input required value={product?.quantity ? String(product?.quantity) : ''} onChange={handleProductNum} variant={"product"} className='border-gray rounded-lg mt-2' type="number" name="quantity" id="quantity" placeholder='Enter Available Quantity' />
                         </div>
                         <div className='mb-8 w-full'>
                             <label htmlFor="color" className='font-medium text-sm'>Color</label>
@@ -157,18 +174,56 @@ const EditProduct = () => {
                         </div>
                     </div>
                     <div className='mb-8'>
-                        <label htmlFor="safety_tip" className='font-medium text-sm'>Safety Tip</label>
-                        <Input required value={product?.safety_tip} onChange={handleProduct} variant={"product"} textarea name="safety_tip" id="safety_tip" cols="30" rows="4" className='border-gray rounded-lg' placeholder='Enter safety measures for product use if any' />
+                        <label htmlFor="safetyTip" className='font-medium text-sm'>Safety Tip</label>
+                        <Input required value={product?.safetyTip} onChange={handleProduct} variant={"product"} textarea name="safetyTip" id="safetyTip" cols="30" rows="4" className='border-gray rounded-lg' placeholder='Enter safety measures for product use if any' />
                     </div>
                     <div className='mb-8'>
                         <h6 className='font-medium text-sm'>Product Images</h6>
                         <div className='flex items-center flex-wrap gap-4 mt-2'>
                             {product.photos?.map((photo) => (
-                                <div key={photo?.filename} className='bg-gray rounded-lg w-36 h-36 overflow-hidden'>
-                                    <img src={photo?.filename} alt="" className='object-cover w-full h-full' />
+                                <div key={photo} className='bg-gray rounded-lg w-36 h-36 overflow-hidden relative'>
+                                    <img src={photo} alt="" className='object-cover w-full h-full' />
+                                    <div onClick={() => removePhoto(photo)} className='absolute top-0 left-0 bg-black/30 w-full h-full p-4 cursor-pointer hover:cursor-pointer md:opacity-0 md:hover:opacity-100'>
+                                        <AiOutlineClose size="24px" color='gray' className='float-right' />
+                                    </div>
                                 </div>
                             ))}
-                            <label htmlFor="add_image" className='font-medium text-sm mb-2 bg-gray rounded-lg w-36 h-36 flex flex-col gap-2 justify-center items-center px-4 cursor-pointer'>
+                            <>
+                            {(product.photos?.length < 5 || (product.photos?.length < Number(business?.subscription?.photos || 0))) ? 
+                                <div className=''>
+                                    <label htmlFor="add_image" className='font-medium text-sm bg-gray rounded-lg w-36 h-36 flex flex-col gap-2 justify-center items-center px-4 cursor-pointer'>
+                                        <RiAddFill size="24px" color='gray' />
+                                        <p className='text-center text-xs'>
+                                            <span className='font-semibold'>Choose a file </span>
+                                            <span className='font-normal'>or drag it here</span>
+                                        </p>
+                                    </label>
+                                    
+                                </div> 
+                                :
+                                <>
+                                <div className=''>
+                                    <label htmlFor="business_photo" className='font-medium text-xs bg-[#E5E5E5] p-4 flex flex-col items-center justify-center relative cursor-pointer sm:w-48 sm:h-40 text-center'>
+                                        <span className='text-[#476788] text-xs sm:text-sm'>
+                                         You have reached the maximum number of photos for your subscription. 
+                                         <Link to={`/users/subscriptions/${id}`} className='text-[#476788] text-xs sm:text-sm'>
+                                            {" "}Click here to Subscribe or upgrade your subscription
+                                        </Link>
+                                        </span>
+                                    </label>
+                                </div> 
+                                </>
+
+                            }
+
+                                    <Input  
+                                        onChange={(e) => uploadImage(e.target.files[0])}
+                                        className='border-gray rounded-lg mt-2 cursor-pointer w-1 h-1 invisible overflow-hidden'
+                                        type="file" name="add_image" id="add_image" accept="image/*"
+                                    />
+
+                            </>
+                            {/* <label htmlFor="add_image" className='font-medium text-sm mb-2 bg-gray rounded-lg w-36 h-36 flex flex-col gap-2 justify-center items-center px-4 cursor-pointer'>
                                 <RiAddFill size="24px" color='gray' />
                                 <p className='text-center text-xs'>
                                     <span className='font-semibold'>Choose a file </span>
@@ -179,7 +234,7 @@ const EditProduct = () => {
                                 onChange={(e) => uploadImage(e.target.files[0])}
                                 className='border-gray rounded-lg mt-2 cursor-pointer w-1 h-1 invisible overflow-hidden'
                                 type="file" name="add_image" id="add_image"
-                            />
+                            /> */}
                         </div>
                     </div>
                     <div className='flex sm:justify-end gap-2'>

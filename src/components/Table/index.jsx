@@ -1,108 +1,108 @@
 import React, { useRef } from "react";
 
 
-const testData = [
-  {
-    "product_name": "Turbo Engine",
-    "product_price": "N 1, 150, 000",
-    "updated_at": "28 May 2021",
-    "created_at": "28 May 2021",
-    "product_color": "Cell",
-    "product_status": "Cell",
-  },
-  {
-    "product_name": "Turbo Engine",
-    "product_price": "N 1, 150, 000",
-    "updated_at": "28 May 2021",
-    "created_at": "28 May 2021",
-    "product_color": "Cell",
-    "product_status": "Cell",
-  },
-  {
-    "product_name": "Turbo Engine",
-    "product_price": "N 1, 150, 000",
-    "updated_at": "28 May 2021",
-    "created_at": "28 May 2021",
-    "product_color": "Cell",
-    "product_status": "Cell",
-  },
-];
+// const testData = [
+//   {
+//     "product_name": "Turbo Engine",
+//     "product_price": "N 1, 150, 000",
+//     "updated_at": "28 May 2021",
+//     "created_at": "28 May 2021",
+//     "product_color": "Cell",
+//     "product_status": "Cell",
+//   },
+//   {
+//     "product_name": "Turbo Engine",
+//     "product_price": "N 1, 150, 000",
+//     "updated_at": "28 May 2021",
+//     "created_at": "28 May 2021",
+//     "product_color": "Cell",
+//     "product_status": "Cell",
+//   },
+//   {
+//     "product_name": "Turbo Engine",
+//     "product_price": "N 1, 150, 000",
+//     "updated_at": "28 May 2021",
+//     "created_at": "28 May 2021",
+//     "product_color": "Cell",
+//     "product_status": "Cell",
+//   },
+// ];
 
-const testColumns = [
-  {
-    name: "product_name",
-    label: "Product Name",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "product_price",
-    label: "Product Price",
-    options: {
-      filter: true,
-      sort: false,
-    },
-  },
-  {
-    name: "updated_at",
-    label: "Modified date",
-    options: {
-      filter: true,
-      sort: false,
-    },
-  },
-  {
-    name: "created_at",
-    label: "Created at",
-    options: {
-      filter: true,
-      sort: false,
-    },
-  },
-  {
-    name: "product_color",
-    label: "Action",
-    extra: true,
-    custom: (value, meta) => {
-      // console.log("meta", meta)
-      return  (
-        <div className="flex items-center gap-4 justify-center">
-          <BiEdit size="1.2rem" className="text-orange" />
-          <MdOutlineDelete size="1.2rem" className="text-red-400" />
-        </div>
-      )
-    },
-    options: {
-      filter: true,
-      sort: false,
-    },
-  },
-  {
-    name: "product_status",
-    label: "In - Stock",
-    extra: true,
-    custom: (value, meta) => {
-      console.log("meta", meta)
-      return  (
-        <label htmlFor={`status${meta?.id}`} className="flex cursor-pointer select-none items-center">
-          <div className="relative">
-            <input id={`status${meta?.id}`} type="checkbox" className="sr-only peer" onChange={() => null} checked={meta?.status==="1"} />
-            <div
-              className="dot shadow-switch-1 absolute left-0.5 top-1/2 -translate-y-1/2 h-4 w-4 rounded-full shadow-lg bg-white transition peer-checked:translate-x-4"
-            ></div>
-            <div className="h-5 w-9 rounded-full bg-orange shadow-inner"></div>
-          </div>
-        </label>
-      )
-    },
-    options: {
-      filter: true,
-      sort: false,
-    },
-  },
-];
+// const testColumns = [
+//   {
+//     name: "product_name",
+//     label: "Product Name",
+//     options: {
+//       filter: true,
+//       sort: true,
+//     },
+//   },
+//   {
+//     name: "product_price",
+//     label: "Product Price",
+//     options: {
+//       filter: true,
+//       sort: false,
+//     },
+//   },
+//   {
+//     name: "updated_at",
+//     label: "Modified date",
+//     options: {
+//       filter: true,
+//       sort: false,
+//     },
+//   },
+//   {
+//     name: "created_at",
+//     label: "Created at",
+//     options: {
+//       filter: true,
+//       sort: false,
+//     },
+//   },
+//   {
+//     name: "product_color",
+//     label: "Action",
+//     extra: true,
+//     custom: (value, meta) => {
+//       // console.log("meta", meta)
+//       return  (
+//         <div className="flex items-center gap-4 justify-center">
+//           <BiEdit size="1.2rem" className="text-orange" />
+//           <MdOutlineDelete size="1.2rem" className="text-red-400" />
+//         </div>
+//       )
+//     },
+//     options: {
+//       filter: true,
+//       sort: false,
+//     },
+//   },
+//   {
+//     name: "product_status",
+//     label: "In - Stock",
+//     extra: true,
+//     custom: (value, meta) => {
+//       console.log("meta", meta)
+//       return  (
+//         <label htmlFor={`status${meta?.id}`} className="flex cursor-pointer select-none items-center">
+//           <div className="relative">
+//             <input id={`status${meta?.id}`} type="checkbox" className="sr-only peer" onChange={() => null} checked={meta?.status==="1"} />
+//             <div
+//               className="dot shadow-switch-1 absolute left-0.5 top-1/2 -translate-y-1/2 h-4 w-4 rounded-full shadow-lg bg-white transition peer-checked:translate-x-4"
+//             ></div>
+//             <div className="h-5 w-9 rounded-full bg-orange shadow-inner"></div>
+//           </div>
+//         </label>
+//       )
+//     },
+//     options: {
+//       filter: true,
+//       sort: false,
+//     },
+//   },
+// ];
 
 const months = [
   "January",

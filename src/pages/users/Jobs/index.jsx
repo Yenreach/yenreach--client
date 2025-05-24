@@ -18,7 +18,7 @@ const Jobs = () => {
   const { isLoading, error, data: jobs, refetch: refetchJobs, remove: removeJobsCache } = useFetch({
     key: ['userJobs', id],
     api: apiGetAllBusinessJobs,
-    param: id,
+    param: { id },
   })
   
   // console.log("jobs", jobs)
@@ -29,7 +29,7 @@ const Jobs = () => {
         <Header business_string={id} type="job" />
           <main className='p-8 px-4 sm:px-8'>
             {isLoading && <Loader loader={4} />}
-           { jobs &&
+           {!!jobs?.data?.length &&
             <>
               <div className='flex items-center justify-between mb-3'>
                     <h2 className='text-base font-medium'>Jobs Listed</h2>
@@ -41,14 +41,14 @@ const Jobs = () => {
                     </Link>
                 </div>
                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-                    {jobs?.map((job) => (
-                      <JobCard business_id={id} key={job.id} job={job} refetchJobs={refetchJobs} removeJobsCache={removeJobsCache} />
+                    {jobs?.data?.map((job) => (
+                      <JobCard businessId={id} key={job.id} job={job} refetchJobs={refetchJobs} removeJobsCache={removeJobsCache} />
                     ))}
                 </div>
               </>
             }
             {!isLoading &&
-              !jobs && 
+              !jobs?.data?.length && 
                 <div className='flex flex-col justify-center items-center rounded-lg font-arialsans h-[550px] sm:h-auto md:mt-14'>
                     <img src={NoBusiness} alt="" className='mb-7' />
                     <span className='text-center text-[#476788] mb-9'>

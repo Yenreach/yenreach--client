@@ -36,7 +36,7 @@ const Product = () => {
 
   const { data: product, error: errorProduct, isLoading } = useFetch({
     api: apiGetProduct,
-    param: id,
+    param: {id},
     key: ['product', id],
   })
 

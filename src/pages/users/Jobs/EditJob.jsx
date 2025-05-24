@@ -11,19 +11,21 @@ import useFetch from '/src/hooks/useFetch'
 
 
 const initialJobState = {
-    business_string: "",
-    job_string: "",
-    company_name: "",
-    job_title: "",
-    job_type: "",
-    salary: "",
-    location: "",
-    job_overview: "",
-    job_benefit: "",
-    job_tags: []
+    businessId: '',
+    description: '',
+    type: '',
+    companyName: '',
+    title: '',
+    location: '',
+    salary: '',
+    benefit: '',
+    applicationMethod: '',
+    overview: '',
+    applicationExpiry: '',
+    tags: []
 }
 
-const job_tags = [
+const tags = [
     {id: 1, name: "Full Time"},
     {id: 2, name: "Part Time"},
     {id: 3, name: "Remote"},
@@ -44,7 +46,7 @@ const EditJob = () => {
     const { isLoading, error, data } = useFetch({
         key: ['userJob', jobId],
         api: apiGetJob,
-        param: jobId,
+        param: { id: jobId },
       })
 
       useEffect(() => {
@@ -52,7 +54,8 @@ const EditJob = () => {
             // setJob(data)
             setJob({
                 ...job,
-                ...data
+                ...data,
+                tags: data.tags?.map((tag) => tag.tag) || [],
             })
         }
     }, [data])
@@ -67,7 +70,7 @@ const EditJob = () => {
     }
 
     const handleTags = (event) => {
-        setJob(prev => ({...prev, [event.target.name]: [...job.job_tags, { tag: event.target.value }] }))
+        setJob(prev => ({...prev, [event.target.name]: [...(job?.tags || []), event.target.value ] }))
     }
 
     const addJobMutation = usePost({ 
@@ -77,7 +80,8 @@ const EditJob = () => {
             setJob(initialJobState)
             navigate(`/users/jobs/${id}`)
             // setStep(3)
-        }
+        },
+        id: jobId,
     })
        
     const handleSubmit = (e) => {
@@ -85,7 +89,7 @@ const EditJob = () => {
         console.log("data", job)
         addJobMutation.mutate(job)
     }
-
+    console.log({ job })
 
   return (
     <Dashboard> 
@@ -96,16 +100,16 @@ const EditJob = () => {
             <form className='p-8 px-4 sm:px-8 bg-white rounded-2xl' onSubmit={handleSubmit}>
                 <div className='md:flex justify-between gap-6 md:mb-4'>
                     <div className='w-full mb-8 md:mb-0'>
-                        <label htmlFor="company_name" className='font-medium text-sm'>Company Name</label>
-                        <Input required value={job?.company_name} onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="company_name" id="company_name" />
+                        <label htmlFor="companyName" className='font-medium text-sm'>Company Name</label>
+                        <Input required value={job?.companyName} onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="companyName" id="companyName" />
                     </div>
                     <div className='w-full mb-8 md:mb-0'>
-                        <label htmlFor="job_title" className='font-medium text-sm'>Job Title</label>
-                        <Input required value={job?.job_title} onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="job_title" id="job_title" />
+                        <label htmlFor="title" className='font-medium text-sm'>Job Title</label>
+                        <Input required value={job?.title} onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="title" id="title" />
                     </div>
                     <div className='w-full '>
-                        <label htmlFor="job_type" className='font-medium text-sm'>Job Type</label>
-                        <Input required value={job?.job_type} onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="job_type" id="job_type" />
+                        <label htmlFor="type" className='font-medium text-sm'>Job Type</label>
+                        <Input required value={job?.type} onChange={handleJob} variant={"job"} className='border-gray rounded-lg' type="text" name="type" id="type" />
                     </div>
                 </div>
                 <div className='mb-8 md:mb-4 md:flex justify-between gap-6'>
@@ -121,26 +125,26 @@ const EditJob = () => {
                     </div>
                 </div>
                 <div className='mb-8 md:mb-4'>
-                    <label htmlFor="job_overview" className='font-medium text-sm'>Job Overview</label>
-                    <Input required={true} value={job?.job_overview} onChange={handleJob} variant={"job"} textarea name="job_overview" id="job_overview" cols="30" rows="6" className='border-gray rounded-lg' placeholder='Enter job Description' />
+                    <label htmlFor="overview" className='font-medium text-sm'>Job Overview</label>
+                    <Input required={true} value={job?.overview} onChange={handleJob} variant={"job"} textarea name="overview" id="overview" cols="30" rows="6" className='border-gray rounded-lg' placeholder='Enter job Description' />
                 </div>
                 <div className='mb-8 md:mb-4'>
-                    <label htmlFor="job_benefit" className='font-medium text-sm'>Job Perks and Benefits</label>
-                    <Input required={true} value={job?.job_benefit} onChange={handleJob} variant={"job"} textarea name="job_benefit" id="job_benefit" cols="30" rows="6" className='border-gray rounded-lg' placeholder='Enter job Perks and Benefits' />
+                    <label htmlFor="benefit" className='font-medium text-sm'>Job Perks and Benefits</label>
+                    <Input required={true} value={job?.benefit} onChange={handleJob} variant={"job"} textarea name="benefit" id="benefit" cols="30" rows="6" className='border-gray rounded-lg' placeholder='Enter job Perks and Benefits' />
 
                 </div>
                 <div className='mb-8 md:mb-4 md:flex justify-between gap-6'>
                     <div className='mb-8 md:mb-0 w-full'>
-                        <label htmlFor="job_tags" className='font-medium text-sm'>Tags</label>
-                        <select value={job?.job_tags?.slice(-1)[0]?.tag} onChange={handleTags} required className='w-full border-2 outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-blue cursor-pointer rounded-lg' name="job_tags" id="job_tags" placeholder='Enter Categoies'>
+                        <label htmlFor="tags" className='font-medium text-sm'>Tags</label>
+                        <select onChange={handleTags} required className='w-full border-2 outline-none bg-inherit px-4 py-3 focus:invalid:border-red-400 border-blue cursor-pointer rounded-lg' name="tags" id="tags" placeholder='Enter Categoies'>
                                 <option value="">Select Product Categories</option>
-                                {job_tags?.map((tag) => (
+                                {tags?.map((tag) => (
                                     <option key={tag.id} value={tag.name}>{tag.name}</option>
                                 ))}
                             </select>
                             <div>
-                                {job.job_tags?.map((tag, index) => (
-                                    <span key={index} className='bg-gray-200 text-gray-600 text-xs py-1 rounded-full mr-2'>{tag.tag}</span>
+                                {(job.tags || [])?.map((tag, index) => (
+                                    <span key={index} className='bg-gray-200 text-gray-600 text-xs py-1 rounded-full mr-2'>{tag}</span>
                                 ))}
                             </div>
                     </div>

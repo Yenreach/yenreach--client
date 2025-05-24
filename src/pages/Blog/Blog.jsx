@@ -17,13 +17,13 @@ const index = () => {
 
     const { isLoading, data: blog, error: errorBlog } = useFetch({
         api: apiGetBlog,
-        param: id,
+        param: {id},
         key: 'blog'
     })
 
     const { data: comments } = useFetch({
         api: apiGetComments,
-        param: id,
+        param: {id},
         key: 'comments'
     })
 
