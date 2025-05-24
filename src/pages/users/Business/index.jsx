@@ -6,8 +6,7 @@ import { MdOutlineMarkEmailUnread, MdOutlineLocationOn } from 'react-icons/md'
 import { TbBrandFacebook } from 'react-icons/tb'
 import useFetch from '/src/hooks/useFetch'
 import usePost from '/src/hooks/usePost'
-import { apiGetOneBusiness, apiGetBusinessCategories, apiGetBusinessSubscription, apiGetBusinessPageVisits, apiEditBusinessProfileImage, apiEditBusinessCoverImage, apiAddBusinessPhoto } from '/src/services/UserService'
-import { apiGetBusinessFacilities, apiGetBusinessReviews, apiGetBusinessReviewsStats } from '/src/services/CommonService'
+import { apiGetOneBusiness, apiEditBusinessProfileImage, apiEditBusinessCoverImage, apiAddBusinessPhoto } from '/src/services/UserService'
 import Header from "/src/components/users/Header"
 import Dashboard from "../../../components/layout/Dashboard"
 import { MdChevronRight, MdChevronLeft } from 'react-icons/md'
@@ -21,14 +20,11 @@ import useImage from '/src/hooks/useImage'
 import { CiEdit } from 'react-icons/ci';
 import { useAuthContext } from '/src/hooks/useAuthContext'
 import Add from '/src/assets/add.svg'
-import { apiGetBusinessWorkingHours } from '../../../services/CommonService';
-import Button from '../../../components/ui/Button';
-import workingHours from './WorkingHours';
 
 
 
 
-const WorkingHours = () => {
+const Business = () => {
   const { id } = useParams()
   const { user } = useAuthContext()
   const reviewsContainerRef = useRef(null)
@@ -37,6 +33,12 @@ const WorkingHours = () => {
   const { url: profilePhoto, uploadImage: uploadProfilePhoto, loading: uploadingProfileImage } = useImage()
   const { url: CoverPhoto, uploadImage: uploadCoverPhoto, loading: uploadingCoverPhoto } = useImage()
   const { url: businessPhoto, uploadImage: addBusinessPhoto, loading: uploadingBusinessPhoto } = useImage()
+
+  const { data: business, error: errorBusiness, isLoading, refetch: refetchBusiness  } = useFetch({
+    api: apiGetOneBusiness,
+    param: { id },
+    key: ['business', id],
+  })
 
   const profileImageMutation = usePost({ 
     api: apiEditBusinessProfileImage ,
@@ -98,83 +100,90 @@ const WorkingHours = () => {
   }, [businessPhoto])
   
   
-  const { isLoading, error, data: business, refetch: refetchBusiness  } = useFetch({
-    api: apiGetOneBusiness,
-    param: id,
-    key: ['userBusiness', id],
-  })
+  // const { isLoading, error, data: business, refetch: refetchBusiness  } = useFetch({
+  //   api: apiGetOneBusiness,
+  //   param: id,
+  //   key: ['userBusiness', id],
+  // })
 
+  const rating = useMemo(() => {
+    if (business?.reviews?.length) {
+      const rating = business?.reviews?.reduce((a, b) => ({ star: a.star + b.star }), { star: 0 }) 
+      return Math.round(rating?.star / business?.reviews?.length)
+    }
+    return 0
+  }, [business?.reviews])
   
-  const { data: pageVisits } = useFetch({
-    api: apiGetBusinessPageVisits,
-    param: id,
-    key: ['pageVisits', id],
-  })
+  // const { data: pageVisits } = useFetch({
+  //   api: apiGetBusinessPageVisits,
+  //   param: id,
+  //   key: ['pageVisits', id],
+  // })
   
-  const { data: businessCategories } = useFetch({
-    api: apiGetBusinessCategories,
-    param: id,
-    key: ['businessCategories', id],
-  })
+  // const { data: businessCategories } = useFetch({
+  //   api: apiGetBusinessCategories,
+  //   param: id,
+  //   key: ['businessCategories', id],
+  // })
   
-  const { error: subscriptionError, data: subscription } = useFetch({
-    api: apiGetBusinessSubscription,
-    param: id,
-    key: ['subscription', id],
-  })
+  // const { error: subscriptionError, data: subscription } = useFetch({
+  //   api: apiGetBusinessSubscription,
+  //   param: id,
+  //   key: ['subscription', id],
+  // })
 
-  console.log({ business })
+  // console.log({ business })
 
-  const { data: facilities, error: errorFacilities } = useFetch({
-    api: apiGetBusinessFacilities,
-    param: id,
-    key: ['facilities', id]
-  })
+  // const { data: facilities, error: errorFacilities } = useFetch({
+  //   api: apiGetBusinessFacilities,
+  //   param: id,
+  //   key: ['facilities', id]
+  // })
 
-  const { data: reviews, error: errorReviews } = useFetch({
-    api: apiGetBusinessReviews,
-    param: id,
-    key: ['userReviews', id]
-  })
+  // const { data: reviews, error: errorReviews } = useFetch({
+  //   api: apiGetBusinessReviews,
+  //   param: id,
+  //   key: ['userReviews', id]
+  // })
 
-  const { data: reviewStats, error: errorStats } = useFetch({
-    api: apiGetBusinessReviewsStats,
-    param: id,
-    key: ['userReviewStats', id]
-  })
+  // const { data: reviewStats, error: errorStats } = useFetch({
+  //   api: apiGetBusinessReviewsStats,
+  //   param: id,
+  //   key: ['userReviewStats', id]
+  // })
 
-    const { data: workingHours, error: errorWorkingHours } = useFetch({
-    api: apiGetBusinessWorkingHours,
-    param: id,
-    key: ['workingHours', id],
-  })
+  //   const { data: workingHours, error: errorWorkingHours } = useFetch({
+  //   api: apiGetBusinessWorkingHours,
+  //   param: id,
+  //   key: ['workingHours', id],
+  // })
 
 
-  const analytics = useMemo(() => {
-    if (pageVisits?.pagevisits) {
-        const newState = {
-          "01": { count: 0 },
-          "02": { count: 0 },
-          "03": { count: 0 },
-          "04": { count: 0 },
-          "05": { count: 0 },
-          "06": { count: 0 },
-          "07": { count: 0 },
-          "08": { count: 0 },
-          "09": { count: 0 },
-          "10": { count: 0 },
-          "11": { count: 0 },
-          "12": { count: 0 },
-        }
-        pageVisits?.pagevisits.map((visit) => {
-          newState[visit?.month].count += 1
-        })
-        // setAnalytics(initialState)
-        const data = Object.keys(newState)?.map((item, index) => newState[item].count)
-        return data
-      }
+  // const analytics = useMemo(() => {
+  //   if (pageVisits?.pagevisits) {
+  //       const newState = {
+  //         "01": { count: 0 },
+  //         "02": { count: 0 },
+  //         "03": { count: 0 },
+  //         "04": { count: 0 },
+  //         "05": { count: 0 },
+  //         "06": { count: 0 },
+  //         "07": { count: 0 },
+  //         "08": { count: 0 },
+  //         "09": { count: 0 },
+  //         "10": { count: 0 },
+  //         "11": { count: 0 },
+  //         "12": { count: 0 },
+  //       }
+  //       pageVisits?.pagevisits.map((visit) => {
+  //         newState[visit?.month].count += 1
+  //       })
+  //       // setAnalytics(initialState)
+  //       const data = Object.keys(newState)?.map((item, index) => newState[item].count)
+  //       return data
+  //     }
       
-  }, [pageVisits?.pagevisits])
+  // }, [pageVisits?.pagevisits])
 
 
 
@@ -321,14 +330,14 @@ const WorkingHours = () => {
                 <h2 className='mb-3 text-lg font-medium text-green'>Working Hours</h2>
                 <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
                 {
-                workingHours ?  
+                business?.workingHours ?  
                   <div className="max-w-lg pb-10 mb-5 overflow-hidden bg-white rounded-lg">
                     <ul className="mt-4 mb-8">
-                      {workingHours.map((hour) => (
+                      {business?.workingHours?.map((hour) => (
                         <li key={hour.id} className="py-2 text-sm border-b border-gray-200 md:py-3">
                           <div className="flex justify-between">
                             <span className="font-medium text-gray-600">{hour.day}</span>
-                            <span className="text-gray-800">{hour.opening_time} - {hour.closing_time}</span>
+                            <span className="text-gray-800">{hour.openingTime} - {hour.closingTime}</span>
                           </div>
                         </li>
                       ))}
@@ -396,12 +405,12 @@ const WorkingHours = () => {
                   Edit business profile
                 </Link>
               </div>   
-              <div className='mb-20'>
+              {/* <div className='mb-20'>
                 <h2 className='mb-3 text-lg font-medium text-green'>Business Analytics</h2>
                 <div className='font-arialsans text-sm text-[#476788] p-2 sm:p-12 bg-white rounded-2xl overflow-hidden max-h-96 w-full'>
                   <Analytics analytics={analytics} />
                 </div>
-              </div>
+              </div> */}
               <div className='mb-16'>
                 <h2 className='mb-3 text-lg font-medium text-green'>Subscription</h2>
                 <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
@@ -412,15 +421,18 @@ const WorkingHours = () => {
               <div className='mb-16'>
                 <h2 className='mb-3 text-lg font-medium text-green'>Reviews</h2>
                 <div className='font-arialsans text-[#476788] px-12 py-5 bg-white rounded-2xl'>
+                  {
+                    (reviews?.length > 0) && (!!reviewStats?.average) ? 
+                      <>
                       {
-                        (reviews?.length > 0) && (!!reviewStats?.average) ? 
+                        business?.reviews && business?.reviews?.length > 0 &&
                         <>
-                           <div className='flex items-center gap-3.5 mb-2'>
-                              {[...Array(reviewStats?.average).keys()].map((_, i) => <img key={i} src={Star} alt="" />)}
-                            </div>
-                            <p className='mb-9'>Your business is currently rated {reviewStats?.average} stars from the reviews of {reviewStats?.total} users</p>
-                            <div ref={reviewsContainerRef} className='flex flex-wrap w-full gap-6 overflow-hidden'>
-                              {reviews?.map(review => 
+                        <div className='flex items-center gap-3.5 mb-2'>
+                            {  [...Array(rating).keys()].map((_, i) => <img key={i} src={Star} alt="" />)}
+                          </div>
+                          <p className='mb-9'>Your business is currently rated {rating} stars from the reviews of {business?.reviews?.length || 0} users</p>
+                          <div ref={reviewsContainerRef} className='flex flex-wrap w-full gap-6 overflow-hidden'>
+                            {business?.reviews?.map(review => 
                               <div key={review.id} className='p-3 px-5 bg-[#F0F0F0] w-full sm:w-96'>
                                 <div className='flex items-center gap-2 mb-3'>
                                   <img src={Star} alt="" />
@@ -430,23 +442,22 @@ const WorkingHours = () => {
                                   {review.review}
                                 </p>
                               </div>
-                              )}
-                            </div>
-                            <div className='items-center justify-end hidden gap-4 lg:flex'>
-                              <span  onClick={changeReview} className="bg-green cursor-pointer p-0.5 rounded-l-full">
-                                <MdChevronLeft size="1.5rem" color='white' />
-                              </span>
-                              <span onClick={changeReview} className="bg-green cursor-pointer p-0.5 rounded-r-full">
-                                <MdChevronRight size="1.5rem" color='white' />
-                              </span>
-                            </div>
-                        </>
-                        :
-                        <>
-                        <p className='mb-9'>No reviews yet</p>
+                            )}
+                          </div>
+                          <div className='items-center justify-end hidden gap-4 lg:flex'>
+                            <span  onClick={changeReview} className="bg-green cursor-pointer p-0.5 rounded-l-full">
+                              <MdChevronLeft size="1.5rem" color='white' />
+                            </span>
+                            <span onClick={changeReview} className="bg-green cursor-pointer p-0.5 rounded-r-full">
+                              <MdChevronRight size="1.5rem" color='white' />
+                            </span>
+                          </div>
                         </>
                       }
-               
+                      </>
+                    :
+                    <p className='mb-9'>No reviews yet</p>
+                  }
                 </div>
               </div>
             </section>
@@ -458,4 +469,4 @@ const WorkingHours = () => {
   )
 }
 
-export default WorkingHours
+export default Business

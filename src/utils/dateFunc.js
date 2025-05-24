@@ -34,7 +34,8 @@ export const daysAgo = (date) => {
 };
 
 export const formatDate2 = (date) => {
-    const newDate = new Date(date * 1000); // convert to milliseconds
+    const newDate = new Date(date); 
+    // const newDate = new Date(date * 1000); // convert to milliseconds
     const day = newDate.getDate();
     const month = newDate.getMonth() + 1;
     const year = newDate.getFullYear();

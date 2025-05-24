@@ -67,30 +67,20 @@ const index = () => {
                             </div>
                             <div className='grid gap-4 mb-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                                 {businesses?.data?.map(business => (
-                                    <Link to={business?.reg_stage == 0 ? `/users/edit-business/${business.id}`
-                                    : business?.reg_stage < 3 ? `/users/edit-business/${business.id}`
-                                    : business?.reg_stage == 3 ? `/users/business/${business.id}`
-                                    : `/users/business/${business.id}`
-                                    } key={business?.id} className='flex w-full p-2 overflow-hidden text-sm bg-white rounded shadow'>
+                                    <Link to={business?.registrationStatus == 'approved' ? `/users/business/${business.id}`
+                                    : `/users/edit-business/${business.id}`} key={business?.id} className='flex w-full p-2 overflow-hidden text-sm bg-white rounded shadow'>
                                             <div>
                                                 <Image url={business?.profileImg} name={business?.name} className="object-cover w-20 h-20" />
                                             </div>
                                             <div className='relative w-full p-4 px-6'>
                                                 <p className='mb-1 font-semibold'>{business.name}</p>
                                                 <div className='flex gap-2 items-center text-[#777777] text-xsm'>
-                                                    <span>{formatDate2(business?.created)}</span>
+                                                    <span>{formatDate2(business?.createdAt)}</span>
                                                     <img src={Elipse} alt=""  />
                                                     <span className='font-medium text-green'>{business?.pagevisits || 0} visits</span>
                                                 </div>
                                                 <div className='absolute bottom-0 right-0 px-1 py-0.5 pt-1 flex text-xsm bg-green text-white'>
-                                                    {
-                                                        business?.reg_stage == 0 ? "Suspended" 
-                                                        : business?.reg_stage < 3 ? "Incomplete Registration" 
-                                                        : business?.reg_stage == 3 ? "Pending Approval"
-                                                        : "Active"
-                                                    }
-                                                    {/* <MdStar color="orange" className='mr-1' />
-                                                    4.5 */}
+                                                    {business?.registrationStatus}
                                                 </div>
                                             </div>
                                     </Link>)

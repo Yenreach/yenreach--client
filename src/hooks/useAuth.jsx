@@ -21,7 +21,7 @@ const useAuth = ({from}) => {
         // console.log(fields, fields?.email, fields?.password)
         try {
             const response = type==="signup" ? await apiRegister(fields) : await apiLogin(fields)
-            // console.log("res", response)
+            console.log("res", response)
     
             let data = await response.data
 
@@ -39,7 +39,9 @@ const useAuth = ({from}) => {
                 navigate(from?.pathname || '/users', {replace: true})
             }
         } catch (error) {
-            setError(null)
+            console.log("error", error)
+            setMessageState(error?.response?.data?.message || 'An error occured')
+            setError(error)
             setIsLoading(false)
             // console.log("error", error)
         }       

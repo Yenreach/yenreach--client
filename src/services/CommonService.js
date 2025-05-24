@@ -148,16 +148,16 @@ export const apiGetLGAs = ({ token }) => {
 }
 
 
-/* Business */
-export const apiGetOneBusiness = (business_token) => {
-    return ApiAdapter.fetchData({
-        url: `${servicePrefix}/${business_token}`,
-        method: "get",
-        headers: {
-            Authorization: `Bearer ${token}`
-        }    
-    })
-}
+// /* Business */
+// export const apiGetOneBusiness = (business_token) => {
+//     return ApiAdapter.fetchData({
+//         url: `${servicePrefix}/${business_token}`,
+//         method: "get",
+//         headers: {
+//             Authorization: `Bearer ${token}`
+//         }    
+//     })
+// }
 
 export const apiGetBusinessCategories = (business_token) => {
     return ApiAdapter.fetchData({
