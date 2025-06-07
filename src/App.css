@@ -5,10 +5,15 @@
   /* overflow: hidden; */
 }
 html {
-  max-width: 100vw;
+  width: 100vw;
+  max-width: 1600px;
   scroll-behavior: smooth;
+  overflow-x: clip;
+  margin-left: auto;
+  margin-right: auto;
   /* scroll-behavior: smooth; */
 }
+
 body {
   width: 100%;
   /* overflow-x: auto; */

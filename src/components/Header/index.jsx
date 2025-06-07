@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <>
-      <header className='bg-white shadow-md flex items-center justify-between py-2 px-4 md:py-5 md:px-10 lg:px-24 fixed top-0 left-0 z-10 w-full min-h-[50px]'>
+      <header className='bg-white shadow-md flex items-center justify-between py-2 px-4 md:py-5 md:px-10 lg:px-24 fixed top-0 left-0 z-10 w-full min-h-[50px] right-0'>
         <Link to={"/"}>
           {/* <img src={Logo} alt="" className='h-8 md:h-12' /> */}
           <img src={Logo3} alt="" className='h-7 md:w-40 w-32 md:h-9' />
