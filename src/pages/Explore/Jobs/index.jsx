@@ -33,8 +33,6 @@ const ExploreJobs = () => {
   const [location, setLocation] = useState("")
   const [exploring, setExploring] = useState('')
   const [useFilter, setUseFilter] = useState(false)
-  const [filteredJobs, setFilteredJobs] = useState([])
-  const [filteredJobsLoading, setFilteredJobsLoading] = useState(false)
 
   // const handleFilter = (e) => {
   //   e.preventDefault()
@@ -71,10 +69,9 @@ const ExploreJobs = () => {
 
 
     
-  const { data: jobs, error: errorJobs, isLoading } = useFetch({
+  const { data: jobs, error: errorJobs, isLoading, isFetching, isPreviousData } = useFetch({
     api: apiGetAllJobs,
     param: { page, num_per_page, search: filter },
-    select: (data) => data,
     key: ['jobs', page, filter],
   })
 
@@ -109,7 +106,7 @@ const ExploreJobs = () => {
         <ExploreNav activeTab={activeTab} setActiveTab={setActiveTab} />
         <div className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:py-5 md:px-5 lg:py-20 lg:px-20 mt-12 md:mt-20 lg:mt-4">
         <>
-          {(isLoading || filteredJobsLoading) && <Loader loader={4} />}
+        {(isLoading || (isPreviousData && isFetching)) && <Loader loader={4} />}
           <div className='flex items-center justify-center w-full gap-10'>
             <p className='text-xs font-medium text-black/70 md:text-sm'>Currently Exploring jobs in</p>
             <div className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-light">
@@ -125,9 +122,9 @@ const ExploreJobs = () => {
             </Button>
           </form>
           { tab === 1 
-              ?  <AllJobs jobs={useFilter ? filteredJobs : jobs?.data} setTab={setTab} setSelectedJobIndex={setSelectedJobIndex} page={page} setPage={setPage} num_per_page={num_per_page} total={useFilter ? filteredJobs?.length : jobs?.total} />
+              ?  <AllJobs jobs={jobs?.data} setTab={setTab} setSelectedJobIndex={setSelectedJobIndex} page={page} setPage={setPage} num_per_page={num_per_page} total={jobs?.total} />
               : <div className="flex items-start justify-around w-full gap-8 sm:px-8">
-                  <JobSideBar jobs={useFilter ? filteredJobs : jobs?.data} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} page={page} setPage={setPage} total={useFilter ? filteredJobs?.length : jobs?.total} />    
+                  <JobSideBar jobs={jobs?.data} selectedJobIndex={selectedJobIndex} setSelectedJobIndex={setSelectedJobIndex} page={page} setPage={setPage} total={jobs?.total} />    
                   <JobDescription job={(useFilter ? filteredJobs : jobs?.data)[selectedJobIndex]} page={page} setPage={setPage} />
                 </div>
           }   

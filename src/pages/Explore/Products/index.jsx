@@ -66,8 +66,8 @@ const ExploreProducts = () => {
 
   const { data: products, error: errorProducts, isLoading, isFetching, isPreviousData }  = useFetch({
     api: apiGetAllProducts,
-    param: { page, num_per_page, search: filter },
-    key: ['products', page, filter],
+    param: { page, num_per_page, search: filter, category: filterBy },
+    key: ['products', page, filter, filterBy],
   })
 
   const { data: categories }  = useFetch({
@@ -76,7 +76,6 @@ const ExploreProducts = () => {
     key: ['products', 'categoryapi'],
   })
 
-  // console.log({ category })
   const handlePageChange = (page) => {
       // setPage(page)
       createQueryString({ page })
@@ -118,7 +117,7 @@ const ExploreProducts = () => {
             </form>
             <select className='p-2 text-base border-2 rounded-md cursor-pointer font- border-orange text-black/50' value={filterBy} onChange={(e) => setFilterBy(e.target.value)} name="filter" id="">
                 <option value="" className=''>Filter By</option>
-                {categories.map((category, idx) => (
+                {categories?.data?.map((category, idx) => (
                   <option key={idx} value={category.id}>{category.category}</option>
                 ))}
             </select>

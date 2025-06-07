@@ -103,7 +103,7 @@ export const apiDeleteProductPhoto = (data, { token, id }) => {
 /* Get Products */
 export const apiGetAllProducts = (query={}) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?limit=${query?.num_per_page || 40}&page=${query?.page || 1}&search=${query?.search || ''}`,
+        url: `${servicePrefix}?limit=${query?.num_per_page || 40}&page=${query?.page || 1}&search=${query?.search || ''}&category=${query?.category || ''}`,
         method: "get",
         headers: {
             Authorization: `Bearer ${query?.token}`

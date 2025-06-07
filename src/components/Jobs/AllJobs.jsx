@@ -14,8 +14,9 @@ const AllJobs = ({ jobs, setSelectedJobIndex, setTab, page, setPage, num_per_pag
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-  });
+    });
   }
+
 
   
   return (
@@ -24,7 +25,7 @@ const AllJobs = ({ jobs, setSelectedJobIndex, setTab, page, setPage, num_per_pag
         <>
         <div className="grid w-full gap-6 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {
-            paginate({ page, num_per_page, data: jobs })?.data?.slice(0, 40).map((job, index) => (
+            jobs?.map((job, index) => (
               <JobCard index={index} setSelectedIndex={setSelectedJobIndex} setTab={setTab} key={job?.id} job={job} />
             ))
           }

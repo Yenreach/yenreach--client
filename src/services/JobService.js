@@ -33,7 +33,7 @@ export const apiAddJob = (data, { token }) => {
 /* Get Jobs */
 export const apiGetAllJobs = (query={}) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}?limit=${query?.limit || 40}&page=${query?.page}&search=${query?.search || ''}`,
+        url: `${servicePrefix}?limit=${query?.limit || 40}&page=${query?.page || 1}&search=${query?.search || ''}`,
         method: "get",
         headers: {
             Authorization: `Bearer ${query?.token}`

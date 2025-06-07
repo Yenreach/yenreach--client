@@ -125,10 +125,10 @@ function App() {
           </Routes>
           {/* <BottomNav /> */}
         </ScrollToTop>
-        {
+        {/* {
           modalOpen &&
             <ProductAdsModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
-        }
+        } */}
       </main>
     </Router>
   )

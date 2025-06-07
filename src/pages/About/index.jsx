@@ -159,7 +159,7 @@ const index = () => {
                         <div className='flex flex-col items-start gap-6'>
                             <div className=''>
                                 <h5 className='text-[#282F38] text-base font-medium'>Blessing Teddy</h5>
-                                <p className='text-[#838282] text-sm capitalize'>Executive director, strategy and brand awareness</p>
+                                <p className='text-[#z838282] text-sm capitalize'>Executive director, strategy and brand awareness</p>
                             </div>
                             <span className='flex items-center gap-3'>
                                 <a target='_blank' href="https://www.linkedin.com/in/blessing-teddy-seo-specialist">
