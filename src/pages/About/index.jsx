@@ -155,7 +155,7 @@ const index = () => {
                         </div>
                         <img src={BlessingImg} alt="" className='object-cover object-center w-20 h-20 overflow-hidden rounded-full' />
                     </div>
-                    <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
+                    {/* <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
                         <div className='flex flex-col items-start gap-6'>
                             <div className=''>
                                 <h5 className='text-[#282F38] text-base font-medium'>Blessing Teddy</h5>
@@ -171,7 +171,7 @@ const index = () => {
                             </span>
                         </div>
                         <img src={TeddyImg} alt="" className='object-cover object-center w-20 h-20 overflow-hidden rounded-full' />
-                    </div>
+                    </div> */}
                     
                     {/* <div className='flex items-center justify-between gap-3 p-5 pt-6 bg-[#FAFAFA]'>
                         <div className='flex flex-col items-start gap-6'>
