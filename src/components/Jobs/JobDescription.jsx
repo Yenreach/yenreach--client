@@ -14,7 +14,7 @@ import { AiOutlineMail } from 'react-icons/ai'
 
 
 const initialApplicationState = {
-	job_string: "",
+	string: "",
 	user_string: "",
 	full_name: "",
 	email: "",
@@ -43,6 +43,12 @@ const JobDescription = ({ job }) => {
 		});
 	}, [])
 
+	useEffect(() => {
+		if (job) {
+			setTab(1)
+		}	
+	}, [job])
+
 	const submitJobApplication = usePost({ 
 		api: apiSubmitApplication, 
 		success: (data,b,c) => {
@@ -58,7 +64,7 @@ const JobDescription = ({ job }) => {
 	//   console.log({job})
     
     const handleSubmit = () => {
-        const data = { ...application, job_string: job?.job_string, document: url, user_string: user?.id }
+        const data = { ...application, id: job?.id, document: url, user_string: user?.id }
         console.log("data", data)
         submitJobApplication.mutate(data)
     }
@@ -83,8 +89,8 @@ const JobDescription = ({ job }) => {
 				</svg>
 				{/* <div className="flex w-24 h-24 bg-white rounded-full"></div> */}
 				<div className="flex flex-col flex-1 gap-1 text-white">
-					<h2 className='font-light'>{ job?.company_name }</h2>
-					<h2 className='text-xl font-medium'>{ job?.job_title }</h2>
+					<h2 className='font-light'>{ job?.companyName }</h2>
+					<h2 className='text-xl font-medium'>{ job?.title }</h2>
 					<div className='flex gap-2'>
 						{
 							job?.tags?.map((tag, index) => (
@@ -95,11 +101,11 @@ const JobDescription = ({ job }) => {
 				</div>
 				{(job?.admin_job!=="1") ? 
 					<Button className="z-10 p-2 text-xs text-center bg-white cursor-pointer text-blue" variant='job-inverted'>Apply Now</Button>
-					:  (job?.job_link.includes("http") || job?.job_link.includes("www")) ?
-					<a href={`${job?.job_link}`} target="_blank" className="z-10 p-2 text-xs text-center bg-white cursor-pointer text-blue">
+					:  (job?.applicationMethod.includes("http") || job?.applicationMethod.includes("www")) ?
+					<a href={`${job?.applicationMethod}`} target="_blank" className="z-10 p-2 text-xs text-center bg-white cursor-pointer text-blue">
 						Apply Now
 					</a> : 
-					<a target='_blank' className="z-10 p-2 text-xs text-center bg-white cursor-pointer text-blue" href={`mailto:${job?.job_link}`}>
+					<a target='_blank' className="z-10 p-2 text-xs text-center bg-white cursor-pointer text-blue" href={`mailto:${job?.applicationMethod}`}>
 						Apply Now
 					</a>
 				}
@@ -109,35 +115,35 @@ const JobDescription = ({ job }) => {
 				{tab===1 &&
 					<>
 						<h2 className='mb-4 text-xl font-semibold'>Job Description</h2>
-						{job?.job_overview && 
+						{job?.overview && 
 							<div className="flex flex-col gap-2">
 								<h3 className='text-base font-medium'>Job Overview</h3>
-								<p className='text-xs font-light'>{ job?.job_overview }</p>
+								<p className='text-xs font-light'>{ job?.overview }</p>
 							</div>
 						}
-						{job?.job_responsibilities && 
+						{job?.description && 
 							<div className="flex flex-col gap-2">
-								<h3 className='text-base font-medium'>Job Responsibilities</h3>
-								<p className='text-xs font-light'>{ job?.job_responsibilities }</p>
+								<h3 className='text-base font-medium'>Job description</h3>
+								<p className='text-xs font-light'>{ job?.description }</p>
 							</div>
 						}
-						{job?.job_benefit && 
+						{job?.benefit && 
 							<div className="flex flex-col gap-2">
 								<h3 className='text-base font-medium'>Job Perks and Benefits</h3>
-								<p className='text-xs font-light'>{ job?.job_benefit }</p>
+								<p className='text-xs font-light'>{ job?.benefit }</p>
 							</div>
 						}
-						{(job?.admin_job!=="1") ? 
+						{(!job?.isAdmin) ? 
 							<Button onClickFunc={() => setTab(2)} className='px-4 py-1 my-2 mt-auto font-medium w-fit text-smm' variant='job'>Apply For this Job</Button>
-							:  (job?.job_link.includes("http") || job?.job_link.includes("www")) ?
-							<a href={`${job?.job_link}`} target="_blank" className='px-4 py-1 my-2 mt-auto font-medium text-white w-fit text-smm bg-blue'>
+							:  (job?.applicationMethod.includes("http") || job?.applicationMethod.includes("www")) ?
+							<a href={`${job?.applicationMethod}`} target="_blank" className='px-4 py-1 my-2 mt-auto font-medium text-white w-fit text-smm bg-blue'>
 								Go to Application Page
 							</a> : 
 							<div className='flex flex-col gap-1 my-2 mt-auto font-medium w-fit text-smm'>
 								<span className='text-xs'>Apply via</span>
-								<a target='_blank' className='flex items-center gap-2 py-1 text-sm italic bg-ble/90 x-2 text-blue' href={`mailto:${job?.job_link}`}>
+								<a target='_blank' className='flex items-center gap-2 py-1 text-sm italic bg-ble/90 x-2 text-blue' href={`mailto:${job?.applicationMethod}`}>
 									<AiOutlineMail />
-									{job?.job_link}
+									{job?.applicationMethod}
 								</a>
 							</div>
 						}

@@ -110,7 +110,7 @@ const Business = () => {
       // businessImageMutation.mutate({
       //   user_string: user?.id,
       //   id: id,
-      //   filepath: a
+      //   mediaPath: a
       // })
       editBusinessMutation.mutate({
         id: id,
@@ -268,7 +268,7 @@ const Business = () => {
                   {business?.description}
                 </p>
                 <div className='flex flex-wrap items-center gap-3 mb-16 text-xsm text-green md:w-7/8'>
-                  {business?.categories?.map(category =><span key={category.id} className='bg-[#E0E5EE] px-4 py-2 font-medium whitespace-nowrap'>{category.category}</span>)}
+                  {business?.categories?.map(category =><span key={category.id} className='bg-[#E0E5EE] px-4 py-2 font-medium whitespace-nowrap'>{category.category?.category}</span>)}
                   </div>
               </div>
               <div className='mb-11'>
@@ -381,7 +381,7 @@ const Business = () => {
               <div className='mb-11'>
                 <h2 className='mb-3 text-lg font-medium text-green'>Business media</h2>
                 <div className='flex flex-col sm:flex-row flex-wrap gap-2 text-sm text-[#476788]'>
-                  {business?.photos?.length ? business?.photos?.map((photo, index) => <img key={index} src={photo?.filepath} alt=""  className='object-cover object-center sm:w-32 sm:h-40 bg-black/30' />) 
+                  {business?.photos?.length ? business?.photos?.map((photo, index) => <img key={index} src={photo?.mediaPath} alt=""  className='object-cover object-center sm:w-32 sm:h-40 bg-black/30' />) 
                   : <span className='text-[#476788] text-xs sm:text-sm'>No photos</span>
                   }
                   {(business?.photos?.length < 2 || (business?.photos?.length < Number(business?.subscription?.photos))) ? 

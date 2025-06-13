@@ -104,7 +104,7 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
                 </select>
                 <div>
                     {businessData.categories?.map((category) => (
-                        <span key={category} className='py-1 mr-2 text-xs text-black text-gray-600 bg-gray-200 rounded-full'>{category}</span>
+                        <span key={category} className='py-1 mr-2 text-xs text-black text-gray-600 bg-gray-200 rounded-full'>{category.category}</span>
                     ))}
                 </div>
             </div>

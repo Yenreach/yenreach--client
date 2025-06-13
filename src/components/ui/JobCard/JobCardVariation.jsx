@@ -23,8 +23,8 @@ const JobCardVariation = ({ job, className, setSelectedJobIndex, index, selected
         <img className='h-full object-cover' src={JobImg} alt="" />
       </div>
       <div className="flex w-[80%] h-full flex-col gap-2 bg-[#F5F7FA] rounded-r-2xl border-y border-r border-gray px-3 pt-5 pb-2">
-        <h3 className="text-smm">{ job.company_name }</h3>
-        <h2 className='font-bold'>{ job.job_title }</h2>
+        <h3 className="text-smm">{ job.companyName }</h3>
+        <h2 className='font-bold'>{ job.title }</h2>
         <div className="flex gap-2">
           {
             job.tags?.map((tag, index) => (

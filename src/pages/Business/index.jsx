@@ -173,7 +173,7 @@ const BusinessPage = () => {
             url={`https://www.yenreach.com/business/${business.id}`}
           />
           <div className={`top mb-10 py-16 sm:py-12 px-4 md:px-10 lg:px-20 relative ${business?.coverImg ? "" : 'bg-[url("assets/businesses/business-hero.svg")]'} bg-contain bg-center text-white flex items-center gap-5 bg-black/20`}>
-             {business?.coverImg && <img src={business?.profile_img.replace("mediatoken", "media&token")} alt="" className='absolute top-0 left-0 w-full h-full -z-10 object-cover' />}
+             {business?.coverImg && <img src={business?.profileImg?.replace("mediatoken", "media&token")} alt="" className='absolute top-0 left-0 w-full h-full -z-10 object-cover' />}
              <div className='relative w-16 h-16 rounded-full md:w-24 md:h-24 overflow-hidden'>
               <Image
                   url={business?.profileImg}
@@ -212,7 +212,7 @@ const BusinessPage = () => {
               {business.categories && <h3 className='mb-1 font-medium text-green2'>Tags</h3>}
               <div className='flex flex-wrap items-center gap-3 mb-16 text-xs text-white md:w-7/8'>
                 {business.categories?.map((category, index) => 
-                  <span key={index} className='px-3 py-2 rounded-full bg-green2 sm:px-4'>{category}</span>
+                  <span key={index} className='px-3 py-2 rounded-full bg-green2 sm:px-4'>{category?.category?.category}</span>
                 )}
               </div>
               <div className='lg:absolute top-0 right-24 lg:max-w-[396px]'>
