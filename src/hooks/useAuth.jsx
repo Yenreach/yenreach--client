@@ -55,7 +55,7 @@ const useAuth = ({from}) => {
                 setError(error?.response?.data?.errors?.[0]?.message || "Fields Validation failed")
                 message = error?.response?.data?.errors?.[0]?.message || "Fields Validation failed"
             } else {
-                setError(data.message)
+                setError(error?.response?.data?.message)
             }
             type==="signup" ? toast.error(message) : toast.error("Invalid credentials")
             // console.log("error", error)
