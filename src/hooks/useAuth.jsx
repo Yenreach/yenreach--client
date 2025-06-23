@@ -35,7 +35,8 @@ const useAuth = ({from}) => {
                 } else {
                     setError(data.message)
                 }
-                type==="signup" ? toast.error(message) : toast.error("Invalid credentials")
+                toast.error(message)
+                // type==="signup" ? toast.error(message) : toast.error("Invalid credentials")
                 // type==="signup" ? setMessageState(message) : setMessageState("Invalid credentials")
                 setIsLoading(false)
             } else {
@@ -57,7 +58,8 @@ const useAuth = ({from}) => {
             } else {
                 setError(error?.response?.data?.message)
             }
-            type==="signup" ? toast.error(message) : toast.error("Invalid credentials")
+            toast.error(message)
+            // type==="signup" ?  : toast.error("Invalid credentials")
             // console.log("error", error)
         }       
     }
