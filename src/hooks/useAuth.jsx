@@ -3,6 +3,7 @@ import { useAuthContext } from "./useAuthContext"
 import { apiLogin, apiRegister } from '../services/AuthService'
 import { useNavigate } from "react-router-dom"
 import useTimeOutMessage from "./useTimeOutMessage"
+import { toast } from "react-toastify"
 
 
 const useAuth = ({from}) => {
@@ -26,9 +27,16 @@ const useAuth = ({from}) => {
             let data = await response.data
 
             if (data.status === "failed") {
-                // console.log("error", data.message)
-                setError(data.message)
-                type==="signup" ? setMessageState(data.message) : setMessageState("Invalid credentials")
+                console.log("error", data.message)
+                let message = data.message
+                if (message === "Validation failed") {
+                    setError(data?.errors?.[0]?.message || "Fields Validation failed")
+                    message = data?.errors?.[0]?.message || "Fields Validation failed"
+                } else {
+                    setError(data.message)
+                }
+                type==="signup" ? toast.error(message) : toast.error("Invalid credentials")
+                // type==="signup" ? setMessageState(message) : setMessageState("Invalid credentials")
                 setIsLoading(false)
             } else {
                 data = data.data
@@ -40,9 +48,16 @@ const useAuth = ({from}) => {
             }
         } catch (error) {
             console.log("error", error)
-            setMessageState(error?.response?.data?.message || 'An error occured')
             setError(error)
             setIsLoading(false)
+            let message = error?.response?.data?.message
+            if (message === "Validation failed") {
+                setError(error?.response?.data?.errors?.[0]?.message || "Fields Validation failed")
+                message = error?.response?.data?.errors?.[0]?.message || "Fields Validation failed"
+            } else {
+                setError(data.message)
+            }
+            type==="signup" ? toast.error(message) : toast.error("Invalid credentials")
             // console.log("error", error)
         }       
     }
