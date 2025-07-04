@@ -34,7 +34,7 @@ const index = () => {
     <>
         <SEO
             title={`${blog?.title} - Discover blog?es on Yenreach`}
-            description={`${blog?.description}. Find out more about this blog? on Yenreach.`}
+            description={`${blog?.preview}. Find out more about this blog? on Yenreach.`}
             name={blog?.title}
             type="blog"
             url={`https://www.yenreach.com/blog?/${blog?.id}`}
@@ -55,7 +55,7 @@ const index = () => {
             <div className='flex items-center gap-3'>
                 <span className='w-10 h-10 rounded-full bg-gray'></span>
                 <div className='flex flex-col gap-1'>
-                    <span className='font-semibold'>{blog?.author}</span>
+                    <span className='font-semibold'>{blog?.author?.name}</span>
                     <p>5 to 7 mins read</p>
                 </div>
             </div>
@@ -66,12 +66,12 @@ const index = () => {
         </div>
       </div>
       <section className='px-4 py-12 md:px-10 lg:px-24'>
-      <img src={blog?.file_path.replace("mediatoken", "media&token") || BlogImage} alt="" className="w-full object-cover object-center min-h-[400px]" />
+      <img src={blog?.mediaUrl?.replace("mediatoken", "media&token") || BlogImage} alt="" className="w-full object-cover object-center min-h-[400px]" />
       </section>
       <main>
           <section className='px-4 py-12 md:px-10 lg:px-24 max-w-[750px] mx-auto'>
             {/* <h2 className='mb-5 text-2xl font-semibold'>Introduction</h2> */}
-            <div dangerouslySetInnerHTML={{ __html: blog?.post }}></div>
+            <div dangerouslySetInnerHTML={{ __html: blog?.content }}></div>
         </section>
         <section className='px-4 py-12 md:px-10 lg:px-24 max-w-[750px] mx-auto'>
             <div className='pb-10 mb-10 border-b-2 border-gray'>
@@ -83,7 +83,7 @@ const index = () => {
             <div className='flex items-center gap-3 text-xs'>
                 <span className='w-10 h-10 rounded-full bg-gray'></span>
                 <div className='flex flex-col'>
-                    <span className='font-semibold'>{blog?.author}</span>
+                    <span className='font-semibold'>{blog?.author?.name}</span>
                     <p>Media Director, Yenreach</p>
                 </div>
             </div>
