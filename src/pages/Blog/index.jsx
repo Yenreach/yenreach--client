@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import useFetch from '/src/hooks/useFetch'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
@@ -10,20 +10,37 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Loader from '/src/components/Loader'
 import SEO from '../../components/SEO'
+import Pagination from '/src/components/Pagination'
+import useCreateQueryString from '../../hooks/useCreateQueryString'
+import { useSearchParams } from 'react-router-dom'
 
 
 
 const index = () => {
-  const [page, setPage] = useState(1)
   const num_per_page = 3
-
+  const { createQueryString } = useCreateQueryString()
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState(searchParams.get('page') || 1)
   const { data: blogs, error: errorBlogs, isLoading } = useFetch({
-    key: ['blogs'],
+    key: ['blogs', page],
     api: apiGetAllBlogs,
+    param: { page, num_per_page },
   })
 
-  console.log('blogs', blogs, 'error', errorBlogs)
+  useEffect(() => {
+    const page = parseInt(searchParams.get('page'), 10) || 1; // Default to page 1
+    setPage(page);
+  }, [searchParams])
 
+  console.log('blogs', blogs, 'error', errorBlogs)
+  const handlePageChange = (page) => {
+    createQueryString({ page })
+      // setPage(page)
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
+  }
   return (
     <>
       <SEO
@@ -66,18 +83,26 @@ const index = () => {
         <div className="flex flex-col gap-4">
           <h2 className="w-full text-xl font-semibold text-center text-blue">Latest Articles</h2>
           <div className='flex flex-col gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3'>
-            {blogs?.slice((page-1) * num_per_page, page*num_per_page)?.data?.map((blog) => (
+            {blogs?.data?.slice((page-1) * num_per_page, page*num_per_page)?.data?.map((blog) => (
               <BlogCard key={blog.id} blog={blog} />
             ))}
           </div>
         </div>
-        <div className="flex items-center justify-center w-full mt-4">
+        {/* <div className="flex items-center justify-center w-full mt-4">
           <MdChevronLeft size={"1.5rem"} />
-          {blogs && [...Array(paginate({page, num_per_page, data: blogs, total: blogs?.length})?.pages).keys()]?.map((page_num) => 
+          {blogs?.totalPages && [...Array(blogs?.totalPages).keys()]?.map((page_num) => 
             <span key={page_num+1} onClick={() => changePage(page_num+1, setPage)} className={`${page===page_num+1 && "bg-green text-white"} font-medium w-6 h-6 text-sm text-black grid place-items-center cursor-pointer`}>{page_num+1}</span>
           )}
           <MdChevronRight size={"1.5rem"} />
-        </div>
+        </div> */}
+          <Pagination 
+            page={page} 
+            num_per_page={num_per_page} 
+            data={blogs?.data} 
+            handlePageChange={handlePageChange} 
+            total={blogs?.total} 
+            totalPages={blogs?.totalPages}
+          />
       </div>
       <Footer />
     </>

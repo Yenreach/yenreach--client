@@ -73,7 +73,7 @@ export const apiGetApprovedBusinesses =  (query = {}) => {
         url: `${servicePrefix}?page=${query?.page || '1'}&limit=${query?.num_per_page || '40'}&search=${query.search || ''}&category=${query.category || ''}&state=${query.state || ''}&lga=${query.lga || ''}&sort=${query.sort || ''}`,
         method: "get",
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${query?.token}`
         }    
     })
 }
@@ -84,7 +84,7 @@ export const apiSortBusinesses = (query) => {
         url: `${servicePrefix}`,
         method: "get",
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${query?.token}`
         }  
     })
 }
@@ -280,12 +280,12 @@ export const apiSaveBusiness = ({buisnes_string}) => {
 
 /* Blogs */
 
-export const apiGetAllBlogs =  ({ token }) => {
+export const apiGetAllBlogs =  (query={}) => {
     return ApiAdapter.fetchData({
-        url: `/blogs`,
+        url: `/blogs?page=${query?.page || '1'}&limit=${query?.num_per_page || '40'}&search=${query.search || ''}`,
         method: "get",
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${query?.token}`
         }    
     })
 }
