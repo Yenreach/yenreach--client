@@ -125,11 +125,11 @@ const ExploreBusiness = () => {
   
   const handlePageChange = (page) => {
     createQueryString({ page })
-    // setPage(page)
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-  });
+      // setPage(page)
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
   }
 
   

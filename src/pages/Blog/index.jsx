@@ -83,7 +83,7 @@ const index = () => {
         <div className="flex flex-col gap-4">
           <h2 className="w-full text-xl font-semibold text-center text-blue">Latest Articles</h2>
           <div className='flex flex-col gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3'>
-            {blogs?.data?.slice((page-1) * num_per_page, page*num_per_page)?.data?.map((blog) => (
+            {blogs?.data?.map((blog) => (
               <BlogCard key={blog.id} blog={blog} />
             ))}
           </div>
