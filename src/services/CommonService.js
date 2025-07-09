@@ -290,16 +290,16 @@ export const apiGetAllBlogs =  (query={}) => {
     })
 }
 
-export const apiGetBlog =  (id) => {
+export const apiGetBlog =  ({ id, token }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `/blogs/${id}`,
         method: "get",
         headers: {
             Authorization: `Bearer ${token}`
         }    
     })
 }
-export const apiGetBlogComments =  (id) => {
+export const apiGetBlogComments =  ({ id, token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,
         method: "get",

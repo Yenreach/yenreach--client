@@ -17,7 +17,7 @@ const index = () => {
 
     const { isLoading, data: blog, error: errorBlog } = useFetch({
         api: apiGetBlog,
-        param: {id},
+        param: { id },
         key: 'blog'
     })
 
@@ -29,6 +29,12 @@ const index = () => {
 
     // console.log("blog", blog, "error", errorBlog)
     // console.log("comments", comments)
+
+    function decodeHtmlEntities(encodedStr) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(encodedStr, 'text/html');
+        return doc.documentElement.textContent;
+    }
 
   return (
     <>
@@ -71,7 +77,7 @@ const index = () => {
       <main>
           <section className='px-4 py-12 md:px-10 lg:px-24 max-w-[750px] mx-auto'>
             {/* <h2 className='mb-5 text-2xl font-semibold'>Introduction</h2> */}
-            <div dangerouslySetInnerHTML={{ __html: blog?.content }}></div>
+            <div dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(blog?.content) }}></div>
         </section>
         <section className='px-4 py-12 md:px-10 lg:px-24 max-w-[750px] mx-auto'>
             <div className='pb-10 mb-10 border-b-2 border-gray'>
