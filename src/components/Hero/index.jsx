@@ -134,7 +134,7 @@ const index = ({ businesses }) => {
             <span className='text-sm md:text-lg'>Businesses</span>
           </div>
           <div className='flex flex-col items-center'>
-            <span className='font-semibold'>1</span>
+            <span className='font-semibold'>2</span>
             <span className='text-sm md:text-lg'>Location</span>
           </div>
           <div className='flex flex-col items-center'>

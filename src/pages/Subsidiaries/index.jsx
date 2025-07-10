@@ -42,8 +42,14 @@ const Subsidiaries = () => {
                     <li>Trust</li>
                     <li>Career growth</li>
                 </ul>
-                <h6>Address: <span className='font-medium'>260 Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
-                <h6>Contact Us on: <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                <h6 className='flex gap-2'><span className='min-w-[100px]'>Contact Us:</span> <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                <h6 className='flex gap-2'>
+                    <span className='min-w-[100px]'>Address:</span> 
+                    <div className='flex flex-col'>
+                        <span className='font-medium'>260, Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span>
+                        <span className='font-medium'>Grace Amazing Plaza, 2 Church Street by Iwofe road, Port Harcourt. River's State.</span>
+                    </div> 
+                </h6>
         </section>
 
         <section className="mb-20" id="btu">
@@ -59,8 +65,18 @@ const Subsidiaries = () => {
                 <p className="mb-3">
                 Through our curriculum centred on practical trainings, innovative mind development, business coaching, and mentorship.
                 </p>
-                <h6>Administrative Address: <span className='font-medium'>260 Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
-                <h6>Contact Us on: <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                <h6 className='flex gap-2'> <span className='min-w-[100px]'>Contact Us:</span> <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                <h6 className='flex gap-2'>
+                    <span className='min-w-[100px]'>Address:</span> 
+                    <div className='flex flex-col'>
+                        <span className='font-medium'>260, Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span>
+                        <span className='font-medium'>Grace Amazing Plaza, 2 Church Street by Iwofe road, Port Harcourt. River's State.</span>
+                    </div> 
+                </h6>
+                {/* <h6>Administrative Address: <span className='font-medium'>260 Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
+                <h6>Administrative Address 1: <span className='font-medium'>260, Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
+                <h6>Administrative Address 2: <span className='font-medium'>Grace Amazing Plaza, 2 Church Street by Iwofe road, Port Harcourt. River's State</span></h6>
+                <h6 className='flex gap-2'> <span className='min-w-[100px]'>Contact Us:</span> <span className='font-medium'>07037193301, 09024401562.</span></h6> */}
         </section>
 
         <section className="mb-20" id="bbm">
@@ -72,8 +88,16 @@ const Subsidiaries = () => {
                 BYS Business Magazine is the printed version of yenreach.com with the aim of increasing the reach and visibility of local businesses.<br />
                 It is a publication of Dordorian Concept Ltd a human capacity development and consultancy firm.
                 </p>
-                <h6 className='mb-2 font-semibold'>Administrative Address: <span className='font-medium'>260 Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
-                <h6 className='mb-2 font-semibold'>Contact Us on: <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                {/* <h6 className='mb-2 font-semibold'>Administrative Address: <span className='font-medium'>260 Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
+                <h6 className='mb-2 font-semibold' className='flex gap-2'> <span className='min-w-[100px]'>Contact Us:</span> <span className='font-medium'>07037193301, 09024401562.</span></h6> */}
+                <h6 className='flex gap-2'> <span className='min-w-[100px]'>Contact Us:</span> <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                <h6 className='flex gap-2'>
+                    <span className='min-w-[100px]'>Address:</span> 
+                    <div className='flex flex-col'>
+                        <span className='font-medium'>260, Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span>
+                        <span className='font-medium'>Grace Amazing Plaza, 2 Church Street by Iwofe road, Port Harcourt. River's State.</span>
+                    </div> 
+                </h6>
         </section>
         <section className="mb-20" id="bmc">
                 <h2 className='mt-4 mb-2 text-2xl font-bold text-green'>BusiTech Model College</h2>
@@ -101,8 +125,16 @@ const Subsidiaries = () => {
                 <li>Self Reliance</li>
                 </ul>
                 <h6 className='mb-2 font-semibold'>Motto: <span>Redefining Secondary School Education</span></h6>
-                <h6>Address: <span className='font-medium'>260 Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
-                <h6>Contact Us on: <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                {/* <h6>Address: <span className='font-medium'>260 Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
+                <h6 className='flex gap-2'> <span className='min-w-[100px]'>Contact Us:</span> <span className='font-medium'>07037193301, 09024401562.</span></h6> */}
+                <h6 className='flex gap-2'> <span className='min-w-[100px]'>Contact Us:</span> <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                <h6 className='flex gap-2'>
+                    <span className='min-w-[100px]'>Address:</span> 
+                    <div className='flex flex-col'>
+                        <span className='font-medium'>260, Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span>
+                        <span className='font-medium'>Grace Amazing Plaza, 2 Church Street by Iwofe road, Port Harcourt. River's State.</span>
+                    </div> 
+                </h6>
         </section>
 
         <section className="mb-20" id="tec">
@@ -154,8 +186,16 @@ const Subsidiaries = () => {
                 <li>CCTV cameras</li>
                 <li>Police and military posts</li>
                 </ul>
-                <h6>Address: <span className='font-medium'>260 Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
-                <h6>Contact Us on: <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                {/* <h6>Address: <span className='font-medium'>260 Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
+                <h6 className='flex gap-2'> <span className='min-w-[100px]'>Contact Us:</span> <span className='font-medium'>07037193301, 09024401562.</span></h6> */}
+                <h6 className='flex gap-2'> <span className='min-w-[100px]'>Contact Us:</span> <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                <h6 className='flex gap-2'>
+                    <span className='min-w-[100px]'>Address:</span> 
+                    <div className='flex flex-col'>
+                        <span className='font-medium'>260, Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span>
+                        <span className='font-medium'>Grace Amazing Plaza, 2 Church Street by Iwofe road, Port Harcourt. River's State.</span>
+                    </div> 
+                </h6>
         </section>
         <section className="mb-20" id="bgs">
                 <h2 className='mt-4 mb-2 text-2xl font-bold text-green'>BYS Graduate School</h2>
@@ -166,8 +206,16 @@ const Subsidiaries = () => {
                 Among the hard skills we train students on are: bag making, shoemaking, belts, and hats making, tie and dye, catering and pastries.<br /><br />
                 Among the soft skills we train students on are: video coverage, video editing, and animation, business plan writing, branding and advertising, customer relationship management/leadership.
                 </p>
-                <h6>Address: <span className='font-medium'>260 Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
-                <h6>Contact Us on: <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                {/* <h6>Address: <span className='font-medium'>260 Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
+                <h6 className='flex gap-2'> <span className='min-w-[100px]'>Contact Us:</span> <span className='font-medium'>07037193301, 09024401562.</span></h6> */}
+                <h6 className='flex gap-2'> <span className='min-w-[100px]'>Contact Us:</span> <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                <h6 className='flex gap-2'>
+                    <span className='min-w-[100px]'>Address:</span> 
+                    <div className='flex flex-col'>
+                        <span className='font-medium'>260, Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span>
+                        <span className='font-medium'>Grace Amazing Plaza, 2 Church Street by Iwofe road, Port Harcourt. River's State.</span>
+                    </div> 
+                </h6>
         </section>
 
         <section className="mb-20" id="de">
@@ -179,8 +227,16 @@ const Subsidiaries = () => {
                 Dordorian Estate is the real estate arm of Dordorian Concept Ltd. We purchase and sell lands to our clients at affordable prices. We also help our clients in the purchase of lands and securing of survey and title documents.<br />
                 Dordorian Estate is situated in Yenagoa, Bayelsa State, Nigeria.
                 </p>
-                <h6>Address: <span className='font-medium'>260 Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
-                <h6>Contact Us on: <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                {/* <h6>Address: <span className='font-medium'>260 Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span></h6>
+                <h6 className='flex gap-2'> <span className='min-w-[100px]'>Contact Us:</span> <span className='font-medium'>07037193301, 09024401562.</span></h6> */}
+                <h6 className='flex gap-2'> <span className='min-w-[100px]'>Contact Us:</span> <span className='font-medium'>07037193301, 09024401562.</span></h6>
+                <h6 className='flex gap-2'>
+                    <span className='min-w-[100px]'>Address:</span> 
+                    <div className='flex flex-col'>
+                        <span className='font-medium'>260, Sam Inokoba street, adjacent Sunky Supermarket, off Azikoro Road, Ekeki, Yenegoa, Bayelsa State.</span>
+                        <span className='font-medium'>Grace Amazing Plaza, 2 Church Street by Iwofe road, Port Harcourt. River's State.</span>
+                    </div> 
+                </h6>
             </div>
             </div>
         </section>

@@ -46,7 +46,7 @@ const index = () => {
                         <span className='text-sm md:text-lg text-[#476788] font-arialsans'>Businesses</span>
                     </div>
                     <div className='flex flex-col items-center'>
-                        <span className='text-xl font-semibold md:text-3xl text-green'>1<span className='text-blue'></span></span>
+                        <span className='text-xl font-semibold md:text-3xl text-green'>2<span className='text-blue'></span></span>
                         <span className='text-sm md:text-lg text-[#476788] font-arialsans'>Locations</span>
                     </div>
                     <div className='flex flex-col items-center'>
@@ -62,7 +62,7 @@ const index = () => {
                             For most businesses in Nigeria, the major challenge has never been about the quality of their product or service. The daunting challenge has been the need for businesses to showcase their products and services to potential customers who are eager to pay them in exchange for their excellent product and service delivery.
                         </p>
                         <p className=''>
-                            Inasmuch as there are advertising channels available today that offer such, the cost of showcasing their brands on these platforms have made it unaffordable for most business owners and professionals. In a bid to bridge this gap, yenreach.com was established with the sole aim of helping local businesses and professional services connect with the right customers and also helping customers connect with the right businesses and professional services and doing so at business friendly prices.
+                            In as much as there are advertising channels available today that offer such, the cost of showcasing their brands on these platforms have made it unaffordable for most business owners and professionals. In a bid to bridge this gap, yenreach.com was established with the sole aim of helping local businesses and professional services connect with the right customers and also helping customers connect with the right businesses and professional services and doing so at business friendly prices.
                         </p>
                         <p className=''>
                             Our mission is to give local businesses and professionals the visibility and reach they require to help scale their business and also do that in a social and engaging way without neglecting the immense value of our users and our brand commitment.
@@ -78,7 +78,7 @@ const index = () => {
                 <div className='flex flex-col flex-wrap items-center justify-center gap-4 mx-auto text-sm xs:flex-row lg:w-5/6 sm:text-base'>
                     <div className='flex items-center w-64 gap-6 px-3 py-3 bg-white shadow-md pr- hover:drop-shadow-2xl'>
                         <img src={ISMN} alt="" className='object-cover object-center w-12 h-12' />
-                        <p className='text-[#476788] font-arialsans'>Institute of strategic Management Nigeria <br />(ISMN)</p>
+                        <p className='text-[#476788] font-arialsans'> Institute of Strategic Management of Nigeria (Chartered) <br />(ISMN)</p>
                     </div>
                     <div className='flex items-center w-64 gap-6 px-3 py-3 bg-white shadow-md pr- xs:w-80 hover:drop-shadow-2xl'>
                         <img src={CICRM} alt="" className='object-cover object-center w-12 h-12' />
@@ -86,7 +86,7 @@ const index = () => {
                     </div>
                     <div className='flex items-center w-64 gap-6 px-3 py-3 bg-white shadow-md pr- hover:drop-shadow-2xl'>
                         <img src={ICEN} alt="" className='object-cover object-center w-12 h-12' />
-                        <p className='text-[#476788] font-arialsans'>Institute of Chartered Economist of Nigeria<br />(ICEN)</p>
+                        <p className='text-[#476788] font-arialsans'> Institute of Chartered Economist of Nigeria<br />(ICEN)</p>
                     </div>
                     <div className='flex items-center w-64 gap-6 px-3 py-3 bg-white shadow-md pr- hover:drop-shadow-2xl'>
                         <img src={CIA} alt="" className='object-cover object-center w-12 h-12' />
