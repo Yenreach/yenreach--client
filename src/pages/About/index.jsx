@@ -62,11 +62,17 @@ const index = () => {
                             For most businesses in Nigeria, the major challenge has never been about the quality of their product or service. The daunting challenge has been the need for businesses to showcase their products and services to potential customers who are eager to pay them in exchange for their excellent product and service delivery.
                         </p>
                         <p className=''>
+                            In as much as there are advertising channels available today that offer such, the cost of showcasing their brands on these platforms have made it unaffordable for most business owners and professionals. In a bid to bridge this gap, yenreach.com was established with the sole objective to give Yenreachers greater visibility and to extend their reach considerably.
+                        </p>
+                        {/* <p className=''>
                             In as much as there are advertising channels available today that offer such, the cost of showcasing their brands on these platforms have made it unaffordable for most business owners and professionals. In a bid to bridge this gap, yenreach.com was established with the sole aim of helping local businesses and professional services connect with the right customers and also helping customers connect with the right businesses and professional services and doing so at business friendly prices.
-                        </p>
+                        </p> */}
                         <p className=''>
-                            Our mission is to give local businesses and professionals the visibility and reach they require to help scale their business and also do that in a social and engaging way without neglecting the immense value of our users and our brand commitment.
+                            Our mission is to provide visibility for the platform and greatly extend the reach of our clients through affordable, effective and socially engaging solutions that connect local businesses with their target audiences.
                         </p>
+                        {/* <p className=''>
+                            Our mission is to give local businesses and professionals the visibility and reach they require to help scale their business and also do that in a social and engaging way without neglecting the immense value of our users and our brand commitment.
+                        </p> */}
                         <p className=''>   
                             Yenreach is a subsidiary of Dordorian Concept Ltd, an indigenous business and human capacity development and consultancy company duly registered with the Corporate Affairs Commission (CAC) with RC-804640 and endorsed by the Advertising Practitioners Council of Nigeria APCON with the registration number 2280 to carry out advertising and auxiliary services.
                         </p>
