@@ -29,7 +29,7 @@ export const apiBusinessCategories =  ({ token }) => {
 
 export const apiBusinessOfTheWeek =  ({ token }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `${servicePrefix}/business-of-the-week`,
         method: "get",
         headers: {
             Authorization: `Bearer ${token}`

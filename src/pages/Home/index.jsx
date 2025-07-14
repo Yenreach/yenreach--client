@@ -42,7 +42,7 @@ const Home = () => {
         key: ['businessOfTheWeek'],
         staleTime: 1000 * 60 * 5,
         cacheTime : 1000 * 60 * 60,
-      })
+    })
       
     // console.log("businessOfTheWeek", businessOfTheWeek, "error", errorBusinessOfTheWeek)
     // console.log('business', aprrovedBusinesses)
@@ -135,18 +135,18 @@ const Home = () => {
                 </div>
             </div>
         </section>
-        {/* {businessOfTheWeek &&
+        {businessOfTheWeek &&
             <section className='px-4 mt-4 mb-12 md:px-10 lg:px-24 md:mt-12'>
                     <div className='py-12 mb-36'>
-                        <h2 className='mb-2 text-xl font-medium text-center text-green'>Business of the week</h2>
+                        <h2 className='mb-3 text-xl font-medium text-center text-green'>Business of the week</h2>
                         <div className='flex flex-col items-center sm:flex-row gap-14'>
-                            <img className='flex-1 object-cover w-full sm:w-2/5 h-full max-h-[500px]' src={businessOfTheWeek?.profile_img.replace("mediatoken", "media&token")}  alt="Business of The Week"  />
+                            <img className='flex-1 object-cover w-full sm:w-2/5 h-full max-h-[500px]' src={businessOfTheWeek?.business?.profileImg?.replace("mediatoken", "media&token")}  alt="Business of The Week"  />
                             <div className='flex flex-col items-start flex-1 gap-6'>
-                                <h3 className='text-lg'>{businessOfTheWeek?.name}</h3>
+                                <h3 className='text-lg'>{businessOfTheWeek?.business?.name}</h3>
                                 <p className='text-sm'>
-                                {businessOfTheWeek?.description.substring(0, 400)}...
+                                {businessOfTheWeek?.business?.description?.substring(0, 400)}...
                                 </p>
-                                <Link to={`/business/${businessOfTheWeek?.id}`}> 
+                                <Link to={`/business/${businessOfTheWeek?.businessId}`}> 
                                     <Button className='text-sm rounded-md py-2.5 px-10 font-medium'>
                                         view business
                                     </Button>
@@ -155,7 +155,7 @@ const Home = () => {
                         </div>
                     </div>
             </section>
-        } */}
+        }
         {/* <div className=''>
             <h2 className='mb-3 text-lg font-medium text-center text-green'>keep up with the business world</h2>
             <div className='flex flex-col grid-cols-3 gap-6 text-white sm:grid'>
