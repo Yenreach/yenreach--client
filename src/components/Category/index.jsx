@@ -39,7 +39,7 @@ const Category = () => {
     })
   
   return (
-    <section className='flex flex-col gap-8 px-4 py-8 md:px-10 lg:px-24 md:gap-20'>
+    <section className='flex flex-col gap-4 px-4 mb-12 md:mb-20 md:px-10 lg:px-24 md:gap-16'>
         <div className='flex flex-col gap-4 xs:items-center'>
             <h2 className='text-lg font-medium text-center text-green'>Browse by our recomended category</h2>
             <div className='bg-[#E9E9E9] py-2.5 px-2 rounded-md xs:px-2 sm:px-6 xs:rounded-full flex flex-col xs:flex-row xs:items-center justify-between gap-1 sm:gap-4 lg:gap-12 text-sm'>
@@ -58,7 +58,7 @@ const Category = () => {
             </div>
         </div>
         <div className='w-full'>
-            <h2 className={`mb-2 font-medium text-center text-lg ${activeTab==="business"? "text-green" : activeTab==="jobs" ? "text-blue" : "text-orange"}`}>Recommended for you</h2>
+            <h2 className={`mb-4 font-medium text-center text-lg ${activeTab==="business"? "text-green" : activeTab==="jobs" ? "text-blue" : "text-orange"}`}>Recommended for you</h2>
             {/* flex items-center gap-6 flex-wrap  */}
             <div className='grid gap-6 grid-cols-bus1 sm:grid-cols-bus2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
                 {activeTab === 'business' && (

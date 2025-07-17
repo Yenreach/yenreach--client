@@ -57,12 +57,10 @@ const Home = () => {
         />
         <Header />
         <Hero businesses={aprrovedBusinesses} />
-        <section className='w-screen px-4 mt-32 mb-12 overflow-hidden md:px-10 lg:px-24'>
-            <Billboard />
-        </section>
+        <Billboard />
         <Category />
-        <section className='px-4 py-12 md:px-10 lg:px-24'>
-            <div className='bg-[url("assets/audience.svg")] h-64 md:h-60 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-28 px-4 sm:px-12 md:px-24'>     
+        <section className='px-4 mb-12 md:mb-20 md:px-10 lg:px-24'>
+            <div className='bg-[url("assets/audience.svg")] h-64 md:h-60 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-12 md:mb-20 px-4 sm:px-12 md:px-24'>     
                 <div className='flex flex-col items-center gap-5'>
                     <h2 className='text-lg font-medium text-center md:text-xl'>Get your business to the right audience</h2>
                     <span className='text-sm'>It's Totally free</span>
@@ -73,7 +71,7 @@ const Home = () => {
                     </Button>
                 </Link>
             </div>
-            <div className='flex flex-col mb-20 sm:items-center md:mb-32 sm:flex-row gap-9 mx-auto'>
+            <div className='flex flex-col mb-12 sm:items-center md:mb-20 sm:flex-row gap-9 mx-auto'>
                 <img src={AllHere} alt="Businesses" className="object-cover w-full sm:w-1/2 max-h-[330px] bg-gray" />
                 <div className='flex flex-col items-start gap-12 w-1/2'>
                     <h3 className='text-xl font-medium text-green'>Learn and Explore our business listings</h3>
@@ -91,7 +89,7 @@ const Home = () => {
                     </Link>
                 </div>
             </div>
-            <div className='flex flex-col-reverse mb-20 sm:items-center md:mb-32 sm:flex-row gap-9 mx-auto'>
+            <div className='flex flex-col-reverse mb-12 sm:items-center md:mb-20 sm:flex-row gap-9 mx-auto'>
                 <div className='flex flex-col sm:items-end gap-12 w-1/2'>
                     <h3 className='text-xl font-medium text-blue'>Searching for jobs? This is for you</h3>
                     <p className='text-xs text-[#476788] -mt-4'>
@@ -136,8 +134,8 @@ const Home = () => {
             </div>
         </section>
         {businessOfTheWeek &&
-            <section className='px-4 mt-4 mb-12 md:px-10 lg:px-24 md:mt-12'>
-                    <div className='py-12 mb-36'>
+            <section className='px-4 mb-12 md:mb-20 md:px-10 lg:px-24'>
+                    <div className=''>
                         <h2 className='mb-3 text-xl font-medium text-center text-green'>Business of the week</h2>
                         <div className='flex flex-col items-center sm:flex-row gap-14'>
                             <img className='flex-1 object-cover w-full sm:w-2/5 h-full max-h-[500px]' src={businessOfTheWeek?.business?.profileImg?.replace("mediatoken", "media&token")}  alt="Business of The Week"  />
@@ -178,7 +176,7 @@ const Home = () => {
                 </div>
             </div>
         </div> */}
-        <section className='px-4 py-12 sm:px-20 md:px-32 lg:px-64 mb-11'>
+        <section className='px-4 mb-12 md:mb-20 sm:px-20 md:px-32 lg:px-64'>
             <h2 className='text-lg font-medium text-center text-green'>Frequently asked questions</h2>
             <Accordion />
         </section>

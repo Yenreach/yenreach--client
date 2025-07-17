@@ -58,7 +58,7 @@ export const apiBusinessStates =  ({ token }) => {
 
 export const apiBillboards =  ({ token }) => {
     return ApiAdapter.fetchData({
-        url: `${servicePrefix}`,
+        url: `/billboards`,
         method: "get",
         headers: {
             Authorization: `Bearer ${token}`
