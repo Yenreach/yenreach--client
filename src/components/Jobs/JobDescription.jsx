@@ -133,7 +133,7 @@ const JobDescription = ({ job }) => {
 								<p className='text-xs font-light'>{ job?.benefit }</p>
 							</div>
 						}
-						{(!job?.isAdmin) ? 
+						{(!job?.isAdminJob) ? 
 							<Button onClickFunc={() => setTab(2)} className='px-4 py-1 my-2 mt-auto font-medium w-fit text-smm' variant='job'>Apply For this Job</Button>
 							:  (job?.applicationMethod.includes("http") || job?.applicationMethod.includes("www")) ?
 							<a href={`${job?.applicationMethod}`} target="_blank" className='px-4 py-1 my-2 mt-auto font-medium text-white w-fit text-smm bg-blue'>

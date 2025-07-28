@@ -55,7 +55,7 @@ const index = () => {
         <h1 className="text-xl md:text-3xl text-[#89F1B4] font-semibold text-center">
           Keep up with the business world
         </h1>
-        <h2 className='px-12 text-sm text-center text-white md:text-base'>Articles on Yenreach.com makes sure you never miss a thing</h2>
+        <h2 className='px-12 text-sm text-center text-white md:text-base'>Articles on Yenreach.com make sure you never miss a thing</h2>
       </div>
       <div className="flex flex-col gap-20 px-4 md:px-8 lg:px-[8.4375rem] py-20">
         {/* <div className="flex flex-col gap-6">
