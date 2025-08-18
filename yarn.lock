@@ -6967,6 +6967,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-countdown@npm:^2.3.6":
+  version: 2.3.6
+  resolution: "react-countdown@npm:2.3.6"
+  dependencies:
+    prop-types: "npm:^15.7.2"
+  peerDependencies:
+    react: ">= 15"
+    react-dom: ">= 15"
+  checksum: 10c0/defb75cb9802c499eb0d5f6c8c6e4269de1005f9c05d5162bccf45063782fd2f5f87acd95d11f70e623fa75085a546b9d0fb0df27c5287ed6a86334342d903cf
+  languageName: node
+  linkType: hard
+
 "react-display-name@npm:^0.2.0":
   version: 0.2.5
   resolution: "react-display-name@npm:0.2.5"
@@ -8938,6 +8950,7 @@ __metadata:
     pure-react-carousel: "npm:^1.30.1"
     react: "npm:^18.2.0"
     react-chartjs-2: "npm:^5.2.0"
+    react-countdown: "npm:^2.3.6"
     react-dom: "npm:^18.2.0"
     react-ga4: "npm:^2.1.0"
     react-helmet-async: "npm:^2.0.5"

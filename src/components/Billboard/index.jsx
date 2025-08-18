@@ -12,6 +12,9 @@ import useFetch from '/src/hooks/useFetch'
 // import EmitImg from '/src/assets/emite.png'
 // import TecImg from '/src/assets/tec.jpg'
 import { apiBillboards } from '../../services/CommonService';
+
+import AdsImg from '/src/assets/adsimage.jpg'
+
 // import ImaxImage from '/src/assets/imax.png'
 // import EvidenceImage from '/src/assets/evidence.png'
 // import MajesticImage from '/src/assets/majestic.png'
@@ -125,7 +128,7 @@ import { apiBillboards } from '../../services/CommonService';
 // ]
 
 const Billboard = () => {
-    const { data: billboards, error: errorBillboard } = useFetch({
+    const { data: billboards, error: errorBillboard, isLoading } = useFetch({
         api: apiBillboards,
         key: ['billboards-roi'],
         // staleTime: 1000 * 60 * 5,
@@ -135,7 +138,7 @@ const Billboard = () => {
     let [swiper, setSwiper] = useState(null)
     
     useEffect(() => {
-        if (!!billboards?.length) {
+        if (!!billboards?.length) {   
             const swipers = new Swiper('.swiper', {
                 // direction: 'vertical',
                 speed: 1500,
@@ -225,29 +228,8 @@ const Billboard = () => {
         !!billboards?.length && (billboards?.length > 0) &&
         <section className='w-screen px-4 mb-12 md:mb-20 overflow-hidden md:px-10 lg:px-24'>
             <div className='flex w-full h-full pb-16 overflow-hidden'>
-                {/* <div ref={carouselRef} className="h-fit min-h-[90vh] md:min-h-[300px] md:h-[400px] overflow-hidden flex overflow-x-hidden w-screen relative"> */}
                 <div className="h-fit min-h-[90vh] md:min-h-[300px] md:h-[430px] overflow-hidden flex overflow-x-hidden w-screen relative">
-                    {/* {billboards.map((billboard) => (
-                        <div key={billboard?.id} className="absolute w-full bg-white h-fit md:h-full min-w-fit carousel-billboard">
-                            <div className='flex flex-col items-center justify-center w-full h-full gap-8 md:flex-row'>
-                                <div className="flex-1 w-full h-full">
-                                    <img src={billboard?.image} alt="advert-banner" className='w-full h-[250px] md:h-full object-fill carousel-img' />
-                                </div>
-                                <div className="flex flex-col items-center justify-center flex-1 w-full h-full gap-4 text-center">
-                                    <h2 className="text-xl text-black lg:text-3xl text-capitalize text-bold">{billboard?.title}</h2>
-                                    <p className="max-w-[400px] text-center mb-6 text-sm lg:text-base text-black/70">
-                                    {billboard?.description}
-                                    </p>
-                                    <a href={billboard?.link} target="_blank" className="px-4 py-2 text-sm text-white rounded bg-green">Learn more</a>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                        */}
                         <div className='absolute top-0 left-0 w-full h-full'>
-                            {/* {
-                            !!billboards?.length && (billboards?.length > 0) &&
-                            } */}
                                 <div className="h-full swiper">
                                     <div className="h-[90%] swiper-wrapper">
                                         {
@@ -273,6 +255,24 @@ const Billboard = () => {
                                             // </div>
                                             )
                                         }
+
+                                        {/* <div className="h-full swiper-slide">
+                                            <div className='flex flex-col items-center justify-center w-full h-full gap-8 md:flex-row'>
+                                                <div className="flex-1 w-full h-full">
+                                                    <img src={AdsImg} alt="advert-banner" className='w-full h-[250px] md:h-full object-contain carousel-img' />
+                                                </div>
+                                                <div className="flex flex-col items-center justify-center flex-1 w-full h-full gap-4 text-center">
+                                                    <h2 className="text-xl text-black lg:text-3xl text-capitalize text-bold">
+                                                        Advertise your business here
+                                                    </h2>
+                                                    <p className="max-w-[400px] text-center mb-6 text-sm lg:text-base text-black/70">
+                                                        Advertise your business here
+                                                    </p>
+                                                    <a href={/users/billboard} target="_blank" className="px-4 py-2 text-sm text-white rounded bg-green">Billboard</a>
+                                                </div>
+                                            </div>
+                                        </div> */}
+                                   
                                     </div>
                                     <div class="swiper-button-prev"></div>
                                     <div class="swiper-button-next"></div>

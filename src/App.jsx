@@ -7,6 +7,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home'
 import Explore from './pages/Explore'
 import ExploreProducts from './pages/Explore/Products'
+import BlackFriday from './pages/Friday'
 import ExploreJobs from './pages/Explore/Jobs'
 import Business from './pages/Business'
 import Products from './pages/Product'
@@ -84,6 +85,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/explore" element={<Explore />} />
+            <Route exact path="/deals" element={<BlackFriday />} />
             <Route exact path="/explore/products" element={<ExploreProducts />} />
             <Route exact path="/explore/jobs" element={<ExploreJobs />} />
             <Route exact path="/business/:id" element={<Business />} />

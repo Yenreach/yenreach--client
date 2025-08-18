@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { apiBusinessOfTheWeek, apiGetApprovedBusinesses } from '../../services/CommonService'
+import { apiBusinessOfTheWeek, apiBlackFriday, apiGetApprovedBusinesses } from '../../services/CommonService'
 import getData from '../../utils/getData'
 import Header from '/src/components/Header'
 import Footer from '../../components/Footer'
@@ -28,6 +28,20 @@ const Home = () => {
     // Send pageview with a custom path
     ReactGA.send({ hitType: "pageview", page: "/", title: "Home Page View" });
 
+    const { data: businessOfTheWeek, error: errorBusinessOfTheWeek } = useFetch({
+        api: apiBusinessOfTheWeek,
+        key: ['businessOfTheWeek'],
+        staleTime: 1000 * 60 * 5,
+        cacheTime : 1000 * 60 * 60,
+    })
+
+    const { data: blackFridayEnabled } = useFetch({
+        api: apiBlackFriday,
+        key: ['blackFriday'],
+        staleTime: 1000 * 60 * 5,
+        cacheTime : 1000 * 60 * 60,
+    })
+
     const { data: aprrovedBusinesses, error: errorApprovedBusinesses } = useFetch({
         key: ['aprrovedBusinesses', 0],
         param: { page: 1, num_per_page: 5 },
@@ -35,15 +49,10 @@ const Home = () => {
         staleTime: 1000 * 60 * 5,
     })
 
-    // console.log({ aprrovedBusinesses })
+    // console.log({ blackFridayEnabled })
 
-    const { data: businessOfTheWeek, error: errorBusinessOfTheWeek } = useFetch({
-        api: apiBusinessOfTheWeek,
-        key: ['businessOfTheWeek'],
-        staleTime: 1000 * 60 * 5,
-        cacheTime : 1000 * 60 * 60,
-    })
-      
+ 
+
     // console.log("businessOfTheWeek", businessOfTheWeek, "error", errorBusinessOfTheWeek)
     // console.log('business', aprrovedBusinesses)
 
@@ -58,6 +67,24 @@ const Home = () => {
         <Header />
         <Hero businesses={aprrovedBusinesses} />
         <Billboard />
+        {
+            blackFridayEnabled && (blackFridayEnabled == true) &&
+            <section className='px-4 mb-12 md:mb-20 md:px-10 lg:px-24'>
+                <div className='bg-black/20 animate-puse h-64 md:h-60 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-12 md:mb-20 px-4 sm:px-12 md:px-24 bg-[url("assets/orang.jpg")]'>     
+                    <div className='flex flex-col items-center gap-5'>
+                        <h2 className='text-lg font-medium text-center md:text-xl'>
+                            Unbeatable Black Friday Deals 🎉
+                        </h2>
+                        <span className='text-sm'>Shop top products with massive discounts</span>
+                    </div>
+                    <Link to="/deals">
+                        <Button variant={'product'} className='px-12 py-3 rounded animate-bounce'>
+                            Shop Deals Now
+                        </Button>
+                    </Link>
+                </div>
+            </section>
+        }
         <Category />
         <section className='px-4 mb-12 md:mb-20 md:px-10 lg:px-24'>
             <div className='bg-[url("assets/audience.svg")] h-64 md:h-60 bg-cover bg-center text-white flex flex-col justify-between items-center py-10 mb-12 md:mb-20 px-4 sm:px-12 md:px-24'>     

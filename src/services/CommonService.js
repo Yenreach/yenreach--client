@@ -36,6 +36,16 @@ export const apiBusinessOfTheWeek =  ({ token }) => {
         }    
     })
 }
+
+export const apiBlackFriday =  ({ token }) => {
+    return ApiAdapter.fetchData({
+        url: `/settings/is_black_friday_enabled`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
+    })
+}
 export const apiBusinessAnalytics =  ({ token }) => {
     return ApiAdapter.fetchData({
         url: `${servicePrefix}`,

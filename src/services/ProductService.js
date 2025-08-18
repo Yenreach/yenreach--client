@@ -111,6 +111,16 @@ export const apiGetAllProducts = (query={}) => {
     })
 }
 
+export const apiGetBlackFridayProducts = (query={}) => {
+    return ApiAdapter.fetchData({
+        url: `/products/black-friday?limit=${query?.num_per_page || 40}&page=${query?.page || 1}&search=${query?.search || ''}&category=${query?.category || ''}`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${query?.token}`
+        }   
+    })
+}
+
 /* Sort Products */
 export const apiSortProducts = (query={}) => {
     return ApiAdapter.fetchData({
