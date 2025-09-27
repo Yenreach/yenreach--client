@@ -37,7 +37,8 @@ const index = ({ setStep, handleBusinessData, businessData, setBusinessData }) =
         if (!profileImg || !coverImg) {
             return toast.info("Please select both cover and profile image for your business")
         }
-        const data = { ...businessData, profileImg, coverImg }
+        const { categories, ...rest } = businessData
+        const data = { ...rest, profileImg, coverImg, categories: categories?.map(cat => cat.id) || [] }
         // console.log("data", data)
         addBusinessMutation.mutate(data)
     }

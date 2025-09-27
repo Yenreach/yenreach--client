@@ -3,6 +3,7 @@ import { apiGetAllCategories, apiGetAllLGAs, apiGetAllStates } from '/src/servic
 import Input from '../../../../components/ui/Input'
 import Button from '../../../../components/ui/Button'
 import useFetch from '/src/hooks/useFetch'
+import { MdClose } from 'react-icons/md'
 
 
 const months = [
@@ -82,8 +83,22 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
 
     const handleCategory = (event) => {
         if (businessData?.categories?.length < 5) {
-        setBusinessData(prev => ({...prev, [event.target.name]: [...businessData?.categories, event.target.value] }))
+            const cat = categories?.find((category) => category.id?.trim() === event.target.value?.trim())
+            if (cat) {
+                setBusinessData(prev => ({...prev, [event.target.name]: [...businessData?.categories, {
+                    id: cat.id,
+                    category: cat.category,
+                }] }))
+            }
         } 
+    }
+  
+    const handleRemoveCategory = (id) => {
+        if (!id) return
+        if (businessData?.categories?.length > 0) {
+            const values = businessData?.categories?.filter((category) => category.id !== id)
+            setBusinessData(prev => ({...prev, categories: values }))
+        }
     }
 
     const handleSubmit = (e) => {
@@ -113,12 +128,21 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
                 <select onChange={(e) => handleCategory(e)} required className='w-full px-4 py-3 border-2 rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="categories" id="categories" placeholder='Enter Categoies'>
                     <option value="">Select Categories(max 5)</option>
                     {categories?.map((category) => (
-                        <option key={category.id} value={category.category}>{category.category}</option>
+                        <option key={category.id} value={category.id}>{category.category}</option>
                     ))}
                 </select>
-                <div>
-                    {businessData.categories?.map((category) => (
-                        <span key={category} className='py-1 mr-2 text-xs text-black text-gray-600 bg-gray-200 rounded-full'>{category.category}</span>
+                <div className='flex items-center gap-2 flex-wrap mt-1.5 cursor-pointer'>
+                    {businessData?.categories?.map((category) => (
+                        <p 
+                            key={category.id} 
+                            onClick={() => {
+                                handleRemoveCategory(category.id)
+                            }}
+                            className='flex items-center gap-1.5 bg-gray/5 p-0.5 rounded-md'
+                        >
+                            <span  className='py-1 text-xs text-black text-gray-600 bg-gray-200 rounded-full'>{category.category}</span>
+                            <MdClose className='text-md' />
+                        </p>
                     ))}
                 </div>
             </div>
@@ -148,7 +172,7 @@ const index = ({ setStep, businessData, setBusinessData, handleBusinessData}) =>
             </div>
             <div className='w-full mb-8'>
                 <label htmlFor="lgaId" className='text-sm font-medium'>LGA</label>
-                <select value={businessData?.lgaId} onChange={handleBusinessData} className='w-full px-4 py-3 border-2 rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="lgaId" id="lgaId" placeholder='Enter LGA'>
+                <select required={true} value={businessData?.lgaId} onChange={handleBusinessData} className='w-full px-4 py-3 border-2 rounded-lg outline-none cursor-pointer bg-inherit focus:invalid:border-red-400 border-green' name="lgaId" id="lgaId" placeholder='Enter LGA'>
                     <option value="">Enter LGA</option>
                     {lgas?.map((lga) => (
                         <option key={lga.id} value={lga.id}>{lga.name}</option>
