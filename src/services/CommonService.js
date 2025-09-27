@@ -431,3 +431,23 @@ export const apiGetAllCategories =  ({ token }) => {
     })
 }
 
+export const apiGetAllStates =  ({ token }) => {
+    return ApiAdapter.fetchData({
+        url: `/states`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
+    })
+}
+
+export const apiGetAllLGAs =  ({ token, id }) => {
+    return ApiAdapter.fetchData({
+        url: `/states/${id}/lgas`,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }    
+    })
+}
+

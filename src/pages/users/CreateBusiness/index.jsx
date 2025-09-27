@@ -13,8 +13,6 @@ const index = () => {
   const [step, setStep] = React.useState(1)
   const [businessData, setBusinessData] = React.useState(initialBusinessState)
 
-  // console.log("businessData", businessData)
-
   const handleBusinessData = (event) => {
     setBusinessData(prev => ({...prev, [event.target.name]: event.target.value }))
   }
